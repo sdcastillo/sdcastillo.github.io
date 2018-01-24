@@ -4,7 +4,7 @@ highlighter:      rouge
 
 # Setup
 title:            Sam Castillo
-tagline:          'tagline'
+tagline:          ''
 description:      'Actuarial Science in the 21st Century.'
 url:              https://sdcastillo.github.io
 baseurl:          # the optional subpath of your site, e.g. "/blog"
