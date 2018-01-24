@@ -39,6 +39,7 @@ validation-report.json
 
 # Folders to ignore
 node_modules
+old_pages
 .sass-cache
 
 # Dev stuff
