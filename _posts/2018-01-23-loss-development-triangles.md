@@ -44,4 +44,4 @@ Example of R extract method:
 
 When it comes to aggregating excel files, R can be faster and more consistent than linking together each of the excel files, and once this script is set in place, making modifications to the data can be done easily by editing a few lines of code.  The only manual labor required in excel was to go into each file and rename the columns to be consistent.
 
-[Download the code and follow along](https://github.com/sdcastillo/Loss-Development-Triangles)
+[Download the example code](https://github.com/sdcastillo/Loss-Development-Triangles)
