@@ -30,14 +30,6 @@ Example of conventional, linked triangle:
 
 To locate the current working directory, I use the package `here`.  To read in the Excel files and manipulate the data, I use `readxl`, `dplyr`, and `plyr`.  The package `ChainLadder` has a variety of tools for actuarial reserve analysis.    
 
-```{r warning = F, message= F}
-library(here)
-library(plyr)
-library(readxl)
-library(lubridate)
-library(dplyr)
-library(ChainLadder)
-```
 
 ## Step 1: Organize the Excel Files
 
@@ -54,7 +46,6 @@ Using the command `list.files()`, R automatically looks in the working directory
 ```{r}
 list.files(wd_path)
 ```
-
 R can then loop through each of these files and perform any action.  If there were 100 files, or 1000 files in this directory, this would still work.
 
 The loss files have dummy data for a claims listing.  Each row is an individual claim which would have a member name, memberID, loss date, report date, paid loss amount, incurred loss amount, case reserve amount, etc.  To make this as realistic as possible, they have arbitrary columns in addition to the ones which we need, `file_year`, `accident_year`, and `paid`.
@@ -64,7 +55,6 @@ file_names = list.files(wd_path)
 file_paths = paste(wd_path, "/", file_names, sep = "")
 head(read_excel(file_paths[3]), 4)
 ```
-
 In order to evaluate the age of the losses, we need to take into account when each loss was evaluated.  This is accomplished by going into Excel and adding in a column for `file_year`, which specifies the year of evaluation of the file.  For instance, for the "claim listing 2013" file, all of the claims have a "2013" in the "file year" column.  For convenience, these files already contain the `file_year` column.
 
 ## Step 2: Load the Data into R
@@ -93,7 +83,6 @@ extract_needed_excel_data = function(cur_file_path){
     rbind(merged_data)
 }
 ```
-
 Apply the function to all of the files in the folder that you created.  Obviously, if you had 100 excel files this would still work just as effectively.
 
 From the `plyr` package, `ldply` takes in a list and returns a data frame.  The way to remember this is by the ordering of the letters ("list"-"data frame"-"ply").  For example, if we wanted to read in a data frame and return a data frame, it would be `ddply`.
