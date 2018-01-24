@@ -5,7 +5,7 @@ highlighter:      rouge
 # Setup
 title:            Sam Castillo
 tagline:          'tagline'
-description:      'An actuarial data science blog.'
+description:      'Actuarial Science in the 21st Century.'
 url:              https://sdcastillo.github.io
 baseurl:          # the optional subpath of your site, e.g. "/blog"
                   # NB: This applies to all pages in your Jekyll site.
@@ -15,7 +15,7 @@ baseurl:          # the optional subpath of your site, e.g. "/blog"
 
 author:
   name:           'Sam Castillo'
-  url:            https://twitter.com/fongandrewc
+  url:            
 
 paginate:         5
 # paginate_path:    '/page:num'
