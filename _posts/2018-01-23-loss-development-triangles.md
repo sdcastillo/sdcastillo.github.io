@@ -1,7 +1,7 @@
 ---
 title: "Loss Development Triangles"
 layout: post
-excerpt: "This is a user-defined post excerpt. It should be displayed in place of the auto-generated excerpt or post content on index pages."
+excerpt: "A reprocible, time-saving solution to a common actuarial reserving problem"
 categories:
   - Layout
 tags:
