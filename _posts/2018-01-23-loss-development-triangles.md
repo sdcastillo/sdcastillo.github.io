@@ -14,15 +14,13 @@ last_modified_at: 2018-01-04T12:43:31-05:00
 
 [Read the expanded article on datascienceplus.com](https://datascienceplus.com/faster-than-excel-painlessly-merge-data-into-actuarial-loss-development-triangles-with-r/)
 
-**Objective:**
-
-Create a method which easily combines loss runs, or listings of insurance claims, into triangles.  
-
-**Motivation:**
-
-Using only Excel, the common method is to create links between the excel files which must be updated manually at each new evaluation.  This is prone to human error and is time consuming.  Using a script to merge the files first and then create a triangle saves time and is more consistent.
+A frusterating task actuaries frequently encounter is combining data from separate excel files in order to create aggregate loss development triangles.  Using only Excel, the common method is to create links between the excel files which must be updated manually at each new evaluation.  This is prone to human error and is time consuming.  Using a SQL-like script with R we can automate this process to save time and reduce the liklihood of making a mistake.
 
 [For a definition of a loss development triangle and why they are important, see Wikipedia.](https://en.wikipedia.org/wiki/Chain-ladder_method)
+
+Example of conventional, linked triangle:
+
+![useful image]({{ site.url }}/assets/css/labeled triangle.PNG)
 
 **Methods:**
 
