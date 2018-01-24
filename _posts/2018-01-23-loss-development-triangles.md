@@ -20,7 +20,7 @@ A frusterating task actuaries frequently encounter is combining data from separa
 
 Example of conventional, linked triangle:
 
-![useful image]({{ site.url }}/assets/css/process_flowchart.PNG)
+![useful image]({{ site.url }}/assets/css/labeled triangle.PNG)
 
 **Conventional Excel Method:**
 1.  Go into each excel file and calculate the data needed (e.g., paid loss net of deductible).
@@ -40,6 +40,6 @@ This process is completely scalable.
 
 Example of R extract method:
 
-![useful image]({{ site.url }}/assets/css/labeled triangle.PNG)
+![useful image]({{ site.url }}/assets/css/process_flowchart.PNG)
 
 When it comes to aggregating excel files, R can be faster and more consistent than linking together each of the excel files, and once this script is set in place, making modifications to the data can be done easily by editing a few lines of code.  The only manual labor required in excel was to go into each file and rename the columns to be consistent.
