@@ -18,6 +18,8 @@ The Boston Globe estimated that two-thirds of the city's 165,000 properties chan
 
 This data tracks individual moving van permits from the city, where a mover has paid a fee in advance of the moving date.  A moving permit is not required by the city, but insures that the owner will not receive parking tickets and will be garanteed a parking spot.  Each dot on the map represents a moving permit issued by the City of Boston between 2012 and 2017.
 
+**App Screenshot**
+
 ![useful image]({{ site.url }}/assets/css/boston_data_story/Heading.PNG)
 
 If you ask a local, they would tell you that the reason for number of movers is due the fact that many annual leases begin on September 1st, and that many college students move in as the new semester begins.
