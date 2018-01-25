@@ -26,6 +26,8 @@ So which areas are the impacted most?  Here are a few highlights.
 
 ![useful image]({{ site.url }}/assets/css/boston_data_story/BU_Harvard.PNG)
 
+![useful image]({{ site.url }}/assets/css/boston_data_story/BeaconHill_NorthEnd.PNG)
+
 
 
 
