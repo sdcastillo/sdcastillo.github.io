@@ -16,8 +16,8 @@ last_modified_at: 2018-01-04T12:43:31-05:00
 
 [Explore the data with the Tableau Web App](https://public.tableau.com/profile/samuel.castillo#!/vizhome/TheChaosofSept_1MovingDayinBoston/BostonMovingTruckPermits)
 
-![useful image]({{ site.url }}assets/css/boston_data_story/Heading.PNG)
+![useful image]({{ site.url }}/assets/css/boston_data_story/Heading.PNG)
 
 
 
-[Download the example code](https://github.com/sdcastillo/Loss-Development-Triangles)
+[Access 132 free data sets from the City of Boston and run your own analysis.](https://data.boston.gov/)
