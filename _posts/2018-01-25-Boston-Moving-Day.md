@@ -14,9 +14,9 @@ tags:
 last_modified_at: 2018-01-04T12:43:31-05:00
 ---
 
-[Read the expanded article on datascienceplus.com](https://datascienceplus.com/faster-than-excel-painlessly-merge-data-into-actuarial-loss-development-triangles-with-r/)
+[Explore the data with the Tableau Web App](https://public.tableau.com/profile/samuel.castillo#!/vizhome/TheChaosofSept_1MovingDayinBoston/BostonMovingTruckPermits)
 
-![useful image]({{ site.url }}/assets/css/labeled triangle.PNG)
+![useful image]({{ site.url }}assets/css/boston_data_story/Heading.PNG)
 
 
 
