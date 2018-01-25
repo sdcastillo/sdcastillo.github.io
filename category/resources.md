@@ -1,6 +1,6 @@
 ---
 layout: category
-title: Edge Case
+title: Resources
 ---
 
 The following is a list of resources which I have found to be helpful as a math undergrad, when studying for actuarial exams, and working on data science projects.  Perhaps they will be helpful for you.
