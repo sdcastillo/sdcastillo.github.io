@@ -3,7 +3,8 @@ title: "Loss Development Triangles"
 layout: post
 excerpt: "A reprocible, time-saving solution to a common actuarial reserving problem"
 categories:
-  - Layout
+  - Actuarial Science
+  - Reserving
 tags:
   - reserving
   - actuarial science
