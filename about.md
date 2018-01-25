@@ -21,3 +21,5 @@ I'm always looking to meet new people, build new relationships, and find opportu
 ### Contact 
 
 [castillo.sam.d@gmail.com](mailto:castillo.sam.d@gmail.com)
+
+<img src="sdcastillo.github.io/assets/css/website_photo.jpg" alt="Drawing" style="width: 200px;"/>
