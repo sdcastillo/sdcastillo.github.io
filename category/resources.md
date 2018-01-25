@@ -9,8 +9,8 @@ The following is a list of resources which I have found to be helpful as a math 
 
 * [Coaching Actuaries](http://coachingactuaries.com/)
 * [Actuarial Study Manuals (ASM)](http://www.studymanuals.com/)
-* [Actuarial Outpost (limited experience)](actuarialoutpost.com)
-* [Reddit/r/actuary](reddit.com/r/actuary)
+* [Actuarial Outpost (limited experience)](http://www.actuarialoutpost.com/)
+* [Reddit/r/actuary](https://www.reddit.com/r/actuary/)
 
 **Machine Learning/R Programming/Data Science**
 
