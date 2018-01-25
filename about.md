@@ -3,7 +3,7 @@ layout: page
 title: About
 sidebar_link: true
 ---
-<img src="sdcastillo.github.io/assets/css/website_photo.jpg" alt="profile_photo" align ="left" style="width: 150px;"/>
+<img src="sdcastillo.github.io/assets/css/website_photo.jpg" alt="profile_photo" align ="left" style="width: 150px; clear:both;"/>
 
 
 
