@@ -5,7 +5,7 @@ highlighter:      rouge
 # Setup
 title:            Sam Castillo
 tagline:          ''
-description:      'Actuarial Science in the 21st Century.'
+description:      'Actuarial Science, Machine Learning, Data Visualization.'
 url:              https://sdcastillo.github.io
 baseurl:          # the optional subpath of your site, e.g. "/blog"
                   # NB: This applies to all pages in your Jekyll site.
@@ -27,7 +27,7 @@ plugins:
   - jekyll-paginate
 
 # Custom vars
-version:            3.5.3
+version:            1.0.0
 sidebar_home_link:  true
 # sidebar_blog_link:  '/blog'   # By default, your home page is your blog
                                 # page. If you change your paginate_path,
