@@ -1,4 +1,3 @@
-
 ---
 title: "Boston Moving Day"
 layout: post
