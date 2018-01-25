@@ -4,7 +4,7 @@ title: About
 sidebar_link: true
 ---
 
-![useful image]({{ site.url }}/assets/css/website_photo.jpg)
+![useful image]({{ site.url }}/assets/css/website_photo.jpg =100x200)
 
 Hi, I'm Sam Castillo.  I have started my career as an actuarial analyts and use this blog to keep track of interesting projects, helpful advice, and anything else that catches my attention.  My educational background is a B.S. in math from the University of Massachusetts Amherst, actuarial exams P, FM, and MFE, and internship experience in P&C and health insurance.
 
