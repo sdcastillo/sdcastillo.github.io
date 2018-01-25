@@ -16,6 +16,7 @@ The following is a list of resources which I have found to be helpful as a math 
 [Reddit/r/actuary](reddit.com/r/actuary)
 
 **Machine Learning/R Programming/Data Science**
+
 [Introduction to Statistical Learning](http://www-bcf.usc.edu/~gareth/ISL/)
 
 [Kaggle](https://www.kaggle.com/)
