@@ -3,7 +3,7 @@ layout: page
 title: About
 sidebar_link: true
 ---
-<img src="sdcastillo.github.io/assets/css/website_photo.jpg" alt="profile_photo" align ="right" style="width: 200px;"/>
+<img src="sdcastillo.github.io/assets/css/website_photo.jpg" alt="profile_photo" align ="left" style="width: 150px;"/>
 
 Hi, I'm Sam Castillo.  I have started my career as an actuarial analyts and use this blog to keep track of interesting projects, helpful advice, and anything else that catches my attention.  My educational background is a B.S. in math from the University of Massachusetts Amherst, actuarial exams P, FM, and MFE, and internship experience in P&C and health insurance.
 
