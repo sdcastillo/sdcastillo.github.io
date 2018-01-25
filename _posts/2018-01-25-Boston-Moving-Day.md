@@ -34,6 +34,7 @@ What can the city do to improve the situation?  Already there have been efforts 
 
 ![useful image]({{ site.url }}/assets/css/boston_data_story/moving_dates_v_year.PNG)
 
+![useful image]({{ site.url }}/assets/css/boston_data_story/moving_dates_v_year.PNG)
 
 
 
