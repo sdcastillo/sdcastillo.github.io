@@ -14,6 +14,8 @@ I'm always looking to meet new people, build new relationships, and find opportu
 
 [LinkedIn](https://www.linkedin.com/in/sdcastillo/)
 
+[Github](https://github.com/sdcastillo)
+
 ### Contact 
 
 [castillo.sam.d@gmail.com](mailto:castillo.sam.d@gmail.com)
