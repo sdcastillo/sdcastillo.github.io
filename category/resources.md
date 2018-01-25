@@ -7,13 +7,13 @@ The following is a list of resources which I have found to be helpful as a math 
 
 **Actuarial Science**
 
-[Coaching Actuaries](http://coachingactuaries.com/)
+* [Coaching Actuaries](http://coachingactuaries.com/)
 
-[Actuarial Study Manuals (ASM)](http://www.studymanuals.com/)
+* [Actuarial Study Manuals (ASM)](http://www.studymanuals.com/)
 
-[Actuarial Outpost (limited experience)](actuarialoutpost.com)
+* [Actuarial Outpost (limited experience)](actuarialoutpost.com)
 
-[Reddit/r/actuary](reddit.com/r/actuary)
+* [Reddit/r/actuary](reddit.com/r/actuary)
 
 **Machine Learning/R Programming/Data Science**
 
