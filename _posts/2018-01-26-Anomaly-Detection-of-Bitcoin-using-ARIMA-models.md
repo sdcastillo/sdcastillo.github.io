@@ -22,25 +22,25 @@ This [Shiny application]() identifies anomalous behavior in the Bitcoin Price In
 
 ![useful image]({{ site.url }}/assets/css/anomaly_detection/bitcoin_app_screenshot.PNG)
 
-# Methods
+## Methods
 
 1. Transformation to approximately stationary time series
 2. Fit ARIMA model
 3. Classify outliers
 
-# Step 1: Transformation
+## Step 1: Transformation
 
 The time series is first transformed with a natural logarithm to stabilize the variance, and is then differenced to eliminate trend.  This can be a simple single differencing, or a more sophistocated seasonal differencing or fractional differencing.
 
 ![useful image]({{ site.url }}/assets/css/anomaly_detection/BTC_transformation_labeled.PNG)
 
-# Step 2: Model Fitting
+## Step 2: Model Fitting
 
 Once the series is transformed, the model-fitting process would begin.  In a more sophistocated example, considerations would need to be made in order for an ARIMA model to be a logical choice, such as heteroscedasticity, deterministic time trends, one-time anomalies, and known predictor variables.  For Bitcoin, this is not always the case as of November 2017.
 
 These models are far from perfect, but do not need be.  The purpose is not for prediction, but to merely identify abnormal price behavior.  For short time periods, the model is often a moving average MA(1), AR(1), or ARMA(1,1) model of the differenced log of the closing price.  Over longer time intervals, more complex models allow for greater sensitivity to price fluctuations.
 
-# Step 3: Outlier Classification
+## Step 3: Outlier Classification
 
 Once the model is fit, points are classified as being outliers or not.  In this app, the user specifies a risk tolerance level alpha, between 0.01 and 0.1, which serves as this cutoff.  If the standardized residual is above the cutoff, then the point is an outlier.  The lower the threshold, the higher the sensitivity.  As seen below, the points which originally appeared to be suspect are classified in red as anomalies.
 
