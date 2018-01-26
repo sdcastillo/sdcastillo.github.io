@@ -1,5 +1,5 @@
 ---
-title: "Boston Moving Day"
+title: "Anomaly Detection for Bitcoin"
 layout: post
 excerpt: "When most people think of modeling, the main emphasis is on usually on making predictions or data mining.  Anomaly detection is a third major use"
 categories:
@@ -16,17 +16,17 @@ tags:
 last_modified_at: 2018-01-04T12:43:31-05:00
 ---
 
-When most people think of modeling, the main emphasis is on usually on making predictions or or data mining.  Anomaly detection is a third major use for many types of models.  In a nutshell, 
+When most people think of modeling, the main emphasis is on usually on making predictions or or data mining.  Anomaly detection, or outlier classification, is a third major use for many types of models.  In a nutshell, this process involves fitting a model, calculating error for each point, and then creating a classification rule to determine which points are outliers. 
 
-![useful image]({{ site.url }}/assets/css/boston_data_story/BU_Harvard.PNG)
+This [Shiny application]() identifies anomalous behavior in the Bitcoin Price Index [(BTC-USD)](https://finance.yahoo.com/quote/BTCUSD=X/)
 
-In each of these areas, there is a spike in the number of moving van permits on the week of September 1st.  This is not effect is not just isolated to housing close to universities, but across the downtown metro area as a whole.
+![useful image]({{ site.url }}/assets/css/anomaly_detection/bitcoin_app_screenshot.PNG)
 
-![useful image]({{ site.url }}/assets/css/boston_data_story/BeaconHill_NorthEnd.PNG)
+![useful image]({{ site.url }}/assets/css/anomaly_detection/with_confidence_bands.png)
 
-What can the city do to improve the situation?  Already there have been efforts to raise awareness about the traffic, logistical difficulty, and overall chaos of September 1st.  Universities now distribute information for students encouraging earlier move-ins.  This has produced visible change.  The graph below shows how the number of moving permits shifts to late-August for the more recent years, as opposed to 2012-2014.
+![useful image]({{ site.url }}/assets/css/anomaly_detection/BTC_transformation_labeled.PNG)
 
-![useful image]({{ site.url }}/assets/css/boston_data_story/moving_dates_v_year.PNG)
+
 
 
 
