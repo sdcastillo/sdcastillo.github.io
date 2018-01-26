@@ -24,7 +24,7 @@ This data tracks individual moving van permits from the city, where a mover has 
 
 If you ask a local, they would tell you that the reason for number of movers is due the fact that many annual leases begin on September 1st, and that many college students move in as the new semester begins.
 
-So which areas are the impacted most?  Here are a few highlights.
+So which areas are the impacted most?
 
 ![useful image]({{ site.url }}/assets/css/boston_data_story/BU_Harvard.PNG)
 
