@@ -18,7 +18,7 @@ last_modified_at: 2018-01-04T12:43:31-05:00
 
 When most people think of machine learning, the main emphasis is on usually on making predictions or or data mining.  Anomaly detection, or outlier classification, is a third major use for many types of models.  In a nutshell, this process detects sudden or drastic shifts in a process.  For instance, bank managers can be alerted of fraud if an account suddenly experiences abnormal activity, or website owners can track trending content in real-time.
 
-This [Shiny application]() identifies anomalous behavior in the Bitcoin Price Index [(BTC-USD)](https://finance.yahoo.com/quote/BTCUSD=X/)
+This [Shiny application](https://samdc.shinyapps.io/Bitcoin_Anomaly_Detection/) identifies anomalous behavior in the Bitcoin Price Index [(BTC-USD)](https://finance.yahoo.com/quote/BTCUSD=X/).  Additionally, follow along with the [notebook file](http://htmlpreview.github.com/?https://github.com/sdcastillo/Bitcoin-Anomaly-Detection/blob/master/example_for_article.html) for this article.
 
 ![useful image]({{ site.url }}/assets/css/anomaly_detection/bitcoin_app_screenshot.PNG)
 
