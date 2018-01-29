@@ -10,11 +10,9 @@ sidebar_link: true
 <br/><br/>
 <br/><br/>
 
-Hi, I'm Sam Castillo.  As I start my career as an actuary I use this blog to keep track of interesting projects and ideas.  My educational background is a B.S. in math from the University of Massachusetts Amherst, actuarial exams P, FM, and MFE, and internship experience in P&C and health insurance.  
+Hi, I'm Sam Castillo.  As I start my career as an actuary, I use this blog to keep track of interesting projects and ideas.  My educational background is a B.S. in math from the University of Massachusetts Amherst, actuarial exams P, FM, and MFE, and internship experience in P&C and health insurance.  
 
-My other interests are in cycling, ultimate frisbee, hiking, playing guitar, prog rock, and watching the Patriots dominate.  
-
-I'm always looking to meet new people, build new relationships, and find opportunities to learn and apply new skills. Please reach out to me or check out projects on the blog.
+My other interests are in cycling, ultimate frisbee, hiking, playing guitar, and prog rock.  I'm always looking to meet new people, build new relationships, and find opportunities to learn and apply new skills. Please reach out to me or check out projects on the blog.
 
 ### More Information
 
