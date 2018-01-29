@@ -3,13 +3,13 @@ layout: page
 title: About
 sidebar_link: true
 ---
-<img src="sdcastillo.github.io/assets/css/website_photo.jpg" alt="profile_photo" align ="left" style="width: 150px; clear:both;"/>
+<img src="sdcastillo.github.io/assets/css/website_photo.jpg" alt="profile_photo" align ="left" style="width: 200px; clear:both;"/>
 
 <br/><br/>
 <br/><br/>
 <br/><br/>
 
-Hi, I'm Sam Castillo.  I have started my career as an actuary and use this blog to keep track of interesting projects, helpful advice, and anything else that catches my attention along the journey.  My educational background is a B.S. in math from the University of Massachusetts Amherst, actuarial exams P, FM, and MFE, and internship experience in P&C and health insurance.
+Hi, I'm Sam Castillo.  As I start my career as an actuary I use this blog to keep track of interesting projects and ideas.  My educational background is a B.S. in math from the University of Massachusetts Amherst, actuarial exams P, FM, and MFE, and internship experience in P&C and health insurance.  
 
 My other interests are in cycling, ultimate frisbee, hiking, playing guitar, prog rock, and watching the Patriots dominate.  
 
@@ -36,5 +36,4 @@ I'm always looking to meet new people, build new relationships, and find opportu
  - *The Big Short*
  - *Contact*
  - *The Martian*
-
 
