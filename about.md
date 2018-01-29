@@ -34,5 +34,6 @@ My other interests are in cycling, ultimate frisbee, hiking, playing guitar, and
  - *The Simlarillion*
  - *The Big Short*
  - *Contact*
+ - *Sherlock Holmes*
  - *The Martian*
 
