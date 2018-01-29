@@ -8,6 +8,7 @@ sidebar_link: true
 <br/><br/>
 <br/><br/>
 <br/><br/>
+<br/><br/>
 
 Hi, I'm Sam Castillo.  As I start my career as an actuary I use this blog to keep track of interesting projects and ideas.  My educational background is a B.S. in math from the University of Massachusetts Amherst, actuarial exams P, FM, and MFE, and internship experience in P&C and health insurance.  
 
