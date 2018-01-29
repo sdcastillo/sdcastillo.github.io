@@ -11,6 +11,8 @@ sidebar_link: true
 
 Hi, I'm Sam Castillo.  I have started my career as an actuary and use this blog to keep track of interesting projects, helpful advice, and anything else that catches my attention along the journey.  My educational background is a B.S. in math from the University of Massachusetts Amherst, actuarial exams P, FM, and MFE, and internship experience in P&C and health insurance.
 
+My other interests are in cycling, ultimate frisbee, hiking, playing guitar, prog rock, and watching the Patriots dominate.  
+
 I'm always looking to meet new people, build new relationships, and find opportunities to learn and apply new skills. Please reach out to me or check out projects on the blog.
 
 ### More Information
@@ -24,4 +26,15 @@ I'm always looking to meet new people, build new relationships, and find opportu
 ### Contact 
 
 [castillo.sam.d@gmail.com](mailto:castillo.sam.d@gmail.com)
+
+### Top Books
+
+ - *The Hitchhiker's Guide to the Galaxy* 
+ - *The Princess Bride*
+ - *The Lord of the Rings*
+ - *The Simlarillion*
+ - *The Big Short*
+ - *Contact*
+ - *The Martian*
+
 
