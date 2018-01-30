@@ -9,7 +9,6 @@ categories:
 tags:
   - R
   - Data Visualization
-  - R
   - Excel
   - R Shiny
   - ggplot2
