@@ -13,6 +13,8 @@ baseurl:          # the optional subpath of your site, e.g. "/blog"
                   # other pages at root, see the paginate_path and
                   # sidebar_blog_link below.
 
+google_analytics: UA-113404765-1
+
 author:
   name:           'Sam Castillo'
   url:            
@@ -27,7 +29,7 @@ plugins:
   - jekyll-paginate
 
 # Custom vars
-version:            1.0.0
+version:            1.0.1
 sidebar_home_link:  true
 # sidebar_blog_link:  '/blog'   # By default, your home page is your blog
                                 # page. If you change your paginate_path,
