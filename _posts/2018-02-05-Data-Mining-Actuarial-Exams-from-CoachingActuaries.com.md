@@ -2,7 +2,7 @@
 ---
 title: "Data Mining Actuarial Exams from CoachingActuaries.com"
 layout: post
-excerpt: "What are the factors which contribute to passing an actuarial exam?  This short paper uses statistical learning to provide insight with data from my online account at coachingactuaries.com"
+excerpt: "What are the factors which contribute to passing an actuarial exam?  This short paper "
 categories:
   - Machine Learning
   - Data Mining
