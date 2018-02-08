@@ -16,15 +16,12 @@ My other interests are in cycling, ultimate frisbee, hiking, playing guitar, and
 
 ### More Information
 
-[Tableau Gallery](public.tableau.com/profile/samuel.castillo#!/)
-
-[LinkedIn](https://www.linkedin.com/in/sdcastillo/)
-
-[Github](https://github.com/sdcastillo)
+- [Tableau Gallery](public.tableau.com/profile/samuel.castillo#!/)
+- [LinkedIn](https://www.linkedin.com/in/sdcastillo/)
+- [Github](https://github.com/sdcastillo)
 
 ### Contact 
-
-[castillo.sam.d@gmail.com](mailto:castillo.sam.d@gmail.com)
+- [castillo.sam.d@gmail.com](mailto:castillo.sam.d@gmail.com)
 
 ### Top Books
 
