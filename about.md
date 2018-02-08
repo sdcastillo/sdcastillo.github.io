@@ -10,11 +10,11 @@ sidebar_link: true
 <br/><br/>
 <br/><br/>
 
-Hi, I'm Sam Castillo.  As I start my career as an actuary, I use this blog to keep track of interesting projects and ideas.  My educational background is a B.S. in math from the University of Massachusetts Amherst, actuarial exams P, FM, and MFE, and internship experience in P&C and health insurance.  
+Hi, I'm Sam Castillo.  I am currently studying to work as an actuary.  Previously I have been with Blue Cross Blue Shield and Milliman after graduating from UMass Amherst.  Volunteer data projects have been with [CoachingActuaries](coachingactuaries.com) and [Esperanza Soaps](http://www.esperanza-soaps.com/soapmade/).  
 
-My other interests are in cycling, ultimate frisbee, hiking, playing guitar, and prog rock.  I'm always looking to meet new people, build new relationships, and find opportunities to learn and apply new skills. Please reach out to me or check out projects on the blog.
+This blog is to keep track of actuarial and data science side projects.
 
-I do not pretend to be an expert, as I am learning this as I go.  If you spot a mistake, please leave a comment so that it can be fixed.
+I do not pretend to be an expert.  If you spot a mistake, please leave a comment so that it can be fixed.
 
 ### More Information
 
