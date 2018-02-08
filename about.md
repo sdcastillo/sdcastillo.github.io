@@ -14,6 +14,8 @@ Hi, I'm Sam Castillo.  As I start my career as an actuary, I use this blog to ke
 
 My other interests are in cycling, ultimate frisbee, hiking, playing guitar, and prog rock.  I'm always looking to meet new people, build new relationships, and find opportunities to learn and apply new skills. Please reach out to me or check out projects on the blog.
 
+I do not pretend to be an expert, as I am learning this as I go.  If you spot a mistake, please leave a comment so that it can be fixed.
+
 ### More Information
 
 - [Tableau Gallery](public.tableau.com/profile/samuel.castillo#!/)
