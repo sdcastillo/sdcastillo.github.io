@@ -5,6 +5,7 @@ highlighter:      rouge
 # Setup
 title:            Sam Castillo
 tagline:          ''
+theme: jekyll-theme-modernist
 description:      'Actuarial Science, Machine Learning, Data Visualization.'
 url:              https://sdcastillo.github.io
 baseurl:          # the optional subpath of your site, e.g. "/blog"
