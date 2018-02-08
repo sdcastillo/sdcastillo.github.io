@@ -2,8 +2,7 @@
 <html lang="en-us">
 
   {% include head.html %}
-  <--!{{ page.layout }}{% if page.url == '/' %} home{% endif %} -->
-  <body class="theme-base-08">
+  <body class="theme-base-08 {{ page.layout }}{% if page.url == '/' %} home{% endif %}">
 
     {% include sidebar.html %}
 
