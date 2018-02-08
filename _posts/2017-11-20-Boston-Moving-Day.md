@@ -2,7 +2,7 @@
 title: "Boston Moving Day"
 layout: post
 images:
-  - url: /assets/css/boston_data_story/Heading.PNG
+  - url: {{ site.url }}/assets/css/boston_data_story/Heading.PNG
 excerpt: "Anyone who has been in Boston on September 1st knows the local phenomenon of moving day"
 categories:
   - Data Visualization
