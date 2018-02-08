@@ -3,7 +3,7 @@
 
   {% include head.html %}
     
-  <body class="theme-base-0d">
+  <body class="{{ page.layout }}{% if page.url == '/' %} home{% endif %}">
 
     {% include sidebar.html %}
 
