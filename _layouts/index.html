@@ -9,7 +9,10 @@ layout: default
 
   {% for post in paginator.posts %}
   <article class="post-body">
-    <h3>{{post.image}}</h3>
+    
+    <h2 class="post-title">
+      {{post.image}}
+    </h2>
     
     <h2 class="post-title">
       <a href="{{ site.baseurl }}{{ post.url }}">
