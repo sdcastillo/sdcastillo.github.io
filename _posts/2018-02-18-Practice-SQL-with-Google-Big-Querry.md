@@ -1,7 +1,7 @@
 ---
 title: "Practice SQL with Google Big Querry"
 layout: post
-excerpt: "Practice SQL with Google Big Querry in 10 Minutes"
+excerpt: "SQL is used ubiquitously for data manipulation, and although initially I found it challenging to set up an environment to practice on"
 categories:
   - Tutorial
   - Data Manipulation
@@ -13,7 +13,7 @@ tags:
 last_modified_at: 2018-02-20T12:43:31-05:00
 ---
 
-SQL is used ubiquitously for data manipulation, although initially I found it challenging to set up an environment to practice on, an easy solution is to use Google’s BigQuery platform.  This allows users to set up an account and run SQL queries on terabyte-scale databases in minutes.  Additionally, this can be run from anywhere, or on any platform or machine with a web browser.
+SQL is used ubiquitously for data manipulation, and although initially I found it challenging to set up an environment to practice on, an easy solution is to use Google’s BigQuery platform.  This allows users to set up an account and run SQL queries on terabyte-scale databases in minutes.  Additionally, this can be run from anywhere, or on any platform or machine with a web browser.
 
 ## 1.	Setup
 
