@@ -40,19 +40,19 @@ Be careful about data usage, as the cost is determined by how much data is pulle
 In this example, I want to know which Red Sox players had the most home runs during the 2016 season.  
 
 ```sql
-#Which player had the most home runs?
+/*Which player had the most home runs?*/
 SELECT count(outcomeDescription) AS number_of_homeruns, 
        #Combines first and last name 
        CONCAT(hitterFirstName, " ", hitterLastName) as name
 
-#The syntax is [bigquery-public-data][name of database].[name of table]
+/*The syntax is [bigquery-public-data][name of database].[name of table]*/
 FROM [bigquery-public-data:baseball.games_wide]
 
-#Only look at Red Sox players as the bottom of the inning is when the home team bats
+/*Only look at Red Sox players as the bottom of the inning is when the home team bats*/
 WHERE ((homeTeamName = "Red Sox" AND inningHalf = "BOT") OR (awayTeamName = "Red Sox" AND inningHalf = "TOP")) 
 AND outcomeDescription = "Homerun"
 
-#Aggregate by player
+/*Aggregate by player*/
 GROUP BY name
 #Sort the output to be in descending order
 ORDER BY number_of_homeruns DESC
@@ -66,7 +66,7 @@ These data can be checked against the official MLB statistics recorded on [Baseb
 
 ## 4.  Use the Output
 
-There are many ways that the output from above could be exported.  For simplicity in this example, I copy the results to Google Sheets and can then create a graph of the output.
+There are many ways that the output from above could be exported.  For simplicity in this example, I copy the results to Google Sheets and can then create a graph of the output.  This is as easy as pressing `Save to Google Sheets` above the output.
 
 ![useful image]({{ site.url }}/assets/css/google_big_query/chart_output.png)
 
