@@ -1,5 +1,5 @@
 ---
-title: "Practice SQL with Google Big Querry"
+title: "Practice SQL from Anywhere with Google BigQuery"
 layout: post
 excerpt: "SQL is used ubiquitously for data manipulation, and although initially I found it challenging to set up an environment to practice on"
 categories:
