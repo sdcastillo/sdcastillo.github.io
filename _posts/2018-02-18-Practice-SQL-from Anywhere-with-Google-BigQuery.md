@@ -4,6 +4,7 @@ layout: post
 excerpt: "SQL is used ubiquitously for data manipulation, and although initially I found it challenging to set up an environment to practice on"
 categories:
   - Tutorial
+  - SQL
   - Data Manipulation
 tags:
   - SQL
