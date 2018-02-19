@@ -19,11 +19,13 @@ SQL is used ubiquitously for data manipulation, and although initially I found i
 
 As of this date, Google’s 1-year free trial allows for $300 in credits.  This is more than sufficient to get up and running with the basics.  Users just [sign in](https://cloud.google.com/bigquery/?utm_source=google&utm_medium=cpc&utm_campaign=2015-q2-cloud-na-gcp-bkws-freetrial-en&gclid=Cj0KCQiA5aTUBRC2ARIsAPoPJk8e2GT7GPlmY5_kiRm48rSHg83aOh-bc3pXV3uTXceiR0fBeXPM2DQaAhWEEALw_wcB&dclid=CIiWjN6EsdkCFYOsyAodVd0MIw) with a google account.
 
-Google’s BigQuery tutorial:
-https://cloud.google.com/bigquery/quickstart-web-ui
+[Google’s BigQuery tutorial:](https://cloud.google.com/bigquery/quickstart-web-ui)
 
-SQL Tutorial:
-This is not intended as a SQL tutorial, as there are already thousands of better ones out there.
+Because Google's engineers are better at explaining this than I am.
+
+[SQL Tutorial:](https://www.google.com/search?q=sql+tutorial)
+
+Because there are already thousands of SQL tutorials out there.  BigQuery uses SQL standard 2011.
 
 ## 2.	 Select Data
 
