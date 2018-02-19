@@ -58,7 +58,7 @@ GROUP BY name
 ORDER BY number_of_homeruns DESC
 ```
 
-The output shows the number of home runs for each red sox player.  Notice the 40-homerun season from David Ortiz (AKA, Big Papi), the greatest DH of all time, on his final season with the Sox.
+The output shows the number of home runs for each red sox player.  Notice the 38-homerun season from David Ortiz (AKA, Big Papi), the greatest DH of all time, on his final season with the Sox.
 
 ![useful image]({{ site.url }}/assets/css/google_big_query/query_output.png)
 
