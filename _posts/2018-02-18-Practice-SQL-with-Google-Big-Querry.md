@@ -54,7 +54,7 @@ AND outcomeDescription = "Homerun"
 
 /*Aggregate by player*/
 GROUP BY name
-#Sort the output to be in descending order
+/*Sort the output to be in descending order*/
 ORDER BY number_of_homeruns DESC
 ```
 
