@@ -13,10 +13,28 @@ tags:
 last_modified_at: 2018-02-20T12:43:31-05:00
 ---
 
-SQL is useful, and a great introduction is by using Google Big Querry.  In this example, I access Google Big Querry with SQL.
+SQL is used ubiquitously for data manipulation, although initially I found it challenging to set up an environment to practice on, an easy solution is to use Google’s BigQuery platform.  This allows users to set up an account and run SQL queries on terabyte-scale databases in minutes.  
 
-![useful image]({{ site.url }}/assets/css/boston_data_story/Heading.PNG)
+#1.	Setup
 
+As of this date, Google’s 1-year free trial allows for $300 in credits.  This is more than sufficient to get up and running with the basics.  Users just [sign in](https://cloud.google.com/bigquery/?utm_source=google&utm_medium=cpc&utm_campaign=2015-q2-cloud-na-gcp-bkws-freetrial-en&gclid=Cj0KCQiA5aTUBRC2ARIsAPoPJk8e2GT7GPlmY5_kiRm48rSHg83aOh-bc3pXV3uTXceiR0fBeXPM2DQaAhWEEALw_wcB&dclid=CIiWjN6EsdkCFYOsyAodVd0MIw) with a google account.
+
+Google’s BigQuery tutorial:
+https://cloud.google.com/bigquery/quickstart-web-ui
+
+SQL Tutorial:
+This is not intended as a SQL tutorial, as there are already thousands of better ones out there.
+
+#2.	 Select Data
+Choose a table.  I chose the Baseball table, which has statistics from the 2016 MLB season.  Each row represents an event from an MLB game, such as a swinging strike, a foul ball, a ground out, etc.  The “Schema” shows the column names and character types.  Look at the “Preview” and “Details” pages for more info.
+
+Be careful about data usage, as the cost is determined by how much data is pulled from Google's servers.  For this example, I chose to limit the queries to only the Red Sox, and only Home Runs.  These queries were only about 30Mb in size.
+
+![useful image]({{ site.url }}/assets/css/google_big_query/schema.png)
+
+#3.  Run a Query
+
+In this example, I want to know which Red Sox players had the most home runs during the 2016 season.  
 
 ```sql
 #Which player had the most home runs?
@@ -37,4 +55,15 @@ GROUP BY name
 ORDER BY number_of_homeruns DESC
 ```
 
+The output shows the number of home runs for each red sox player.  Notice the 40-homerun season from David Ortiz (AKA, Big Papi), the greatest DH of all time, on his final season with the Sox.
+
+![useful image]({{ site.url }}/assets/css/google_big_query/query_output.png)
+
+These data can be checked against the official MLB statistics recorded on [Baseball Reference](https://www.baseball-reference.com/teams/BOS/2016.shtml)
+
+#4.  Use the Output
+
+There are many ways that the output from above could be exported.  For simplicity in this example, I copy the results to Google Sheets and can then create a graph of the output.
+
+![useful image]({{ site.url }}/assets/css/google_big_query/chart_output.png)
 
