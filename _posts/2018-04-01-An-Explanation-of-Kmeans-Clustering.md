@@ -1,4 +1,3 @@
-
 ---
 title: "An Explanation of Kmeans Clustering"
 layout: post
