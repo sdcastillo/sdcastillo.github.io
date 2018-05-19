@@ -11,12 +11,13 @@ sidebar_link: true
 
 Hi, I'm Sam Castillo.  Currently I work as an actuarial analyst with Willis Towers Watson.  Previously I had interned with Blue Cross Blue Shield and Milliman after graduating from UMass Amherst.  Volunteer work has been with [CoachingActuaries](coachingactuaries.com) and [Esperanza Soaps](http://www.esperanza-soaps.com/soapmade/).  
 
-This blog is to keep track of actuarial and data science side projects.
+This blog is to keep track of actuarial, data science, and music side projects.
 
 I do not pretend to be an expert.  If you spot a mistake, please leave a comment so that it can be fixed.
 
 ### More Information
 
+- [Soundcloud[(https://soundcloud.com/sam-castillo-52947718/)
 - [Tableau Gallery](public.tableau.com/profile/samuel.castillo#!/)
 - [LinkedIn](https://www.linkedin.com/in/sdcastillo/)
 - [Github](https://github.com/sdcastillo)
