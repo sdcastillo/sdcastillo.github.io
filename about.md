@@ -17,7 +17,7 @@ I do not pretend to be an expert.  If you spot a mistake, please leave a comment
 
 ### More Information
 
-- [Soundcloud[(https://soundcloud.com/sam-castillo-52947718/)
+- [Soundcloud](https://soundcloud.com/sam-castillo-52947718/)
 - [Tableau Gallery](public.tableau.com/profile/samuel.castillo#!/)
 - [LinkedIn](https://www.linkedin.com/in/sdcastillo/)
 - [Github](https://github.com/sdcastillo)
