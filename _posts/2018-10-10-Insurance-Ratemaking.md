@@ -1,4 +1,3 @@
-
 ---
 title: "Comparing Machine Learning Methods for Insurance Ratemaking"
 layout: post
