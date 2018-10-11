@@ -4,12 +4,13 @@ layout: post
 excerpt: "This is a draft of a side-by-side comparison of GLMs vs GBMs and other ML techniques for pricing insurance"
 categories:
   - Machine Learning
-  - GBM
-  - GLM
+  - Supervised Learning
+  - Insurance Pricing
+  - 
 tags:
   - R
-  - Caret
-  - R
+  - GBM
+  - GLM
 last_modified_at: 2018-10-10T12:43:31-05:00
 ---
 
