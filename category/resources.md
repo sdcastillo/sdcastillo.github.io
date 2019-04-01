@@ -32,3 +32,6 @@ The following is a list of resources which I have found to be helpful as a math 
 * [MIT Opencourseware](https://ocw.mit.edu/index.htm)
 * [Coursera](https://www.coursera.org/)
 * [Udemy](https://www.udemy.com/)
+
+**Research Papers**
+* [Extreme Gradient Boosting](https://arxiv.org/pdf/1603.02754.pdf)
