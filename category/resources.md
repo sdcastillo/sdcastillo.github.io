@@ -12,8 +12,6 @@ The following is a list of resources which I have found to be helpful as a math 
 * [Actuarial Outpost](http://www.actuarialoutpost.com/)
 * [Reddit/r/actuary](https://www.reddit.com/r/actuary/)
 
-**Machine Learning/R Programming/Data Science**
-
 **Visual Illustrations**
 * [A visual introduction to machine learning](http://www.r2d3.us/visual-intro-to-machine-learning-part-1)
 
