@@ -20,7 +20,7 @@ Predictive analytics is about using statistical learning to improve a business o
 
 This was a 5-hour and 15 minute exam where candicates had only access to Rstudio, Excel, and Word.  The task was to start with a data set, clean and transform it, fit a model, and write a 10-page report which explained every step to both a technical and non-technical audience.  
 
-These are my notes before the June 2019 version of the exam.  I hope that they are helpful. 
+[These are my notes before the June 2019 version of the exam.](https://nbviewer.jupyter.org/github/sdcastillo/SOA-PA-Exam/blob/master/Exam%20PA%20Notes%20-%206-30-2019.pdf)  I hope that they are helpful. 
 
 https://github.com/sdcastillo/SOA-PA-Exam
 
