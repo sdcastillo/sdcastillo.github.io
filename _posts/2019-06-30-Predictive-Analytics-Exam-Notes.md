@@ -16,11 +16,11 @@ tags:
 last_modified_at: 2019-06-20T12:43:31-05:00
 ---
 
-Predictive analytics is about using statistical learning to improve a business outcome.  In the contect of insurance, this usually involves predicting future financial risks.
+Predictive analytics is about using statistical learning to improve a business outcome.  In the context of insurance, this usually involves predicting future financial risks such as car accidents, workers compensation claims, health emergencies, or even catestrophic events such as hurricanes.
 
-This was a 5-hour and 15 minute exam where candicates had only access to Rstudio, Excel, and Word.  The task was to start with a data set, 
-clean and transform it, fit a model, and write a 10-page report which explained every step to both a technical and non-technical audience.  
-These are my notes before the June 2019 version of the exam.  I hope that they are helpful.  
+This was a 5-hour and 15 minute exam where candicates had only access to Rstudio, Excel, and Word.  The task was to start with a data set, clean and transform it, fit a model, and write a 10-page report which explained every step to both a technical and non-technical audience.  
+
+These are my notes before the June 2019 version of the exam.  I hope that they are helpful. 
 
 https://github.com/sdcastillo/SOA-PA-Exam
 
