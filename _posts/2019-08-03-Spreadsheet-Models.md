@@ -16,6 +16,8 @@ production-ready capacity.  In the real world, data is big, messy, and often in 
 is a task in itself.  Then making predictions on top of this, using a model which requires precise inputs, and transporting your model to a
 scaleable environment is a different challenge altogether.
 
-Fortunately, some models are simple enough that they do not require a re-coding to be useful.  A linear model is one example.
+Fortunately, some models are simple enough that they do not require a re-coding to be useful.  A linear model is one example.  In this tutorial, you will learn how to quickly convert a linear model from R into an Excel spreadsheet.
 
-In this tutorial, you will learn how to quickly convert a linear model from R into an Excel spreadsheet.
+# [See The Tutorial](https://htmlpreview.github.io/?https://github.com/sdcastillo/Actuarial-R-Tutorials/blob/master/Convert_R_GLM_to_Excel.html)
+
+
