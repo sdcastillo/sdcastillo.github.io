@@ -30,6 +30,10 @@ https://github.com/sdcastillo/SOA-PA-Exam
 4.  **Miners Union.**  My practice run of the December 2018 exam.  Note that the format of this exam was different than the current version of the exam.
 5.  **Student Academic Performance.**  This was the first version of the June 2019 Example Project before they revised the format to be more structured.
 
+## Update: I passed.  This was my first attempt, and I was also sitting for exam STAM one week later (also a first attempt).  I can only accredit this to having a 2 years of prior experience with R and machine learning.  I did not need to spend time learning programming and could focus on only the source material.  In total, I probably spent ~80 hours studying and then about another 30-40 on the practice projects listed above.
+
+
+
 ## Disclaimer
 
 These files are all either personally created by myself or publically available on the SOA's Exam PA syllabus.  All opinions are my own and do not
