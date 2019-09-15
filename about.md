@@ -41,5 +41,5 @@ This website has not been peer-reviewed.
  - *Contact*
  - *Sherlock Holmes*
  - *The Martian*
- - *The Foundation Trillogy
+ - *The Foundation Trillogy*
 
