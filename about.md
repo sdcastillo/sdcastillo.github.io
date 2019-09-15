@@ -30,12 +30,16 @@ This website has not been peer-reviewed.
 
 ### Top Books
 
+ - *How to Win Friends and Influence People* 
+ - *Never Eat Alone* 
+ - *The Three Body Problem* 
  - *The Hitchhiker's Guide to the Galaxy* 
+ - *The Big Short*
  - *The Princess Bride*
  - *The Lord of the Rings*
  - *The Simlarillion*
- - *The Big Short*
  - *Contact*
  - *Sherlock Holmes*
  - *The Martian*
+ - *The Foundation Trillogy
 
