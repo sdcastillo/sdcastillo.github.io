@@ -18,3 +18,5 @@ Machine learning models learn by looking at examples. In supervised learning, th
 Often there are only a few examples available for certain groups in the data. In these cases case, all that the model can do is “guess”, or predict an average of the few examples present in the data.
 
 [Prior probabilities](https://en.wikipedia.org/wiki/Prior_probability) help to solve this problem. Instead of relying on the examples present in the data by themselves, and basing the prediction entirely on the data, we can be clever about setting the initial predictions, or “guesses”, based on our own knowledge or intuition. If there are a lot of examples present in the data, more weight is given to the model’s prediction; if there are few examples, more weight is given to the prior probability.
+
+# [See The Tutorial](https://nbviewer.jupyter.org/github/sdcastillo/Prior-Weights-with-XGboost/blob/master/xgb_with_prior.html)
