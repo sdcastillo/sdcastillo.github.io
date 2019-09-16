@@ -20,6 +20,12 @@ Predictive analytics is about using statistical learning to improve a business o
 
 This was a 5-hour and 15 minute exam where candicates had only access to Rstudio, Excel, and Word.  The task was to start with a data set, clean and transform it, fit a model, and write a 10-page report which explained every step to both a technical and non-technical audience.  
 
+**Background:**
+
+- I was able to pass this on a first attempt (score of 7) while also sitting for exam STAM for the first time
+- Going into this I had 3 years of R experience and 1.5 years of predictive modeling experience.  I did not need to spend time learning programming and could focus on only the source material. 
+- Total study hours were about 100 (40 hours on the modules and 60 hours doing practice exams)
+
 [These are my notes before the June 2019 version of the exam.](https://nbviewer.jupyter.org/github/sdcastillo/SOA-PA-Exam/blob/master/Exam%20PA%20Notes%20-%206-30-2019.pdf)  I hope that they are helpful. 
 
 https://github.com/sdcastillo/SOA-PA-Exam
@@ -29,12 +35,6 @@ https://github.com/sdcastillo/SOA-PA-Exam
 3.  **Hospital Readmissions.**  Three submission files from when I was taking practice tests before the actual exam.  The Rmd and PDF files are included.
 4.  **Miners Union.**  My practice run of the December 2018 exam.  Note that the format of this exam was different than the current version of the exam.
 5.  **Student Academic Performance.**  This was the first version of the June 2019 Example Project before they revised the format to be more structured.
-
-## Update: I passed!
-
-This was my first attempt, and I was also sitting for exam STAM one week later (also a first attempt).  I can only accredit this to having a 2 years of prior experience with R and machine learning.  I did not need to spend time learning programming and could focus on only the source material.  In total, I probably spent ~80 hours studying and then about another 30-40 on the practice projects listed above.
-
-
 
 ## Disclaimer
 
