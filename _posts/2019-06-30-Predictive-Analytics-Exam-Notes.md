@@ -22,9 +22,7 @@ This was a 5-hour and 15 minute exam where candicates had only access to Rstudio
 
 **Background:**
 
-- I was able to pass this on a first attempt (score of 7) while also sitting for exam STAM for the first time
-- Going into this I had 3 years of R experience and 1.5 years of predictive modeling experience.  I did not need to spend time learning programming and could focus on only the source material. 
-- Total study hours were about 100 (40 hours on the modules and 60 hours doing practice exams)
+I was able to pass this on a first attempt (score of 7) while also sitting for exam STAM for the first time.  Going into this I had 3 years of R experience and 1.5 years of predictive modeling experience.  I did not need to spend time learning programming and could focus on only the source material. Total study hours were about 100 (40 hours on the modules and 60 hours doing practice exams)
 
 [These are my notes before the June 2019 version of the exam.](https://nbviewer.jupyter.org/github/sdcastillo/SOA-PA-Exam/blob/master/Exam%20PA%20Notes%20-%206-30-2019.pdf)  I hope that they are helpful. 
 
