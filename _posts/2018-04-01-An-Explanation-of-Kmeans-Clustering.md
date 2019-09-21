@@ -1,7 +1,7 @@
 ---
 title: "An Explanation of Kmeans Clustering"
 layout: post
-excerpt: "What is clustering?  Imagine that you are a large retailer interested in understanding the customer base. There may be several types "
+excerpt: ""
 categories:
   - Unsupervised Learning
   - Clustering
