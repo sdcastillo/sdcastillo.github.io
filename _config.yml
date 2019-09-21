@@ -3,7 +3,7 @@ markdown:         kramdown
 highlighter:      rouge
 
 # Setup
-title:            Sam Castillo
+title:            Actuarial Data Science
 tagline:          'Pioneering actuarial data science'
 theme: jekyll-theme-modernist
 description:      'Because by the time AI is "on the syllabus" we will already be unemployed'
