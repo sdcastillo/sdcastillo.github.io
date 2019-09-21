@@ -6,7 +6,6 @@ categories:
   - Predictive Modeling
   - Supervised Learning
   - Statistical Learning
-  - Actuarial Exams
 tags:
   - GLM
   - GBM
