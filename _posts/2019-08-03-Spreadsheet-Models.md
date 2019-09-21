@@ -1,7 +1,7 @@
 ---
 title: "Excel-erating the Production Pipeline - Deploying Linear Models in Excel"
 layout: post
-excerpt: "The only useful model is the one which is in production, but creating"
+excerpt: ""
 categories:
   - R Tutorial
   - Actuarial Tutorial
