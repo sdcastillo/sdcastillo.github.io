@@ -1,7 +1,7 @@
 ---
 title: "SOA Predictive Analytics Exam Notes"
 layout: post
-excerpt: "My notes from preparing for the June 2019 sitting of the PA exam"
+excerpt: ""
 categories:
   - Predictive Modeling
   - Supervised Learning
