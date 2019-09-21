@@ -1,7 +1,7 @@
 ---
 title: "Bayesian-XGBoost"
 layout: post
-excerpt: "Machine learning models learn by looking at examples. In supervised learning, there is a known outcome, or label"
+excerpt: ""
 categories:
   - R Tutorial
   - Reproducible Example
