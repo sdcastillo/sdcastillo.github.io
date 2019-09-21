@@ -4,9 +4,9 @@ highlighter:      rouge
 
 # Setup
 title:            Sam Castillo
-tagline:          ''
+tagline:          'Pioneering actuarial data science'
 theme: jekyll-theme-modernist
-description:      'Actuarial Science, Machine Learning, Data Visualization.'
+description:      'Because by the time AI is on the SOA or CAS syllabus we will already be unemployed'
 url:              https://sdcastillo.github.io
 baseurl:          # the optional subpath of your site, e.g. "/blog"
                   # NB: This applies to all pages in your Jekyll site.
