@@ -1,7 +1,7 @@
 ---
 title: "Comparing Machine Learning Methods for Insurance Ratemaking"
 layout: post
-excerpt: "This is a draft of a side-by-side comparison of GLMs vs GBMs and other ML techniques for pricing insurance"
+excerpt: ""
 categories:
   - Machine Learning
   - Supervised Learning
