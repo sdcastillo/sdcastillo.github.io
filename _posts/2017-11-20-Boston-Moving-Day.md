@@ -1,7 +1,7 @@
 ---
 title: "Boston Moving Day"
 layout: post
-excerpt: "Anyone who has been in Boston on September 1st knows the local phenomenon of moving day"
+excerpt: ""
 categories:
   - Data Visualization
   - Tableau
