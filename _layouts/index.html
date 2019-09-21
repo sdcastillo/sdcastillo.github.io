@@ -10,15 +10,15 @@ layout: default
   {% for post in paginator.posts %}
   <article class="post-body">
     
-    <h2 class="post-title">
+    <h3 class="post-title">
       {{post.image}}
-    </h2>
+    </h3>
     
-    <h2 class="post-title">
+    <h3 class="post-title">
       <a href="{{ site.baseurl }}{{ post.url }}">
         {{ post.title }}
       </a>
-    </h2>
+    </h3>
     {% include post-meta.html post=post %}
 
     {% if post.excerpt %}
