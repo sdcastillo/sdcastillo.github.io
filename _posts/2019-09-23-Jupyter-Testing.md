@@ -2,7 +2,7 @@
 layout: post
 mathjax: true
 title:  "Using Jupyter Notebooks to Create Blog Posts"
-date:   2019-09-23 12:07:25 +0000
+date:   1900-01-23 12:07:25 +0000
 categories:
   - development testing
 ---
