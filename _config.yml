@@ -3,8 +3,8 @@ markdown:         kramdown
 highlighter:      rouge
 
 # Setup
-title:            Actuarial Data Science
-tagline:          'Pioneering actuarial data science'
+title:            AI Actuary
+tagline:          'Exploring AI and ML in Actuarial Science'
 theme: jekyll-theme-modernist
 description:      'Because by the time that a textbook has been published, added to the syllabus, and you have read it, the content is already out of date'
 url:              https://sdcastillo.github.io
