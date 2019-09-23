@@ -4,7 +4,7 @@ highlighter:      rouge
 
 # Setup
 title:            AI Actuary
-tagline:          'Exploring AI and ML in Actuarial Science'
+tagline:          'Pushing the limits of actuarial science'
 theme: jekyll-theme-modernist
 description:      'Because by the time that a textbook has been published, added to the syllabus, and you have read it, the content is already out of date'
 url:              https://sdcastillo.github.io
