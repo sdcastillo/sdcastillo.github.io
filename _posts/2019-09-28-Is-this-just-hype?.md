@@ -20,7 +20,7 @@ Excited by all of this, I began reading through old publications.  To my surpris
 
 **TL;DR: People have been saying 'this is all hype' since 2014, but the AI paradigm shift has only been growing since then.**
 
-![{{ site.url }}/assets/css/AI_in_industry_timeline.PNG]
+![Actuarial Publications]({{ site.url }}/assets/css/AI_in_industry_timeline.PNG)
 
 **How to get involved:**
 1.	The SOA’s Predictive Analytics Section https://www.soa.org/sections/pred-analytics-futurism/pred-analytics-futurism-newsletter/
