@@ -18,9 +18,8 @@ I just attended a conference of over 200 actuaries who where going through slide
 
 Excited by all of this, I began reading through old publications.  To my surprise, I found that ML and Deep Learning have been in the industry for years.  Deep Learning first appeared in an actuarial newsletter in 2014.  Machine Learning, which has gone by different names such as “forecasting” and “predictive modeling” has been around since 2012.
 
-![Actuarial Publications](assets/css/AI_in_industry_timeline.PNG)
+![SOA Publications]({{ "assets/css/AI_in_industry_timeline.PNG" }})
 
-{{site.url}}
 
 **TL;DR: People have been saying 'this is all hype' since 2014, but the AI paradigm shift has only been growing since then.**
 
