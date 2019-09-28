@@ -1,0 +1,25 @@
+---
+title: "Is this just all hype?"
+layout: post
+excerpt: ""
+categories:
+  - AI
+  - Actuarial Science
+tags:
+
+last_modified_at: 2019-09-28T12:43:31-05:00
+---
+
+I work using machine learning every day, but I had been under the impression that I was a rare job among actuaries.
+
+AI and Machine Learning are now buzzwords in the actuarial industry, but these methods have been in the background for years.  For those of us who have recently entered the industry, it feels as though this change is more recent, that actuaries are “behind the times”, and that new technologies are just now beginning to reshape the world.
+
+I just attended a conference of over 200 actuaries who were gung-ho into GANs, CNNs, GBMs, NLP algorithms, and showing slide deck after slide deck of how these new tools can be used in insurance.  Actuaries in health talked about using ML to mine EHR records.  Actuaries in life insurance are using ML to scan millions of records of prescription, medical, and credit data.  Even the pension actuaries have caught on.
+
+Excited by all of this, I began reading through old publications.  To my surprise, I found that ML and Deep Learning have been in the industry for years.  Deep Learning first appeared in an actuarial newsletter in 2014.  Machine Learning, which has gone by different names such as “forecasting” and “predictive modeling” has been around since 2012.
+
+![AI_in_industry_timeline.PNG]
+
+How to get involved:
+1.	The SOA’s Predictive Analytics Section https://www.soa.org/sections/pred-analytics-futurism/pred-analytics-futurism-newsletter/
+2.	The Actuary Magazine https://theactuarymagazine.org/
