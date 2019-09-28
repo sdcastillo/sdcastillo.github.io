@@ -20,6 +20,8 @@ Excited by all of this, I began reading through old publications.  To my surpris
 
 ![Actuarial Publications](https://github.com/sdcastillo/sdcastillo.github.io/tree/master/assets/css/AI_in_industry_timeline.PNG)
 
+{{site.url}}
+
 **TL;DR: People have been saying 'this is all hype' since 2014, but the AI paradigm shift has only been growing since then.**
 
 
