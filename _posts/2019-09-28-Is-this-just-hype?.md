@@ -20,6 +20,9 @@ Excited by all of this, I began reading through old publications.  To my surpris
 
 ![SOA Publications]({{ "assets/css/AI_in_industry_timeline.PNG" }})
 
+![useful image]({{ site.url }}assets/css/AI_in_industry_timeline.PNG)
+
+{{ site.url }}
 
 **TL;DR: People have been saying 'this is all hype' since 2014, but the AI paradigm shift has only been growing since then.**
 
