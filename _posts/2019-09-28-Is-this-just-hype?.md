@@ -18,7 +18,7 @@ I just attended a conference of over 200 actuaries who were gung-ho into GANs, C
 
 Excited by all of this, I began reading through old publications.  To my surprise, I found that ML and Deep Learning have been in the industry for years.  Deep Learning first appeared in an actuarial newsletter in 2014.  Machine Learning, which has gone by different names such as “forecasting” and “predictive modeling” has been around since 2012.
 
-![AI_in_industry_timeline.PNG]
+![assets/AI_in_industry_timeline.PNG]
 
 How to get involved:
 1.	The SOA’s Predictive Analytics Section https://www.soa.org/sections/pred-analytics-futurism/pred-analytics-futurism-newsletter/
