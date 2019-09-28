@@ -24,5 +24,7 @@ Excited by all of this, I began reading through old publications.  To my surpris
 
 
 **How you can get involved:**
-1.	The SOA’s Predictive Analytics Section https://www.soa.org/sections/pred-analytics-futurism/pred-analytics-futurism-newsletter/
-2.	The Actuary Magazine https://theactuarymagazine.org/
+
+1.  Read this blog as I post articles
+2.	The SOA’s Predictive Analytics Section https://www.soa.org/sections/pred-analytics-futurism/pred-analytics-futurism-newsletter/
+3.	The Actuary Magazine https://theactuarymagazine.org/
