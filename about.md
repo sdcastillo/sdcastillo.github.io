@@ -13,8 +13,6 @@ Hi, I'm Sam Castillo.
 
 In 2017 I completed a B.S. in Math from the University of Massachusetts Amherst with the plan to be a career actuary.  After discovering that the SOA-approved TI-XS Multiview Calculator does not fit Support Vector Machines, I decided to also focus on data science. To pay homage to my Red-Sox-Patriots heritage, I moved to Boston from 2017-2018 during the reign of the GOAT himself Tom Brady.  After becoming fed up with the cold New England winters, I moved to the tropical Chicago in 2019.
 
-This blog is to keep track of actuarial, data science, and music side projects.
-
 This website has not been peer-reviewed.  
 
 ### More Information Than You Need
