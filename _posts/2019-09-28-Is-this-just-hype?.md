@@ -24,6 +24,10 @@ Excited by all of this, I began reading through old publications.  To my surpris
 
 {{ site.url }}
 
+
+![useful image]({{ site.url }}/assets/css/anomaly_detection/bitcoin_app_screenshot.PNG)
+
+
 **TL;DR: People have been saying 'this is all hype' since 2014, but the AI paradigm shift has only been growing since then.**
 
 
