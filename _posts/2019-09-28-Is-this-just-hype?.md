@@ -20,14 +20,18 @@ I just attended a conference of over 200 actuaries who where going through slide
 
 Excited by all of this, I began reading through old publications.  To my surprise, I found that ML and Deep Learning have been in the industry for years.  Deep Learning first appeared in an actuarial newsletter in 2014.  Machine Learning, which has gone by different names such as “forecasting” and “predictive modeling” has been around since 2012.
 
-
 ![useful image]({{ site.url }}/assets/css/AI_in_industry_timeline.PNG)
 
-**TL;DR: People have been saying 'this is all hype' since 2014, but the AI paradigm shift has only been growing since then.**
 
 ## Myth #2: AI is only going to have minimal impact, like GLMs did in the 1990s and ARIMA models in Quant Finance in the 1970s
 
+Deep learning has the ability to learn in ways that no other algorithm can.
+
 ## Myth #3: Actuaries can sit back and wait for the change to stabilize before taking action
+
+1. Actuaries do not have the programming skills to deal with the increasing complexity of the programs.  
+2. Data sources are now images, videos, and audio, none of which the actuary is trained on dealing with.
+
 
 
 
