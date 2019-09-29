@@ -29,13 +29,15 @@ Deep learning has the ability to learn in ways that no other algorithm can.
 
 ## Myth #3: Actuaries can sit back and wait for the change to stabilize before taking action
 
-1. Actuaries do not have the programming skills to deal with the increasing complexity of the programs.  
+Actuaries need to "review" or "sign off" on the accuracy of any method which they use.  This requires a degree of understanding of the technology.  There are two barriors that prevent the actuary from being able to verify deep-learning based results:
+
+1. Actuaries do not have the programming skills to deal with the increasing complexity of the software.  
 2. Data sources are now images, videos, and audio, none of which the actuary is trained on dealing with.
 
+The surgical profession has seen a similar trend.  Traditionally, surgeons would be solely responsible.  From the moment that a patient was put on the operating table to the post-op discussion with the patient's family, the surgeon was the boss.  They new how every tool worked.  As medical technology as advanced, we know need anesthesiologists, radiologists, pathologist, and nurses to step up and contribute.  **Surgery used to be a solo act where the surgeon was the virtuoso; today, surgery is a team sport.**
 
+Today we have data scientists, data engineers, machine learning engineers, and software developers all working in the same room as actuaries.  The actuary is no longer going to be the boss.  Actuarial science is becoming a team sport.
 
-
-AI is able to make use of data sources that no other algorithm can.
 
 **Three ways to catch up:**
 
