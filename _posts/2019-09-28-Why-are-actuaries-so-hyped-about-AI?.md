@@ -30,7 +30,7 @@ Deep learning has the ability to use data that no other algorithm can.  Video, a
 A few applications are:
 
 **Video**
-- Using vehicle video and sensor data to assess the damage to auto insurance.  Drivers that exhibit riskier behavior can be identified *before* they get into accidents, and safe drivers can be rewarded.  By 2030-2035, when self-driving cars are commonplace, there will be even more data available and traditional auto insurance will be obsolete.
+- Using vehicle video and sensor data to assess the damage in auto insurance.  Drivers that exhibit riskier behavior can be identified *before* they get into accidents, and safe drivers can be rewarded.  By 2030-2035, when self-driving cars are commonplace, there will be even more data available and traditional auto insurance will be obsolete.
 - Cameras in front of retail stores that can record customer traffic patterns to be used for predicting general liability claims.  For example, if there are more people walking in and out of the store, it is more likely that a person will fall, injure themselves, and sue the retailer.
 - Facial recognition cameras that record time and location of individuals.  There are many potential use cases for this.  [China](https://time.com/collection/davos-2019/5502592/china-social-credit-score/) already has a "social credit score" and uses cameras to track individuals.  The official guidelines for this score are "To allow the trustworthy to roam everywhere under heaven, while making it hard for the discredited to take a single step".  In the U.S., we are already using financial credit data for life insurance underwriting as a predictor of mortality.  If a similar social credit system were in use today, it would likely be even more predictive of mortality.
 
