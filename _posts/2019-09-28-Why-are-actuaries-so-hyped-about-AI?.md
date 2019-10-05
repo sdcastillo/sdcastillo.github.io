@@ -14,19 +14,20 @@ There is a lot of hype today around AI in the actuarial industry.  Here are a fe
 
 ## Myth #1: AI is only a recent trend.
 
-AI and Machine Learning are now buzzwords in the actuarial industry, but these methods have been in the background for years.  For those of us who have recently entered the industry, it feels as though this change is more recent, that actuaries are “behind the times”, and that new technologies are just now beginning to reshape the insurance world.
+AI and Machine Learning are now buzzwords in the actuarial industry, but these methods have been on the radar for years.  For those of us who have entered the industry in the last few years, such as myself, it only feels as though this is a recent topic. 
 
-Many discussions at the 2019 Predictive Analytics Symposium talked about AI.  Actuaries in health talked about using ML to mine EHR records.  Actuaries in life insurance are using ML to scan millions of records of prescription, medical, and credit data.  
-
-Excited by all of this, I began reading through old publications.  Deep Learning first appeared in an actuarial newsletter in 2014.  Machine Learning, which has gone by different names such as “forecasting” and “predictive modeling” has been around since 2012.
-
-![useful image]({{ site.url }}/assets/css/AI_in_industry_timeline.PNG)
+Below is a summary of the actuarial literature from the SOA's (Predictive Analytics and Futurism Section)[https://www.soa.org/sections/pred-analytics-futurism/pred-analytics-futurism-landing/].  This is a research newsletter written by actuaries.  Deep Learning first appeared in 2014.  Machine Learning, which has gone by different names such as “forecasting” and “predictive modeling” has been around since 2012.
 
 The term "predictive analytics" refers to how machine learning is applied to a business context.  I don't put this in the same context as AI because this generally refers to simpler problems, such as supervised machine learning models (GBMs, GLMs, RFs) which use tabular data in order to predict a known outcome.
 
-## Myth #2: AI is just a tool that will be used, and no major changes will come to insurance.
+![useful image]({{ site.url }}/assets/css/AI_in_industry_timeline.PNG)
+
+
+## Myth #2: AI is just a new tool for actuaries, and no major changes will come to insurance.
 
 Deep learning has the ability to use data that no other algorithm can.  Video, audio, text, real-time sensor data such as electronic health records, and other non-traditional data sources can now be used in models.  
+
+A few applications are:
 
 **Video**
 - Using photos and automous vehicle video and sensor data to assess the damage to auto insurance.  Drivers that exhibit riskier behavior can be identified *before* they get into accidents, and safe drivers can be rewarded.  
