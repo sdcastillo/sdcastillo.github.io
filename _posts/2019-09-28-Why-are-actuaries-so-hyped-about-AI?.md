@@ -16,7 +16,7 @@ There is a lot of hype today around AI in the actuarial industry.  Here are a fe
 
 AI and Machine Learning are now buzzwords in the actuarial industry, but these methods have been on the radar for years.  For those of us who have entered the industry in the last few years, such as myself, it only feels as though this is a recent topic. 
 
-Below is a summary of the actuarial literature from the SOA's (Predictive Analytics and Futurism Section)[https://www.soa.org/sections/pred-analytics-futurism/pred-analytics-futurism-landing/].  This is a research newsletter written by actuaries.  Deep Learning first appeared in 2014.  Machine Learning, which has gone by different names such as “forecasting” and “predictive modeling” has been around since 2012.
+Below is a summary of the actuarial literature from the SOA's [Predictive Analytics Section](https://www.soa.org/sections/pred-analytics-futurism/pred-analytics-futurism-landing/).  This is a research newsletter written by actuaries.  Deep Learning first appeared in 2014.  Machine Learning, which has gone by different names such as “forecasting” and “predictive modeling” has been around since 2012.
 
 The term "predictive analytics" refers to how machine learning is applied to a business context.  I don't put this in the same context as AI because this generally refers to simpler problems, such as supervised machine learning models (GBMs, GLMs, RFs) which use tabular data in order to predict a known outcome.
 
