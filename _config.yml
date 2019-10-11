@@ -1,7 +1,6 @@
 # Dependencies
 markdown:         kramdown
 highlighter:      rouge
-
 # Setup
 title:            AI Actuary
 tagline:          'The next generation of actuary'
