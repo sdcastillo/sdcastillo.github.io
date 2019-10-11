@@ -4,7 +4,7 @@ highlighter:      rouge
 
 # Setup
 title:            AI Actuary
-tagline:          'Researching the future'
+tagline:          'Giving actuaries the knowledge to succeed in tomorow's AI-powered world'
 theme: jekyll-theme-modernist
 description:      'Giving actuaries the knowledge to succeed in tomorow's AI-powered world'
 url:              https://sdcastillo.github.io
