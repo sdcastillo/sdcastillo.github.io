@@ -19,7 +19,7 @@ author:
   name:           'Sam Castillo'
   url:            
 
-paginate:         5
+paginate:         7
 # paginate_path:    '/page:num'
                     # Or '/blog/page:num' if you want to move your index pages
 
