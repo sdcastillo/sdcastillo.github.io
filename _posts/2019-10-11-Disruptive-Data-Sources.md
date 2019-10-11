@@ -4,9 +4,11 @@ layout: post
 excerpt: ""
 categories:
   - AI
-  - Actuarial Science
+  - Insurance
+  - Data
 tags:
-
+last_modified_at: 2019-10-11T12:43:31-05:00
+---
 
 Deep learning has the ability to use data that no other algorithms can.  Video, audio, text, real-time sensor data such as electronic health records, and other non-traditional data sources can now be used in models to predict future events.
 
