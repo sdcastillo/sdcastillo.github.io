@@ -4,9 +4,9 @@ highlighter:      rouge
 
 # Setup
 title:            AI Actuary
-tagline:          'Pushing the limits of actuarial science'
+tagline:          'Researching the future'
 theme: jekyll-theme-modernist
-description:      'Because by the time that a textbook has been published, added to the syllabus, and you have read it, the content is already out of date'
+description:      'Giving actuaries the knowledge to succeed in tomorow's AI-powered world'
 url:              https://sdcastillo.github.io
 baseurl:          # the optional subpath of your site, e.g. "/blog"
                   # NB: This applies to all pages in your Jekyll site.
