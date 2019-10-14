@@ -10,7 +10,7 @@ tags:
 last_modified_at: 2019-10-11T12:43:31-05:00
 ---
 
-Innovations begin when new information is made available.  Deep learning can use data that no other algorithms can.  Video, audio, text, real-time sensor data such as electronic health records can now be used in models to predict future events.
+Innovations begin when new information is made available.  Deep learning can use data that no other algorithms can.  Video, audio, text, and sensor data such as electronic health records can now be used in models to predict future events.
 
 A few of the applications are:
 
@@ -27,7 +27,7 @@ Methods such as DAVIS can be used for:
 - Installing [surveillance cameras](https://en.wikipedia.org/wiki/Artificial_intelligence_for_video_surveillance) around buildings to measure foot traffic, fire and vandalism risk, customer engagement, and other factors.  For example, if there are more people walking in and out of the store, it is more likely that a person will fall, injure themselves, and sue the retailer. 
 - Facial recognition cameras that record time and location of individuals.  There are many potential use cases for this.  [China](https://time.com/collection/davos-2019/5502592/china-social-credit-score/) already has a "social credit score" and [uses cameras to track individuals](https://www.youtube.com/watch?v=rrFwIShaSd8).  The official guidelines for this score are "To allow the trustworthy to roam everywhere under heaven, while making it hard for the discredited to take a single step".  In the U.S., we are already using financial credit data for life insurance underwriting as a predictor of mortality.  If a similar social credit system were in use today, it would likely be even more predictive of mortality.
 
-**Audio/Text**
+**Audio & Text**
 
 Audio is really a series of waves, and waves can be translated into time series, which can be fed into a model.  Feeding sound along with labels (i.e., subtitles) into a model allows for the sound to be translated into words.
 
@@ -39,13 +39,15 @@ The are *many* use cases for audio/text translation.  With regard to insurance, 
 
 - Phone recordings from customers can be translated into text and used to assess the customers mood, stress level, or even if they are a smoker by the sound of their voice.  Filing claims will become less expensive as AI staff can take over the claims processing, from answering calls from humans to sending bills by email.  Deductibles and copays, which are partially used to reduce the number of low-cost claims that are filed due to administrative expenses, or LAE, will become less common.  The startup Lemonade already [uses chatbots for claims processing](https://stories.lemonade.com/lemonade-sets-new-world-record-706ef8674110).
 
+- Text from claim notes can be used in models.  In P&C insurance coverages where lawsuits can drive up claim costs, police reports, witness statements, adjustor notes, or recorded statements can contain valuable insights that were previously unusable.  The firm [Megaputer](https://www.megaputer.com/wp-content/uploads/insurance-subrogation-prediction-case-study.pdf) already offers this as a product, and this is not a new idea; however, [2019 saw several breakthroughs in NLP](https://www.zdnet.com/article/the-state-of-ai-in-2019-breakthroughs-in-machine-learning-natural-language-processing-games-and-knowledge-graphs/).  Google's BERT and Transformer, Allen Instituge's ELMo, OpenAI's Transfomer, Ruder and Howard's ULMFiT, and Microsoft's MT-DNN demonstrated that pre-trained models can substantially improve on many NLP tasks.  
+
 **Sensor Technology**
 
 This is the broadest category, and will eventually have the most impact.  The [Internet of Things (IoT)](https://towardsdatascience.com/iot-machine-learning-is-going-to-change-the-world-7c4e0cd7ac32) refers to sensors that collect data on things such as medical devices, fit bits, home security systems, cars, and mobile devices.  [McKinsey](https://www.mckinsey.com/industries/financial-services/our-insights/digital-ecosystems-for-insurers-opportunities-through-the-internet-of-things) has a report on how the IoT will impact the insurance world in many other examples.
 
 - Using aerial drones for monitoring construction sites for building hazards or [monitoring crops for predicting future yields](https://www.aerobotics.com/?identifier=default-get-in-touch-button).
-- Electronic Health Records (EHR) will be ubiquitous in 3-5 years.  This data is in an unstructured format that only AI/ML algorithms are capable of dealing with.
-- Insurance companies can provide discounts to homeowners that install security systems.  They can then collect this data to learn more about their customers and improve underwriting decisions.
+- Health insurers will provide discounts for those who provide personal data.  In addition to Electronic Health Records (EHR) becoming ubiquitous in the next 3-5 years, wearables such as heart rate monitors, smart watches, step counters, and other medical sensors will be connected to the internet.   
+- Homeowners that install security systems can receive discounts from insurers in exchange for their data.  As more data is available, risk to fire, theft, or earthquakes can be predicted with higher accuracy. 
 - Assisted living facilities will use devices to improve the quality of care in the aging population.  Insurance companies can provide lower premiums in exchange for participating.  
 
 
