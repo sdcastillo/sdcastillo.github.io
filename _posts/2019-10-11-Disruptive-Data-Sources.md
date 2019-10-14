@@ -10,8 +10,6 @@ tags:
 last_modified_at: 2019-10-11T12:43:31-05:00
 ---
 
-![useful image]({{ site.url }}/assets/css/DataStream.jpeg)
-
 Innovations begin when new information is made available.  Deep learning can use data that no other algorithms can.  Video, audio, text, real-time sensor data such as electronic health records can now be used in models to predict future events.
 
 A few of the applications are:
@@ -31,10 +29,20 @@ Methods such as DAVIS can be used for:
 - Facial recognition cameras that record time and location of individuals.  There are many potential use cases for this.  [China](https://time.com/collection/davos-2019/5502592/china-social-credit-score/) already has a "social credit score" and [uses cameras to track individuals](https://www.youtube.com/watch?v=rrFwIShaSd8).  The official guidelines for this score are "To allow the trustworthy to roam everywhere under heaven, while making it hard for the discredited to take a single step".  In the U.S., we are already using financial credit data for life insurance underwriting as a predictor of mortality.  If a similar social credit system were in use today, it would likely be even more predictive of mortality.
 
 **Audio/Text**
+
+Audio is really a series of waves, and waves can be translated into time series, which can be fed into a model.  Feeding sound along with labels (i.e., subtitles) into a model allows for the sound to be translated into words.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Qf4YJcHXtcY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+The are *many* use cases for audio/text translation.  With regard to insurance, two common areas are
+
 - In hospitals and medical offices, [patient-doctor conversations](https://bdtechtalks.com/2019/08/27/deep-medicine-ai-doctor-patient-relationship/) can be recorded to automate the medical billing procedure.  Medical codes will become more granular and doctors can spend less time typing on keyboards and more time with the patient, making these conversations more predictive of future health outcomes.  Doctor's notes today suffer from many inconsistencies due in part to how little time doctors spend writing them.  Once better audio-to-text systems are available, this will no longer be an issue.
 - Phone recordings from customers can be translated into text and used to assess the customers mood, stress level, or even if they are a smoker by the sound of their voice.  Filing claims will become less expensive as AI staff can take over the claims processing, from answering calls from humans to sending bills by email.  Deductibles and copays, which are partially used to reduce the number of low-cost claims that are filed due to administrative expenses, or LAE, will become less common.  The startup Lemonade already [uses chatbots for claims processing](https://stories.lemonade.com/lemonade-sets-new-world-record-706ef8674110).
 
 **Sensor Technology**
+
+https://towardsdatascience.com/iot-machine-learning-is-going-to-change-the-world-7c4e0cd7ac32
+
 - The Internet of Things (IoT) refers to sensors that collect data on things such as medical devices, fit bits, home security systems, cars, and mobile devices.  [McKinsey](https://www.mckinsey.com/industries/financial-services/our-insights/digital-ecosystems-for-insurers-opportunities-through-the-internet-of-things) has a report on how the IoT will impact the insurance world in many other examples.
 - Using aerial drones for monitoring construction sites for building hazards or [monitoring crops for predicting future yields](https://www.aerobotics.com/?identifier=default-get-in-touch-button).
 - Electronic Health Records (EHR) will be ubiquitous in 3-5 years.  This data is in an unstructured format that only AI/ML algorithms are capable of dealing with.
