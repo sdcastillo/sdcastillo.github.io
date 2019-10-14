@@ -22,6 +22,7 @@ Deep learning can interpret objects from videos.  One example is [Densely Annota
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/8f9y17-OAwI?start=26" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
+
 Methods such as DAVIS can be used for:
 
 - Gathering medical data from telehealth recordings to learn from doctor-patient interactions.  In addition to medical information such as symptoms and diagnosis, AI can read the stress level of the patient from their tone of voice, mental alertness from the speed at which they answer questions, and emotional well-being from facial expressions.  Google is already using deep learning to [remotely treat diabetes patients](https://intouchhealth.com/how-ai-augments-telehealth/).
