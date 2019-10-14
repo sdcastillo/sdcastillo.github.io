@@ -17,6 +17,13 @@ Innovations begin when new information is made available.  Deep learning can use
 A few of the applications are:
 
 **Video**
+
+Deep learning can interpret objects from videos.  One example is [Densely Annotated VIdeo Segmentation (DAVIS)](https://davischallenge.org/index.html), which identifies objects (cars, people, birds, etc) from videos. 
+
+<iframe width="420" height="315" src="https://www.youtube.com/watch?v=8f9y17-OAwI" frameborder="0" allowfullscreen></iframe>
+
+Methods such as DAVIS can be used for:
+
 - Gathering medical data from telehealth recordings to learn from doctor-patient interactions.  In addition to medical information such as symptoms and diagnosis, AI can read the stress level of the patient from their tone of voice, mental alertness from the speed at which they answer questions, and emotional well-being from facial expressions.  Google is already using deep learning to [remotely treat diabetes patients](https://intouchhealth.com/how-ai-augments-telehealth/).
 - Using vehicle video and sensor data to assess risk in auto insurance.  Drivers that exhibit riskier behavior can be identified *before* they get into accidents, and safe drivers can be rewarded.  By 2030-2035, when self-driving cars are commonplace, vehicles will collect [terabytes of data per year](https://www.tuxera.com/blog/autonomous-cars-300-tb-of-data-per-year/).
 - Installing [surveillance cameras](https://en.wikipedia.org/wiki/Artificial_intelligence_for_video_surveillance) around buildings to measure foot traffic, fire and vandalism risk, customer engagement, and other factors.  For example, if there are more people walking in and out of the store, it is more likely that a person will fall, injure themselves, and sue the retailer. 
