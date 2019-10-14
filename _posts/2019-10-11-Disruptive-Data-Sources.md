@@ -20,7 +20,7 @@ A few of the applications are:
 
 Deep learning can interpret objects from videos.  One example is [Densely Annotated VIdeo Segmentation (DAVIS)](https://davischallenge.org/index.html), which identifies objects (cars, people, birds, etc) from videos. 
 
-<iframe width="420" height="315" src="https://www.youtube.com/watch?v=8f9y17-OAwI" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/8f9y17-OAwI?start=26" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 Methods such as DAVIS can be used for:
 
