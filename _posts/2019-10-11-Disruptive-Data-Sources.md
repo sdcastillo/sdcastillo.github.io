@@ -47,7 +47,7 @@ This is the broadest category, and will eventually have the most impact.  The [I
 
 - Using aerial drones for monitoring construction sites for building hazards or [monitoring crops for predicting future yields](https://www.aerobotics.com/?identifier=default-get-in-touch-button).
 - Health insurers will provide discounts for those who provide personal data.  In addition to Electronic Health Records (EHR) becoming ubiquitous in the next 3-5 years, wearables such as heart rate monitors, smart watches, step counters, and other medical sensors will be connected to the internet.   
-- Do you want to buy pet insurance for your dog?  Just put a GPS tracker on their coller that will record their health, risk of getting hit by a car, and activity level in a similar way to how [AI helping farmers track cow's health](https://www.blog.google/technology/ai/using-tensorflow-keep-farmers-happy-and-cows-healthy/)
+- Do you want to buy pet insurance for your dog?  Just put a GPS tracker on their coller that will record their health, risk of getting hit by a car, and activity level in a similar way to how [AI helping farmers track cow's health].(https://www.blog.google/technology/ai/using-tensorflow-keep-farmers-happy-and-cows-healthy/)
 - Assisted living facilities will use devices to improve the quality of care in the aging population.  Insurance companies can provide lower premiums in exchange for participating.  
 
 These three areas of Video, Audio, and Sensor Technology are going to change the world of risk assessment.  In the previous post, we covered [technologies that actuaries are excited about](http://artificialactuary.com/ai/actuarial%20science/2019/09/28/New-Technology.html) and AI was at the top of the list.  
