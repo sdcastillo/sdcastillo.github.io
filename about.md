@@ -10,7 +10,7 @@ Sam Castillo has written [a book on predictive modeling](http://artificialactuar
 
 
 ### Contact 
-- [sam@artificialactuary.com](mailto:sam@artificialactuary.com)
+- [sam@PredictiveInsightsAI.com](mailto:sam@PredictiveInsightsAI.com)
 - [LinkedIn](https://www.linkedin.com/in/sdcastillo/)
 
 
