@@ -1,5 +1,5 @@
 ---
-title: "Black Swans and GPT"
+title: "ExamGPT"
 layout: post
 excerpt: ""
 categories:
