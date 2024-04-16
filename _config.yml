@@ -2,8 +2,8 @@
 markdown:         kramdown
 highlighter:      rouge
 # Setup
-title:            AI Actuary
-tagline:          'The next generation of actuary'
+title:            AI Analyst
+tagline:          'The next generation of analysis'
 theme: jekyll-theme-modernist
 description:      'Anticipating the needs of AI-powered insurance'
 url:              https://sdcastillo.github.io
@@ -16,7 +16,7 @@ baseurl:          # the optional subpath of your site, e.g. "/blog"
 google_analytics: UA-113404765-1
 
 author:
-  name:           'Sam Castillo'
+  name:           'SAMUEL D. CASTILLO'
   url:            
 
 paginate:         7
