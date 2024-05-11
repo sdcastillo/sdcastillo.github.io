@@ -1,5 +1,3 @@
-
-
 ---
 title: "Prime Numbers"
 layout: post
