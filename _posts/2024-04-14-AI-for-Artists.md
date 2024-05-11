@@ -1,7 +1,7 @@
 ---
 title: "AI for Artists"
 layout: post
-excerpt: ""
+excerpt: "Using generative artificial intelligence is easy!"
 categories:
   - AI
   - DeepLearning
