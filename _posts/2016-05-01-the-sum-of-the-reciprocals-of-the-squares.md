@@ -1,5 +1,5 @@
 ---
-title: "Learning Resources"
+title: "Euler's Basel Problem"
 layout: post
 excerpt: ""
 categories:
@@ -10,4 +10,4 @@ tags: sin, cosine, baselproblem, integration, derivative, math, calculus, trig, 
 last_modified_at: 2016-10-11T12:43:31-05:00
 ---
 
-https://github.com/sdcastillo/sdcastillo.github.io/blob/a703d410172875d45040bc948bc12405cd5d8e69/assets/the-sum-of-the-reciprocals-of-the-squares.pdf
+[Read the Full Paper Free!](https://github.com/sdcastillo/sdcastillo.github.io/blob/a703d410172875d45040bc948bc12405cd5d8e69/assets/the-sum-of-the-reciprocals-of-the-squares.pdf)
