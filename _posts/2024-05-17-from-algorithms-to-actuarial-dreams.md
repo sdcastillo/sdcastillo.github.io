@@ -1,4 +1,14 @@
-From Algorithms to Actuarial Dreams 
+---
+title: "From Algorithms to Actuarial Dreams "
+layout: post
+excerpt: ""
+categories:
+  - AI
+  - Insurance
+  - Algorithms
+tags:
+last_modified_at: 2016-10-11T12:43:31-05:00
+---
 
 Sam Castillo sat in the dimly lit corner of a bustling coffee shop, the hum of conversation blending with the hiss of the espresso machine. He was deeply engrossed in his laptop, crafting responses for a job application to Milliman, a leading actuarial firm. Sam's journey was anything but ordinary; it was a story of ambition, setbacks, and relentless pursuit of dreams. 
 
