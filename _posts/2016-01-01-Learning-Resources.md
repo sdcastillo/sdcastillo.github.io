@@ -13,6 +13,8 @@ last_modified_at: 2016-10-11T12:43:31-05:00
 
 The following is a list of resources which I have found to be helpful as a math undergrad, when studying for actuarial exams, and working on data science projects.  Perhaps they will be helpful for you.
 
+** FuturoInsights.com**!  
+
 **Actuarial Science**
 
 * [Coaching Actuaries](http://coachingactuaries.com/)
