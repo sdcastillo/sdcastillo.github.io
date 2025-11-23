@@ -3,8 +3,8 @@ title: "Learning Resources"
 layout: post
 excerpt: ""
 categories:
-  - AI
-  - Insurance
+  - Autopilot
+  - Analytics
   - Data
 tags:
 last_modified_at: 2025-11-22T12:43:31-05:00
