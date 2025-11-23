@@ -1,4 +1,14 @@
-
+---
+title: "Learning Resources"
+layout: post
+excerpt: ""
+categories:
+  - AI
+  - Insurance
+  - Data
+tags:
+last_modified_at: 2025-11-22T12:43:31-05:00
+---
 
 Generative AI has fundamentally transformed the field of data engineering. Today, routine and repetitive tasks—such as writing boilerplate code, generating documentation, and debugging complex queries—are increasingly automated. This shift allows professionals to redirect their focus from manual implementation to high-value strategic work, including the design of sophisticated data architectures and the critical evaluation of AI-driven insights.
 
