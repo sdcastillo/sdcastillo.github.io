@@ -27,6 +27,7 @@ https://youtu.be/TzqXtdRQJNg?si=Ie2pxaYRElA251qc
 
 ### Contact 
 - [sam@PredictiveInsightsAI.com](mailto:sam@PredictiveInsightsAI.com)
-- [LinkedIn](https://www.linkedin.com/in/sdcastillo/)
+- [artificialactuary@gmail.com](mailto:sam@PredictiveInsightsAI.com)
+- [LinkedIn](https://www.linkedin.com/in/samdcastillo/)
 
 
