@@ -5,7 +5,6 @@ date: 2025-11-25
 tags: [thanksgiving, history, new-england, gratitude, tradition, pilgrims, native-americans]
 ---
 
-# Thanksgiving: A Holiday of Gratitude and New England Roots
 
 Thanksgiving holds a special place in American history as one of our nation's most cherished holidays. As I reflect on this season, I find myself thinking about the deeper meaning behind the meal we gather to share—a meal that began centuries ago as a symbol of peace and mutual respect.
 
