@@ -2,7 +2,7 @@
 
 ## 🛡️ Welcome, Security Researchers!
 
-Thank you for taking the time to responsibly disclose security vulnerabilities in my projects. I deeply appreciate the work of security researchers and the open-source community who help make software safer for everyone.
+Thank you for taking the time to responsibly disclose security vulnerabilities in my projects. I deeply appreciate the work of security researchers and the open-source community who help make software safer for everyone.  Pleaes report security issues to "ArtificialActuary@gmail.com"
 
 This security policy outlines how to report vulnerabilities and what to expect from me throughout the process.
 
