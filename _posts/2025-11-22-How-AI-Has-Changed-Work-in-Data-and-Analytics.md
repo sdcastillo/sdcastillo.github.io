@@ -1,5 +1,5 @@
 ---
-title: "Learning Resources"
+title: "How AI Is Catalyzing Job Displacement"
 layout: post
 excerpt: ""
 categories:
