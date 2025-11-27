@@ -2,7 +2,7 @@
 markdown:         kramdown
 highlighter:      rouge
 # Setup
-title:            Adventure
+title:            STATISTICS
 tagline:          'Code the world, debug the journey'
 theme: jekyll-theme-cayman
 description:      'Building experiences, writing code, chasing horizons'
