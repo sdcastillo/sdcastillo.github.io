@@ -1,0 +1,30 @@
+/* Pastel color palette */
+:root {
+  --pastel-pink: #FFD1DC;
+  --pastel-blue: #AEC6CF;
+  --pastel-lavender: #E6E6FA;
+  --pastel-mint: #B5EAD7;
+  --pastel-peach: #FFDAB9;
+  --pastel-yellow: #FDFD96;
+}
+
+body {
+  background-color: #FFF9F0; /* Light cream */
+  color: #5A5A5A; /* Softer dark gray */
+}
+
+header {
+  background-color: var(--pastel-lavender);
+}
+
+a {
+  color: #8B9DC3; /* Muted blue */
+}
+
+a:hover {
+  color: #C4A4D4; /* Soft purple */
+}
+
+.post-title, h1, h2, h3 {
+  color: #7B9FAB; /* Dusty blue */
+}
