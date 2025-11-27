@@ -1,5 +1,3 @@
-# Sam Castillo
-
 ## About
 
 Since 2017, I have been deeply involved in the field of data science and artificial intelligence, specializing in natural language processing and deep learning for the insurance industry. My expertise encompasses a wide range of skills, including exploratory data analysis (EDA), extract, transform, load (ETL) processes, and predictive analytics.
