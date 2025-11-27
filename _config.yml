@@ -2,7 +2,7 @@
 markdown:         kramdown
 highlighter:      rouge
 # Setup
-title:            Code Adventuter
+title:            Explorer
 tagline:          'Code the world, debug the journey'
 theme: jekyll-theme-cayman
 description:      'Building experiences, writing code, chasing horizons'
