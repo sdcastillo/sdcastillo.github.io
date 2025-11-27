@@ -2,10 +2,10 @@
 markdown:         kramdown
 highlighter:      rouge
 # Setup
-title:            AI Analyst
-tagline:          'The next generation of analysis'
+title:            Code Adventuter
+tagline:          'Code the world, debug the journey'
 theme: jekyll-theme-modernist
-description:      'Anticipating the needs of AI-powered insurance'
+description:      'Building experiences, writing code, chasing horizons'
 url:              https://sdcastillo.github.io
 baseurl:          # the optional subpath of your site, e.g. "/blog"
                   # NB: This applies to all pages in your Jekyll site.
@@ -16,7 +16,7 @@ baseurl:          # the optional subpath of your site, e.g. "/blog"
 google_analytics: UA-113404765-1
 
 author:
-  name:           'SAMUEL D. CASTILLO'
+  name:           'SAM'
   url:            
 
 paginate:         7
@@ -29,11 +29,11 @@ plugins:
   - jekyll-paginate
 
 # Custom vars
-version:            1.0.1
+version:            6.7.9
 sidebar_home_link:  true
 # sidebar_blog_link:  '/blog'   # By default, your home page is your blog
                                 # page. If you change your paginate_path,
                                 # set this to the root of the paginate_path
                                 # to enable a separate blog link.
 github:
-  repo:             https://github.com/sdcastillo/sdcastillo.github.io
+  repo:             https://github.com/sdcastillo/
