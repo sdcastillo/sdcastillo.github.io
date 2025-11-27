@@ -1,9 +1,44 @@
-## About
+# vCard - Personal portfolio
 
-Since 2017, I have been deeply involved in the field of data science and artificial intelligence, specializing in natural language processing and deep learning for the insurance industry. My expertise encompasses a wide range of skills, including exploratory data analysis (EDA), extract, transform, load (ETL) processes, and predictive analytics.
+![GitHub repo size](https://img.shields.io/github/repo-size/codewithsadee/vcard-personal-portfolio)
+![GitHub stars](https://img.shields.io/github/stars/codewithsadee/vcard-personal-portfolio?style=social)
+![GitHub forks](https://img.shields.io/github/forks/codewithsadee/vcard-personal-portfolio?style=social)
+[![Twitter Follow](https://img.shields.io/twitter/follow/codewithsadee_?style=social)](https://twitter.com/intent/follow?screen_name=codewithsadee_)
+[![YouTube Video Views](https://img.shields.io/youtube/views/SoxmIlgf2zM?style=social)](https://youtu.be/SoxmIlgf2zM)
 
-As a seasoned data scientist, I have successfully delivered projects that leverage advanced AI techniques to solve complex problems and drive business value. My work includes developing and implementing innovative solutions that enhance decision-making and operational efficiency. In addition to my technical expertise, I am also an entrepreneur with experience in starting and growing a business. This entrepreneurial spirit has allowed me to understand the importance of strategic thinking, agility, and customer-centric approaches in today's competitive landscape.
+vCard is a fully responsive personal portfolio website, responsive for all devices, built using HTML, CSS, and JavaScript.
 
-I am passionate about using data to uncover insights and create impactful solutions. My goal is to continue driving advancements in AI and data science while contributing to meaningful projects that make a difference.
+## Demo
 
-#DataScience #ArtificialIntelligence #MachineLearning #NLP #DeepLearning #PredictiveAnalytics #Entrepreneurship #EDA #ETL #DataVisualization #SQL #Python
+![vCard Desktop Demo](./website-demo-image/desktop.png "Desktop Demo")
+![vCard Mobile Demo](./website-demo-image/mobile.png "Mobile Demo")
+
+## Prerequisites
+
+Before you begin, ensure you have met the following requirements:
+
+* [Git](https://git-scm.com/downloads "Download Git") must be installed on your operating system.
+
+## Installing vCard
+
+To install **vCard**, follow these steps:
+
+Linux and macOS:
+
+```bash
+sudo git clone https://github.com/codewithsadee/vcard-personal-portfolio.git
+```
+
+Windows:
+
+```bash
+git clone https://github.com/codewithsadee/vcard-personal-portfolio.git
+```
+
+## Contact
+
+If you want to contact me you can reach me at [Twitter](https://www.x.com/codewithsadee_).
+
+## License
+
+MIT

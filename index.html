@@ -1,4 +1,1291 @@
----
-layout: index
-title: Home
----
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>vCard - Personal Portfolio</title>
+
+   <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            color: white;
+        }
+        .section-title {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+        }
+        .experience-list {
+            list-style: none;
+            padding: 0;
+        }
+        .experience-item {
+            display: flex;
+            margin-bottom: 30px;
+            align-items: flex-start;
+        }
+        .experience-banner {
+            flex: 0 0 60px;
+            margin-right: 20px;
+        }
+        .experience-banner img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            border: 1px solid #eee;
+            border-radius: 4px;
+        }
+        .experience-content {
+            flex: 1;
+        }
+        .experience-content h4 {
+            margin: 0 0 5px;
+            font-size: 1.2em;
+        }
+        .experience-content .title {
+            font-weight: bold;
+            margin: 0 0 5px;
+        }
+        .experience-content .dates {
+            color: #666;
+            margin: 0 0 10px;
+        }
+        .experience-content ul {
+            list-style-type: disc;
+            padding-left: 20px;
+            margin: 0;
+        }
+        .experience-content ul li {
+            margin-bottom: 5px;
+        }
+        .education-item {
+            margin-bottom: 20px;
+        }
+    </style>
+
+  <!--
+    - favicon
+  -->
+  <link rel="shortcut icon" href="./assets/images/logo.ico" type="image/x-icon">
+
+  <!--
+    - custom css link
+  -->
+  <link rel="stylesheet" href="./assets/css/style.css">
+
+  <!--
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <!--
+    - #MAIN
+  -->
+
+  <main>
+
+    <!--
+      - #SIDEBAR
+    -->
+
+    <aside class="sidebar" data-sidebar>
+
+      <div class="sidebar-info">
+
+        <figure class="avatar-box">
+          <img src="./assets/images/my-avatar.png" alt="Samuel Castillo" width="80">
+        </figure>
+
+        <div class="info-content">
+          <h1 class="name" title="Samuel Castillo">Samuel Castillo</h1>
+
+          <p class="title">AI Solutions Developer</p>
+        </div>
+
+        <button class="info_more-btn" data-sidebar-btn>
+          <span>Show Contacts</span>
+
+          <ion-icon name="chevron-down"></ion-icon>
+        </button>
+
+      </div>
+
+      <div class="sidebar-info_more">
+
+        <div class="separator"></div>
+
+        <ul class="contacts-list">
+
+          <li class="contact-item">
+
+            <div class="icon-box">
+              <ion-icon name="mail-outline"></ion-icon>
+            </div>
+
+            <div class="contact-info">
+              <p class="contact-title">Email</p>
+
+              <a href="castillo.sam.dgmail.com" class="contact-link">castillo.sam.dgmail.com</a>
+            </div>
+
+          </li>
+
+          <li class="contact-item">
+
+            <div class="icon-box">
+              <ion-icon name="phone-portrait-outline"></ion-icon>
+            </div>
+
+            <div class="contact-info">
+              <p class="contact-title">Phone</p>
+
+              <a href="tel:+12133522795" class="contact-link">+1 4134043613 </a>
+            </div>
+
+          </li>
+
+          <li class="contact-item">
+
+            <div class="icon-box">
+              <ion-icon name="calendar-outline"></ion-icon>
+            </div>
+
+            <div class="contact-info">
+              <p class="contact-title"></p>
+
+              <time datetime="1982-06-23"></time>
+            </div>
+
+          </li>
+
+          <li class="contact-item">
+
+            <div class="icon-box">
+              <ion-icon name="location-outline"></ion-icon>
+            </div>
+
+            <div class="contact-info">
+              <p class="contact-title">Location</p>
+
+              <address>Massachusetts, United States </address>
+            </div>
+
+          </li>
+
+        </ul>
+
+        <div class="separator"></div>
+
+        <ul class="social-list">
+
+          <li class="social-item">
+            <a href="#" class="social-link">
+              <ion-icon name="logo-facebook"></ion-icon>
+            </a>
+          </li>
+
+          <li class="social-item">
+            <a href="#" class="social-link">
+              <ion-icon name="logo-twitter"></ion-icon>
+            </a>
+          </li>
+
+          <li class="social-item">
+            <a href="#" class="social-link">
+              <ion-icon name="logo-instagram"></ion-icon>
+            </a>
+          </li>
+
+        </ul>
+
+      </div>
+
+    </aside>
+
+
+
+
+
+    <!--
+      - #main-content
+    -->
+
+    <div class="main-content">
+
+      <!--
+        - #NAVBAR
+      -->
+
+      <nav class="navbar">
+
+        <ul class="navbar-list">
+
+          <li class="navbar-item">
+            <button class="navbar-link  active" data-nav-link>About</button>
+          </li>
+
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link>Resume</button>
+          </li>
+
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link>Portfolio</button>
+          </li>
+
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link>Blog</button>
+          </li>
+
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link>Contact</button>
+          </li>
+
+        </ul>
+
+      </nav>
+
+
+
+
+
+      <!--
+        - #ABOUT
+      -->
+
+      <article class="about  active" data-page="about">
+
+        <header>
+          <h2 class="h2 article-title">About me</h2>
+        </header>
+
+        <section class="about-text">
+          <p>
+            Entrepreneur with a passion for turning data-driven insights into tangible business outcomes. In 2021, I founded a startup and earned a spot in the Capital Factory Startup Accelerator, an experience that deepened my commitment to innovation and growth. My professional journey includes working in actuarial science at Willis Towers Watson and contributing to AI development at Milliman Intelliscript. With over five years in the corporate sphere and two years as an independent contractor, I bring a versatile and analytical approach to every project. I hold a Bachelor of Science in Mathematics with honors from UMass Amherst, which laid the foundation for my career in both data analysis and entrepreneurship
+          </p>
+
+          <p>
+           
+          </p>
+        </section>
+
+
+        <!--
+          - service
+        -->
+
+        <section class="service">
+
+          <h3 class="h3 service-title">What i'm doing</h3>
+
+          <ul class="service-list">
+
+            <li class="service-item">
+
+              <div class="service-icon-box">
+                <img src="./assets/images/icon-design.svg
+                " alt="design icon" width="40">
+              </div>
+
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">Data Science & Analytics </h4>
+
+                <p class="service-item-text">
+                   Expertise in predictive modeling, machine learning, and large-scale data processing
+                </p>
+              </div>
+
+            </li>
+
+            <li class="service-item">
+
+              <div class="service-icon-box">
+                <img src="./assets/images/icon-dev.svg" alt="Web development icon" width="40">
+              </div>
+
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">AI/Machine Learning Development</h4>
+
+                <p class="service-item-text">
+                   Training LLMs, building AI agents with Python and R.  Utilizing N8N for workflow automation.
+                </p>
+              </div>
+
+            </li>
+
+            <li class="service-item">
+
+              <div class="service-icon-box">
+                <img src="./assets/images/icon-app.svg" alt="mobile app icon" width="40">
+              </div>
+
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">Full Stack Development</h4>
+
+                <p class="service-item-text">
+                  Experience with Windows, IOS, Linux environments.  Quick learner.
+                </p>
+              </div>
+
+            </li>
+
+            <li class="service-item">
+
+              <div class="service-icon-box">
+                <img src="./assets/images/icon-photo.svg" alt="camera icon" width="40">
+              </div>
+
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">Digital Marketing</h4>
+
+                <p class="service-item-text">
+                  Have run multiple YouTube channels, Facebook Business Pages, and acheived excellent ROAS.
+                </p>
+              </div>
+
+            </li>
+
+          </ul>
+
+        </section>
+
+<head>
+   
+    <title>Professional Experience - LinkedIn Style</title>
+   
+</head>
+
+
+    <h3 class="section-title">Experience</h3>
+    <ul class="experience-list">
+
+        <li class="experience-item">
+            <div class="experience-banner">
+                <a href="#">
+                    <img src="./assets/images/isclogo.jpeg" alt="Integrated Security Consultants Inc logo">
+                </a>
+            </div>
+            <div class="experience-content">
+                <h4>Integrated Security Consultants Inc</h4>
+                <p class="title">AI Solutions Developer</p>
+                <p class="dates">March 2025 - June 2025 (4 months) · Massachusetts, United States</p>
+                <ul>
+                    <li>Trained LLMs to act as virtual tech guides, automating the step-by-step install process for surveillance cameras and security systems.</li>
+                </ul>
+            </div>
+        </li>
+
+        <li class="experience-item">
+            <div class="experience-banner">
+                <!-- No logo provided, placeholder or omit -->
+                <a href="#">
+                    <img src="./assets/images/placeholder.png" alt="PassMyExam logo">
+                </a>
+            </div>
+            <div class="experience-content">
+                <h4>PassMyExam (AWS Startup)</h4>
+                <p class="title">Product Developer</p>
+                <p class="dates">June 2024 - August 2024 (3 months) · Massachusetts, United States</p>
+                <ul>
+                    <li>Recipient of AWS Activate Startups program (Tier 1)</li>
+                    <li>Built UI/UX materials for AI and Machine Learning</li>
+                    <li>Developed web applications using AWS</li>
+                    <li>Built YouTube channel from zero to 50,000+ lifetime views through strategic content development and audience engagement</li>
+                    <li>Analyzed viewer metrics and engagement data to optimize content performance and channel growth strategies</li>
+                </ul>
+            </div>
+        </li>
+
+        <li class="experience-item">
+            <div class="experience-banner">
+                <a href="#">
+                    <img src="./assets/images/eglogo.jpeg" alt="Expedia Group logo">
+                </a>
+            </div>
+            <div class="experience-content">
+                <h4>Expedia Group</h4>
+                <p class="title">Data Analyst</p>
+                <p class="dates">November 2022 - November 2023 (1 year 1 month) · Texas, United States</p>
+                <ul>
+                    <li>Analyzed large-scale travel data related to flight bookings, vacation rentals, hotels, and car rentals, handling data at scale.</li>
+                    <li>Architected predictive analytics models processing global travel datasets, encompassing flight bookings, hotel reservations, and vacation rentals.</li>
+                    <li>Accelerated data workflows from 3 days to hours using AI-tuned Python scripts. This enabled real-time data access.</li>
+                    <li>Explored datasets from 100+ countries with machine learning. Turned raw numbers into strategic insights that shaped where the company invested next.</li>
+                    <li>Developed AI agents with Python and R, which successfully performed tasks assigned to them, and addressed complex forecasting challenges, utilizing API get requests and scheduled scripts in PowerShell.</li>
+                    <li>Safeguarded sensitive customer data following international privacy regulations, ensuring strict compliance.</li>
+                </ul>
+            </div>
+        </li>
+
+        <li class="experience-item">
+            <div class="experience-banner">
+                <a href="#">
+                    <img src="./assets/images/exampa_logo.png" alt="PassMyExam LLC logo">
+                </a>
+            </div>
+            <div class="experience-content">
+                <h4>PassMyExam LLC</h4>
+                <p class="title">Founder</p>
+                <p class="dates">November 2019 - May 2022 (2 years 7 months) · Texas, United States</p>
+                <ul>
+                    <li>Owned a business which secured early-stage support with Capital Factory, a leading startup accelerator in downtown Austin Texas that supports hundreds of small businesses and provides top-level business mentoring and resources in Capital Factory University sessions—founder-led masterclasses that translate entrepreneurial theory into real-world tactics.</li>
+                    <li>Completed a selective 12-week accelerator featuring daily workshops on AI, customer discovery, product-market fit, fundraising, and go-to-market strategy.</li>
+                    <li>Engineered and maintained a cloud-based data platform hosting predictive analytics models.</li>
+                    <li>Developed Python-based ETL pipelines for data ingestion and transformation.</li>
+                    <li>Deployed AWS services including S3, Lambda, and EC2 for cost-efficient computing.</li>
+                    <li>Mentored junior data engineers and led a team of freelancers.</li>
+                </ul>
+            </div>
+        </li>
+
+        <li class="experience-item">
+            <div class="experience-banner">
+                <a href="#">
+                    <img src="./assets/images/millimanlogo.png" alt="Boehringer Ingelheim logo"> <!-- Note: Logo might be incorrect; update if needed -->
+                </a>
+            </div>
+            <div class="experience-content">
+                <h4>Boehringer Ingelheim</h4>
+                <p class="title">Data Scientist</p>
+                <p class="dates">June 2021 - October 2021 (5 months) · Texas, United States</p>
+                <ul>
+                    <li>Brought on by an agency Data Science Talent Limited, for a contractor with the Animal Health Data team with Boehringer Ingelheim.</li>
+                    <li>Constructed convolutional neural network (CNN) models in TensorFlow for high-throughput biological data classification in pharmaceutical research applications that accelerated the pharmaceutical discovery timelines by 30%.</li>
+                    <li>Tested Neural Networks on genomic datasets for COVID-19 antibody vaccine research, demonstrating expertise in healthcare data applications.</li>
+                    <li>Developed comprehensive animal health databases enabling empirical analysis for veterinary medicine applications.</li>
+                    <li>Orchestrated SQL and Python/R for data pipeline engineering, creating clean, structured datasets optimized for machine learning model training.</li>
+                    <li>Managed large streaming datasets from search analytics, TV metrics, retail sales, and promotions. Supported strategic sales initiatives by identifying key trends in the healthcare sector.</li>
+                </ul>
+            </div>
+        </li>
+
+        <li class="experience-item">
+            <div class="experience-banner">
+                <a href="#">
+                    <img src="./assets/images/keywellai.png" alt="Keywell.ai logo">
+                </a>
+            </div>
+            <div class="experience-content">
+                <h4>Keywell.ai</h4>
+                <p class="title">Data Engineer</p> <!-- Assumed based on responsibilities; update as needed -->
+                <p class="dates">Dates not specified · Location not specified</p> <!-- Placeholder; add actual dates if known -->
+                <ul>
+                    <li>Prepared data for AI/ML Initiatives using Python, improving data quality for advanced analytics.</li>
+                    <li>Helped a medical team track eating disorder treatment by building a data reporting pipeline using AWS Athena, RDS, Glue, and S3 that turns EHR data into a self-service reporting dashboard.</li>
+                    <li>Improved database design by refactoring a 600 line SQL script into 50 lines of code using inner joins, subqueries, case when statements, and lookup tables.</li>
+                </ul>
+            </div>
+        </li>
+
+        <li class="experience-item">
+            <div class="experience-banner">
+                <a href="#">
+                    <img src="./assets/images/millimanlogo.png" alt="Milliman IntelliScript logo">
+                </a>
+            </div>
+            <div class="experience-content">
+                <h4>Milliman IntelliScript</h4>
+                <p class="title">Data Scientist</p>
+                <p class="dates">January 2019 - April 2020 (1 year 4 months) · Greater Chicago Area</p>
+                <ul>
+                    <li>Trained AI and ML models on large scale data.</li>
+                    <li>Utilized distributed computing to efficiently handle large-scale data processing, optimizing system performance and enabling seamless integration.</li>
+                    <li>Engineered data pipelines for healthcare datasets containing 10+ million individual records, achieving 13% improvement in predictive model performance through advanced feature engineering.</li>
+                    <li>Integrated medical datasets using standardized healthcare coding systems (ICD, CPT, DRG), creating AI models for Fortune 500 health care companies.</li>
+                    <li>Leveraged distributed computing frameworks for processing 200TB healthcare workloads, achieving 50% cost reduction while maintaining data integrity.</li>
+                    <li>Ensured strict compliance with healthcare data security regulations including HIPAA and GDPR, implementing zero-trust infrastructure protocols.</li>
+                    <li>Developed privacy-preserving AI algorithms generating anonymized group-level insights while protecting individual patient data confidentiality.</li>
+                </ul>
+            </div>
+        </li>
+
+        <li class="experience-item">
+            <div class="experience-banner">
+                <a href="#">
+                    <img src="./assets/images/wtwlogo.png" alt="Willis Towers Watson logo">
+                </a>
+            </div>
+            <div class="experience-content">
+                <h4>Willis Towers Watson</h4>
+                <p class="title">Actuarial Analyst</p>
+                <p class="dates">February 2018 - January 2019 (1 year) · Greater Boston Area</p>
+                <ul>
+                    <li>Used Rescue, Radar, and Emblem to conduct reserving studies.</li>
+                    <li>Assisted account managers for international airlines & hotels.</li>
+                    <li>Optimized big data framework and reduced costs by 50%.</li>
+                    <li>Subject matter expert on predictive analytics tools.</li>
+                    <li>Designed predictive models for customer behavior analysis serving major healthcare and travel clients, providing financial projections and strategic insights.</li>
+                    <li>Optimized big data architecture processing on 200TB scale, reducing operational costs by 50% through distributed computing implementation.</li>
+                    <li>Coordinated international AI/ML initiatives across multiple countries, delivering pre-trained models requiring client-specific fine-tuning and customization.</li>
+                </ul>
+            </div>
+        </li>
+
+        <!-- Internships as part of experience -->
+        <li class="experience-item">
+            <div class="experience-banner">
+                <!-- No logo, placeholder -->
+                <a href="#">
+                    <img src="./assets/images/millimanlogo.png" alt="Milliman logo"> <!-- Reusing from earlier -->
+                </a>
+            </div>
+            <div class="experience-content">
+                <h4>Milliman</h4>
+                <p class="title">Actuarial Intern</p>
+                <p class="dates">October 2017 - January 2018 (4 months) · Greater Boston Area</p>
+                <ul>
+                    <li>Updated reserving analysis for property and casualty insurance companies.</li>
+                    <li>Performed rate-filing reviews for New England carriers.</li>
+                    <li>Captive insurance feasibility studies for firms located in Bermuda.</li>
+                </ul>
+            </div>
+        </li>
+
+        <li class="experience-item">
+            <div class="experience-banner">
+                <!-- No logo, placeholder -->
+                <a href="#">
+                    <img src="./assets/images/placeholder.png" alt="Blue Cross Blue Shield logo">
+                </a>
+            </div>
+            <div class="experience-content">
+                <h4>Blue Cross Blue Shield of Massachusetts</h4>
+                <p class="title">Data Science Intern</p>
+                <p class="dates">June 2017 - August 2017 (3 months) · Boston</p>
+                <ul>
+                    <li>Participated in research on health insurance plan design using analytics and machine learning.</li>
+                    <li>Presented at end-of-internship event about how people with low back pain can reduce the need for surgery.</li>
+                    <li>Attended cross-disciplinary mentoring sessions with actuaries and data scientists.</li>
+                </ul>
+            </div>
+        </li>
+
+    </ul>
+
+    <h3 class="section-title">Education</h3>
+    <div class="education-item">
+        <h4>University of Massachusetts, Amherst</h4>
+        <p class="title">Bachelor's Degree, Mathematics</p>
+        <p class="dates">2015 - May 2017</p>
+        <ul>
+            <li>Major in Mathematics</li>
+            <li>Classes Tutored: Algebra, Calculus, Linear Algebra, Finance, Differential Equations, Astronomy</li>
+        </ul>
+        <p>Academic Tutor · September 2016 - May 2017 (9 months) · Amherst, MA</p>
+        <ul>
+            <li>Part-time peer tutoring (flexible schedule)</li>
+            <li>Led group discussions (1-4 people) using whiteboards and laptops</li>
+        </ul>
+    </div>
+
+</body>
+
+```
+
+      </article>
+
+
+
+
+
+      <!--
+        - #RESUME
+      -->
+
+      <article class="resume" data-page="resume">
+
+        <header>
+          <h2 class="h2 article-title">Resume</h2>
+        </header>
+
+        <section class="timeline">
+
+          <div class="title-wrapper">
+            <div class="icon-box">
+              <ion-icon name="book-outline"></ion-icon>
+            </div>
+
+            <h3 class="h3">Education</h3>
+          </div>
+
+          <ol class="timeline-list">
+
+            <li class="timeline-item">
+
+              <h4 class="h4 timeline-item-title">University school of the arts</h4>
+
+              <span>2007 — 2008</span>
+
+              <p class="timeline-text">
+                Nemo enims ipsam voluptatem, blanditiis praesentium voluptum delenit atque corrupti, quos dolores et
+                quas molestias
+                exceptur.
+              </p>
+
+            </li>
+
+            <li class="timeline-item">
+
+              <h4 class="h4 timeline-item-title">New york academy of art</h4>
+
+              <span>2006 — 2007</span>
+
+              <p class="timeline-text">
+                Ratione voluptatem sequi nesciunt, facere quisquams facere menda ossimus, omnis voluptas assumenda est
+                omnis..
+              </p>
+
+            </li>
+
+            <li class="timeline-item">
+
+              <h4 class="h4 timeline-item-title">High school of art and design</h4>
+
+              <span>2002 — 2004</span>
+
+              <p class="timeline-text">
+                Duis aute irure dolor in reprehenderit in voluptate, quila voluptas mag odit aut fugit, sed consequuntur
+                magni dolores
+                eos.
+              </p>
+
+            </li>
+
+          </ol>
+
+        </section>
+
+        <section class="timeline">
+
+          <div class="title-wrapper">
+            <div class="icon-box">
+              <ion-icon name="book-outline"></ion-icon>
+            </div>
+
+            <h3 class="h3">Experience</h3>
+          </div>
+
+          <ol class="timeline-list">
+
+            <li class="timeline-item">
+
+              <h4 class="h4 timeline-item-title">Creative director</h4>
+
+              <span>2015 — Present</span>
+
+              <p class="timeline-text">
+                Nemo enim ipsam voluptatem blanditiis praesentium voluptum delenit atque corrupti, quos dolores et qvuas
+                molestias
+                exceptur.
+              </p>
+
+            </li>
+
+            <li class="timeline-item">
+
+              <h4 class="h4 timeline-item-title">Art director</h4>
+
+              <span>2013 — 2015</span>
+
+              <p class="timeline-text">
+                Nemo enims ipsam voluptatem, blanditiis praesentium voluptum delenit atque corrupti, quos dolores et
+                quas molestias
+                exceptur.
+              </p>
+
+            </li>
+
+            <li class="timeline-item">
+
+              <h4 class="h4 timeline-item-title">Web designer</h4>
+
+              <span>2010 — 2013</span>
+
+              <p class="timeline-text">
+                Nemo enims ipsam voluptatem, blanditiis praesentium voluptum delenit atque corrupti, quos dolores et
+                quas molestias
+                exceptur.
+              </p>
+
+            </li>
+
+          </ol>
+
+        </section>
+
+        <section class="skill">
+
+          <h3 class="h3 skills-title">My skills</h3>
+
+          <ul class="skills-list content-card">
+
+            <li class="skills-item">
+
+              <div class="title-wrapper">
+                <h5 class="h5">Web design</h5>
+                <data value="80">80%</data>
+              </div>
+
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" style="width: 80%;"></div>
+              </div>
+
+            </li>
+
+            <li class="skills-item">
+
+              <div class="title-wrapper">
+                <h5 class="h5">Graphic design</h5>
+                <data value="70">70%</data>
+              </div>
+
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" style="width: 70%;"></div>
+              </div>
+
+            </li>
+
+            <li class="skills-item">
+
+              <div class="title-wrapper">
+                <h5 class="h5">Branding</h5>
+                <data value="90">90%</data>
+              </div>
+
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" style="width: 90%;"></div>
+              </div>
+
+            </li>
+
+            <li class="skills-item">
+
+              <div class="title-wrapper">
+                <h5 class="h5">WordPress</h5>
+                <data value="50">50%</data>
+              </div>
+
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" style="width: 50%;"></div>
+              </div>
+
+            </li>
+
+          </ul>
+
+        </section>
+
+      </article>
+
+
+
+
+
+      <!--
+        - #PORTFOLIO
+      -->
+
+      <article class="portfolio" data-page="portfolio">
+
+        <header>
+          <h2 class="h2 article-title">Portfolio</h2>
+        </header>
+
+        <section class="projects">
+
+          <ul class="filter-list">
+
+            <li class="filter-item">
+              <button class="active" data-filter-btn>All</button>
+            </li>
+
+            <li class="filter-item">
+              <button data-filter-btn>Web design</button>
+            </li>
+
+            <li class="filter-item">
+              <button data-filter-btn>Applications</button>
+            </li>
+
+            <li class="filter-item">
+              <button data-filter-btn>Web development</button>
+            </li>
+
+          </ul>
+
+          <div class="filter-select-box">
+
+            <button class="filter-select" data-select>
+
+              <div class="select-value" data-selecct-value>Select category</div>
+
+              <div class="select-icon">
+                <ion-icon name="chevron-down"></ion-icon>
+              </div>
+
+            </button>
+
+            <ul class="select-list">
+
+              <li class="select-item">
+                <button data-select-item>All</button>
+              </li>
+
+              <li class="select-item">
+                <button data-select-item>Web design</button>
+              </li>
+
+              <li class="select-item">
+                <button data-select-item>Applications</button>
+              </li>
+
+              <li class="select-item">
+                <button data-select-item>Web development</button>
+              </li>
+
+            </ul>
+
+          </div>
+
+          <ul class="project-list">
+
+            <li class="project-item  active" data-filter-item data-category="web development">
+              <a href="#">
+
+                <figure class="project-img">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+
+                  <img src="./assets/images/project-1.jpg" alt="finance" loading="lazy">
+                </figure>
+
+                <h3 class="project-title">Finance</h3>
+
+                <p class="project-category">Web development</p>
+
+              </a>
+            </li>
+
+            <li class="project-item  active" data-filter-item data-category="web development">
+              <a href="#">
+
+                <figure class="project-img">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+
+                  <img src="./assets/images/project-2.png" alt="orizon" loading="lazy">
+                </figure>
+
+                <h3 class="project-title">Orizon</h3>
+
+                <p class="project-category">Web development</p>
+
+              </a>
+            </li>
+
+            <li class="project-item  active" data-filter-item data-category="web design">
+              <a href="#">
+
+                <figure class="project-img">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+
+                  <img src="./assets/images/project-3.jpg" alt="fundo" loading="lazy">
+                </figure>
+
+                <h3 class="project-title">Fundo</h3>
+
+                <p class="project-category">Web design</p>
+
+              </a>
+            </li>
+
+            <li class="project-item  active" data-filter-item data-category="applications">
+              <a href="#">
+
+                <figure class="project-img">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+
+                  <img src="./assets/images/project-4.png" alt="brawlhalla" loading="lazy">
+                </figure>
+
+                <h3 class="project-title">Brawlhalla</h3>
+
+                <p class="project-category">Applications</p>
+
+              </a>
+            </li>
+
+            <li class="project-item  active" data-filter-item data-category="web design">
+              <a href="#">
+
+                <figure class="project-img">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+
+                  <img src="./assets/images/project-5.png" alt="dsm." loading="lazy">
+                </figure>
+
+                <h3 class="project-title">DSM.</h3>
+
+                <p class="project-category">Web design</p>
+
+              </a>
+            </li>
+
+            <li class="project-item  active" data-filter-item data-category="web design">
+              <a href="#">
+
+                <figure class="project-img">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+
+                  <img src="./assets/images/project-6.png" alt="metaspark" loading="lazy">
+                </figure>
+
+                <h3 class="project-title">MetaSpark</h3>
+
+                <p class="project-category">Web design</p>
+
+              </a>
+            </li>
+
+            <li class="project-item  active" data-filter-item data-category="web development">
+              <a href="#">
+
+                <figure class="project-img">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+
+                  <img src="./assets/images/project-7.png" alt="summary" loading="lazy">
+                </figure>
+
+                <h3 class="project-title">Summary</h3>
+
+                <p class="project-category">Web development</p>
+
+              </a>
+            </li>
+
+            <li class="project-item  active" data-filter-item data-category="applications">
+              <a href="#">
+
+                <figure class="project-img">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+
+                  <img src="./assets/images/project-8.jpg" alt="task manager" loading="lazy">
+                </figure>
+
+                <h3 class="project-title">Task Manager</h3>
+
+                <p class="project-category">Applications</p>
+
+              </a>
+            </li>
+
+            <li class="project-item  active" data-filter-item data-category="web development">
+              <a href="#">
+
+                <figure class="project-img">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+
+                  <img src="./assets/images/project-9.png" alt="arrival" loading="lazy">
+                </figure>
+
+                <h3 class="project-title">Arrival</h3>
+
+                <p class="project-category">Web development</p>
+
+              </a>
+            </li>
+
+          </ul>
+
+        </section>
+
+      </article>
+
+
+
+
+
+      <!--
+        - #BLOG
+      -->
+
+      <article class="blog" data-page="blog">
+
+        <header>
+          <h2 class="h2 article-title">Blog</h2>
+        </header>
+
+        <section class="blog-posts">
+
+          <ul class="blog-posts-list">
+
+            <li class="blog-post-item">
+              <a href="#">
+
+                <figure class="blog-banner-box">
+                  <img src="./assets/images/blog-1.jpg" alt="Design conferences in 2022" loading="lazy">
+                </figure>
+
+                <div class="blog-content">
+
+                  <div class="blog-meta">
+                    <p class="blog-category">Design</p>
+
+                    <span class="dot"></span>
+
+                    <time datetime="2022-02-23">Fab 23, 2022</time>
+                  </div>
+
+                  <h3 class="h3 blog-item-title">Design conferences in 2022</h3>
+
+                  <p class="blog-text">
+                    Veritatis et quasi architecto beatae vitae dicta sunt, explicabo.
+                  </p>
+
+                </div>
+
+              </a>
+            </li>
+
+            <li class="blog-post-item">
+              <a href="#">
+
+                <figure class="blog-banner-box">
+                  <img src="./assets/images/blog-2.jpg" alt="Best fonts every designer" loading="lazy">
+                </figure>
+
+                <div class="blog-content">
+
+                  <div class="blog-meta">
+                    <p class="blog-category">Design</p>
+
+                    <span class="dot"></span>
+
+                    <time datetime="2022-02-23">Fab 23, 2022</time>
+                  </div>
+
+                  <h3 class="h3 blog-item-title">Best fonts every designer</h3>
+
+                  <p class="blog-text">
+                    Sed ut perspiciatis, nam libero tempore, cum soluta nobis est eligendi.
+                  </p>
+
+                </div>
+
+              </a>
+            </li>
+
+            <li class="blog-post-item">
+              <a href="#">
+
+                <figure class="blog-banner-box">
+                  <img src="./assets/images/blog-3.jpg" alt="Design digest #80" loading="lazy">
+                </figure>
+
+                <div class="blog-content">
+
+                  <div class="blog-meta">
+                    <p class="blog-category">Design</p>
+
+                    <span class="dot"></span>
+
+                    <time datetime="2022-02-23">Fab 23, 2022</time>
+                  </div>
+
+                  <h3 class="h3 blog-item-title">Design digest #80</h3>
+
+                  <p class="blog-text">
+                    Excepteur sint occaecat cupidatat no proident, quis nostrum exercitationem ullam corporis suscipit.
+                  </p>
+
+                </div>
+
+              </a>
+            </li>
+
+            <li class="blog-post-item">
+              <a href="#">
+
+                <figure class="blog-banner-box">
+                  <img src="./assets/images/blog-4.jpg" alt="UI interactions of the week" loading="lazy">
+                </figure>
+
+                <div class="blog-content">
+
+                  <div class="blog-meta">
+                    <p class="blog-category">Design</p>
+
+                    <span class="dot"></span>
+
+                    <time datetime="2022-02-23">Fab 23, 2022</time>
+                  </div>
+
+                  <h3 class="h3 blog-item-title">UI interactions of the week</h3>
+
+                  <p class="blog-text">
+                    Enim ad minim veniam, consectetur adipiscing elit, quis nostrud exercitation ullamco laboris nisi.
+                  </p>
+
+                </div>
+
+              </a>
+            </li>
+
+            <li class="blog-post-item">
+              <a href="#">
+
+                <figure class="blog-banner-box">
+                  <img src="./assets/images/blog-5.jpg" alt="The forgotten art of spacing" loading="lazy">
+                </figure>
+
+                <div class="blog-content">
+
+                  <div class="blog-meta">
+                    <p class="blog-category">Design</p>
+
+                    <span class="dot"></span>
+
+                    <time datetime="2022-02-23">Fab 23, 2022</time>
+                  </div>
+
+                  <h3 class="h3 blog-item-title">The forgotten art of spacing</h3>
+
+                  <p class="blog-text">
+                    Maxime placeat, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  </p>
+
+                </div>
+
+              </a>
+            </li>
+
+            <li class="blog-post-item">
+              <a href="#">
+
+                <figure class="blog-banner-box">
+                  <img src="./assets/images/blog-6.jpg" alt="Design digest #79" loading="lazy">
+                </figure>
+
+                <div class="blog-content">
+
+                  <div class="blog-meta">
+                    <p class="blog-category">Design</p>
+
+                    <span class="dot"></span>
+
+                    <time datetime="2022-02-23">Fab 23, 2022</time>
+                  </div>
+
+                  <h3 class="h3 blog-item-title">Design digest #79</h3>
+
+                  <p class="blog-text">
+                    Optio cumque nihil impedit uo minus quod maxime placeat, velit esse cillum.
+                  </p>
+
+                </div>
+
+              </a>
+            </li>
+
+          </ul>
+
+        </section>
+
+      </article>
+
+
+
+
+
+      <!--
+        - #CONTACT
+      -->
+
+      <article class="contact" data-page="contact">
+
+        <header>
+          <h2 class="h2 article-title">Contact</h2>
+        </header>
+
+        <section class="mapbox" data-mapbox>
+          <figure>
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d199666.5651251294!2d-121.58334177520186!3d38.56165006739519!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x809ac672b28397f9%3A0x921f6aaa74197fdb!2sSacramento%2C%20CA%2C%20USA!5e0!3m2!1sen!2sbd!4v1647608789441!5m2!1sen!2sbd"
+              width="400" height="300" loading="lazy"></iframe>
+          </figure>
+        </section>
+
+        <section class="contact-form">
+
+          <h3 class="h3 form-title">Contact Form</h3>
+
+          <form action="#" class="form" data-form>
+
+            <div class="input-wrapper">
+              <input type="text" name="fullname" class="form-input" placeholder="Full name" required data-form-input>
+
+              <input type="email" name="email" class="form-input" placeholder="Email address" required data-form-input>
+            </div>
+
+            <textarea name="message" class="form-input" placeholder="Your Message" required data-form-input></textarea>
+
+            <button class="form-btn" type="submit" disabled data-form-btn>
+              <ion-icon name="paper-plane"></ion-icon>
+              <span>Send Message</span>
+            </button>
+
+          </form>
+
+        </section>
+
+      </article>
+
+    </div>
+
+  </main>
+
+
+
+
+
+
+  <!--
+    - custom js link
+  -->
+  <script src="./assets/js/script.js"></script>
+
+  <!--
+    - ionicon link
+  -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>
