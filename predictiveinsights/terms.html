@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Futuro Insights · Predictive Analyst</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Predictive analytics, ML modeling, and data storytelling that turn uncertainty into strategy. Explore demos, benchmarks, and open resources from Futuro Insights.">
+  <!-- FONTS -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <!-- ICONS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css">
+  <style>
+    :root {
+      --main-bg: linear-gradient(135deg,#0c1330 60%,#33dbb5 100%);
+      --panel-bg: #0f1b2f99;
+      --panel-border: #27f7c1;
+      --main-text: #eaf5ff;
+      --muted-text: #c8e3f0;
+      --accent-neon: #2affc1;
+      --accent-2: #6b53ff;
+      --hero-head-glow: 0 0 16px #00ffe7,0 0 45px #2affc1,0 0 35px #8f38ec;
+      --counter-glow: 0 0 18px #25fff0, 0 0 20px #38dfff, 0 0 13px #80ffd7;
+      --card-shadow: 0 0 18px #1de9c680;
+      --nav-bg: #0c1a2ecc;
+    }
+    .light-mode {
+      --main-bg: linear-gradient(135deg,#f9fbff 60%,#dcfff6 100%);
+      --panel-bg: #ffffffee;
+      --panel-border: #14c3a2;
+      --main-text: #0e1b2b;
+      --muted-text: #3b5363;
+      --accent-neon: #0aa88a;
+      --accent-2: #4d3fe6;
+      --hero-head-glow: none;
+      --counter-glow: none;
+      --card-shadow: 0 8px 24px rgba(10,168,138,0.18);
+      --nav-bg: #ffffffee;
+    }
+
+    html, body { margin:0; padding:0; }
+    body { font-family: 'Roboto', Arial, sans-serif; background: var(--main-bg); color: var(--main-text); }
+    img { max-width:100%; height:auto; display:block; }
+    a { color:var(--accent-neon); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    h1, h2, h3, .headline { font-family: 'Montserrat', 'Roboto', Arial, sans-serif; }
+    .container { width: min(1100px, 92vw); margin: 0 auto; }
+
+    /* Header / Nav */
+    header { position: sticky; top: 0; z-index: 1000; backdrop-filter: saturate(120%) blur(8px); background: var(--nav-bg); }
+    .nav { display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px 0; }
+    .brand { display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:0.3px; }
+    .logo-dot { width:12px; height:12px; border-radius:50%; background:var(--accent-neon); box-shadow:0 0 12px var(--accent-neon); }
+    .brand span { color:var(--main-text); }
+    nav ul { display:flex; flex-wrap:wrap; align-items:center; gap:18px; list-style:none; margin:0; padding:0; }
+    nav a { color:var(--main-text); opacity:.95; font-weight:600; }
+    nav a.cta-link { background: linear-gradient(90deg,#2affc1,#6b53ff 80%,#00ffe7); color:#0e1520; padding:10px 16px; border-radius:24px; box-shadow: 0 0 20px #38dfff60, 0 0 4px #fff; }
+    .nav-toggle { display:none; background:none; border:1px solid #2affc155; color:var(--main-text); padding:8px 12px; border-radius:10px; font-size:1rem; }
+    @media (max-width: 840px) {
+      nav ul { display:none; flex-direction:column; align-items:flex-start; padding:12px; background:var(--panel-bg); border:1px solid var(--panel-border); border-radius:14px; box-shadow: var(--card-shadow); position:absolute; top:56px; right:4vw; min-width: 220px; }
+      nav ul.open { display:flex; }
+      .nav-toggle { display:block; }
+    }
+
+    /* HERO */
+    #hero { position:relative; overflow:hidden; padding:66px 0 36px; text-align:center; }
+    #hero h1, #hero .headline { text-shadow: var(--hero-head-glow); font-size: clamp(2rem, 3.5vw, 3rem); margin: 0 auto 10px; max-width: 900px; }
+    #hero p.sub { font-size:1.2rem; color:var(--muted-text); max-width: 860px; margin: 0.4rem auto 1.6rem; }
+    .hero-wrap { display:grid; gap:26px; align-items:center; grid-template-columns: 1.1fr 0.9fr; }
+    @media (max-width: 960px) { .hero-wrap { grid-template-columns: 1fr; } }
+    .hero-media { display:flex; justify-content:center; }
+    .video-frame { aspect-ratio: 16/9; width: min(720px, 95%); border-radius:22px; box-shadow:0 0 24px #0ffcf6,0 0 60px #48f6d9aa; background:#0c1d2d; border: none; }
+    .hero-cta { margin-top: 12px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+    .cta-magnet {
+      background: linear-gradient(90deg,#2affc1,#6b53ff 80%,#00ffe7);
+      color:#161b23; font-weight:bold; font-size: 1.05rem; border-radius: 48px;
+      box-shadow: 0 0 44px #38dfff80, 0 0 6px #fff;
+      padding: 14px 28px; display:inline-block; text-decoration:none; border:none; position:relative; overflow:hidden;
+      transition:transform .18s cubic-bezier(.39,.5,.64,1.36),box-shadow .18s;
+    }
+    .cta-magnet:hover { transform:scale(1.06) translateY(-3px); box-shadow:0 0 77px #2affc1,0 0 8px #fff; }
+    .cta-ghost { border: 1.5px solid var(--accent-neon); color: var(--accent-neon); padding: 12px 18px; border-radius: 40px; font-weight:600; }
+
+    /* Counters */
+    .hero-counters { display:flex; justify-content:center; gap:40px; margin: 22px 0 10px; flex-wrap:wrap; }
+    .counter { color: var(--accent-neon); text-shadow: var(--counter-glow); font-size: 2.1rem; font-family:'Montserrat',sans-serif; font-weight:700; }
+    .counter-wrap { text-align:center; min-width: 140px; }
+    .counter-wrap span.label { display:block; margin-top:6px; color:var(--muted-text); }
+
+    /* Social proof strip */
+    .trust-strip { margin: 22px auto 0; opacity: .9; }
+    .trust-logos { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; align-items: center; }
+    @media (max-width: 720px) { .trust-logos { grid-template-columns: repeat(3, 1fr); } }
+    .trust-logos img { filter: grayscale(100%) contrast(120%) opacity(.75); }
+
+    /* Section wrappers */
+    section.panel { margin: 2rem auto; padding: 2rem 1.2rem; background: var(--panel-bg); border: 1px solid var(--panel-border); border-radius: 18px; box-shadow: var(--card-shadow); }
+    .section-title { margin: 0 0 1.2rem; text-align:center; font-size: 1.6rem; }
+    .muted { color: var(--muted-text); }
+
+    /* Services */
+    .cards { display:grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
+    @media (max-width: 1024px) { .cards { grid-template-columns: repeat(2,1fr); } }
+    @media (max-width: 560px) { .cards { grid-template-columns: 1fr; } }
+    .card { background: #0f2037aa; border: 1px solid #24e6c444; padding:16px; border-radius:16px; box-shadow: var(--card-shadow); height:100%; }
+    .card h4 { margin: 8px 0 6px; }
+    .card p { margin: 0; color: var(--muted-text); }
+    .card .icon { font-size: 1.4rem; color: var(--accent-neon); }
+
+    /* Demos / embeds */
+    .embed-grid { display:grid; grid-template-columns: repeat(3, 1fr); gap:16px; }
+    @media (max-width: 1024px) { .embed-grid { grid-template-columns: 1fr; } }
+    .embed { background:#0c2143cc; border-radius:14px; border:1px solid #27f7c1; box-shadow: var(--card-shadow); padding:12px; }
+    .embed h3 { margin: 0 0 10px; text-align:center; }
+    .embed iframe { width:100%; height:320px; border:none; border-radius:10px; background:#0c1d2d; }
+
+    /* Tables */
+    table.benchmark { width:100%; border-collapse:collapse; background:#111a29cc; border-radius:12px; overflow:hidden; }
+    table.benchmark th, table.benchmark td { padding:.8em 1em; text-align:center; border-bottom:1px solid #18e3c0; }
+    table.benchmark th { background:#014a32; color:#38faaf; }
+    table.benchmark tr:last-child td { border-bottom: none; }
+    table.benchmark td.modelname { font-weight:600; }
+
+    /* Equation and quote */
+    .sciency-quote { font-size:1.05rem; margin:1.2rem 0 .6rem; text-align:center; color:var(--muted-text); }
+    .equation { font-family: 'Roboto Mono', monospace; background: #205588; color: #0ffcf6; padding:.6rem 1rem; border-radius:10px; box-shadow:0 0 7px #27a7f7; display:inline-block; }
+
+    /* Footer */
+    footer { text-align:center; color:rgba(255,255,255,.5); font-size:.95rem; padding: 28px 0 46px; }
+    .light-mode footer { color: #5a6a78; }
+
+    /* Focus ring */
+    :focus-visible { outline: 2px solid var(--accent-neon); outline-offset: 2px; }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      .cta-magnet, .cta-magnet:hover { transition: none; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header / Primary Nav -->
+  <header>
+    <div class="container nav" aria-label="Primary navigation">
+      <div class="brand">
+        <span class="logo-dot" aria-hidden="true"></span>
+        <span>Futuro Insights</span>
+      </div>
+      <button class="nav-toggle" aria-label="Toggle navigation menu">Menu</button>
+      <nav>
+        <ul id="navMenu">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="code.html">Code</a></li>
+          <li><a href="studymanual.html">Study Manual</a></li>
+          <li><a href="buy.html">Buy</a></li>
+          <li><a href="#benchmarks">Benchmarks</a></li>
+          <li><a href="#demos">Demos</a></li>
+          <li><a href="#downloads">Downloads</a></li>
+          <li><a href="privacy.html">Privacy</a></li>
+          <li><a href="terms.html">Terms</a></li>
+          <li><a class="cta-link" href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Dark Mode Button -->
+  <button id="darkModeBtn" style="position:fixed;bottom:18px;right:24px;z-index:999;border-radius:18px;background:#161b23;color:#aef8f3;padding:10px 26px;font-weight:700;font-size:1rem;box-shadow:0 2px 15px #0affe780;border:1px solid #27f7c1;cursor:pointer;">Toggle Theme</button>
+  
+<head>
+    <meta charset="utf-8">
+    <title>Terms of Service</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<div class="container">
+    <iframe width="760px" height="500px" src="https://sway.cloud.microsoft/s/ZgeokYGafM3Kc8tO/embed" frameborder="0" marginheight="0" marginwidth="0" max-width="100%" sandbox="allow-forms allow-modals allow-orientation-lock allow-popups allow-same-origin allow-scripts" scrolling="no" style="border: none; max-width: 100%; max-height: 100vh" allowfullscreen mozallowfullscreen msallowfullscreen webkitallowfullscreen></iframe>
+
+</div>
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div style="margin-bottom:10px;">
+        <a href="index.html">Home</a> •
+        <a href="code.html">Code</a> •
+        <a href="studymanual.html">Study Manual</a> •
+        <a href="buy.html">Buy</a> •
+        <a href="privacy.html">Privacy</a> •
+        <a href="terms.html">Terms</a> •
+        <a href="contact.html">Contact</a>
+      </div>
+      © 2025 Futuro Insights. Designed with care.
+    </div>
+  </footer>
+
+  <!-- JS -->
+  <script>
+    // Mobile nav toggle
+    document.querySelector('.nav-toggle').addEventListener('click', function(){
+      document.getElementById('navMenu').classList.toggle('open');
+    });
+
+    // Theme toggle
+    const themeBtn = document.getElementById('darkModeBtn');
+    themeBtn.addEventListener('click', () => {
+      document.body.classList.toggle('light-mode');
+      themeBtn.textContent = document.body.classList.contains('light-mode') ? 'Toggle Theme' : 'Toggle Theme';
+    });
+
+    // Counters
+    const counters = document.querySelectorAll('.counter');
+    const animateCounters = () => {
+      counters.forEach(counter => {
+        const target = +counter.dataset.target || 0;
+        const duration = 1200;
+        const start = 0;
+        const startTime = performance.now();
+        const step = (now) => {
+          const progress = Math.min((now - startTime) / duration, 1);
+          const val = Math.floor(start + (target - start) * progress);
+          counter.textContent = val.toLocaleString();
+          if (progress < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+      });
+    };
+    const countersObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateCounters();
+          countersObserver.disconnect();
+        }
+      });
+    }, { threshold: 0.3 });
+    countersObserver.observe(document.querySelector('.hero-counters'));
+
+    // Respect reduced motion for video autoplay (pause if prefers-reduced-motion)
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (mq.matches) {
+      document.querySelectorAll('iframe').forEach(f => {
+        try {
+          const src = new URL(f.src);
+          if (src.hostname.includes('youtube.com')) {
+            src.searchParams.set('autoplay', '0');
+            f.src = src.toString();
+          }
+        } catch(e){}
+      });
+    }
+  </script>
+</body>
+</html>
+
+
+

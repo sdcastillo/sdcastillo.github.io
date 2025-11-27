@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@auth0/auth0-react": "^2.3.0",
+    "auth0-js": "^9.28.0"
+  }
+}
