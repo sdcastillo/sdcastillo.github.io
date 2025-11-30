@@ -2,15 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Futuro Insights · Predictive Analyst</title>
+  <title>Buy · Futuro Insights</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Predictive analytics, ML modeling, and data storytelling that turn uncertainty into strategy. Explore demos, benchmarks, and open resources from Futuro Insights.">
-  <!-- FONTS -->
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:wght@700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <!-- ICONS -->
+  <meta name="description" content="Predictive analytics courses, model templates, dashboards and freelance data-science services.">
+  
+  <!-- Fonts -->
+  -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:wght@700|Roboto:wght@400;500|Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css">
+
   <style>
     :root {
       --main-bg: linear-gradient(135deg,#0c1330 60%,#33dbb5 100%);
@@ -21,7 +21,6 @@
       --accent-neon: #2affc1;
       --accent-2: #6b53ff;
       --hero-head-glow: 0 0 16px #00ffe7,0 0 45px #2affc1,0 0 35px #8f38ec;
-      --counter-glow: 0 0 18px #25fff0, 0 0 20px #38dfff, 0 0 13px #80ffd7;
       --card-shadow: 0 0 18px #1de9c680;
       --nav-bg: #0c1a2ecc;
     }
@@ -34,354 +33,188 @@
       --accent-neon: #0aa88a;
       --accent-2: #4d3fe6;
       --hero-head-glow: none;
-      --counter-glow: none;
       --card-shadow: 0 8px 24px rgba(10,168,138,0.18);
       --nav-bg: #ffffffee;
     }
 
-    html, body { margin:0; padding:0; }
-    body { font-family: 'Roboto', Arial, sans-serif; background: var(--main-bg); color: var(--main-text); }
-    img { max-width:100%; height:auto; display:block; }
-    a { color:var(--accent-neon); text-decoration: none; }
+    html, body { margin:0; padding:0; height:100%; }
+    body { font-family: 'Roboto', sans-serif; background: var(--main-bg); color: var(--main-text); line-height:1.6; }
+    a { color: var(--accent-neon); text-decoration: none; }
     a:hover { text-decoration: underline; }
-    h1, h2, h3, .headline { font-family: 'Montserrat', 'Roboto', Arial, sans-serif; }
-    .container { width: min(1100px, 92vw); margin: 0 auto; }
+    h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; }
+    .container { width: min(1200px, 92vw); margin: 0 auto; }
 
-    /* Header / Nav */
-    header { position: sticky; top: 0; z-index: 1000; backdrop-filter: saturate(120%) blur(8px); background: var(--nav-bg); }
-    .nav { display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px 0; }
-    .brand { display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:0.3px; }
+    /* Header */
+    header { position: sticky; top:0; z-index:1000; backdrop-filter: saturate(120%) blur(8px); background: var(--nav-bg); }
+    .nav { display:flex; align-items:center; justify-content:space-between; padding:14px 0; }
+    .brand { display:flex; align-items:center; gap:10px; font-weight:800; font-size:1.2rem; }
     .logo-dot { width:12px; height:12px; border-radius:50%; background:var(--accent-neon); box-shadow:0 0 12px var(--accent-neon); }
-    .brand span { color:var(--main-text); }
-    nav ul { display:flex; flex-wrap:wrap; align-items:center; gap:18px; list-style:none; margin:0; padding:0; }
-    nav a { color:var(--main-text); opacity:.95; font-weight:600; }
-    nav a.cta-link { background: linear-gradient(90deg,#2affc1,#6b53ff 80%,#00ffe7); color:#0e1520; padding:10px 16px; border-radius:24px; box-shadow: 0 0 20px #38dfff60, 0 0 4px #fff; }
-    .nav-toggle { display:none; background:none; border:1px solid #2affc155; color:var(--main-text); padding:8px 12px; border-radius:10px; font-size:1rem; }
+    nav ul { display:flex; gap:20px; list-style:none; margin:0; padding:0; flex-wrap:wrap; }
+    nav a { color:var(--main-text); font-weight:600; opacity:0.95; }
+    /* Highlighted green Buy button */
+    nav a.buy-cta {
+      background: linear-gradient(90deg, #2affc1, #00ffe7);
+      color: #0e1520 !important;
+      padding: 10px 20px;
+      border-radius: 30px;
+      font-weight: bold;
+      box-shadow: 0 0 20px #38dfff60;
+    }
+    .nav-toggle { display:none; }
+
     @media (max-width: 840px) {
-      nav ul { display:none; flex-direction:column; align-items:flex-start; padding:12px; background:var(--panel-bg); border:1px solid var(--panel-border); border-radius:14px; box-shadow: var(--card-shadow); position:absolute; top:56px; right:4vw; min-width: 220px; }
+      .nav-toggle { display:block; background:none; border:1px solid #2affc155; color:var(--main-text); padding:8px 12px; border-radius:10px; }
+      nav ul { display:none; flex-direction:column; position:absolute; top:60px; right:4vw; background:var(--panel-bg); border:1px solid var(--panel-border); border-radius:14px; padding:16px; }
       nav ul.open { display:flex; }
-      .nav-toggle { display:block; }
     }
 
-    /* HERO */
-    #hero { position:relative; overflow:hidden; padding:66px 0 36px; text-align:center; }
-    #hero h1, #hero .headline { text-shadow: var(--hero-head-glow); font-size: clamp(2rem, 3.5vw, 3rem); margin: 0 auto 10px; max-width: 900px; }
-    #hero p.sub { font-size:1.2rem; color:var(--muted-text); max-width: 860px; margin: 0.4rem auto 1.6rem; }
-    .hero-wrap { display:grid; gap:26px; align-items:center; grid-template-columns: 1.1fr 0.9fr; }
-    @media (max-width: 960px) { .hero-wrap { grid-template-columns: 1fr; } }
-    .hero-media { display:flex; justify-content:center; }
-    .video-frame { aspect-ratio: 16/9; width: min(720px, 95%); border-radius:22px; box-shadow:0 0 24px #0ffcf6,0 0 60px #48f6d9aa; background:#0c1d2d; border: none; }
-    .hero-cta { margin-top: 12px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
-    .cta-magnet {
-      background: linear-gradient(90deg,#2affc1,#6b53ff 80%,#00ffe7);
-      color:#161b23; font-weight:bold; font-size: 1.05rem; border-radius: 48px;
-      box-shadow: 0 0 44px #38dfff80, 0 0 6px #fff;
-      padding: 14px 28px; display:inline-block; text-decoration:none; border:none; position:relative; overflow:hidden;
-      transition:transform .18s cubic-bezier(.39,.5,.64,1.36),box-shadow .18s;
+    /* Page sections */
+    .page-title { text-align:center; margin:40px 0 20px; font-size:2.6rem; text-shadow: var(--hero-head-glow); }
+    .videos-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(360px,1fr)); gap:24px; margin:40px 0; }
+    .video { background:#0f1b2fdd; padding:20px; border-radius:16px; border:1px solid var(--panel-border); box-shadow:var(--card-shadow); }
+    .video iframe { width:100%; height:260px; border:none; border-radius:12px; }
+    .video .description { margin-top:12px; color:var(--muted-text); }
+
+    /* Products */
+    .products { display:grid; grid-template-columns: repeat(auto-fit, minmax(340px,1fr)); gap:30px; margin:60px 0; }
+    .product-card {
+      background: #0f1b2fdd;
+      border: 2px solid var(--accent-neon);
+      border-radius: 18px;
+      padding: 28px;
+      text-align: center;
+      box-shadow: var(--card-shadow);
+      transition: transform .2s;
     }
-    .cta-magnet:hover { transform:scale(1.06) translateY(-3px); box-shadow:0 0 77px #2affc1,0 0 8px #fff; }
-    .cta-ghost { border: 1.5px solid var(--accent-neon); color: var(--accent-neon); padding: 12px 18px; border-radius: 40px; font-weight:600; }
+    .product-card:hover { transform: translateY(-8px); }
+    .product-card h3 { margin:0 0 16px; color:var(--accent-neon); }
 
-    /* Counters */
-    .hero-counters { display:flex; justify-content:center; gap:40px; margin: 22px 0 10px; flex-wrap:wrap; }
-    .counter { color: var(--accent-neon); text-shadow: var(--counter-glow); font-size: 2.1rem; font-family:'Montserrat',sans-serif; font-weight:700; }
-    .counter-wrap { text-align:center; min-width: 140px; }
-    .counter-wrap span.label { display:block; margin-top:6px; color:var(--muted-text); }
-
-    /* Social proof strip */
-    .trust-strip { margin: 22px auto 0; opacity: .9; }
-    .trust-logos { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; align-items: center; }
-    @media (max-width: 720px) { .trust-logos { grid-template-columns: repeat(3, 1fr); } }
-    .trust-logos img { filter: grayscale(100%) contrast(120%) opacity(.75); }
-
-    /* Section wrappers */
-    section.panel { margin: 2rem auto; padding: 2rem 1.2rem; background: var(--panel-bg); border: 1px solid var(--panel-border); border-radius: 18px; box-shadow: var(--card-shadow); }
-    .section-title { margin: 0 0 1.2rem; text-align:center; font-size: 1.6rem; }
-    .muted { color: var(--muted-text); }
-
-    /* Services */
-    .cards { display:grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
-    @media (max-width: 1024px) { .cards { grid-template-columns: repeat(2,1fr); } }
-    @media (max-width: 560px) { .cards { grid-template-columns: 1fr; } }
-    .card { background: #0f2037aa; border: 1px solid #24e6c444; padding:16px; border-radius:16px; box-shadow: var(--card-shadow); height:100%; }
-    .card h4 { margin: 8px 0 6px; }
-    .card p { margin: 0; color: var(--muted-text); }
-    .card .icon { font-size: 1.4rem; color: var(--accent-neon); }
-
-    /* Demos / embeds */
-    .embed-grid { display:grid; grid-template-columns: repeat(3, 1fr); gap:16px; }
-    @media (max-width: 1024px) { .embed-grid { grid-template-columns: 1fr; } }
-    .embed { background:#0c2143cc; border-radius:14px; border:1px solid #27f7c1; box-shadow: var(--card-shadow); padding:12px; }
-    .embed h3 { margin: 0 0 10px; text-align:center; }
-    .embed iframe { width:100%; height:320px; border:none; border-radius:10px; background:#0c1d2d; }
-
-    /* Tables */
-    table.benchmark { width:100%; border-collapse:collapse; background:#111a29cc; border-radius:12px; overflow:hidden; }
-    table.benchmark th, table.benchmark td { padding:.8em 1em; text-align:center; border-bottom:1px solid #18e3c0; }
-    table.benchmark th { background:#014a32; color:#38faaf; }
-    table.benchmark tr:last-child td { border-bottom: none; }
-    table.benchmark td.modelname { font-weight:600; }
-
-    /* Equation and quote */
-    .sciency-quote { font-size:1.05rem; margin:1.2rem 0 .6rem; text-align:center; color:var(--muted-text); }
-    .equation { font-family: 'Roboto Mono', monospace; background: #205588; color: #0ffcf6; padding:.6rem 1rem; border-radius:10px; box-shadow:0 0 7px #27a7f7; display:inline-block; }
-
-    /* Footer */
-    footer { text-align:center; color:rgba(255,255,255,.5); font-size:.95rem; padding: 28px 0 46px; }
-    .light-mode footer { color: #5a6a78; }
-
-    /* Focus ring */
-    :focus-visible { outline: 2px solid var(--accent-neon); outline-offset: 2px; }
-
-    /* Reduced motion */
-    @media (prefers-reduced-motion: reduce) {
-      .cta-magnet, .cta-magnet:hover { transition: none; transform: none; }
-    }
+    footer { text-align:center; padding:40px 0; color:rgba(255,255,255,.6); font-size:0.95rem; }
+    .light-mode footer { color:#555; }
   </style>
 </head>
+
 <body>
-  <!-- Header / Primary Nav -->
+  <!-- Navigation -->
   <header>
-    <div class="container nav" aria-label="Primary navigation">
+    <div class="container nav">
       <div class="brand">
-        <span class="logo-dot" aria-hidden="true"></span>
+        <div class="logo-dot"></div>
         <span>Futuro Insights</span>
       </div>
-      <button class="nav-toggle" aria-label="Toggle navigation menu">Menu</button>
+      <button class="nav-toggle" aria-label="Toggle menu">Menu</button>
       <nav>
         <ul id="navMenu">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="code.html">Code</a></li>
-          <li><a href="studymanual.html">Study Manual</a></li>
-          <li><a href="buy.html">Buy</a></li>
-          <li><a href="#benchmarks">Benchmarks</a></li>
-          <li><a href="#demos">Demos</a></li>
-          <li><a href="#downloads">Downloads</a></li>
-          <li><a href="privacy.html">Privacy</a></li>
-          <li><a href="terms.html">Terms</a></li>
-          <li><a class="cta-link" href="contact.html">Contact</a></li>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../code.html">Code</a></li>
+          <li><a href="../studymanual.html">Study Manual</a></li>
+          <li><a href="buy.html" class="buy-cta">Buy Now</a></li>
+          <li><a href="../privacy.html">Privacy</a></li>
+          <li><a href="../terms.html">Terms</a></li>
+          <li><a href="../contact.html">Contact</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
-  <!-- Dark Mode Button -->
-  <button id="darkModeBtn" style="position:fixed;bottom:18px;right:24px;z-index:999;border-radius:18px;background:#161b23;color:#aef8f3;padding:10px 26px;font-weight:700;font-size:1rem;box-shadow:0 2px 15px #0affe780;border:1px solid #27f7c1;cursor:pointer;">Toggle Theme</button>
-  
-  </html>
+  <!-- Dark/Light Theme Button -->
+  <button id="darkModeBtn" style="position:fixed;bottom:20px;right:20px;z-index:999;padding:12px 24px;border-radius:30px;background:#161b23;color:#aef8f3;border:1px solid #27f7c1;box-shadow:0 0 20px #0affe780;font-weight:bold;cursor:pointer;">
+    Toggle Theme
+  </button>
 
-    <br>
-    <br>
-    <div class="container">
-        <div class="video">
-            <iframe src="https://www.youtube.com/embed/0wnjnxuNJ5c?si=4STeWANU2AZlHvEz" frameborder="0" allowfullscreen></iframe>
-            <div class="description">
-                Embark on a transformative journey to turbocharge your Exam PA preparation with 'The Ultimate GLM Guide'! 🚀 Delve into the core of actuarial modeling, where 40-50% of your exam grade hinges on predicting future insurable events. Join us for a comprehensive lesson on Generalized Linear Models (GLMs), your first encounter with machine learning algorithms in the Exam PA landscape.
+  <div class="container">
+    <h1 class="page-title">Courses & Services</h1>
 
-            </div>
-        </div>
-        <div class="video">
-            <iframe src="https://www.youtube.com/embed/05Mc94aBV5U" frameborder="0" allowfullscreen></iframe>
-            <div class="description">
-                This webinar teaches you how to write effectively.  Learn how to organize your writing, explain concepts to difference audiences, describe predictive models, and to get maximum scores on the short-answer questions.  The second half answers questions from people who took this course such as
-            </div>
-        </div>
-        <div class="video">
-            <iframe src="https://www.youtube.com/embed/vtegCXjxwUg?si=ZKdLWGxwjVEnCvZc" frameborder="0" allowfullscreen></iframe>
-            <div class="description">
-                Welcome to a comprehensive step-by-step tutorial on machine learning with the Titanic dataset! In this engaging video, we'll delve into the fascinating world of predictive modeling, specifically focused on predicting survival outcomes aboard the infamous Titanic.
-
-🤖 *Hands-On Machine Learning:*
-Dive into the world of machine learning by using the Titanic dataset. We'll guide you through the entire process, from data preprocessing to model evaluation. Learn how to handle missing values, encode categorical variables, and scale features to ensure your model's accuracy.
-
-            </div>
-        </div>
-        <div class="video">
-            <iframe src="https://www.youtube.com/embed/_eS2PTvnimE?si=kkAKKOf99qCIPWCt" frameborder="0" allowfullscreen></iframe>
-            <div class="description">
-                A Deep Dive into Predictive Analytics: Miners Union Exam Guide
-
-Embark on a journey through the intricacies of predictive analytics with our comprehensive guide to the Miner's Union Exam. In this video, we dissect each exam task, providing valuable insights and strategies for success. From data summarization to exploring the target variable and fitting a decision tree model, we walk you through the process step by step, offering practical tips and tricks.
-            </div>
-        </div>
-        <div class="video">
-            <iframe src="https://www.youtube.com/embed/8GK6dGP0_L4?si=Aak7lav253aSjnqH" frameborder="0" allowfullscreen></iframe>
-            <div class="description">
-                Embark on a transformative journey into the realm of data-driven travel insights with our YouTube video, "Exploring Horizons: A Practical R Guide to Machine Learning for Travel Analytics." 🌐✈️
-
-In this comprehensive guide, we navigate the vast landscape of travel analytics using the powerful R programming language and cutting-edge machine learning techniques. Whether you're a data enthusiast, a travel professional, or simply curious about leveraging technology for actionable insights, this video is designed to provide you with practical knowledge and hands-on experience.
-            </div>
-        </div>
-        <div class="video">
-            <iframe src="https://www.youtube.com/embed/3ZgEZB557P8?si=kAgx-lU3KR0GXxud" frameborder="0" allowfullscreen></iframe>
-            <div class="description">
-                Using predictive analytics and a data set from the department of transportation, we can analyze the predictors or leading indicators or predictor variables for vehicle accidents. This is inspired by the Actuarial Exam I passed in 2019, now refreshed!  Taking into consideration the risk that is the cost of the accident and the number of vehicles involved, we’ll dive into the data.  Combined with geospatial information, the intersection, the type of road, and so forth what if you could prevent Crashes. Self driving vehicles are already driving from California to New York. We’re building and collecting information that’s used for insurance companies. Tesla general motors, BMW, Mercedes, are all working on creating self driving AI.
-            </div>
-        </div>
-        <!-- Add more videos as needed -->
-        <div class="video">
-            <iframe src="https://www.youtube.com/embed/M_wZDwJ8R7I?si=uIlzC4KpvkfC485f" frameborder="0" allowfullscreen></iframe>
-            <div class="description">
-                The predictive analytics exam project from 2018 is relevant today as chatGPT is being deployed by universities for tutoring and grading
-
-Strategic Feature Engineering: Unveiling Hidden Patterns in Student Success Prediction | EXAM PA
-            </div>
-        </div>
-        
+    <!-- Demo Videos -->
+    <div class="videos-grid">
+      <div class="video">
+        <iframe src="https://www.youtube.com/embed/0wnjnxuNJ5c" allowfullscreen></iframe>
+        <div class="description">The Ultimate GLM Guide – Exam PA preparation</div>
+      </div>
+      <div class="video">
+        <iframe src="https://www.youtube.com/embed/05Mc94aBV5U" allowfullscreen></iframe>
+        <div class="description">How to write high-scoring answers on Exam PA</div>
+      </div>
+      <div class="video">
+        <iframe src="https://www.youtube.com/embed/vtegCXjxwUg" allowfullscreen></iframe>
+        <div class="description">Titanic Survival – Full Machine Learning Tutorial</div>
+      </div>
+      <div class="video">
+        <iframe src="https://www.youtube.com/embed/_eS2PTvnimE" allowfullscreen></iframe>
+        <div class="description">Miners Union Exam Walkthrough</div>
+      </div>
+      <div class="video">
+        <iframe src="https://www.youtube.com/embed/8GK6dGP0_L4" allowfullscreen></iframe>
+        <div class="description">Travel Analytics in R</div>
+      </div>
+      <div class="video">
+        <iframe src="https://www.youtube.com/embed/3ZgEZB557P8" allowfullscreen></iframe>
+        <div class="description">Vehicle Accident Predictive Modeling</div>
+      </div>
+      <div class="video">
+        <iframe src="https://www.youtube.com/embed/M_wZDwJ8R7I" allowfullscreen></iframe>
+        <div class="description">Student Success Prediction – Feature Engineering</div>
+      </div>
     </div>
 
-</body>
-</html>
+    <!-- Products / Services -->
+    <h2 style="text-align:center;margin:60px 0 40px;color:var(--accent-neon);font-size:2.2rem;">Freelance Data Science Services</h2>
+    <div class="products">
+      <div class="product-card">
+        <h3>Proven Model Templates</h3>
+        <p>20+ ready-to-use high-performance ML models for actuarial exams + 2-hour consultation.</p>
+        <p><strong>Delivered in 5 business days</strong></p>
+        <stripe-buy-button
+          buy-button-id="buy_btn_1PPmBAGZfbTkjur8exW7WHlp"
+          publishable-key="pk_live_jf03QSEV5jYlY2CW7MmJhiJL00w572PvnE">
+        </stripe-buy-button>
+      </div>
 
+      <div class="product-card">
+        <h3>Drag-and-Drop Dashboard</h3>
+        <p>Excel Power Query or custom Tableau dashboard with your data.</p>
+        <p><strong>Delivered in 5 business days</strong></p>
+        <stripe-buy-button
+          buy-button-id="buy_btn_1PPmD1GZfbTkjur8qXWURxnj"
+          publishable-key="pk_live_jf03QSEV5jYlY2CW7MmJhiJL00w572PvnE">
+        </stripe-buy-button>
+      </div>
 
-    <!-- Courses Start -->
-    <div class="container-fluid py-5">
-        <div class="container py-5">
-            
-            <!DOCTYPE html>
-            <html lang="en">
-            <head>
-                <meta charset="UTF-8">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>Products</title>
-                <style>
-                    body {
-                        font-family: Arial, sans-serif;
-                    }
-                    .product-container {
-                        border: 2px solid #000;
-                        padding: 20px;
-                        margin: 20px;
-                        width: 30%;
-                        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-                    }
-                    .products {
-                        display: flex;
-                        justify-content: space-around;
-                        flex-wrap: wrap;
-                    }
-                </style>
-            </head>
-            <body>
-                <h1>Freelance Data Science Services</h1>
-
-                <p>I’m Sam, a data scientist with 7+ years of experience (Expedia Group, PassMyExam LLC). Get fast, reliable results tailored to your needs. How it works: Pay via Stripe, receive an email with next steps, and we’ll collaborate to deliver value.</p>
-                <div class="products">
-                    <div class="product-container">
-                        <h3>Proven Model Templates for High-Performing Machine Learning Models</h3>
-                        <p>Unlock the power of machine learning with our Proven Model Templates, specifically designed for high-performing results. Custom model with 2-hour consultation. We offer a collection of approximately 20 meticulously trained models and algorithms, tailored for the actuarial exam. Each model comes with comprehensive fine-tuning instructions, ensuring you can adapt and optimize them to meet your unique requirements. Whether you're an actuarial professional or a data scientist, our templates provide a robust foundation to achieve superior predictive accuracy and efficiency in your work.</p>
-                        <p>Delivered in 5 business days</p>
-                        <script async src="https://js.stripe.com/v3/buy-button.js"></script>
-                        <stripe-buy-button
-                            buy-button-id="buy_btn_1PPmBAGZfbTkjur8exW7WHlp"
-                            publishable-key="pk_live_jf03QSEV5jYlY2CW7MmJhiJL00w572PvnE">
-                        </stripe-buy-button>
-                    </div>
-                    <div class="product-container">
-                        <h3>Drag and Drop Dashboard</h3>
-                        <p>Create powerful data visualizations with ease. Choose between Excel pivot tables with Power Query or custom Tableau dashboards tailored to your needs.  Use graphs to visualize data from bar charts to pie charts.  Map geography to key business metrics</p>
-                        <p>Delivered in 5 business days</p>
-                        <script async src="https://js.stripe.com/v3/buy-button.js"></script>
-                        <stripe-buy-button
-                            buy-button-id="buy_btn_1PPmD1GZfbTkjur8qXWURxnj"
-                            publishable-key="pk_live_jf03QSEV5jYlY2CW7MmJhiJL00w572PvnE">
-                        </stripe-buy-button>
-                    </div>
-                    <div class="product-container">
-                        <h3>Data Sharing and Validation</h3>
-                        <p>Transform and validate your data efficiently. We deliver clean data in formats like JSON, CSV, and SQL within 3-5 days, ensuring accuracy and reliability.</p>
-                        <p>Delivered in 5 business days</p>
-                        <script async src="https://js.stripe.com/v3/buy-button.js"></script>
-                        <stripe-buy-button
-                            buy-button-id="buy_btn_1PPmHzGZfbTkjur8GhiclQb6"
-                            publishable-key="pk_live_jf03QSEV5jYlY2CW7MmJhiJL00w572PvnE">
-                        </stripe-buy-button>
-                    </div>
-                </div>
-            </body>
-            </html>
-
-
-
-
-
-        </div>
+      <div class="product-card">
+        <h3>Data Cleaning & Validation</h3>
+        <p>Clean, validated datasets delivered in CSV/JSON/SQL.</p>
+        <p><strong>Delivered in 3–5 business days</strong></p>
+        <stripe-buy-button
+          buy-button-id="buy_btn_1PPmHzGZfbTkjur8GhiclQb6"
+          publishable-key="pk_live_jf03QSEV5jYlY2CW7MmJhiJL00w572PvnE">
+        </stripe-buy-button>
+      </div>
     </div>
-    <!-- Courses End -->
+  </div>
 
-
-  
   <!-- Footer -->
   <footer>
     <div class="container">
-      <div style="margin-bottom:10px;">
-        <a href="index.html">Home</a> •
-        <a href="code.html">Code</a> •
-        <a href="studymanual.html">Study Manual</a> •
-        <a href="buy.html">Buy</a> •
-        <a href="privacy.html">Privacy</a> •
-        <a href="terms.html">Terms</a> •
-        <a href="contact.html">Contact</a>
-      </div>
-      © 2025 Futuro Insights. Designed with care.
+      <p>
+        <a href="../index.html">Home</a> • <a href="../code.html">Code</a> • <a href="../studymanual.html">Study Manual</a> • 
+        <a href="buy.html">Buy</a> • <a href="../privacy.html">Privacy</a> • <a href="../terms.html">Terms</a> • <a href="../contact.html">Contact</a>
+      </p>
+      <p>© 2025 Futuro Insights. Made with passion and predictive power.</p>
     </div>
   </footer>
 
-  <!-- JS -->
+  <!-- Scripts -->
+  <script async src="https://js.stripe.com/v3/buy-button.js"></script>
   <script>
-    // Mobile nav toggle
-    document.querySelector('.nav-toggle').addEventListener('click', function(){
+    // Mobile menu
+    document.querySelector('.nav-toggle').addEventListener('click', () => {
       document.getElementById('navMenu').classList.toggle('open');
     });
 
     // Theme toggle
-    const themeBtn = document.getElementById('darkModeBtn');
-    themeBtn.addEventListener('click', () => {
+    document.getElementById('darkModeBtn').addEventListener('click', () => {
       document.body.classList.toggle('light-mode');
-      themeBtn.textContent = document.body.classList.contains('light-mode') ? 'Toggle Theme' : 'Toggle Theme';
     });
-
-    // Counters
-    const counters = document.querySelectorAll('.counter');
-    const animateCounters = () => {
-      counters.forEach(counter => {
-        const target = +counter.dataset.target || 0;
-        const duration = 1200;
-        const start = 0;
-        const startTime = performance.now();
-        const step = (now) => {
-          const progress = Math.min((now - startTime) / duration, 1);
-          const val = Math.floor(start + (target - start) * progress);
-          counter.textContent = val.toLocaleString();
-          if (progress < 1) requestAnimationFrame(step);
-        };
-        requestAnimationFrame(step);
-      });
-    };
-    const countersObserver = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          animateCounters();
-          countersObserver.disconnect();
-        }
-      });
-    }, { threshold: 0.3 });
-    countersObserver.observe(document.querySelector('.hero-counters'));
-
-    // Respect reduced motion for video autoplay (pause if prefers-reduced-motion)
-    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
-    if (mq.matches) {
-      document.querySelectorAll('iframe').forEach(f => {
-        try {
-          const src = new URL(f.src);
-          if (src.hostname.includes('youtube.com')) {
-            src.searchParams.set('autoplay', '0');
-            f.src = src.toString();
-          }
-        } catch(e){}
-      });
-    }
   </script>
 </body>
 </html>
-
