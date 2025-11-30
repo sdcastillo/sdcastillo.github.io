@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Study Manual · Futuro Insights</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Free Exam PA-R Study Manual – Spring 2022 Edition">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:wght@700|Roboto:wght@400;500|Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css">
+
+  <style>
+    :root {
+      --main-bg: linear-gradient(135deg,#0c1330 60%,#33dbb5 100%);
+      --panel-bg: #0f1b2f99;
+      --panel-border: #27f7c1;
+      --main-text: #eaf5ff;
+      --muted-text: #c8e3f0;
+      --accent-neon: #2affc1;
+      --accent-2: #6b53ff;
+      --hero-head-glow: 0 0 16px #00ffe7,0 0 45px #2affc1,0 0 35px #8f38ec;
+      --card-shadow: 0 0 18px #1de9c680;
+      --nav-bg: #0c1a2ecc;
+    }
+    .light-mode {
+      --main-bg: linear-gradient(135deg,#f9fbff 60%,#dcfff6 100%);
+      --panel-bg: #ffffffee;
+      --panel-border: #14c3a2;
+      --main-text: #0e1b2b;
+      --muted-text: #3b5363;
+      --accent-neon: #0aa88a;
+      --accent-2: #4d3fe6;
+      --hero-head-glow: none;
+      --card-shadow: 0 8px 24px rgba(10,168,138,0.18);
+      --nav-bg: #ffffffee;
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:'Roboto',sans-serif; background:var(--main-bg); color:var(--main-text); min-height:100vh; }
+    a { color:var(--accent-neon); text-decoration:none; }
+    .container { width:min(1200px,92vw); margin:0 auto; }
+
+    /* Header - exactly like your other pages */
+    header { position:sticky; top:0; z-index:1000; backdrop-filter:saturate(120%) blur(8px); background:var(--nav-bg); }
+    .nav { display:flex; align-items:center; justify-content:space-between; padding:14px 0; }
+    .brand { display:flex; align-items:center; gap:10px; font-weight:800; font-size:1.25rem; }
+    .logo-dot { width:12px; height:12px; border-radius:50%; background:var(--accent-neon); box-shadow:0 0 14px var(--accent-neon); }
+    nav ul { display:flex; gap:22px; list-style:none; flex-wrap:wrap; }
+    nav a { color:var(--main-text); font-weight:600; opacity:0.95; }
+    nav a.buy-cta {
+      background:linear-gradient(90deg,#2affc1,#00ffe7);
+      color:#0e1520 !important;
+      padding:10px 22px;
+      border-radius:30px;
+      font-weight:bold;
+      box-shadow:0 0 20px #38dfff60;
+    }
+    .nav-toggle { display:none; }
+
+    @media (max-width:840px) {
+      .nav-toggle { display:block; background:none; border:1px solid #2affc155; color:var(--main-text); padding:8px 12px; border-radius:10px; }
+      nav ul { display:none; flex-direction:column; position:absolute; top:60px; right:4vw; background:var(--panel-bg); border:1px solid var(--panel-border); border-radius:14px; padding:16px; }
+      nav ul.open { display:flex; }
+    }
+
+    .page-title {
+      text-align:center;
+      font-size:2.8rem;
+      margin:50px 0 30px;
+      text-shadow:var(--hero-head-glow);
+      color:var(--accent-neon);
+    }
+
+    .manual-frame {
+      width:100%;
+      height:180vh;           /* tall enough for the whole manual */
+      border:none;
+      border-radius:18px;
+      box-shadow:var(--card-shadow);
+      background:#0f1b2f;
+    }
+
+    footer {
+      text-align:center;
+      padding:50px 0 30px;
+      color:rgba(255,255,255,0.6);
+      font-size:0.95rem;
+    }
+    .light-mode footer { color:#555;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navigation Header -->
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="logo-dot"></div>
+        <span>Futuro Insights</span>
+      </div>
+
+      <button class="nav-toggle" aria-label="Toggle menu">Menu</button>
+      <nav>
+        <ul id="navMenu">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../code.html">Code</a></li>
+          <li><a href="studymanual.html" class="active">Study Manual</a></li>
+          <li><a href="../predictiveinsights/buy.html" class="buy-cta">Buy Now</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- fixed typo -->
+
+  <!-- Dark / Light Theme Toggle (optional - matches your buy page) -->
+  <button id="themeBtn" style="position:fixed; bottom:20px; right:20px; z-index:999; padding:12px 24px; border-radius:30px; background:#161b23; color:#aef8f3; border:1px solid #27f7c1; box-shadow:0 0 20px #0affe780; font-weight:bold; cursor:pointer;">
+    Toggle Theme
+  </button>
+
+  <div class="container">
+    <h1 class="page-title">Exam PA-R Study Manual</h1>
+
+    <iframe 
+      src="https://sdcastillo.github.io/PA-R-Study-Manual/" 
+      class="manual-frame"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  <footer>
+    <div class="container">
+      <p>
+        <a href="../index.html">Home</a> • 
+        <a href="../code.html">Code</a> • 
+        <a href="studymanual.html">Study Manual</a> • 
+        <a href="../predictiveinsights/buy.html">Buy</a>
+      </p>
+      <p>© 2025 Futuro Insights • Predictive Analyst</p>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu
+    document.querySelector('.nav-toggle').addEventListener('click', () => {
+      document.getElementById('navMenu').classList.toggle('open');
+    });
+
+    // Theme toggle (same as your other pages)
+    document.getElementById('themeBtn').addEventListener('click', () => {
+      document.body.classList.toggle('light-mode');
+    });
+  </script>
+</body>
+</html>
