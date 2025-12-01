@@ -199,7 +199,9 @@ def run_step(instruction: str):
 
 if __name__ == "__main__":
     instruction = """
-    1. Add in lorum ipsum text as a <p> paragraph to each of the HTML files.
+    1.  Add the text Quantum Computing: Data-Driven Insights for Unbreakable Code.  Then underneath explain what quantum physics is.
+    2.  Replace all the lorum ipsum text on all of the files with a different quote from a famous physicist about mathematics or physics.
+    3.  Explain why first humans to build quantum machines can get all the bitcoin in the entire world.
     """
 
     run_step(instruction)
