@@ -168,228 +168,87 @@
 
   <!-- Dark Mode Button -->
   <button id="darkModeBtn" style="position:fixed;bottom:18px;right:24px;z-index:999;border-radius:18px;background:#161b23;color:#aef8f3;padding:10px 26px;font-weight:700;font-size:1rem;box-shadow:0 2px 15px #0affe780;border:1px solid #27f7c1;cursor:pointer;">Toggle Theme</button>
-
-  <!-- Hero -->
-  <section id="hero">
-    <div class="container hero-wrap">
-      <div class="hero-media" aria-label="Intro video">
-        <iframe class="video-frame"
-          src="https://www.youtube.com/embed/vJUZidl3y5E?start=96&autoplay=1&mute=1&loop=1&playlist=vJUZidl3y5E"
-          title="Predictive analytics overview video"
-          allow="autoplay; encrypted-media"
-          loading="lazy"
-          allowfullscreen></iframe>
-      </div>
-      <div>
-        <h1 class="headline">Predictive Analyst: Data-Driven Insights for the Future</h1>
-        <p class="sub">Turning uncertainty into strategy with machine learning, experimentation, and clear storytelling. Explore interactive demos, pragmatic benchmarks, and open resources.</p>
-
-        <div class="hero-counters" role="group" aria-label="Key stats">
-          <div class="counter-wrap">
-            <span class="counter" data-target="7">0</span>
-            <span class="label">Years of Impact</span>
-          </div>
-          <div class="counter-wrap">
-            <span class="counter" data-target="18">0</span>
-            <span class="label">Projects</span>
-          </div>
-          <div class="counter-wrap">
-            <span class="counter" data-target="99">0</span>
-            <span class="label">Deployed Models</span>
-          </div>
-        </div>
-
-        <div class="hero-cta">
-          <a class="cta-magnet" href="contact.html">Work With Us</a>
-          <a class="cta-ghost" href="#demos">See Live Demos</a>
-        </div>
-
-        <div class="trust-strip">
-          <div class="trust-logos">
-            <img src="https://images.unsplash.com/photo-1551281044-8af4e6624178?q=80&w=600&auto=format&fit=crop" alt="Team collaborating around data dashboards">
-            <img src="https://images.unsplash.com/photo-1551285994-2119c0c726e9?q=80&w=600&auto=format&fit=crop" alt="Analyst presenting insights">
-            <img src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?q=80&w=600&auto=format&fit=crop" alt="Charts and graphs on laptop">
-            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=600&auto=format&fit=crop" alt="Collaborative workspace">
-            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=600&auto=format&fit=crop" alt="Engineering setup with code and data">
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Services / What we do -->
-  <section class="panel container" id="services">
-    <h2 class="section-title">What We Do</h2>
-    <div class="cards" role="list">
-      <div class="card" role="listitem">
-        <div class="icon"><i class="fas fa-chart-line"></i></div>
-        <h4>Forecasting & Causal Insight</h4>
-        <p>Time-series and uplift modeling to prioritize the levers that actually move KPIs.</p>
-      </div>
-      <div class="card" role="listitem">
-        <div class="icon"><i class="fas fa-code-branch"></i></div>
-        <h4>ML Engineering</h4>
-        <p>From notebooks to APIs: reproducible pipelines, monitoring, and model lifecycle hygiene.</p>
-      </div>
-      <div class="card" role="listitem">
-        <div class="icon"><i class="fas fa-language"></i></div>
-        <h4>NLP & LLMs</h4>
-        <p>Semantic search, RAG, and lightweight agents tuned for real tasks and latency.</p>
-      </div>
-      <div class="card" role="listitem">
-        <div class="icon"><i class="fas fa-project-diagram"></i></div>
-        <h4>Experimentation</h4>
-        <p>Design, instrumentation, and analysis for trustworthy A/B tests and holdouts.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Interactive demos -->
-  <section class="panel container" id="demos" aria-label="Interactive demos">
-    <h2 class="section-title">Interactive Lab</h2>
-    <div class="embed-grid">
-      <div class="embed">
-        <h3><i class="fas fa-robot"></i>Book for Amazon Kindle - Predictive Analytics Risk Modeling</h3>
-        <iframe src="https://a.co/d/eJ7yT0f" title="Chatbot demo" loading="lazy"></iframe>
-      </div>
-      <div class="embed">
-        <h3><i class="fas fa-magic"></i>Expected Value Simulator</h3>
-        <iframe src="https://sdcastillo.shinyapps.io/the_central_limit_theorem/" title="ML playground demo" loading="lazy"></iframe>
-      </div>
-      <div class="embed">
-        <h3><i class="fas fa-question-circle"></i> Quiz of the Day</h3>
-        <iframe src="https://exampa.shinyapps.io/practice_questions/" title="Daily quiz" loading="lazy"></iframe>
-      </div>
-    </div>
-  </section>
-
-  <!-- Downloads / Open resources -->
-  <section class="panel container" id="downloads">
-    <h2 class="section-title">Open Resources</h2>
-    <div class="cards" style="grid-template-columns: repeat(3,1fr);">
-      <div class="card">
-        <h4>Sample Datasets</h4>
-        <p class="muted">Explore public datasets and artifacts used in tutorials and demos.</p>
-        <p><a href="https://huggingface.co/supersam7" target="_blank" rel="noopener">Hugging Face profile</a></p>
-      </div>
-      <div class="card">
-        <h4>Demo Notebooks</h4>
-        <p class="muted">Hands-on YouTube videos to learn visualization, feature engineering, and modeling.</p>
-        <p><a href="https://youtube.com/@PredictiveAnalyst" target="_blank" rel="noopener">Open the notebook gallery</a></p>
-      </div>
-      <div class="card">
-        <h4>API Playground</h4>
-        <p class="muted">Prototype endpoints for experiments and fast iteration.</p>
-        <p><a href="https://sdcastillo-futuroinsights-api.glitch.me/" target="_blank" rel="noopener">Launch API demo</a></p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Benchmarks -->
-  <section class="panel container" id="benchmarks">
-    <h2 class="section-title">Benchmarks: Grok vs DeepSeek vs GPT‑4 Turbo</h2>
-    <table class="benchmark" aria-label="Illustrative benchmark table">
-      <thead>
-        <tr><th>Model</th><th>Math acc (%)</th><th>Coding acc (%)</th><th>Tokens/sec</th><th>Notes</th></tr>
-      </thead>
-      <tbody>
-        <tr><td class="modelname">Grok 4</td><td>93</td><td>98</td><td>75</td><td>Excels at competition math & coding</td></tr>
-        <tr><td class="modelname">DeepSeek‑Coder V2</td><td>76.2</td><td>90.2</td><td>~50</td><td>236B params, efficient MoE</td></tr>
-        <tr><td class="modelname">GPT‑4 Turbo</td><td>72.6</td><td>87.1</td><td>32–48</td><td>Strong general-purpose performance</td></tr>
-      </tbody>
-    </table>
-    <p class="muted" style="text-align:center;font-size:.98rem;">Stats are illustrative. For rigorous results see <a href="https://paperswithcode.com/" target="_blank" rel="noopener">Papers With Code</a>.</p>
-  </section>
-
-  <!-- Quote + Equation -->
-  <section class="container" aria-label="Quote and equation">
-    <div class="sciency-quote">"Prediction is very difficult, especially about the future." – Niels Bohr</div>
-    <div style="text-align:center;">
-      <span class="equation" aria-label="Generalized Linear Model equation">E[Y | X] = g⁻¹(Xβ)</span>
-      <div class="muted" style="margin-top:.6rem;">Generalized Linear Model: expected value equation.</div>
-    </div>
-  </section>
-
-  <!-- Why choose us / About -->
-  <section class="panel container" id="about">
-    <h2 class="section-title">Why Futuro Insights</h2>
-    <div class="cards" style="grid-template-columns: repeat(3,1fr);">
-      <div class="card">
-        <h4>Proven Outcomes</h4>
-        <p class="muted">Delivered insights and models for startups and established enterprises—always tied to measurable business value.</p>
-      </div>
-      <div class="card">
-        <h4>Open Source</h4>
-        <p class="muted">Code, notebooks, and reproducible examples you can inspect and extend.</p>
-        <p>
-          <a href="https://github.com/sdcastillo/futuroinsights" target="_blank" rel="noopener">
-            <i class="fab fa-github"></i> FuturoInsights Repo
-          </a>
-          •
-          <a href="https://github.com/sdcastillo/futuroinsights/graphs/contributors" target="_blank" rel="noopener">Contributors</a>
-        </p>
-      </div>
-      <div class="card">
-        <h4>Community & Research</h4>
-        <p class="muted">Sharpening the craft with public datasets, Kaggle, and scholarly archives.</p>
-        <p>
-          <a href="https://www.kaggle.com/samcastillo" target="_blank" rel="noopener"><i class="fab fa-kaggle"></i> Kaggle</a>
-          •
-          <a href="https://arxiv.org/search/cs?searchtype=author&query=Castillo%2C+S" target="_blank" rel="noopener">arXiv</a>
-          •
-          <a href="https://colab.research.google.com/github/sdcastillo/futuroinsights/blob/main/notebook.ipynb" target="_blank" rel="noopener">Colab: AI Visualization</a>
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Leaderboard -->
-  <section class="panel container" id="leaderboard">
-    <h2 class="section-title"><i class="fas fa-trophy"></i> AI Leaderboard</h2>
-    <table class="benchmark" aria-label="Gamified leaderboard">
-      <thead><tr><th>User</th><th>Score</th><th>Badge</th></tr></thead>
-      <tbody>
-        <tr><td><strong>Alice</strong></td><td>98</td><td><span style="color:#ffd700;">🏅 Gold</span></td></tr>
-        <tr><td><strong>Bob</strong></td><td>91</td><td><span style="color:#b8b8b8;">🥈 Silver</span></td></tr>
-        <tr><td><strong>You?</strong></td><td>?</td><td><span style="color:#9dffef;">🤖 Challenger</span></td></tr>
-      </tbody>
-    </table>
-    <div style="text-align:center;font-size:1.05rem;margin-top:.5em;">
-      Try the <a href="#demos">Interactive Lab</a> to climb the board.
-    </div>
-  </section>
-
-  <!-- Amazon Kindle Book – Futuro Insights Style -->
-<div style="max-width:1000px; margin:60px auto 20px; padding:28px; background:#0f1b2fee; border:2px solid #27f7c1; border-radius:20px; box-shadow:0 0 32px #1de9c680; text-align:center;">
-  <h3 style="color:#2affc1; margin:0 0 18px; font-size:2rem; text-shadow:0 0 14px #2affc1; font-family:'Montserrat',sans-serif;">
-    Official Exam PA-R Study Manual – Now on Kindle
-  </h3>
   
-  <div style="display:flex; flex-wrap:wrap; gap:30px; justify-content:center; align-items:center;">
-    <!-- Book Cover (replace this image URL with your real cover if you have a better one) -->
-    <a href="https://a.co/d/8PKiwCH" target="_blank" rel="noopener">
-      <img src="https://m.media-amazon.com/images/I/71example-cover.jpg" 
-           alt="Exam PA-R Study Manual – Spring 2025 Edition" 
-           style="width:200px; height:auto; border-radius:14px; box-shadow:0 10px 30px rgba(0,0,0,0.7); transition:transform .3s;"
-           onmouseover="this.style.transform='scale(1.06)'"
-           onmouseout="this.style.transform='scale(1)'">
-    </a>
-    
-    <!-- Call to Action -->
-    <div style="text-align:left;">
-      <p style="color:#c8e3f0; margin:8px 0 16px; font-size:1.15rem; line-height:1.5;">
-        ✓ Full Spring 2025 Edition<br>
-        ✓ Hundreds of practice problems & solutions<br>
-        ✓ Available on Kindle Unlimited – read free
-      </p>
-      <a href="https://a.co/d/8PKiwCH" target="_blank" rel="noopener"
-         style="display:inline-block; background:#FF9900; color:#0e1520; font-weight:bold; font-size:1.3rem; padding:16px 36px; border-radius:50px; box-shadow:0 0 30px #ffb347; text-decoration:none; transition:all .3s;">
-        Get It on Amazon Kindle Now
-      </a>
-    </div>
-  </div>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Embed Social Media</title>
+    <style>
+        .embed-container {
+            margin: 20px 0;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .embed-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>My Social Media Embeds</h1>
 
+    <!-- Facebook (Link only) -->
+    <div class="embed-container">
+        <div class="embed-title">Facebook Profile</div>
+        <a href="https://www.facebook.com/profile.php?id=100094642779092" target="_blank">Visit my Facebook profile</a>
+    </div>
+
+    <!-- Instagram (Link only) -->
+    <div class="embed-container">
+        <div class="embed-title">Instagram Profile</div>
+        <a href="https://www.instagram.com/futuroinsight/" target="_blank">Follow me on Instagram</a>
+    </div>
+
+    <!-- YouTube (Embed supported) -->
+    <div class="embed-container">
+        <div class="embed-title">YouTube Channel</div>
+        <iframe
+            width="560"
+            height="315"
+            src="https://www.youtube.com/embed?listType=user_uploads&list=UU<predictiveanalyst_channel_id>"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+        </iframe>
+        <p><a href="https://www.youtube.com/@predictiveanalyst" target="_blank">Visit my YouTube channel</a></p>
+    </div>
+
+    <!-- Patreon (Link only) -->
+    <div class="embed-container">
+        <div class="embed-title">Patreon</div>
+        <a href="https://www.patreon.com/c/PredictiveInsightsAI" target="_blank">Support me on Patreon</a>
+    </div>
+
+    <!-- Substack (Embed supported) -->
+    <div class="embed-container">
+        <div class="embed-title">Substack</div>
+         <iframe
+            src="https://predictiveanalyst.substack.com/embed"
+            width="100%"
+            height="320"
+            style="border: 1px solid #EEE; background: white;"
+            frameborder="0"
+            scrolling="no">
+        </iframe>
+        <p><a href="https://substack.com/@predictiveanalyst" target="_blank">Read my Substack</a></p>
+    </div>
+</body>
+</html>
+
+
+<a href="mailto:sam@PredictiveInsightsAI.com.com">Send Email</a>
+
+
+  <!-- Calendly badge widget begin -->
+<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+<script type="text/javascript">window.onload = function() { Calendly.initBadgeWidget({ url: 'https://calendly.com/predictiveanalytics/15min', text: 'Be A Podcast Guest', color: '#21e4e8', textColor: '#ffffff', branding: true }); }</script>
+<!-- Calendly badge widget end -->
+  
   <!-- Footer -->
   <footer>
     <div class="container">
@@ -463,3 +322,5 @@
   </script>
 </body>
 </html>
+
+
