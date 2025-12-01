@@ -199,7 +199,7 @@ def run_step(instruction: str):
 
 if __name__ == "__main__":
     instruction = """
-    You must update ONLY the BUY.html file, and add Mathjax equations of chemical symbols to periodic table.  
+    You must update ONLY the BUY.html page.  Embed this page in iframe: https://calculus-notebook-ace.lovable.app/
     """
 
     run_step(instruction)

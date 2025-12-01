@@ -36,18 +36,89 @@
     <section>
       <h1>Prerequisites: 12-Step Study Path to Quantum Computing</h1>
       <ol>
-        <li><strong>Mathematical fluency (precalculus fundamentals):</strong> Algebraic manipulation, functions, complex numbers, trigonometry, vectors in R^n, and comfort with symbolic reasoning.</li>
-        <li><strong>Linear algebra core:</strong> Vector spaces, bases, inner products, norms, orthogonality; matrices, eigenvalues/eigenvectors, diagonalization; Hermitian, unitary, and projector matrices; spectral theorem.</li>
-        <li><strong>Probability and statistics:</strong> Discrete/continuous distributions, expectation/variance, conditional probability and Bayes’ rule, independence; basic Markov chains and concentration intuition.</li>
-        <li><strong>Complex vector spaces and Dirac notation:</strong> Hilbert spaces, bra–ket notation, global vs. relative phase; tensor (Kronecker) products and how dimensions multiply.</li>
-        <li><strong>Classical computation and complexity:</strong> Bits and logic gates, Boolean circuits, algorithms and asymptotics; key classes (P, NP, BPP); reversible computation ideas and why they matter.</li>
-        <li><strong>Quantum mechanics essentials:</strong> Postulates of QM, state vectors and operators, observables and measurement, superposition, interference, entanglement; commutators and uncertainty.</li>
-        <li><strong>Qubit model and single‑qubit control:</strong> Bloch sphere, Pauli and Clifford gates, rotations (Rx, Ry, Rz); state preparation and measurement in different bases.</li>
-        <li><strong>Multi‑qubit systems and circuits:</strong> Tensor products, controlled operations (CNOT/CPHASE), Bell/GHZ states; universality (Clifford+T), circuit decomposition and compilation basics.</li>
-        <li><strong>Canonical algorithms and primitives:</strong> Deutsch–Jozsa, Simon, phase kickback, quantum Fourier transform (QFT), phase estimation; Grover’s search and amplitude amplification; Shor’s algorithm at a high level.</li>
-        <li><strong>Noise, decoherence, and error correction:</strong> Open systems, Kraus operators and channels; stabilizer formalism, syndrome measurement, surface codes, fault tolerance, thresholds, and magic‑state distillation.</li>
-        <li><strong>Simulation, optimization, and applications:</strong> Trotterization and qubitization, Hamiltonian simulation; VQE, QAOA, amplitude estimation; quantum ML caveats; resource and cost estimation.</li>
-        <li><strong>Practical tooling and ecosystem:</strong> SDKs (Qiskit, Cirq, PennyLane), hardware platforms (superconducting, trapped ions, photonics), calibration/connectivity constraints; post‑quantum cryptography transition basics.</li>
+        <li><strong>Mathematical fluency (precalculus fundamentals):</strong> Algebraic manipulation, functions, complex numbers, trigonometry, vectors in R^n, and comfort with symbolic reasoning.<br>
+          <span>Example: solving a quadratic via the quadratic formula 
+          \(ax^2 + bx + c = 0 \Rightarrow x = \dfrac{-b \pm \sqrt{b^2 - 4ac}}{2a}\).</span>
+        </li>
+        <li><strong>Linear algebra core:</strong> Vector spaces, bases, inner products, norms, orthogonality; matrices, eigenvalues/eigenvectors, diagonalization; Hermitian, unitary, and projector matrices; spectral theorem.<br>
+          <span>Key relations: inner product \(\langle v,w \rangle\), norm \(\lVert v \rVert = \sqrt{\langle v,v \rangle}\), and eigenvalue equation \(A\mathbf{v} = \lambda \mathbf{v}\). A projector \(P\) satisfies \(P^2 = P\), a unitary \(U\) satisfies \(U^\dagger U = I\), and a Hermitian \(H\) obeys \(H = H^\dagger\).</span>
+        </li>
+        <li><strong>Probability and statistics:</strong> Discrete/continuous distributions, expectation/variance, conditional probability and Bayes’ rule, independence; basic Markov chains and concentration intuition.<br>
+          <span>Bayes’ rule in compact form: 
+          \[ P(A\mid B) = \frac{P(B\mid A)P(A)}{P(B)}. \]
+          Expectation of a discrete random variable \(X\): 
+          \[ \mathbb{E}[X] = \sum_x x\,P(X=x), \quad \operatorname{Var}(X) = \mathbb{E}[X^2] - (\mathbb{E}[X])^2. \]</span>
+        </li>
+        <li><strong>Complex vector spaces and Dirac notation:</strong> Hilbert spaces, bra–ket notation, global vs. relative phase; tensor (Kronecker) products and how dimensions multiply.<br>
+          <span>A single-qubit state is written as 
+          \(\lvert\psi\rangle = \alpha\lvert 0\rangle + \beta\lvert 1\rangle\) with normalization 
+          \(\lvert\alpha\rvert^2 + \lvert\beta\rvert^2 = 1\). For two qubits, the tensor product space has basis 
+          \(\{\lvert 00\rangle, \lvert 01\rangle, \lvert 10\rangle, \lvert 11\rangle\}\) and dimension 
+          \(2^2 = 4\).</span>
+        </li>
+        <li><strong>Classical computation and complexity:</strong> Bits and logic gates, Boolean circuits, algorithms and asymptotics; key classes (P, NP, BPP); reversible computation ideas and why they matter.<br>
+          <span>Asymptotic behavior is expressed using big-O notation, e.g. an algorithm whose running time scales like
+          \(T(n) = 3n^2 + 5n + 7\) is written as \(T(n) = O(n^2)\).</span>
+        </li>
+        <li><strong>Quantum mechanics essentials:</strong> Postulates of QM, state vectors and operators, observables and measurement, superposition, interference, entanglement; commutators and uncertainty.<br>
+          <span>Canonical commutator: \([\hat{x}, \hat{p}] = i\hbar\,I\), which yields the Heisenberg uncertainty relation
+          \[ \Delta x\, \Delta p \ge \frac{\hbar}{2}. \]</span>
+        </li>
+        <li><strong>Qubit model and single‑qubit control:</strong> Bloch sphere, Pauli and Clifford gates, rotations (Rx, Ry, Rz); state preparation and measurement in different bases.<br>
+          <span>Standard single-qubit gates:
+          \[
+            X = \begin{pmatrix}0 & 1\\ 1 & 0\end{pmatrix},\quad
+            Y = \begin{pmatrix}0 & -i\\ i & 0\end{pmatrix},\quad
+            Z = \begin{pmatrix}1 & 0\\ 0 & -1\end{pmatrix}.
+          \]
+          Rotations about the \(x\)-axis: 
+          \[ R_x(\theta) = e^{-i\theta X/2} = \cos\frac{\theta}{2}\,I - i\sin\frac{\theta}{2}\,X. \]</span>
+        </li>
+        <li><strong>Multi‑qubit systems and circuits:</strong> Tensor products, controlled operations (CNOT/CPHASE), Bell/GHZ states; universality (Clifford+T), circuit decomposition and compilation basics.<br>
+          <span>A Bell state is 
+          \[
+            \lvert\Phi^+\rangle = \frac{1}{\sqrt{2}}\big(\lvert 00\rangle + \lvert 11\rangle\big),
+          \]
+          and a controlled-NOT acting on control \(c\) and target \(t\) is the unitary 
+          \(\operatorname{CNOT} = \lvert 0\rangle\langle 0\rvert_c \otimes I_t + \lvert 1\rangle\langle 1\rvert_c \otimes X_t\).</span>
+        </li>
+        <li><strong>Canonical algorithms and primitives:</strong> Deutsch–Jozsa, Simon, phase kickback, quantum Fourier transform (QFT), phase estimation; Grover’s search and amplitude amplification; Shor’s algorithm at a high level.<br>
+          <span>The QFT on \(N=2^n\) basis states is
+          \[
+            \mathcal{F}_N\lvert x\rangle = \frac{1}{\sqrt{N}} \sum_{k=0}^{N-1} e^{2\pi i xk/N}\,\lvert k\rangle.
+          \]
+          Grover’s iteration operator can be written as
+          \[
+            G = (2\lvert s\rangle\langle s\rvert - I)\,O_f,\quad \lvert s\rangle = \frac{1}{\sqrt{N}}\sum_{x=0}^{N-1}\lvert x\rangle,
+          \]
+          giving \(O(\sqrt{N})\) oracle calls instead of \(O(N)\).</span>
+        </li>
+        <li><strong>Noise, decoherence, and error correction:</strong> Open systems, Kraus operators and channels; stabilizer formalism, syndrome measurement, surface codes, fault tolerance, thresholds, and magic‑state distillation.<br>
+          <span>A quantum channel \(\mathcal{E}\) with Kraus operators \(\{E_k\}\) acts as
+          \[
+            \mathcal{E}(\rho) = \sum_k E_k \rho E_k^\dagger,\quad \sum_k E_k^\dagger E_k = I.
+          \]
+          A simple phase-damping channel has Kraus operators
+          \(E_0 = \sqrt{1-p}\,I\) and \(E_1 = \sqrt{p}\,Z\) for some \(0\le p\le 1\).</span>
+        </li>
+        <li><strong>Simulation, optimization, and applications:</strong> Trotterization and qubitization, Hamiltonian simulation; VQE, QAOA, amplitude estimation; quantum ML caveats; resource and cost estimation.<br>
+          <span>First-order Trotterization for a Hamiltonian \(H = H_1 + H_2\) over time \(t\) with \(r\) steps is
+          \[
+            e^{-iHt} \approx \left(e^{-iH_1 t/r} e^{-iH_2 t/r}\right)^r.
+          \]
+          The QAOA ansatz for depth \(p\) is
+          \[
+            \lvert\psi_p(\boldsymbol{\gamma},\boldsymbol{\beta})\rangle = \prod_{k=1}^p e^{-i\beta_k B} e^{-i\gamma_k C} \lvert +\rangle^{\otimes n},
+          \]
+          where \(C\) encodes the cost function and \(B = \sum_j X_j\).</span>
+        </li>
+        <li><strong>Practical tooling and ecosystem:</strong> SDKs (Qiskit, Cirq, PennyLane), hardware platforms (superconducting, trapped ions, photonics), calibration/connectivity constraints; post‑quantum cryptography transition basics.<br>
+          <span>Logical error rates \(p_\text{logical}\) in a surface code often scale roughly like
+          \[
+            p_\text{logical} \approx A\left(\frac{p_\text{phys}}{p_\text{th}}\right)^{(d+1)/2},
+          \]
+          where \(p_\text{phys}\) is the physical error rate, \(p_\text{th}\) the threshold, \(d\) the code distance, and \(A\) a constant.</span>
+        </li>
       </ol>
       <p>Tip: Pair each step with small exercises (proofs, circuit sketches, or short code) and keep a glossary of symbols and assumptions. Depth grows from consistent practice.</p>
     </section>
@@ -64,6 +135,17 @@
         <li><strong>History and reality:</strong> Early D‑Wave systems (tens→hundreds→thousands of qubits) fit the pattern, but growth is lumpy and plateau‑prone; it is a heuristic, not a law of nature.</li>
       </ul>
       <p>Bottom line: treat Rose’s Law as a directional forecast for hardware scale, not as a guarantee of exponential advantage. Practical progress = number × quality × architecture × software (algorithms, compilers, error mitigation).</p>
+      <p>
+        If \(N(t)\) denotes the number of available qubits at time \(t\) (measured in years) and the effective “doubling time” is \(T_d\), Rose’s Law can be idealized as an exponential growth law
+        \[
+          N(t) = N_0\,2^{t/T_d} = N_0\,e^{(\ln 2) t / T_d},
+        \]
+        where \(N_0\) is the qubit count at \(t=0\). In practice, the <em>usable</em> qubits \(N_\text{usable}(t)\) are better modeled as
+        \[
+          N_\text{usable}(t) \approx N(t)\,q(t),
+        \]
+        where \(q(t)\in[0,1]\) is an effective quality factor that folds in coherence, fidelity, connectivity, and calibration. Even if \(N(t)\) grows exponentially, a slowly improving \(q(t)\) can delay true algorithmic advantage.
+      </p>
     </section>
 
     <section>
