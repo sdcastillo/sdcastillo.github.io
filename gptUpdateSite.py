@@ -199,7 +199,7 @@ def run_step(instruction: str):
 
 if __name__ == "__main__":
     instruction = """
-    You must update ONLY the about.html file, and add Mathjax equations that explain what the words say.  use both in-line equations and also split the paragraphs to show the equations in block format.  Take the words and translate them into mathematical physics equations.
+    You must update ONLY the BUY.html file, and add Mathjax equations of chemical symbols to periodic table.  
     """
 
     run_step(instruction)

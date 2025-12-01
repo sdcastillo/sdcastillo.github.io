@@ -33,17 +33,128 @@
   <main>
     <h1>Code that writes code</h1>
     <p>Exponential-looking growth in computing emerges when systems can improve their own code. Once a loop exists that can generate, execute, measure, and refine programs, capability compounds: each improvement enhances the next round of search over the program phase space. The driver is not just device density, but a feedback process that compresses errors, increases information flow, and reduces effective entropy in the distribution of behaviors.</p>
+    <p>
+      In mathematical terms, let the capability at iteration \(t\) be \(C(t)\). A simple model of compounded self-improvement is
+      \[
+        C(t+1) = (1 + r)\,C(t), \qquad r > 0,
+      \]
+      whose solution is
+      \[
+        C(t) = C(0)\,(1 + r)^t \approx C(0)\,e^{rt},
+      \]
+      capturing the "exponential-looking" growth. A more general continuous-time feedback model writes
+      \[
+        \frac{dC}{dt} = f(I,C,E),
+      \]
+      where \(I\) measures information flow through the system and \(E\) is the average error. A negative dependence \(\partial f/\partial E < 0\) and positive \(\partial f/\partial I > 0\) encode that reducing errors and increasing information flow accelerates capability.
+    </p>
+    <p>
+      Let the program hypothesis space be a high-dimensional manifold \(\mathcal{H}\) with coordinates \(\theta \in \mathbb{R}^d\) parameterizing programs, and let a loss (or energy-like) function be \(L : \mathcal{H} \to \mathbb{R}_+\). Guided search corresponds to iterates
+      \[
+        \theta_{t+1} = \theta_t - \eta_t \, \nabla_\theta L(\theta_t) + \xi_t,
+      \]
+      where \(\eta_t\) is a learning rate and \(\xi_t\) represents stochastic exploration. The associated probability density over programs, \(p_t(\theta)\), can be modeled as a Gibbs-like distribution
+      \[
+        p_t(\theta) = \frac{1}{Z_t} \exp\big(-\beta_t L(\theta)\big),
+      \]
+      with partition function \(Z_t\) and inverse temperature \(\beta_t\) reflecting how strongly the system prefers lower-loss code. As \(t\) increases and \(\beta_t\) grows, the distribution contracts around high-quality programs, reducing effective entropy
+      \[
+        S[p_t] = - \int_{\mathcal{H}} p_t(\theta)\, \log p_t(\theta)\, d\theta.
+      \]
+    </p>
 
     <h2>Mechanism of self-improvement (physics and information terms)</h2>
     <ul>
       <li>Program synthesis as guided search over a high-dimensional landscape; gradients, heuristics, and discrete exploration move candidates toward lower loss (energy-like objective).</li>
+    </ul>
+    <p>
+      Formally, represent each candidate program by parameters \(\theta \in \mathbb{R}^d\) and define an objective (loss/energy) \(L(\theta)\). Gradient-based guidance is
+      \[
+        \theta_{t+1} = \theta_t - \eta_t \, \nabla_\theta L(\theta_t),
+      \]
+      while purely heuristic or discrete search can be modeled by a Markov chain with transition kernel \(K(\theta'\mid\theta)\) that satisfies
+      \[
+        p_{t+1}(\theta') = \int K(\theta'\mid\theta)\,p_t(\theta)\,d\theta,
+      \]
+      where \(p_t(\theta)\) is the probability density over program parameters at iteration \(t\). The stationary distribution \(p_*(\theta)\) often approximates a Boltzmann form \(p_*(\theta) \propto e^{-\beta L(\theta)}\), concentrating mass near minima of \(L\).
+    </p>
+    <ul>
       <li>Error-correcting feedback reduces uncertainty: observations act as measurements that collapse hypotheses, concentrating probability mass on higher-fidelity code.</li>
+    </ul>
+    <p>
+      Let \(\Theta\) be a discrete hypothesis set of programs, with prior \(P(\theta)\) for \(\theta \in \Theta\). Given observed data or test outcomes \(D\), Bayes' rule updates beliefs via
+      \[
+        P(\theta \mid D) = \frac{P(D \mid \theta)\,P(\theta)}{P(D)}, \qquad P(D) = \sum_{\theta' \in \Theta} P(D \mid \theta')\,P(\theta').
+      \]
+      The Shannon entropy of the hypothesis distribution is
+      \[
+        H[P] = -\sum_{\theta \in \Theta} P(\theta)\,\log P(\theta).
+      \]
+      Error-correcting feedback corresponds to sequences of measurements \(D_1, D_2, \dots\) such that
+      \[
+        H\big[P(\cdot \mid D_1,\dots,D_t)\big] \searrow H_* \quad \text{as} \quad t \to \infty,
+      \]
+      where \(H_*\) is low and the posterior probability mass is concentrated on a small set of high-fidelity programs.
+    </p>
+    <ul>
       <li>Thermodynamics of computation: every irreversible operation dissipates energy; efficient self-editing favors representations and compilers that minimize erasures while maximizing useful work per joule.</li>
+    </ul>
+    <p>
+      Landauer's principle states that erasing one bit of information incurs a minimum heat dissipation
+      \[
+        Q_{\min} = k_B T \ln 2,
+      \]
+      where \(k_B\) is Boltzmann's constant and \(T\) is the ambient temperature. If a self-editing system performs \(N_\text{erase}\) bit erasures per update, the minimal thermodynamic cost per update is
+      \[
+        Q_\text{update} \ge N_\text{erase}\,k_B T \ln 2.
+      \]
+      The computational efficiency can be expressed as useful information gain per unit energy,
+      \[
+        \eta_\text{info} = \frac{\Delta I}{Q_\text{update}},
+      \]
+      where \(\Delta I\) is the increase in mutual information between internal model parameters \(\Theta\) and task outcomes \(Y\):
+      \[
+        I(\Theta;Y) = \sum_{\theta,y} p(\theta,y)\, \log \frac{p(\theta,y)}{p(\theta)\,p(y)}.
+      \]
+      Efficient self-editing corresponds to strategies that maximize \(\eta_\text{info}\) by minimizing unnecessary erasures and maximizing \(\Delta I\).
+    </p>
+    <ul>
       <li>Compression and generalization: shorter effective descriptions (lower algorithmic complexity) tend to transfer across tasks, enabling accelerated reuse and faster convergence on new problems.</li>
     </ul>
+    <p>
+      Let the Kolmogorov complexity (algorithmic information content) of a solution for task \(T\) be \(K(T)\), defined as the length (in bits) of the shortest program that solves \(T\) on a fixed universal Turing machine \(U\). For two tasks \(T_1, T_2\), the shared structure can be quantified by an information-theoretic overlap
+      \[
+        I(T_1;T_2) \approx K(T_1) + K(T_2) - K(T_1,T_2),
+      \]
+      where \(K(T_1,T_2)\) is the complexity of jointly solving both tasks. Reusable compressed representations correspond to internal codes \(z\) of small description length \(L(z)\) that minimize expected description length over tasks:
+      \[
+        \min_{z} \, \mathbb{E}_{T \sim \mathcal{D}}\big[ L(z) + L(T \mid z) \big],
+      \]
+      with \(\mathcal{D}\) a task distribution. Lower \(L(z)\) and \(L(T\mid z)\) imply faster adaptation and thus accelerated convergence on new problems.
+    </p>
 
     <h2>How this page is assembled</h2>
     <p>This page was assembled with automated assistance: generative tooling produced structure and text, which were reviewed and emitted as static HTML. In other words, the site itself serves as a small example of code that helps author more code. AI for Not Bad.</p>
+    <p>
+      Abstractly, denote the human editor as \(H\) and the generative model as \(G\). Let \(x\) be an initial specification and \(y\) the final HTML. The interaction can be seen as an alternating minimization over drafts \(y_t\):
+      \[
+        y_{t+1} = \operatorname*{arg\,min}_{y} 
+          \Big( \mathcal{L}_\text{spec}(y \mid x) + \mathcal{L}_\text{style}(y) + \mathcal{L}_\text{error}(y) \Big),
+      \]
+      with updates produced by either \(G\) or \(H\):
+      \[
+        y_{t+1} =
+        \begin{cases}
+          G(y_t,x,\xi_t) & \text{with probability } p_G, \\
+          H(y_t,x) & \text{with probability } 1-p_G,
+        \end{cases}
+      \]
+      where \(\xi_t\) captures model stochasticity. Convergence is reached when successive edits satisfy a small-difference condition, e.g.
+      \[
+        d(y_{t+1},y_t) < \varepsilon,
+      \]
+      for a suitable distance metric \(d\) on documents.
+    </p>
 
     <h2>Minimal meta-programming sketch</h2>
     <pre><code>// Pseudocode for a self-improving loop
@@ -59,6 +170,23 @@ while (time &lt; budget):
   if converged(population): break
 deploy(best(population))
 </code></pre>
+    <p>
+      Let the population at iteration \(t\) be \(\mathcal{P}_t = \{\theta_t^{(1)},\dots,\theta_t^{(N)}\}\), and let each candidate have a score (fitness) \(F(\theta)\). The selection step can be modeled by a softmax (Boltzmann) sampling distribution
+      \[
+        P_t(\theta) = \frac{\exp\big(\beta_t F(\theta)\big)}{\sum_{\theta' \in \mathcal{P}_t} \exp\big(\beta_t F(\theta')\big)},
+      \]
+      with inverse temperature \(\beta_t\) controlling selection pressure. Proposals (mutations or synthesized programs) \(\tilde{\theta}\) are drawn from a proposal kernel \(q_t(\tilde{\theta} \mid \theta)\), so the expected update of the population distribution is
+      \[
+        p_{t+1}(\tilde{\theta}) = \sum_{\theta} P_t(\theta)\, q_t(\tilde{\theta} \mid \theta).
+      \]
+      Convergence of the loop can be expressed via a stopping condition such as
+      \[
+        \operatorname{Var}_{\theta \sim p_t}[F(\theta)] < \delta
+        \quad \text{or} \quad
+        \max_{\theta \in \mathcal{P}_t} F(\theta) - \max_{\theta \in \mathcal{P}_{t-k}} F(\theta) < \epsilon,
+      \]
+      for some window size \(k\) and tolerances \(\delta, \epsilon\).
+    </p>
 
     <h2>Hierarchical graph of matter and interactions</h2>
     <pre>Universe
@@ -91,6 +219,48 @@ Composite structures
    └─ Condensed phases: solids, liquids, gases, plasmas, exotic matter
 </pre>
     <p>“Matter” typically denotes fermions and their composites. Gauge bosons (such as gluons) mediate interactions and are included for completeness.</p>
+    <p>
+      In the Standard Model, the fundamental fields can be written as a Lagrangian density \(\mathcal{L}_\text{SM}\) of the form
+      \[
+        \mathcal{L}_\text{SM} = -\frac{1}{4} \sum_{a} F_{\mu\nu}^a F^{a\,\mu\nu}
+        + \sum_{f} \bar{\psi}_f\big(i\gamma^\mu D_\mu - m_f\big)\psi_f
+        + (D_\mu \phi)^\dagger(D^\mu \phi) - V(\phi)
+        + \mathcal{L}_\text{Yukawa},
+      \]
+      where
+      \(
+        F_{\mu\nu}^a = \partial_\mu A_\nu^a - \partial_\nu A_\mu^a + g f^{abc} A_\mu^b A_\nu^c
+      \)
+      encodes the gauge bosons (gluons, \(W^\pm, Z^0\), photon), \(\psi_f\) are fermion fields (quarks and leptons), \(\phi\) is the Higgs scalar field, and
+      \(D_\mu = \partial_\mu - i g A_\mu^a T^a\) is the gauge-covariant derivative.
+    </p>
+    <p>
+      Color-charged quarks \(q\) interact via the SU(3) gauge field \(G_\mu^a\) with coupling constant \(g_s\), described by
+      \[
+        \mathcal{L}_\text{QCD} = \bar{q}\big(i\gamma^\mu D_\mu - m_q\big)q - \frac{1}{4} G_{\mu\nu}^a G^{a\,\mu\nu},
+      \]
+      where \(D_\mu = \partial_\mu - i g_s T^a G_\mu^a\) and \(G_{\mu\nu}^a\) has the same non-Abelian structure as \(F_{\mu\nu}^a\) above. Bound states such as protons and neutrons are color-singlet combinations of three quarks (baryons), while mesons are quark–antiquark pairs \(q \bar{q}\), consistent with overall color neutrality.
+    </p>
+    <p>
+      Leptons (electron \(e\), muon \(\mu\), tau \(\tau\) and their neutrinos \(\nu_e, \nu_\mu, \nu_\tau\)) couple to the electroweak SU(2)\(_L\)×U(1)\(_Y\) gauge fields. After electroweak symmetry breaking, the Higgs field acquires a vacuum expectation value
+      \[
+        \langle \phi \rangle = \frac{1}{\sqrt{2}} \begin{pmatrix}0 \\ v \end{pmatrix}, \qquad v \approx 246~\text{GeV},
+      \]
+      which generates fermion and weak boson masses through Yukawa terms \(y_f \bar{\psi}_f \phi \psi_f\) and gauge interactions, while leaving the photon massless.
+    </p>
+    <p>
+      Composite structures are organized hierarchically. A nucleus with \(Z\) protons and \(A-Z\) neutrons has baryon number \(B = A\) and charge \(Q = Z e\). An atom adds \(Z\) electrons, leading to a many-body Hamiltonian
+      \[
+        H = \sum_{i=1}^{Z} \bigg( -\frac{\hbar^2}{2m_e} \nabla_i^2 - \frac{Z e^2}{4\pi \varepsilon_0 r_i} \bigg)
+          + \sum_{1 \le i < j \le Z} \frac{e^2}{4\pi \varepsilon_0 \lvert \mathbf{r}_i - \mathbf{r}_j \rvert}
+          + H_\text{nucleus},
+      \]
+      whose eigenstates \(\Psi_n\) correspond to quantized orbitals and energy levels \(E_n\) solving
+      \[
+        H \Psi_n = E_n \Psi_n.
+      \]
+      Molecules and condensed phases arise when these atomic states combine via electromagnetic interactions into multi-atom bound states and extended many-body systems.
+    </p>
 
     <section>
       <h2>Periodic Table of Elements with Disney-Style Personalities</h2>
