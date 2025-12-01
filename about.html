@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>About – Samuel Castillo</title>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </head>
 <body>
   <header>
@@ -35,10 +36,99 @@
     <section>
       <h1>Quantum computing, elaborated</h1>
       <p>Quantum computing is a paradigm of computation that leverages quantum-mechanical phenomena, including superposition and entanglement, to manipulate quantum bits (qubits) within a multidimensional Hilbert space, thereby enabling parallel processing capabilities unattainable by classical bit-based systems for certain complex problems such as integer factorization and molecular simulation. Unlike classical computers, which operate on deterministic binary states, quantum systems exploit wave-like interference and probabilistic amplitudes associated with qubit states to achieve potential exponential speedups in specific algorithms. [1]</p>
+      <p>
+        In mathematical language, a single qubit is a unit vector in a two-dimensional complex Hilbert space,
+        given by the state
+        \(\lvert\psi\rangle \in \mathcal{H}_2\) with
+        \[
+          \lvert\psi\rangle = \alpha\lvert 0\rangle + \beta\lvert 1\rangle,
+          \qquad \alpha,\beta \in \mathbb{C},\quad \lVert\psi\rVert^2 = \lvert\alpha\rvert^2+\lvert\beta\rvert^2 = 1.
+        \]
+        An \(n\)-qubit register lives in the tensor-product space
+        \(\mathcal{H}_{2^n} = \mathcal{H}_2^{\otimes n}\), and a general pure state can be written as
+        \[
+          \lvert\Psi\rangle = \sum_{x \in \{0,1\}^n} \alpha_x \lvert x\rangle,
+          \qquad \sum_{x \in \{0,1\}^n} \lvert\alpha_x\rvert^2 = 1,
+        \]
+        which encodes the complex amplitudes \(\alpha_x\) over all \(2^n\) classical bit strings \(x\).
+      </p>
+      <p>
+        Quantum evolution of a closed system is described by unitary operators
+        \(U \in \mathrm{U}(2^n)\) acting on \(\lvert\Psi\rangle\):
+        \[
+          \lvert\Psi'\rangle = U\lvert\Psi\rangle, \qquad U^\dagger U = I.
+        \]
+        Measurement in the computational basis corresponds to projectors
+        \(\{\Pi_x = \lvert x\rangle\langle x\rvert\}\) with probabilities
+        \[
+          p(x) = \Pr[X = x] = \langle\Psi\rvert \Pi_x \lvert\Psi\rangle = \lvert\alpha_x\rvert^2,
+        \]
+        and the post-measurement state collapses to \(\lvert x\rangle\) with this probability. Superposition and entanglement arise when amplitudes \(\alpha_x\) do not factor into independent single-qubit terms.
+      </p>
 
       <p>Qubits are two-level quantum systems with computational basis states often labeled |0⟩ and |1⟩. An n-qubit register resides in a 2<sup>n</sup>-dimensional Hilbert space, allowing a single pure state to encode complex amplitudes over all 2<sup>n</sup> basis strings simultaneously. Quantum programs apply unitary gates to rotate this state through Hilbert space, carefully arranging constructive and destructive interference so that, after the final measurement, the correct answers are obtained with high probability.</p>
+      <p>
+        Formally, the computational basis is
+        \(\{\lvert 0\rangle,\lvert 1\rangle\}\) with
+        \(\lvert 0\rangle = (1,0)^T\),
+        \(\lvert 1\rangle = (0,1)^T\).
+        For \(n\) qubits,
+        \[
+          \mathcal{H}_{2^n} = (\mathbb{C}^2)^{\otimes n}, \qquad \dim \mathcal{H}_{2^n} = 2^n.
+        \]
+        Any pure state is
+        \[
+          \lvert\Psi\rangle = \sum_{x_1,\ldots,x_n \in \{0,1\}} \alpha_{x_1\cdots x_n} \lvert x_1\rangle \otimes \cdots \otimes \lvert x_n\rangle.
+        \]
+      </p>
+      <p>
+        A quantum algorithm is implemented as a sequence of unitary gates
+        \(U_1, U_2, \ldots, U_m\), so that the overall transformation is
+        \[
+          U_\text{alg} = U_m U_{m-1} \cdots U_1,
+        \]
+        and the final state before measurement is
+        \[
+          \lvert\Psi_\text{out}\rangle = U_\text{alg} \lvert\Psi_\text{in}\rangle.
+        \]
+        Interference between paths in Hilbert space is encoded in the complex phases of the amplitudes,
+        so that for some outcome label \(y\), the algorithm is arranged so that
+        \[
+          p(y) = \lvert\langle y\vert \Psi_\text{out}\rangle\rvert^2 \approx 1, \qquad
+          p(y') = \lvert\langle y'\vert \Psi_\text{out}\rangle\rvert^2 \approx 0 \;\text{for}\; y' \neq y.
+        \]
+      </p>
 
       <p>Entanglement produces nonclassical correlations among qubits, expanding the reachable set of states and enabling computations and simulations that lack efficient classical descriptions. Because measurement irreversibly projects a state and reveals only classical outcomes, successful quantum algorithms are designed to concentrate amplitude on desired solutions before measurement, effectively converting amplitude patterns into useful probabilities.</p>
+      <p>
+        A bipartite state \(\lvert\Phi\rangle \in \mathcal{H}_A \otimes \mathcal{H}_B\) is entangled if it cannot be written as a simple tensor product
+        \(\lvert\Phi\rangle \neq \lvert\phi_A\rangle \otimes \lvert\phi_B\rangle\).
+        A standard example is the Bell state
+        \[
+          \lvert\Phi^+\rangle = \frac{1}{\sqrt{2}}\big(\lvert 00\rangle + \lvert 11\rangle\big),
+        \]
+        whose reduced density matrices
+        \(\rho_A = \mathrm{Tr}_B\lvert\Phi^+\rangle\langle\Phi^+\rvert\) and
+        \(\rho_B = \mathrm{Tr}_A\lvert\Phi^+\rangle\langle\Phi^+\rvert\)
+        are maximally mixed:
+        \[
+          \rho_A = \rho_B = \frac{1}{2}I_2.
+        \]
+      </p>
+      <p>
+        Projective measurement in a basis \(\{\lvert y\rangle\}\) is represented by operators
+        \(M_y = \lvert y\rangle\langle y\rvert\) satisfying
+        \(\sum_y M_y^\dagger M_y = I\).
+        The Born rule gives
+        \[
+          p(y) = \Pr[Y = y] = \langle\Psi\rvert M_y^\dagger M_y \lvert\Psi\rangle.
+        \]
+        In algorithm design, one engineers a unitary \(U\) so that, for a solution set \(S\),
+        \[
+          \sum_{y \in S} p(y) = \sum_{y \in S} \lvert\langle y\vert U \lvert\Psi_\text{in}\rangle\rvert^2 \approx 1,
+        \]
+        mapping “amplitude patterns” \(\{\alpha_x\}\) into high classical success probability.
+      </p>
 
       <h2>Where and why the speedups appear</h2>
       <ul>
@@ -47,6 +137,44 @@
         <li><strong>Quantum simulation:</strong> Simulating quantum many-body systems is naturally suited to quantum computers. Techniques such as Trotterization, qubitization, phase estimation, and variational methods (e.g., VQE) can offer dramatic scaling improvements for chemistry, materials, and condensed matter models relative to exact classical simulation.</li>
         <li><strong>Optimization and machine learning:</strong> Heuristics like QAOA, quantum annealing, and primitives such as amplitude estimation and certain linear-algebra subroutines can confer advantages on structured instances, though performance guarantees vary and are problem-dependent.</li>
       </ul>
+      <p>
+        In Shor’s algorithm, given a composite integer \(N\) and an integer \(a\) coprime to \(N\), one seeks the order \(r\) such that
+        \[
+          a^r \equiv 1 \pmod N.
+        \]
+        The quantum subroutine prepares a superposition
+        \[
+          \frac{1}{\sqrt{Q}} \sum_{x=0}^{Q-1} \lvert x\rangle \lvert a^x \bmod N\rangle,
+        \]
+        applies the quantum Fourier transform (QFT)
+        \(\mathcal{F}_Q\) on the first register,
+        \[
+          \mathcal{F}_Q \lvert x\rangle = \frac{1}{\sqrt{Q}} \sum_{k=0}^{Q-1} e^{2\pi i kx/Q} \lvert k\rangle,
+        \]
+        and measures a value \(k\) sharply peaked near integer multiples of \(Q/r\), from which \(r\) can be recovered via continued fractions in polynomial time.
+      </p>
+      <p>
+        Grover’s search models an unstructured database of size \(N\) with an oracle \(O_f\) marking a solution \(\lvert x_*\rangle\) such that \(f(x_*) = 1\) and \(f(x) = 0\) otherwise. Starting from the uniform superposition
+        \[
+          \lvert s\rangle = \frac{1}{\sqrt{N}} \sum_{x=0}^{N-1} \lvert x\rangle,
+        \]
+        Grover iterations apply the operator
+        \[
+          G = (2\lvert s\rangle\langle s\rvert - I)\,O_f,
+        \]
+        which performs a rotation in the two-dimensional subspace spanned by \(\lvert x_*\rangle\) and its orthogonal complement. After \(O(\sqrt{N})\) iterations, the success probability
+        \(p(x_*) = \lvert\langle x_*\vert G^{t}\lvert s\rangle\rvert^2\)
+        becomes \(\Theta(1)\), giving query complexity \(O(\sqrt{N})\) instead of the classical \(O(N)\).
+      </p>
+      <p>
+        Quantum simulation of a Hamiltonian \(H\) approximates the time-evolution operator
+        \(U(t) = e^{-iHt}\). For a Hamiltonian decomposed as a sum of local terms
+        \(H = \sum_j H_j\), a first-order Trotter formula is
+        \[
+          e^{-iHt} \approx \Bigg( \prod_j e^{-i H_j t/r} \Bigg)^r,
+        \]
+        with error scaling as \(O(t^2/r)\). More advanced schemes (higher-order Trotter–Suzuki, qubitization, etc.) improve the scaling in \(t\), the norm of \(H\), and desired precision \(\epsilon\).
+      </p>
 
       <h2>Important caveats</h2>
       <ul>
@@ -54,14 +182,93 @@
         <li><strong>Noise and error correction:</strong> Today’s devices are noisy and limited in scale. Fault-tolerant quantum computing requires quantum error-correcting codes, large numbers of physical qubits per logical qubit, and error rates below threshold—significant engineering challenges.</li>
         <li><strong>Cryptography transition:</strong> Shor’s algorithm endangers widely used public-key schemes (RSA, ECC), while Grover’s algorithm weakens symmetric cryptography quadratically. Post-quantum cryptographic algorithms provide quantum-resistant alternatives and should be deployed proactively.</li>
       </ul>
+      <p>
+        The class of decision problems efficiently solvable by a quantum computer with bounded error is denoted
+        \(\mathbf{BQP}\). Formally, a language \(L \subseteq \{0,1\}^*\) is in \(\mathbf{BQP}\) if there exists a family of uniformly generated quantum circuits \(\{Q_n\}\) of size polynomial in \(n\) such that for all inputs \(x\) with \(\lvert x\rvert = n\),
+        \[
+          x \in L \Rightarrow \Pr[Q_n(x)\;\text{accepts}] \geq 2/3, \qquad
+          x \notin L \Rightarrow \Pr[Q_n(x)\;\text{accepts}] \leq 1/3.
+        \]
+        There is no guarantee that \(\mathbf{BQP}\) strictly contains all problems in classical classes such as \(\mathbf{P}\) or \(\mathbf{NP}\); the speedups we know are for specific problem structures.
+      </p>
+      <p>
+        Noise in a quantum channel acting on density matrices \(\rho\) can be modeled as a completely positive trace-preserving (CPTP) map
+        \(\mathcal{E}\) with Kraus operators \(\{E_k\}\):
+        \[
+          \mathcal{E}(\rho) = \sum_k E_k \rho E_k^\dagger, \qquad \sum_k E_k^\dagger E_k = I.
+        \]
+        A quantum error-correcting code encodes one logical qubit into \(n\) physical qubits via an isometry
+        \(V : \mathcal{H}_L \to \mathcal{H}_P\), such that for all correctable error operators \(E_a, E_b\),
+        \[
+          \langle i\vert V^\dagger E_a^\dagger E_b V \lvert j\rangle = C_{ab} \delta_{ij}, \qquad i,j \in \{0,1\},
+        \]
+        where \(C_{ab}\) are constants independent of the logical basis states \(\lvert i\rangle, \lvert j\rangle\). Fault tolerance further requires that the physical error rate \(p\) lies below a threshold \(p_\text{th}\), so that logical error rates can be driven to zero as the code distance increases:
+        \[
+          p < p_\text{th} \quad \Rightarrow \quad p_\text{logical} \to 0 \;\text{as code size} \to \infty.
+        \]
+      </p>
+      <p>
+        From a cryptographic perspective, Shor’s algorithm threatens schemes whose security rests on the hardness of factoring or discrete logarithms. For RSA with modulus \(N = pq\) and public key \((N, e)\), finding the private exponent \(d\) satisfying
+        \[
+          ed \equiv 1 \pmod{\varphi(N)}
+        \]
+        becomes efficient once factoring \(N\) is in \(\mathbf{BQP}\). For elliptic-curve cryptography over a group \(G\) generated by \(P\), the discrete logarithm problem is to recover \(k\) from \(Q = kP\); Shor’s algorithm solves this in time polynomial in \(\log \lvert G\rvert\), undermining ECDSA and related schemes.
+      </p>
 
       <p>In short, quantum computers harness superposition, entanglement, and interference to steer probability amplitudes through a high-dimensional space, offering compelling advantages for specific problems while demanding substantial advances in devices, error correction, and algorithms to reach large-scale, fault-tolerant operation.</p>
+      <p>
+        Summarizing in a compact expression, an ideal fault-tolerant quantum computation implements a unitary
+        \(U\) on a logical input state \(\lvert\psi_\text{in}\rangle\), protected by an encoding map \(V\), subjected to physical noise \(\mathcal{E}\), and then decoded by \(V^\dagger\):
+        \[
+          \rho_\text{out} = V^\dagger\, \mathcal{R}\, \mathcal{E}\, (V\, \lvert\psi_\text{in}\rangle\langle\psi_\text{in}\rvert\, V^\dagger)\, \mathcal{E}^\dagger \, \mathcal{R}^\dagger V, \qquad \rho_\text{ideal} = U \lvert\psi_\text{in}\rangle\langle\psi_\text{in}\rvert U^\dagger,
+        \]
+        where \(\mathcal{R}\) denotes the recovery operation. Fault tolerance seeks to make the distance between the actual and ideal states—e.g., their trace distance \(\tfrac{1}{2}\lVert\rho_\text{out} - \rho_\text{ideal}\rVert_1\)—arbitrarily small, while still achieving the algorithmic advantages in \(\mathbf{BQP}\).
+      </p>
     </section>
 
     <section>
       <h2>A personal note</h2>
       <p>I earned a degree in mathematics. I studied actuarial science, which is when I learned about determinate and stochastic models—how some systems can be modeled with fixed inputs and outcomes, while others require probability to capture uncertainty over time. That training deeply informs how I think about quantum mechanics, where determinism in unitary evolution meets the fundamentally probabilistic nature of measurement.</p>
+      <p>
+        Deterministic (or determinate) models in actuarial science can be written as functions
+        \(f : \mathbb{R}^n \to \mathbb{R}\), where outputs are fixed once inputs are specified, e.g.
+        \[
+          C_\text{det}(t) = P\,(1 + r)^t,
+        \]
+        for a premium \(P\), interest rate \(r\), and time \(t\). Stochastic models introduce random variables, such as a claim amount \(X\), with distribution
+        \(\Pr[X \leq x] = F_X(x)\) and expectation
+        \[ 
+          \mathbb{E}[X] = \int_0^{\infty} x\, f_X(x)\, dx,
+        \]
+        where \(f_X\) is the density of \(X\).
+      </p>
+      <p>
+        Quantum mechanics mirrors this blend of determinism and randomness. Between measurements, a closed system’s state \(\lvert\psi(t)\rangle\) evolves unitarily according to the Schrödinger equation
+        \[
+          i\hbar\, \frac{d}{dt}\lvert\psi(t)\rangle = H\, \lvert\psi(t)\rangle,
+        \]
+        with formal solution
+        \[
+          \lvert\psi(t)\rangle = e^{-\tfrac{i}{\hbar}Ht}\, \lvert\psi(0)\rangle.
+        \]
+        Upon measurement of an observable \(A\) with spectral decomposition
+        \(A = \sum_a a\, \Pi_a\), the outcome \(a\) is obtained with probability
+        \[
+          \Pr[A = a] = \langle\psi\rvert \Pi_a \lvert\psi\rangle,
+        \]
+        echoing the actuarial distinction between deterministic accrual and stochastic events.
+      </p>
       <p>My math professor used to have a binary clock, and he had a shirt that said, “There are 10 types of people in the world: those who understand binary and those who don’t.” The joke stuck with me because quantum information builds on the binary world we know, but generalizes it in subtle, powerful ways.</p>
+      <p>
+        Classical binary information represents a bit \(b\) as an element of \(\{0,1\}\). Strings of bits of length \(n\) live in \(\{0,1\}^n\), with cardinality
+        \(\lvert\{0,1\}^n\rvert = 2^n\). Quantum information upgrades each classical bit to a qubit \(\lvert\psi\rangle\), so that a classical probability distribution \(\{p_x\}\) over strings \(x\in\{0,1\}^n\) becomes a quantum superposition
+        \[
+          \rho_\text{classical} = \sum_{x} p_x \lvert x\rangle\langle x\rvert
+          \quad\leadsto\quad
+          \lvert\Psi\rangle = \sum_x \alpha_x \lvert x\rangle,
+        \]
+        where the classical probabilities are recovered as \(p_x = \lvert\alpha_x\rvert^2\), but the phases of \(\alpha_x\) allow interference effects with no classical analogue.
+      </p>
     </section>
 
     <section>
@@ -93,6 +300,208 @@
         <li><strong>BQP:</strong> The class of decision problems efficiently solvable by a quantum computer with bounded error.</li>
         <li><strong>Post-quantum cryptography:</strong> Classical cryptographic schemes designed to resist quantum attacks.</li>
       </ul>
+      <p>
+        These definitions also admit concise mathematical expressions. For a qubit, the general pure state is
+        \[
+          \lvert\psi\rangle = \alpha\lvert 0\rangle + \beta\lvert 1\rangle, \qquad \alpha,\beta \in \mathbb{C},\quad \lvert\alpha\rvert^2+\lvert\beta\rvert^2=1,
+        \]
+        illustrating superposition as a linear combination of basis states. The associated density matrix of a pure state is
+        \[
+          \rho_\text{pure} = \lvert\psi\rangle\langle\psi\rvert,
+        \]
+        while a mixed state is a convex combination
+        \[
+          \rho_\text{mixed} = \sum_j p_j \lvert\psi_j\rangle\langle\psi_j\rvert,\qquad p_j \ge 0,\;\sum_j p_j = 1.
+        \]
+      </p>
+      <p>
+        The Born rule can be written as
+        \[
+          p(a) = \Pr[A = a] = \mathrm{Tr}(\Pi_a \rho),
+        \]
+        where \(\{\Pi_a\}\) are the projectors in the spectral decomposition of an observable \(A\), and \(\rho\) is the system’s density matrix. A unitary quantum gate \(U\) is an operator satisfying
+        \[
+          U^\dagger U = UU^\dagger = I,
+        \]
+        which guarantees norm preservation
+        \(\lVert U\lvert\psi\rangle\rVert = \lVert\lvert\psi\rangle\rVert\).
+      </p>
+      <p>
+        Decoherence of a qubit interacting with an environment can be modeled, for example, by a phase-damping channel
+        \(\mathcal{E}_p\) acting on the density matrix
+        \(\rho = \begin{pmatrix} \rho_{00} & \rho_{01} \\ \rho_{10} & \rho_{11}\end{pmatrix}\) as
+        \[
+          \mathcal{E}_p(\rho) =
+          \begin{pmatrix}
+            \rho_{00} & (1-p)\,\rho_{01} \\
+            (1-p)\,\rho_{10} & \rho_{11}
+          \end{pmatrix}, \qquad 0 \le p \le 1,
+        \]
+        which leaves populations \(\rho_{00}, \rho_{11}\) unchanged but suppresses off-diagonal coherences.
+      </p>
+      <p>
+        The no-cloning theorem states that there is no unitary \(U\) and fixed “blank” state \(\lvert 0\rangle\) such that
+        \[
+          U\big(\lvert\psi\rangle \otimes \lvert 0\rangle\big) = \lvert\psi\rangle \otimes \lvert\psi\rangle
+          \quad\text{for all}\quad \lvert\psi\rangle,
+        \]
+        which follows from linearity of \(U\). If it held for two distinct states \(\lvert\psi\rangle\) and \(\lvert\phi\rangle\), inner products would not be preserved,
+        \[
+          \langle\phi\vert\psi\rangle \neq \langle\phi\vert\psi\rangle^2
+          \quad\text{in general},
+        \]
+        contradicting unitarity.
+      </p>
+      <p>
+        A Bell inequality such as the CHSH inequality constrains correlations in any local hidden-variable theory:
+        let \(A_0, A_1, B_0, B_1\) be \(\pm1\)-valued observables for two distant parties, then
+        \[
+          \lvert\langle A_0 B_0 \rangle + \langle A_0 B_1 \rangle + \langle A_1 B_0 \rangle - \langle A_1 B_1 \rangle\rvert \le 2
+        \]
+        classically, whereas quantum mechanics permits values up to
+        \(2\sqrt{2}\) for suitable measurements on an entangled state, violating the inequality and ruling out local hidden-variable models.
+      </p>
+      <p>
+        In phase estimation, given an eigenstate \(\lvert u\rangle\) of a unitary \(U\) with eigenvalue \(e^{2\pi i \varphi}\),
+        \[
+          U \lvert u\rangle = e^{2\pi i \varphi} \lvert u\rangle, \qquad \varphi \in [0,1),
+        \]
+        the algorithm estimates \(\varphi\) to \(m\) bits of precision using \(O(2^m)\) controlled applications of \(U\) and an \(m\)-qubit inverse QFT, with success probability bounded away from zero.
+      </p>
+    </section>
+
+    <section>
+      <h2>Periodic Table of Elements with Disney-Style Personalities</h2>
+      <p>This table imagines each element as an animated character archetype to give the chemistry some story flavor.</p>
+      <table border="1" cellpadding="4" cellspacing="0">
+        <thead>
+          <tr>
+            <th>Symbol</th>
+            <th>Name</th>
+            <th>Personality (Disney-style archetype)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>H</td><td>Hydrogen</td><td>Curious kid sidekick who starts every adventure.</td></tr>
+          <tr><td>He</td><td>Helium</td><td>Giggly balloon jester floating above the crowd.</td></tr>
+          <tr><td>Li</td><td>Lithium</td><td>Stoic guardian keeping the kingdom’s mood balanced.</td></tr>
+          <tr><td>Be</td><td>Beryllium</td><td>Tough knight with a shiny, unbreakable armor.</td></tr>
+          <tr><td>B</td><td>Boron</td><td>Quiet engineer who makes everyone else’s gadgets work.</td></tr>
+          <tr><td>C</td><td>Carbon</td><td>Shape-shifting protagonist who can play any role.</td></tr>
+          <tr><td>N</td><td>Nitrogen</td><td>Calm, breezy storyteller who covers the whole world.</td></tr>
+          <tr><td>O</td><td>Oxygen</td><td>Energetic hero who keeps the entire cast alive and running.</td></tr>
+          <tr><td>F</td><td>Fluorine</td><td>Overly intense trickster with a bite, best handled carefully.</td></tr>
+          <tr><td>Ne</td><td>Neon</td><td>Flashy nightclub singer glowing on stage.</td></tr>
+          <tr><td>Na</td><td>Sodium</td><td>Impulsive friend who jumps into water and explodes with drama.</td></tr>
+          <tr><td>Mg</td><td>Magnesium</td><td>Reliable athlete who lights up the stadium when pushed.</td></tr>
+          <tr><td>Al</td><td>Aluminium</td><td>Flexible costume designer, light but surprisingly strong.</td></tr>
+          <tr><td>Si</td><td>Silicon</td><td>Geeky wizard of gadgets powering every magic mirror-screen.</td></tr>
+          <tr><td>P</td><td>Phosphorus</td><td>Glowing firefly guide who lights the hero’s path at night.</td></tr>
+          <tr><td>S</td><td>Sulfur</td><td>Grumpy swamp dweller with a suspicious smell but a good heart.</td></tr>
+          <tr><td>Cl</td><td>Chlorine</td><td>Strict pool lifeguard who keeps things clean and sharp.</td></tr>
+          <tr><td>Ar</td><td>Argon</td><td>Silent bodyguard who’s noble, inert, and unbothered.</td></tr>
+          <tr><td>K</td><td>Potassium</td><td>Hyperactive dancer who sparks on contact.</td></tr>
+          <tr><td>Ca</td><td>Calcium</td><td>Strong-boned mentor who builds castles and skeleton armies.</td></tr>
+          <tr><td>Sc</td><td>Scandium</td><td>Background knight whose loyalty strengthens the armor.</td></tr>
+          <tr><td>Ti</td><td>Titanium</td><td>Indestructible warrior with a sleek, shining suit.</td></tr>
+          <tr><td>V</td><td>Vanadium</td><td>Shape-tuning artisan who forges mighty tools.</td></tr>
+          <tr><td>Cr</td><td>Chromium</td><td>Mirror-finished fashionista obsessed with reflections.</td></tr>
+          <tr><td>Mn</td><td>Manganese</td><td>Busy coordinator keeping all metal heroes in line.</td></tr>
+          <tr><td>Fe</td><td>Iron</td><td>Blacksmith king building the backbone of kingdoms.</td></tr>
+          <tr><td>Co</td><td>Cobalt</td><td>Blue-armored paladin radiating courage.</td></tr>
+          <tr><td>Ni</td><td>Nickel</td><td>Street-smart hustler who never rusts under pressure.</td></tr>
+          <tr><td>Cu</td><td>Copper</td><td>Chatty messenger running through wires with gossip.</td></tr>
+          <tr><td>Zn</td><td>Zinc</td><td>Protective big sibling shielding others from the weather.</td></tr>
+          <tr><td>Ga</td><td>Gallium</td><td>Shapeless prankster who melts in your royal hand.</td></tr>
+          <tr><td>Ge</td><td>Germanium</td><td>Classic, old-school tech wizard in round glasses.</td></tr>
+          <tr><td>As</td><td>Arsenic</td><td>Elegant but dangerous court poisoner.</td></tr>
+          <tr><td>Se</td><td>Selenium</td><td>Sun-loving singer who converts light into music.</td></tr>
+          <tr><td>Br</td><td>Bromine</td><td>Mysterious cloaked figure swirling like red-brown mist.</td></tr>
+          <tr><td>Kr</td><td>Krypton</td><td>Shy glow spirit hiding in noble halls.</td></tr>
+          <tr><td>Rb</td><td>Rubidium</td><td>Drama-queen sparkler who reacts at the slightest touch.</td></tr>
+          <tr><td>Sr</td><td>Strontium</td><td>Fireworks choreographer painting the sky.</td></tr>
+          <tr><td>Y</td><td>Yttrium</td><td>Quiet healer backstage in high-tech potions.</td></tr>
+          <tr><td>Zr</td><td>Zirconium</td><td>Armor decorator who resists every flame.</td></tr>
+          <tr><td>Nb</td><td>Niobium</td><td>Graceful acrobat bending without breaking.</td></tr>
+          <tr><td>Mo</td><td>Molybdenum</td><td>Sturdy mechanic keeping engines from overheating.</td></tr>
+          <tr><td>Tc</td><td>Technetium</td><td>Radioactive time-traveler who never occurs naturally in the village.</td></tr>
+          <tr><td>Ru</td><td>Ruthenium</td><td>Stern judge polishing the rules of chemistry.</td></tr>
+          <tr><td>Rh</td><td>Rhodium</td><td>Ultra-rare diva shining brighter than royalty.</td></tr>
+          <tr><td>Pd</td><td>Palladium</td><td>Discreet butler catalyzing every plan behind the scenes.</td></tr>
+          <tr><td>Ag</td><td>Silver</td><td>Charming prince with shimmering armor and quick wit.</td></tr>
+          <tr><td>Cd</td><td>Cadmium</td><td>Moody artist whose pigments can be perilous.</td></tr>
+          <tr><td>In</td><td>Indium</td><td>Soft-spoken inventor leaving squeaky marks on glass.</td></tr>
+          <tr><td>Sn</td><td>Tin</td><td>Toy soldier marching proudly, resistant to rust.</td></tr>
+          <tr><td>Sb</td><td>Antimony</td><td>Alchemist mixing shiny and brittle potions.</td></tr>
+          <tr><td>Te</td><td>Tellurium</td><td>Eccentric storyteller with a subtle metallic accent.</td></tr>
+          <tr><td>I</td><td>Iodine</td><td>Traveling healer with a purple cloak and antiseptic charm.</td></tr>
+          <tr><td>Xe</td><td>Xenon</td><td>Regal light mage casting bright white spells.</td></tr>
+          <tr><td>Cs</td><td>Caesium</td><td>Highly dramatic royal who bursts into flames near water.</td></tr>
+          <tr><td>Ba</td><td>Barium</td><td>Friendly doctor showing glowing pictures of your insides.</td></tr>
+          <tr><td>La</td><td>Lanthanum</td><td>Hidden elder who quietly starts a whole new saga.</td></tr>
+          <tr><td>Ce</td><td>Cerium</td><td>Spark-throwing blacksmith lighting flint in one strike.</td></tr>
+          <tr><td>Pr</td><td>Praseodymium</td><td>Green-robed forest mage of rare earths.</td></tr>
+          <tr><td>Nd</td><td>Neodymium</td><td>Magnet-wielding warrior pulling metals from afar.</td></tr>
+          <tr><td>Pm</td><td>Promethium</td><td>Secretive fire thief whose glow is rarely seen.</td></tr>
+          <tr><td>Sm</td><td>Samarium</td><td>Steady guardian of nuclear secrets.</td></tr>
+          <tr><td>Eu</td><td>Europium</td><td>Glow-in-the-dark prankster who loves night scenes.</td></tr>
+          <tr><td>Gd</td><td>Gadolinium</td><td>Magnetic healer assisting in enchanted scans.</td></tr>
+          <tr><td>Tb</td><td>Terbium</td><td>Green-flame stage magician in the lighting crew.</td></tr>
+          <tr><td>Dy</td><td>Dysprosium</td><td>Resilient guardian who keeps his powers in extreme heat.</td></tr>
+          <tr><td>Ho</td><td>Holmium</td><td>Loud-voiced bard with magnetic charm.</td></tr>
+          <tr><td>Er</td><td>Erbium</td><td>Soft-spoken fiber mage guiding light through strands.</td></tr>
+          <tr><td>Tm</td><td>Thulium</td><td>Rare, scholarly wizard buried in ancient scrolls.</td></tr>
+          <tr><td>Yb</td><td>Ytterbium</td><td>Laid-back rare-earth surfer, surprisingly tough.</td></tr>
+          <tr><td>Lu</td><td>Lutetium</td><td>Densely packed librarian of the lanthanide wing.</td></tr>
+          <tr><td>Hf</td><td>Hafnium</td><td>Reactor guardian with a love for control rods.</td></tr>
+          <tr><td>Ta</td><td>Tantalum</td><td>Patient monk powering tiny devices peacefully.</td></tr>
+          <tr><td>W</td><td>Tungsten</td><td>Heavyweight champion holding up blazing lights.</td></tr>
+          <tr><td>Re</td><td>Rhenium</td><td>Jet-engine pilot thriving in blazing skies.</td></tr>
+          <tr><td>Os</td><td>Osmium</td><td>Dense, serious counselor who takes everything heavily.</td></tr>
+          <tr><td>Ir</td><td>Iridium</td><td>Unbreakable messenger crossing meteor storms.</td></tr>
+          <tr><td>Pt</td><td>Platinum</td><td>Refined royal advisor with impeccable taste.</td></tr>
+          <tr><td>Au</td><td>Gold</td><td>Charismatic ruler adored by treasuries everywhere.</td></tr>
+          <tr><td>Hg</td><td>Mercury</td><td>Silvery shapeshifter racing like liquid feet.</td></tr>
+          <tr><td>Tl</td><td>Thallium</td><td>Shadowy figure whose gifts should not be trusted.</td></tr>
+          <tr><td>Pb</td><td>Lead</td><td>Heavy, ancient guard once used in every castle wall.</td></tr>
+          <tr><td>Bi</td><td>Bismuth</td><td>Rainbow-crystal artist making iridescent stairs.</td></tr>
+          <tr><td>Po</td><td>Polonium</td><td>Radioactive spy whose touch is powerful and perilous.</td></tr>
+          <tr><td>At</td><td>Astatine</td><td>Elusive phantom appearing only in tiny whispers.</td></tr>
+          <tr><td>Rn</td><td>Radon</td><td>Invisible ghost drifting through old castle basements.</td></tr>
+          <tr><td>Fr</td><td>Francium</td><td>Short-lived royal firecracker, rarely seen on stage.</td></tr>
+          <tr><td>Ra</td><td>Radium</td><td>Glowing clockmaker with a dangerous past.</td></tr>
+          <tr><td>Ac</td><td>Actinium</td><td>Luminescent ancestor starting the actinide saga.</td></tr>
+          <tr><td>Th</td><td>Thorium</td><td>Stoic titan of slow-burning power.</td></tr>
+          <tr><td>Pa</td><td>Protactinium</td><td>Mysterious scholar lurking in rare samples.</td></tr>
+          <tr><td>U</td><td>Uranium</td><td>Brooding giant with immense, split-able power.</td></tr>
+          <tr><td>Np</td><td>Neptunium</td><td>Sea-blue wanderer forged in reactors.</td></tr>
+          <tr><td>Pu</td><td>Plutonium</td><td>Volatile antihero glowing with forbidden energy.</td></tr>
+          <tr><td>Am</td><td>Americium</td><td>Smoke-alarm caretaker watching over every cottage.</td></tr>
+          <tr><td>Cm</td><td>Curium</td><td>Radiant researcher named after legendary explorers.</td></tr>
+          <tr><td>Bk</td><td>Berkelium</td><td>Lab-bound tinkerer born in a research town.</td></tr>
+          <tr><td>Cf</td><td>Californium</td><td>Powerful but reclusive star of neutron shows.</td></tr>
+          <tr><td>Es</td><td>Einsteinium</td><td>Brilliant but unstable genius glowing quietly.</td></tr>
+          <tr><td>Fm</td><td>Fermium</td><td>Serious professor born in the heart of experiments.</td></tr>
+          <tr><td>Md</td><td>Mendelevium</td><td>Archivist honoring the creator of the table itself.</td></tr>
+          <tr><td>No</td><td>Nobelium</td><td>Prize-giving spirit of discovery and recognition.</td></tr>
+          <tr><td>Lr</td><td>Lawrencium</td><td>Collider conjurer appearing only in high-energy labs.</td></tr>
+          <tr><td>Rf</td><td>Rutherfordium</td><td>Nuclear pioneer examining tiny planetary orbits.</td></tr>
+          <tr><td>Db</td><td>Dubnium</td><td>Secretive council member known mostly to scientists.</td></tr>
+          <tr><td>Sg</td><td>Seaborgium</td><td>Wise elder named for a legendary element hunter.</td></tr>
+          <tr><td>Bh</td><td>Bohrium</td><td>Thoughtful theorist with very short appearances.</td></tr>
+          <tr><td>Hs</td><td>Hassium</td><td>Heavy guard who vanishes almost instantly.</td></tr>
+          <tr><td>Mt</td><td>Meitnerium</td><td>Brilliant, under-recognized physicist spirit.</td></tr>
+          <tr><td>Ds</td><td>Darmstadtium</td><td>Experimental newcomer with only cameo roles.</td></tr>
+          <tr><td>Rg</td><td>Roentgenium</td><td>X-ray sorcerer appearing as a brief flash.</td></tr>
+          <tr><td>Cn</td><td>Copernicium</td><td>Cosmic navigator who rearranged the heavens.</td></tr>
+          <tr><td>Nh</td><td>Nihonium</td><td>Modern hero named for a far eastern land.</td></tr>
+          <tr><td>Fl</td><td>Flerovium</td><td>Fleeting noble guest from a famed laboratory.</td></tr>
+          <tr><td>Mc</td><td>Moscovium</td><td>Heavy statesman with a very short public address.</td></tr>
+          <tr><td>Lv</td><td>Livermorium</td><td>Lab-born knight appearing for moments at a time.</td></tr>
+          <tr><td>Ts</td><td>Tennessine</td><td>Mysterious borderland ranger on the periodic frontier.</td></tr>
+          <tr><td>Og</td><td>Oganesson</td><td>Ghostly monarch of the far edge, almost beyond matter.</td></tr>
+        </tbody>
+      </table>
     </section>
   </main>
   <script>

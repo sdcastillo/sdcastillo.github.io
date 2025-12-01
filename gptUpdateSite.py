@@ -59,7 +59,7 @@ You MUST obey these rules:
 1. You may ONLY modify files in this list:
    index.html, privacy.html, returns.html, studymanual.html, about.html,
    code.html, buy.html, contact.html.
-2. Do NOT create new files or delete any files.
+2. Do NOT create new files or delete any files.  Do not delete ANY text.  Only add more text.
 3. For every file you change, return the COMPLETE new file content.
 4. Return ONLY valid JSON in this exact format (no extra text):
 
@@ -166,7 +166,7 @@ def run_step(instruction: str):
         prompt = build_prompt(instruction)
 
         response = client.responses.create(
-            model="gpt-5",
+            model="gpt-5.1",
             input=prompt,
             # If JSON mode available:
             # response_format={"type": "json_object"},
@@ -199,7 +199,7 @@ def run_step(instruction: str):
 
 if __name__ == "__main__":
     instruction = """
-    Expand on the code page.  Say how that the exponential growth of computing comes from when computers can program themselves, like how this website is being built by a computer.  Try to avoid mentioning specific names of people.  Instead, describe the physics and terminological words of the subject matter.  make a heirarchiical graph of all matter particles, about atoms and gluons and quarks, and electrons, and antiprotons.  All that jazz.   
+    You must update ONLY the about.html file, and add Mathjax equations that explain what the words say.  use both in-line equations and also split the paragraphs to show the equations in block format.  Take the words and translate them into mathematical physics equations.
     """
 
     run_step(instruction)
