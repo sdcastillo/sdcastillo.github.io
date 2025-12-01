@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Predictive Insights</title>
+  <title>Code Examples – Futuro Insights</title>
 </head>
 <body>
   <header>
@@ -31,8 +31,7 @@
 </header>
 
   <main>
-    <!-- Futuro Insights home content goes here -->
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    <!-- Code examples content goes here -->
   </main>
   <script>
   // Auto-highlight the current page
@@ -47,6 +46,18 @@
     document.querySelector('.main-nav').classList.toggle('open');
   });
 </script>
-</body>
+<script>
+  // Auto-highlight the current page
+  const current = location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('.main-nav a').forEach(link => {
+    const href = link.getAttribute('href').split('/').pop();
+    if (href === current) link.classList.add('active');
+  });
 
+  // Mobile toggle (if you want it)
+  document.querySelector('.nav-toggle')?.addEventListener('click', () => {
+    document.querySelector('.main-nav').classList.toggle('open');
+  });
+</script>
+</body>
 </html>

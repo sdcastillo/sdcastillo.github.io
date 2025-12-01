@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Predictive Insights</title>
+  <title>Buy – Futuro Insights</title>
 </head>
 <body>
   <header>
@@ -31,8 +31,7 @@
 </header>
 
   <main>
-    <!-- Futuro Insights home content goes here -->
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    <!-- Buy page content goes here -->
   </main>
   <script>
   // Auto-highlight the current page
@@ -48,5 +47,4 @@
   });
 </script>
 </body>
-
 </html>
