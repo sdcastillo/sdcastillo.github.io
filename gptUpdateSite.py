@@ -199,9 +199,7 @@ def run_step(instruction: str):
 
 if __name__ == "__main__":
     instruction = """
-    1.  Add the text Quantum Computing: Data-Driven Insights for Unbreakable Code.  Then underneath explain what quantum physics is.
-    2.  Replace all the lorum ipsum text on all of the files with a different quote from a famous physicist about mathematics or physics.
-    3.  Explain why first humans to build quantum machines can get all the bitcoin in the entire world.
+    On the about page, elaborate on this.  How Quantum computing is a paradigm of computation that leverages quantum-mechanical phenomena, including superposition and entanglement, to manipulate quantum bits (qubits) within a multidimensional Hilbert space, thereby enabling parallel processing capabilities unattainable by classical bit-based systems for certain complex problems such as integer factorization and molecular simulation.[1] Unlike classical computers, which operate on deterministic binary states, quantum systems exploit wave-like interference and probabilistic amplitudes associated with qubit states to achieve potential exponential speedups in specific algorithms
     """
 
     run_step(instruction)

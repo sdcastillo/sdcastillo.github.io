@@ -31,6 +31,32 @@
 
   <main>
     <blockquote>“Mathematics is the language in which God has written the universe.” — Galileo Galilei</blockquote>
+
+    <section>
+      <h1>Quantum computing, elaborated</h1>
+      <p>Quantum computing is a paradigm of computation that leverages quantum-mechanical phenomena, including superposition and entanglement, to manipulate quantum bits (qubits) within a multidimensional Hilbert space, thereby enabling parallel processing capabilities unattainable by classical bit-based systems for certain complex problems such as integer factorization and molecular simulation. Unlike classical computers, which operate on deterministic binary states, quantum systems exploit wave-like interference and probabilistic amplitudes associated with qubit states to achieve potential exponential speedups in specific algorithms. [1]</p>
+
+      <p>Qubits are two-level quantum systems with computational basis states often labeled |0⟩ and |1⟩. An n-qubit register resides in a 2<sup>n</sup>-dimensional Hilbert space, allowing a single pure state to encode complex amplitudes over all 2<sup>n</sup> basis strings simultaneously. Quantum programs apply unitary gates to rotate this state through Hilbert space, carefully arranging constructive and destructive interference so that, after the final measurement, the correct answers are obtained with high probability.</p>
+
+      <p>Entanglement produces nonclassical correlations among qubits, expanding the reachable set of states and enabling computations and simulations that lack efficient classical descriptions. Because measurement irreversibly projects a state and reveals only classical outcomes, successful quantum algorithms are designed to concentrate amplitude on desired solutions before measurement, effectively converting amplitude patterns into useful probabilities.</p>
+
+      <h2>Where and why the speedups appear</h2>
+      <ul>
+        <li><strong>Integer factorization and discrete logarithms:</strong> Shor’s algorithm performs period finding using the quantum Fourier transform, yielding polynomial-time factoring and discrete logs, while the best known classical methods are sub-exponential. This threatens public-key cryptosystems such as RSA and elliptic-curve signatures (e.g., ECDSA).</li>
+        <li><strong>Unstructured search:</strong> Grover’s algorithm provides a quadratic speedup, reducing O(N) queries to O(√N). This does not break cryptography outright but implies, for example, that symmetric-key sizes should be roughly doubled to maintain comparable security margins.</li>
+        <li><strong>Quantum simulation:</strong> Simulating quantum many-body systems is naturally suited to quantum computers. Techniques such as Trotterization, qubitization, phase estimation, and variational methods (e.g., VQE) can offer dramatic scaling improvements for chemistry, materials, and condensed matter models relative to exact classical simulation.</li>
+        <li><strong>Optimization and machine learning:</strong> Heuristics like QAOA, quantum annealing, and primitives such as amplitude estimation and certain linear-algebra subroutines can confer advantages on structured instances, though performance guarantees vary and are problem-dependent.</li>
+      </ul>
+
+      <h2>Important caveats</h2>
+      <ul>
+        <li><strong>No universal speedup:</strong> Quantum advantage is problem-specific (roughly, the class BQP). Many tasks have no known quantum improvement over the best classical algorithms.</li>
+        <li><strong>Noise and error correction:</strong> Today’s devices are noisy and limited in scale. Fault-tolerant quantum computing requires quantum error-correcting codes, large numbers of physical qubits per logical qubit, and error rates below threshold—significant engineering challenges.</li>
+        <li><strong>Cryptography transition:</strong> Shor’s algorithm endangers widely used public-key schemes (RSA, ECC), while Grover’s algorithm weakens symmetric cryptography quadratically. Post-quantum cryptographic algorithms provide quantum-resistant alternatives and should be deployed proactively.</li>
+      </ul>
+
+      <p>In short, quantum computers harness superposition, entanglement, and interference to steer probability amplitudes through a high-dimensional space, offering compelling advantages for specific problems while demanding substantial advances in devices, error correction, and algorithms to reach large-scale, fault-tolerant operation.</p>
+    </section>
   </main>
   <script>
   // Auto-highlight the current page
