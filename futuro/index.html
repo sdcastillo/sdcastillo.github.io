@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Futuro Insights – Home</title>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="index.html">SamuelCastillo.com</a>
+      <a href="futuro/index.html">Futuro Home</a>
+      <a href="futuro/buy.html">Buy</a>
+      <a href="futuro/code.html">Code Examples</a>
+      <a href="futuro/studymanual.html">Study Manual</a>
+      <a href="futuro/contact.html">Contact</a>
+      <a href="futuro/returns.html">Returns</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Futuro Insights home content goes here -->
+  </main>
+  <script>
+  // Auto-highlight the current page
+  const current = location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('.main-nav a').forEach(link => {
+    const href = link.getAttribute('href').split('/').pop();
+    if (href === current) link.classList.add('active');
+  });
+
+  // Mobile toggle (if you want it)
+  document.querySelector('.nav-toggle')?.addEventListener('click', () => {
+    document.querySelector('.main-nav').classList.toggle('open');
+  });
+</script>
+</body>
+</html>

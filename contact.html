@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact – Futuro Insights</title>
+</head>
+<body>
+  <header>
+  <nav class="main-nav">
+    <!-- Left side – Personal site -->
+    <div class="nav-left">
+      <a href="index.html" class="brand">Samuel Castillo</a>
+      <a>
+      <a href="about.html">About</a>
+      <a href="privacy.html">Privacy</a>
+    </div>
+
+    <!-- Right side – Futuro Insights / Products -->
+    <div class="nav-right">
+      <a href="index.html">Futuro Home</a>
+      <a href="code.html">Code</a>
+      <a href="studymanual.html">Study Manual</a>
+      <a href="buy.html" class="buy-cta">BUY</a>
+      <a href="contact.html">Contact</a>
+      <a href="returns.html">Returns</a>
+    </div>
+
+    <!-- Mobile menu button -->
+    <button class="nav-toggle" aria-label="Menu">Menu</button>
+  </nav>
+</header>
+
+  <main>
+    <!-- Futuro contact content goes here -->
+  </main>
+  <script>
+  // Auto-highlight the current page
+  const current = location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('.main-nav a').forEach(link => {
+    const href = link.getAttribute('href').split('/').pop();
+    if (href === current) link.classList.add('active');
+  });
+
+  // Mobile toggle (if you want it)
+  document.querySelector('.nav-toggle')?.addEventListener('click', () => {
+    document.querySelector('.main-nav').classList.toggle('open');
+  });
+</script>
+</body>
+
+</html>
