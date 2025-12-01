@@ -199,7 +199,7 @@ def run_step(instruction: str):
 
 if __name__ == "__main__":
     instruction = """
-    On the about page, elaborate on this.  How Quantum computing is a paradigm of computation that leverages quantum-mechanical phenomena, including superposition and entanglement, to manipulate quantum bits (qubits) within a multidimensional Hilbert space, thereby enabling parallel processing capabilities unattainable by classical bit-based systems for certain complex problems such as integer factorization and molecular simulation.[1] Unlike classical computers, which operate on deterministic binary states, quantum systems exploit wave-like interference and probabilistic amplitudes associated with qubit states to achieve potential exponential speedups in specific algorithms
+    Expand on the code page.  Say how that the exponential growth of computing comes from when computers can program themselves, like how this website is being built by a computer.  Try to avoid mentioning specific names of people.  Instead, describe the physics and terminological words of the subject matter.  make a heirarchiical graph of all matter particles, about atoms and gluons and quarks, and electrons, and antiprotons.  All that jazz.   
     """
 
     run_step(instruction)

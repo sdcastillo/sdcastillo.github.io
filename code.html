@@ -30,7 +30,66 @@
 </header>
 
   <main>
-    <blockquote>“It is more important to have beauty in one's equations than to have them fit experiment.” — Paul A. M. Dirac</blockquote>
+    <h1>Code that writes code</h1>
+    <p>Exponential-looking growth in computing emerges when systems can improve their own code. Once a loop exists that can generate, execute, measure, and refine programs, capability compounds: each improvement enhances the next round of search over the program phase space. The driver is not just device density, but a feedback process that compresses errors, increases information flow, and reduces effective entropy in the distribution of behaviors.</p>
+
+    <h2>Mechanism of self-improvement (physics and information terms)</h2>
+    <ul>
+      <li>Program synthesis as guided search over a high-dimensional landscape; gradients, heuristics, and discrete exploration move candidates toward lower loss (energy-like objective).</li>
+      <li>Error-correcting feedback reduces uncertainty: observations act as measurements that collapse hypotheses, concentrating probability mass on higher-fidelity code.</li>
+      <li>Thermodynamics of computation: every irreversible operation dissipates energy; efficient self-editing favors representations and compilers that minimize erasures while maximizing useful work per joule.</li>
+      <li>Compression and generalization: shorter effective descriptions (lower algorithmic complexity) tend to transfer across tasks, enabling accelerated reuse and faster convergence on new problems.</li>
+    </ul>
+
+    <h2>How this page is assembled</h2>
+    <p>This page was assembled with automated assistance: generative tooling produced structure and text, which were reviewed and emitted as static HTML. In other words, the site itself serves as a small example of code that helps author more code. AI for Not Bad.</p>
+
+    <h2>Minimal meta-programming sketch</h2>
+    <pre><code>// Pseudocode for a self-improving loop
+population = initialize_programs()
+while (time &lt; budget):
+  for prog in population:
+    result = execute(prog, tests)
+    score  = measure(result)
+    log(result, score)
+  models = fit_surrogates(log)          // learn to predict score from program features
+  proposals = propose(models)           // synthesize or mutate new programs
+  population = select(population, proposals, log) // keep better, diverse candidates
+  if converged(population): break
+deploy(best(population))
+</code></pre>
+
+    <h2>Hierarchical graph of matter and interactions</h2>
+    <pre>Universe
+└─ Quantum fields
+   ├─ Fermion fields (matter)
+   │  ├─ Quarks (color charge: red/green/blue)
+   │  │  ├─ Flavors: up, down, charm, strange, top, bottom
+   │  │  └─ Bound states (hadrons)
+   │  │     ├─ Baryons (3 quarks)
+   │  │     │  ├─ Proton: u u d
+   │  │     │  ├─ Neutron: u d d
+   │  │     │  └─ Antibaryons (3 antiquarks)
+   │  │     │     └─ Antiproton: ū ū d̄
+   │  │     └─ Mesons (quark + antiquark)
+   │  └─ Leptons
+   │     ├─ Electron, Muon, Tau
+   │     └─ Neutrinos (three types) + corresponding antiparticles (e.g., positron)
+   ├─ Boson fields (interaction carriers)
+   │  ├─ Gluons (strong interaction, SU(3) color)
+   │  ├─ Photon (electromagnetic, U(1))
+   │  ├─ W± and Z⁰ (weak interaction)
+   │  └─ Gravitational quantum (graviton, hypothetical)
+   └─ Scalar field associated with electroweak symmetry breaking
+      └─ Scalar boson (mass-generating excitation)
+
+Composite structures
+└─ Atomic nucleus: protons + neutrons (held by residual strong force)
+   ├─ Atoms: nucleus + electron cloud (quantized orbitals)
+   ├─ Molecules: atoms bound via electromagnetic interaction
+   └─ Condensed phases: solids, liquids, gases, plasmas, exotic matter
+</pre>
+    <p>“Matter” typically denotes fermions and their composites. Gauge bosons (such as gluons) mediate interactions and are included for completeness.</p>
   </main>
   <script>
   // Auto-highlight the current page
