@@ -199,8 +199,67 @@ def run_step(instruction: str):
 
 if __name__ == "__main__":
     instruction = """
-    On the footer of the pages, say this is an archive of a website 2040.  Retreived from the 2040 archive.  Last accessed June 2041.  The internet ended after that.
-    Inset the atomic number the periodic table in base 11.  No explanations.
-    Around random different parts of the website, scatter prime numbers.  All prime numbers in base 11 because there are 11 dimensions in string theory.
----"""
+    Add this essay to the index.html page inside the <main> section near the top: Add h tags and style it nicely with CSS.
+    ## Key Trends Shaping the Future of Cybersecurity
+
+**Artificial Intelligence (AI) and Automation**
+
+AI is rapidly transforming both cyber offense and defense. Defenders are leveraging AI for:
+
+- Threat detection and hunting: AI models analyze vast datasets to identify patterns and anomalies, improving the speed and accuracy of threat detection.[1][5][6][7]
+- Behavioral analysis: AI establishes baselines for user and system behavior, flagging deviations that could indicate malicious activity.[7][1]
+- Predictive analytics: AI forecasts emerging threats and recommends proactive security measures, helping organizations prioritize patching and vulnerability management.[3][6][1]
+- Natural language processing (NLP): AI-driven NLP tools analyze emails, chat logs, and social media to detect phishing, malicious URLs, and suspicious content.[1]
+- Adaptive authentication: AI assesses user behavior during logins, triggering additional verification when anomalies are detected.[1]
+
+Meanwhile, attackers are also using AI to craft more sophisticated phishing campaigns, generate malware, and automate attacks, escalating the cyber arms race.[6][7]
+
+**Quantum Computing and Cryptography**
+
+Quantum computing is poised to disrupt cybersecurity by potentially breaking current encryption methods, making data vulnerable to decryption by quantum-capable adversaries. In response, research into quantum-resistant cryptography is accelerating, aiming to secure data against future quantum threats.[4][5][3]
+
+**Zero Trust Architectures and Proactive Defense**
+
+Organizations are shifting from traditional perimeter-based security to zero trust models, where continuous verification of users and devices is required, regardless of network location. This approach, combined with real-time monitoring and AI-powered threat detection, enables a more proactive and resilient defense posture.[6][7]
+
+**Cybercrime-as-a-Service and Evolving Threats**
+
+The proliferation of "Cybercrime-as-a-Service" platforms allows even non-technical actors to launch sophisticated attacks by purchasing tools and support, lowering barriers to entry for cybercriminals. Ransomware remains a dominant threat, often integrated with data theft and targeting backup systems to maximize impact.[4][7]
+
+**Human Factor and Skills Shortage**
+
+Human error continues to be a leading cause of breaches, and the cybersecurity workforce gap remains significant. As automation and AI handle more routine tasks, the industry is expected to shift from being human-dependent to human-focused, emphasizing user awareness, training, and the integration of advanced authentication methods (such as biometrics and behavioral analytics).[5][6]
+
+**Regulation, Privacy, and Digital Sovereignty**
+
+Governments are experimenting with new regulatory frameworks to address privacy, cross-border data transfers, and digital sovereignty. As internet fragmentation increases, regional differences in cybersecurity standards and enforcement may become more pronounced, impacting global collaboration and trust.[2]
+
+**Emerging Technologies and Expanding Attack Surfaces**
+
+The growth of 5G, autonomous systems, and the Internet of Things (IoT) introduces new vulnerabilities and larger attack surfaces, especially in critical infrastructure and smart cities. Cyber-physical systems present unique risks, with successful attacks potentially causing real-world harm.[6]
+
+## What to Expect by 2030
+
+- Passwords may become largely obsolete, replaced by biometrics and multi-factor authentication.[2][5]
+- Cybersecurity education will be more widespread, potentially taught in primary schools.[2]
+- Regulation and public-private collaboration will intensify, aiming to raise baseline security and address uneven progress across regions.[3][2]
+- AI-driven virtual CISOs and autonomous security agents may become commonplace, optimizing security decisions and resource allocation.[7]
+- The arms race between attackers and defenders will persist, driven by rapid technological innovation on both sides.[5][4][7]
+
+## Conclusion
+
+The future of cybersecurity will be defined by the interplay of advanced technologies-especially AI and quantum computing-shifting strategies from reactive to proactive, and a continuous tug-of-war between attackers and defenders. While no system will ever be 100% secure, organizations that invest in automation, continuous monitoring, user education, and adaptive defense will be best positioned to mitigate evolving threats.[5][7][1][6]
+
+[1](https://fieldeffect.com/blog/what-is-the-future-of-cyber-security)
+[2](https://cltc.berkeley.edu/publication/seven-trends-cybersecurity-2030/)
+[3](https://www.forbes.com/councils/forbestechcouncil/2024/07/11/the-future-of-cybersecurity-emerging-threats-and-how-to-combat-them/)
+[4](https://www.honeywell.com/us/en/news/2020/10/the-future-of-cybersecurity)
+[5](https://www.ie.edu/insights/ideas-to-shape-the-future/idea/what-is-the-future-of-cybersecurity/)
+[6](https://www.sharefile.com/resource/blogs/cybersecurity-trends)
+[7](https://reports.weforum.org/docs/WEF_Global_Cybersecurity_Outlook_2025.pdf)
+[8](https://www.deloitte.com/global/en/services/consulting-risk/research/global-future-of-cyber.html)
+[9](https://www.reddit.com/r/cybersecurity/comments/1bc3svk/how_do_you_feel_about_the_future_of_cybersecurity/)
+[10](https://www.youtube.com/watch?v=kqaMIFEz15s)
+    
+    """
     run_step(instruction)

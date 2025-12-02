@@ -6,13 +6,96 @@
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
   <link rel="stylesheet" href="style.css">
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-04RCQ7XES1"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ECY33592SW"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}    
     gtag('js', new Date());
-    gtag('config', 'G-04RCQ7XES1');
+    gtag('config', 'G-ECY33592SW');
   </script>
+  <style>
+    /* Collapsible periodic table styles (home page only) */
+    details.element-group {
+      margin: 0.75rem 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 0.5rem 0.75rem;
+      background: #fafafa;
+    }
+    details.element-group > summary {
+      cursor: pointer;
+      font-weight: 600;
+      list-style: none;
+    }
+    details.element-group[open] {
+      background: #f0f4ff;
+    }
+    .periodic-table-wrapper {
+      margin-top: 1rem;
+      max-height: 70vh;
+      overflow-y: auto;
+      border-top: 1px solid #ddd;
+      padding-top: 0.5rem;
+    }
+    .element-atomic {
+      white-space: nowrap;
+    }
+    .element-atomic small {
+      color: #555;
+      font-size: 0.75em;
+      margin-left: 0.25rem;
+    }
+    /* Cybersecurity trends section styling */
+    .cyber-section {
+      margin: 2rem 0 2.5rem;
+      padding: 1.5rem 1.75rem;
+      border-radius: 8px;
+      background: #060b1a;
+      color: #f5f7ff;
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.06), 0 18px 45px rgba(0,0,0,0.5);
+    }
+    .cyber-section h2 {
+      margin-top: 0;
+      margin-bottom: 0.75rem;
+      font-size: 1.6rem;
+    }
+    .cyber-section h3 {
+      margin-top: 1.5rem;
+      margin-bottom: 0.4rem;
+      font-size: 1.2rem;
+    }
+    .cyber-section p {
+      margin: 0.45rem 0;
+    }
+    .cyber-section ul {
+      margin: 0.35rem 0 0.75rem 1.4rem;
+      padding-left: 0;
+    }
+    .cyber-section li {
+      margin-bottom: 0.25rem;
+    }
+    .cyber-section strong {
+      color: #ffd166;
+    }
+    .cyber-section .cyber-meta {
+      font-size: 0.85rem;
+      opacity: 0.85;
+      margin-top: 0.75rem;
+    }
+    .cyber-section .cyber-refs {
+      margin-top: 1rem;
+      font-size: 0.8rem;
+      line-height: 1.4;
+      word-break: break-all;
+    }
+    .cyber-section .cyber-refs a {
+      color: #8ab4ff;
+      text-decoration: none;
+    }
+    .cyber-section .cyber-refs a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -42,6 +125,64 @@
   <main>
     <h1>Quantum Computing: Data-Driven Insights for Unbreakable Code.</h1>
     <p>Quantum physics is the branch of physics that explains the behavior of matter and light at atomic and subatomic scales. It introduces ideas like superposition (a system being in multiple states at once), entanglement (strong correlations between distant systems), and measurement that probabilistically collapses possibilities into outcomes. These principles, encoded in wavefunctions and operators, underlie technologies from lasers and semiconductors to emerging quantum computers that process information in fundamentally new ways.</p>
+
+    <section class="cyber-section">
+      <h2>Key Trends Shaping the Future of Cybersecurity</h2>
+
+      <h3>Artificial Intelligence (AI) and Automation</h3>
+      <p>AI is rapidly transforming both cyber offense and defense. Defenders are leveraging AI for:</p>
+      <ul>
+        <li><strong>Threat detection and hunting:</strong> AI models analyze vast datasets to identify patterns and anomalies, improving the speed and accuracy of threat detection.<span class="cyber-meta">[1][5][6][7]</span></li>
+        <li><strong>Behavioral analysis:</strong> AI establishes baselines for user and system behavior, flagging deviations that could indicate malicious activity.<span class="cyber-meta">[7][1]</span></li>
+        <li><strong>Predictive analytics:</strong> AI forecasts emerging threats and recommends proactive security measures, helping organizations prioritize patching and vulnerability management.<span class="cyber-meta">[3][6][1]</span></li>
+        <li><strong>Natural language processing (NLP):</strong> AI-driven NLP tools analyze emails, chat logs, and social media to detect phishing, malicious URLs, and suspicious content.<span class="cyber-meta">[1]</span></li>
+        <li><strong>Adaptive authentication:</strong> AI assesses user behavior during logins, triggering additional verification when anomalies are detected.<span class="cyber-meta">[1]</span></li>
+      </ul>
+      <p>Meanwhile, attackers are also using AI to craft more sophisticated phishing campaigns, generate malware, and automate attacks, escalating the cyber arms race.<span class="cyber-meta">[6][7]</span></p>
+
+      <h3>Quantum Computing and Cryptography</h3>
+      <p>Quantum computing is poised to disrupt cybersecurity by potentially breaking current encryption methods, making data vulnerable to decryption by quantum-capable adversaries. In response, research into quantum-resistant cryptography is accelerating, aiming to secure data against future quantum threats.<span class="cyber-meta">[4][5][3]</span></p>
+
+      <h3>Zero Trust Architectures and Proactive Defense</h3>
+      <p>Organizations are shifting from traditional perimeter-based security to zero trust models, where continuous verification of users and devices is required, regardless of network location. This approach, combined with real-time monitoring and AI-powered threat detection, enables a more proactive and resilient defense posture.<span class="cyber-meta">[6][7]</span></p>
+
+      <h3>Cybercrime-as-a-Service and Evolving Threats</h3>
+      <p>The proliferation of "Cybercrime-as-a-Service" platforms allows even non-technical actors to launch sophisticated attacks by purchasing tools and support, lowering barriers to entry for cybercriminals. Ransomware remains a dominant threat, often integrated with data theft and targeting backup systems to maximize impact.<span class="cyber-meta">[4][7]</span></p>
+
+      <h3>Human Factor and Skills Shortage</h3>
+      <p>Human error continues to be a leading cause of breaches, and the cybersecurity workforce gap remains significant. As automation and AI handle more routine tasks, the industry is expected to shift from being human-dependent to human-focused, emphasizing user awareness, training, and the integration of advanced authentication methods (such as biometrics and behavioral analytics).<span class="cyber-meta">[5][6]</span></p>
+
+      <h3>Regulation, Privacy, and Digital Sovereignty</h3>
+      <p>Governments are experimenting with new regulatory frameworks to address privacy, cross-border data transfers, and digital sovereignty. As internet fragmentation increases, regional differences in cybersecurity standards and enforcement may become more pronounced, impacting global collaboration and trust.<span class="cyber-meta">[2]</span></p>
+
+      <h3>Emerging Technologies and Expanding Attack Surfaces</h3>
+      <p>The growth of 5G, autonomous systems, and the Internet of Things (IoT) introduces new vulnerabilities and larger attack surfaces, especially in critical infrastructure and smart cities. Cyber-physical systems present unique risks, with successful attacks potentially causing real-world harm.<span class="cyber-meta">[6]</span></p>
+
+      <h3>What to Expect by 2030</h3>
+      <ul>
+        <li>Passwords may become largely obsolete, replaced by biometrics and multi-factor authentication.<span class="cyber-meta">[2][5]</span></li>
+        <li>Cybersecurity education will be more widespread, potentially taught in primary schools.<span class="cyber-meta">[2]</span></li>
+        <li>Regulation and public-private collaboration will intensify, aiming to raise baseline security and address uneven progress across regions.<span class="cyber-meta">[3][2]</span></li>
+        <li>AI-driven virtual CISOs and autonomous security agents may become commonplace, optimizing security decisions and resource allocation.<span class="cyber-meta">[7]</span></li>
+        <li>The arms race between attackers and defenders will persist, driven by rapid technological innovation on both sides.<span class="cyber-meta">[5][4][7]</span></li>
+      </ul>
+
+      <h3>Conclusion</h3>
+      <p>The future of cybersecurity will be defined by the interplay of advanced technologies—especially AI and quantum computing—shifting strategies from reactive to proactive, and a continuous tug-of-war between attackers and defenders. While no system will ever be 100% secure, organizations that invest in automation, continuous monitoring, user education, and adaptive defense will be best positioned to mitigate evolving threats.<span class="cyber-meta">[5][7][1][6]</span></p>
+
+      <div class="cyber-refs">
+        <span>[1]</span> <a href="https://fieldeffect.com/blog/what-is-the-future-of-cyber-security" target="_blank" rel="noopener noreferrer">Field Effect – What is the future of cyber security</a><br>
+        <span>[2]</span> <a href="https://cltc.berkeley.edu/publication/seven-trends-cybersecurity-2030/" target="_blank" rel="noopener noreferrer">Berkeley CLTC – Seven trends in cybersecurity 2030</a><br>
+        <span>[3]</span> <a href="https://www.forbes.com/councils/forbestechcouncil/2024/07/11/the-future-of-cybersecurity-emerging-threats-and-how-to-combat-them/" target="_blank" rel="noopener noreferrer">Forbes Tech Council – The future of cybersecurity</a><br>
+        <span>[4]</span> <a href="https://www.honeywell.com/us/en/news/2020/10/the-future-of-cybersecurity" target="_blank" rel="noopener noreferrer">Honeywell – The future of cybersecurity</a><br>
+        <span>[5]</span> <a href="https://www.ie.edu/insights/ideas-to-shape-the-future/idea/what-is-the-future-of-cybersecurity/" target="_blank" rel="noopener noreferrer">IE Insights – What is the future of cybersecurity?</a><br>
+        <span>[6]</span> <a href="https://www.sharefile.com/resource/blogs/cybersecurity-trends" target="_blank" rel="noopener noreferrer">ShareFile – Cybersecurity trends</a><br>
+        <span>[7]</span> <a href="https://reports.weforum.org/docs/WEF_Global_Cybersecurity_Outlook_2025.pdf" target="_blank" rel="noopener noreferrer">World Economic Forum – Global Cybersecurity Outlook 2025</a><br>
+        <span>[8]</span> <a href="https://www.deloitte.com/global/en/services/consulting-risk/research/global-future-of-cyber.html" target="_blank" rel="noopener noreferrer">Deloitte – Global future of cyber</a><br>
+        <span>[9]</span> <a href="https://www.reddit.com/r/cybersecurity/comments/1bc3svk/how_do_you_feel_about_the_future_of_cybersecurity/" target="_blank" rel="noopener noreferrer">Reddit – r/cybersecurity discussion</a><br>
+        <span>[10]</span> <a href="https://www.youtube.com/watch?v=kqaMIFEz15s" target="_blank" rel="noopener noreferrer">YouTube – Future of cybersecurity</a>
+      </div>
+    </section>
 
     <h2>Why the first humans to build powerful quantum machines could "get all the Bitcoin"</h2>
     <p>Bitcoin’s security today relies heavily on elliptic‑curve digital signatures (ECDSA over secp256k1). A sufficiently large, fault‑tolerant quantum computer running Shor’s algorithm could, in principle, derive a private key from its corresponding public key (or from a signature) in practical time. That would let an attacker authorize transfers for any coins whose public keys have been revealed—e.g., legacy P2PK outputs, reused addresses, many exchange hot wallets, and any transaction as soon as it appears in the mempool. By racing the network with a higher‑fee, conflicting transaction, such an attacker could sweep funds before honest confirmations land. While “all the Bitcoin” is hype—coins whose public keys remain unknown (hashed-only addresses) are safer until they are spent, and the network can migrate to post‑quantum signatures—the first mover with a capable quantum machine would have a dramatic, short‑term asymmetric advantage to steal a vast amount of coins and disrupt the ecosystem.</p>
@@ -80,6 +221,229 @@
     <section>
       <h2>Periodic Table of Elements with Disney-Style Personalities</h2>
       <p>Each element below is paired with a light, cartoon-like personality inspired by classic animated heroes, sidekicks, and villains (without using any studio trademarks).</p>
+      <!-- Collapsible group controls inserted for usability -->
+      <p><em>Tip:</em> Use the collapsible groups below to explore the table by element family. All original rows remain in the full table for reference.</p>
+
+      <details class="element-group" open>
+        <summary>Group 1: Alkali metals (H, Li, Na, K, Rb, Cs, Fr)</summary>
+        <div class="periodic-table-wrapper">
+          <table border="1" cellpadding="4" cellspacing="0">
+            <thead>
+              <tr>
+                <th>Symbol</th>
+                <th>Name</th>
+                <th>Personality (Disney-style archetype)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td class="element-atomic">H<small>(1)</small></td><td>Hydrogen</td><td>Curious kid sidekick who starts every adventure.</td></tr>
+              <tr><td class="element-atomic">Li<small>(3)</small></td><td>Lithium</td><td>Stoic guardian keeping the kingdom’s mood balanced.</td></tr>
+              <tr><td class="element-atomic">Na<small>(11)</small></td><td>Sodium</td><td>Impulsive friend who jumps into water and explodes with drama.</td></tr>
+              <tr><td class="element-atomic">K<small>(19)</small></td><td>Potassium</td><td>Hyperactive dancer who sparks on contact.</td></tr>
+              <tr><td class="element-atomic">Rb<small>(37)</small></td><td>Rubidium</td><td>Drama-queen sparkler who reacts at the slightest touch.</td></tr>
+              <tr><td class="element-atomic">Cs<small>(55)</small></td><td>Caesium</td><td>Highly dramatic royal who bursts into flames near water.</td></tr>
+              <tr><td class="element-atomic">Fr<small>(87)</small></td><td>Francium</td><td>Short-lived royal firecracker, rarely seen on stage.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+
+      <details class="element-group">
+        <summary>Group 2: Alkaline earth metals (Be, Mg, Ca, Sr, Ba, Ra)</summary>
+        <div class="periodic-table-wrapper">
+          <table border="1" cellpadding="4" cellspacing="0">
+            <thead>
+              <tr>
+                <th>Symbol</th>
+                <th>Name</th>
+                <th>Personality (Disney-style archetype)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td class="element-atomic">Be<small>(4)</small></td><td>Beryllium</td><td>Tough knight with a shiny, unbreakable armor.</td></tr>
+              <tr><td class="element-atomic">Mg<small>(12)</small></td><td>Magnesium</td><td>Reliable athlete who lights up the stadium when pushed.</td></tr>
+              <tr><td class="element-atomic">Ca<small>(20)</small></td><td>Calcium</td><td>Strong-boned mentor who builds castles and skeleton armies.</td></tr>
+              <tr><td class="element-atomic">Sr<small>(38)</small></td><td>Strontium</td><td>Fireworks choreographer painting the sky.</td></tr>
+              <tr><td class="element-atomic">Ba<small>(56)</small></td><td>Barium</td><td>Friendly doctor showing glowing pictures of your insides.</td></tr>
+              <tr><td class="element-atomic">Ra<small>(88)</small></td><td>Radium</td><td>Glowing clockmaker with a dangerous past.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+
+      <details class="element-group">
+        <summary>Transition metals & related (Sc → Zn, Y → Cd, Hf → Hg)</summary>
+        <div class="periodic-table-wrapper">
+          <table border="1" cellpadding="4" cellspacing="0">
+            <thead>
+              <tr>
+                <th>Symbol</th>
+                <th>Name</th>
+                <th>Personality (Disney-style archetype)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td class="element-atomic">Sc<small>(21)</small></td><td>Scandium</td><td>Background knight whose loyalty strengthens the armor.</td></tr>
+              <tr><td class="element-atomic">Ti<small>(22)</small></td><td>Titanium</td><td>Indestructible warrior with a sleek, shining suit.</td></tr>
+              <tr><td class="element-atomic">V<small>(23)</small></td><td>Vanadium</td><td>Shape-tuning artisan who forges mighty tools.</td></tr>
+              <tr><td class="element-atomic">Cr<small>(24)</small></td><td>Chromium</td><td>Mirror-finished fashionista obsessed with reflections.</td></tr>
+              <tr><td class="element-atomic">Mn<small>(25)</small></td><td>Manganese</td><td>Busy coordinator keeping all metal heroes in line.</td></tr>
+              <tr><td class="element-atomic">Fe<small>(26)</small></td><td>Iron</td><td>Blacksmith king building the backbone of kingdoms.</td></tr>
+              <tr><td class="element-atomic">Co<small>(27)</small></td><td>Cobalt</td><td>Blue-armored paladin radiating courage.</td></tr>
+              <tr><td class="element-atomic">Ni<small>(28)</small></td><td>Nickel</td><td>Street-smart hustler who never rusts under pressure.</td></tr>
+              <tr><td class="element-atomic">Cu<small>(29)</small></td><td>Copper</td><td>Chatty messenger running through wires with gossip.</td></tr>
+              <tr><td class="element-atomic">Zn<small>(30)</small></td><td>Zinc</td><td>Protective big sibling shielding others from the weather.</td></tr>
+              <tr><td class="element-atomic">Y<small>(39)</small></td><td>Yttrium</td><td>Quiet healer backstage in high-tech potions.</td></tr>
+              <tr><td class="element-atomic">Zr<small>(40)</small></td><td>Zirconium</td><td>Armor decorator who resists every flame.</td></tr>
+              <tr><td class="element-atomic">Nb<small>(41)</small></td><td>Niobium</td><td>Graceful acrobat bending without breaking.</td></tr>
+              <tr><td class="element-atomic">Mo<small>(42)</small></td><td>Molybdenum</td><td>Sturdy mechanic keeping engines from overheating.</td></tr>
+              <tr><td class="element-atomic">Tc<small>(43)</small></td><td>Technetium</td><td>Radioactive time-traveler who never occurs naturally in the village.</td></tr>
+              <tr><td class="element-atomic">Ru<small>(44)</small></td><td>Ruthenium</td><td>Stern judge polishing the rules of chemistry.</td></tr>
+              <tr><td class="element-atomic">Rh<small>(45)</small></td><td>Rhodium</td><td>Ultra-rare diva shining brighter than royalty.</td></tr>
+              <tr><td class="element-atomic">Pd<small>(46)</small></td><td>Palladium</td><td>Discreet butler catalyzing every plan behind the scenes.</td></tr>
+              <tr><td class="element-atomic">Ag<small>(47)</small></td><td>Silver</td><td>Charming prince with shimmering armor and quick wit.</td></tr>
+              <tr><td class="element-atomic">Cd<small>(48)</small></td><td>Cadmium</td><td>Moody artist whose pigments can be perilous.</td></tr>
+              <tr><td class="element-atomic">Hf<small>(72)</small></td><td>Hafnium</td><td>Reactor guardian with a love for control rods.</td></tr>
+              <tr><td class="element-atomic">Ta<small>(73)</small></td><td>Tantalum</td><td>Patient monk powering tiny devices peacefully.</td></tr>
+              <tr><td class="element-atomic">W<small>(74)</small></td><td>Tungsten</td><td>Heavyweight champion holding up blazing lights.</td></tr>
+              <tr><td class="element-atomic">Re<small>(75)</small></td><td>Rhenium</td><td>Jet-engine pilot thriving in blazing skies.</td></tr>
+              <tr><td class="element-atomic">Os<small>(76)</small></td><td>Osmium</td><td>Dense, serious counselor who takes everything heavily.</td></tr>
+              <tr><td class="element-atomic">Ir<small>(77)</small></td><td>Iridium</td><td>Unbreakable messenger crossing meteor storms.</td></tr>
+              <tr><td class="element-atomic">Pt<small>(78)</small></td><td>Platinum</td><td>Refined royal advisor with impeccable taste.</td></tr>
+              <tr><td class="element-atomic">Au<small>(79)</small></td><td>Gold</td><td>Charismatic ruler adored by treasuries everywhere.</td></tr>
+              <tr><td class="element-atomic">Hg<small>(80)</small></td><td>Mercury</td><td>Silvery shapeshifter racing like liquid feet.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+
+      <details class="element-group">
+        <summary>p-block main group elements, halogens & noble gases</summary>
+        <div class="periodic-table-wrapper">
+          <table border="1" cellpadding="4" cellspacing="0">
+            <thead>
+              <tr>
+                <th>Symbol</th>
+                <th>Name</th>
+                <th>Personality (Disney-style archetype)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td class="element-atomic">B<small>(5)</small></td><td>Boron</td><td>Quiet engineer who makes everyone else’s gadgets work.</td></tr>
+              <tr><td class="element-atomic">C<small>(6)</small></td><td>Carbon</td><td>Shape-shifting protagonist who can play any role.</td></tr>
+              <tr><td class="element-atomic">N<small>(7)</small></td><td>Nitrogen</td><td>Calm, breezy storyteller who covers the whole world.</td></tr>
+              <tr><td class="element-atomic">O<small>(8)</small></td><td>Oxygen</td><td>Energetic hero who keeps the entire cast alive and running.</td></tr>
+              <tr><td class="element-atomic">F<small>(9)</small></td><td>Fluorine</td><td>Overly intense trickster with a bite, best handled carefully.</td></tr>
+              <tr><td class="element-atomic">Ne<small>(10)</small></td><td>Neon</td><td>Flashy nightclub singer glowing on stage.</td></tr>
+              <tr><td class="element-atomic">Al<small>(13)</small></td><td>Aluminium</td><td>Flexible costume designer, light but surprisingly strong.</td></tr>
+              <tr><td class="element-atomic">Si<small>(14)</small></td><td>Silicon</td><td>Geeky wizard of gadgets powering every magic mirror-screen.</td></tr>
+              <tr><td class="element-atomic">P<small>(15)</small></td><td>Phosphorus</td><td>Glowing firefly guide who lights the hero’s path at night.</td></tr>
+              <tr><td class="element-atomic">S<small>(16)</small></td><td>Sulfur</td><td>Grumpy swamp dweller with a suspicious smell but a good heart.</td></tr>
+              <tr><td class="element-atomic">Cl<small>(17)</small></td><td>Chlorine</td><td>Strict pool lifeguard who keeps things clean and sharp.</td></tr>
+              <tr><td class="element-atomic">Ar<small>(18)</small></td><td>Argon</td><td>Silent bodyguard who’s noble, inert, and unbothered.</td></tr>
+              <tr><td class="element-atomic">Ga<small>(31)</small></td><td>Gallium</td><td>Shapeless prankster who melts in your royal hand.</td></tr>
+              <tr><td class="element-atomic">Ge<small>(32)</small></td><td>Germanium</td><td>Classic, old-school tech wizard in round glasses.</td></tr>
+              <tr><td class="element-atomic">As<small>(33)</small></td><td>Arsenic</td><td>Elegant but dangerous court poisoner.</td></tr>
+              <tr><td class="element-atomic">Se<small>(34)</small></td><td>Selenium</td><td>Sun-loving singer who converts light into music.</td></tr>
+              <tr><td class="element-atomic">Br<small>(35)</small></td><td>Bromine</td><td>Mysterious cloaked figure swirling like red-brown mist.</td></tr>
+              <tr><td class="element-atomic">Kr<small>(36)</small></td><td>Krypton</td><td>Shy glow spirit hiding in noble halls.</td></tr>
+              <tr><td class="element-atomic">In<small>(49)</small></td><td>Indium</td><td>Soft-spoken inventor leaving squeaky marks on glass.</td></tr>
+              <tr><td class="element-atomic">Sn<small>(50)</small></td><td>Tin</td><td>Toy soldier marching proudly, resistant to rust.</td></tr>
+              <tr><td class="element-atomic">Sb<small>(51)</small></td><td>Antimony</td><td>Alchemist mixing shiny and brittle potions.</td></tr>
+              <tr><td class="element-atomic">Te<small>(52)</small></td><td>Tellurium</td><td>Eccentric storyteller with a subtle metallic accent.</td></tr>
+              <tr><td class="element-atomic">I<small>(53)</small></td><td>Iodine</td><td>Traveling healer with a purple cloak and antiseptic charm.</td></tr>
+              <tr><td class="element-atomic">Xe<small>(54)</small></td><td>Xenon</td><td>Regal light mage casting bright white spells.</td></tr>
+              <tr><td class="element-atomic">Tl<small>(81)</small></td><td>Thallium</td><td>Shadowy figure whose gifts should not be trusted.</td></tr>
+              <tr><td class="element-atomic">Pb<small>(82)</small></td><td>Lead</td><td>Heavy, ancient guard once used in every castle wall.</td></tr>
+              <tr><td class="element-atomic">Bi<small>(83)</small></td><td>Bismuth</td><td>Rainbow-crystal artist making iridescent stairs.</td></tr>
+              <tr><td class="element-atomic">Po<small>(84)</small></td><td>Polonium</td><td>Radioactive spy whose touch is powerful and perilous.</td></tr>
+              <tr><td class="element-atomic">At<small>(85)</small></td><td>Astatine</td><td>Elusive phantom appearing only in tiny whispers.</td></tr>
+              <tr><td class="element-atomic">Rn<small>(86)</small></td><td>Radon</td><td>Invisible ghost drifting through old castle basements.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+
+      <details class="element-group">
+        <summary>Lanthanides & actinides (La → Lu, Ac → Lr)</summary>
+        <div class="periodic-table-wrapper">
+          <table border="1" cellpadding="4" cellspacing="0">
+            <thead>
+              <tr>
+                <th>Symbol</th>
+                <th>Name</th>
+                <th>Personality (Disney-style archetype)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td class="element-atomic">La<small>(57)</small></td><td>Lanthanum</td><td>Hidden elder who quietly starts a whole new saga.</td></tr>
+              <tr><td class="element-atomic">Ce<small>(58)</small></td><td>Cerium</td><td>Spark-throwing blacksmith lighting flint in one strike.</td></tr>
+              <tr><td class="element-atomic">Pr<small>(59)</small></td><td>Praseodymium</td><td>Green-robed forest mage of rare earths.</td></tr>
+              <tr><td class="element-atomic">Nd<small>(60)</small></td><td>Neodymium</td><td>Magnet-wielding warrior pulling metals from afar.</td></tr>
+              <tr><td class="element-atomic">Pm<small>(61)</small></td><td>Promethium</td><td>Secretive fire thief whose glow is rarely seen.</td></tr>
+              <tr><td class="element-atomic">Sm<small>(62)</small></td><td>Samarium</td><td>Steady guardian of nuclear secrets.</td></tr>
+              <tr><td class="element-atomic">Eu<small>(63)</small></td><td>Europium</td><td>Glow-in-the-dark prankster who loves night scenes.</td></tr>
+              <tr><td class="element-atomic">Gd<small>(64)</small></td><td>Gadolinium</td><td>Magnetic healer assisting in enchanted scans.</td></tr>
+              <tr><td class="element-atomic">Tb<small>(65)</small></td><td>Terbium</td><td>Green-flame stage magician in the lighting crew.</td></tr>
+              <tr><td class="element-atomic">Dy<small>(66)</small></td><td>Dysprosium</td><td>Resilient guardian who keeps his powers in extreme heat.</td></tr>
+              <tr><td class="element-atomic">Ho<small>(67)</small></td><td>Holmium</td><td>Loud-voiced bard with magnetic charm.</td></tr>
+              <tr><td class="element-atomic">Er<small>(68)</small></td><td>Erbium</td><td>Soft-spoken fiber mage guiding light through strands.</td></tr>
+              <tr><td class="element-atomic">Tm<small>(69)</small></td><td>Thulium</td><td>Rare, scholarly wizard buried in ancient scrolls.</td></tr>
+              <tr><td class="element-atomic">Yb<small>(70)</small></td><td>Ytterbium</td><td>Laid-back rare-earth surfer, surprisingly tough.</td></tr>
+              <tr><td class="element-atomic">Lu<small>(71)</small></td><td>Lutetium</td><td>Densely packed librarian of the lanthanide wing.</td></tr>
+              <tr><td class="element-atomic">Ac<small>(89)</small></td><td>Actinium</td><td>Luminescent ancestor starting the actinide saga.</td></tr>
+              <tr><td class="element-atomic">Th<small>(90)</small></td><td>Thorium</td><td>Stoic titan of slow-burning power.</td></tr>
+              <tr><td class="element-atomic">Pa<small>(91)</small></td><td>Protactinium</td><td>Mysterious scholar lurking in rare samples.</td></tr>
+              <tr><td class="element-atomic">U<small>(92)</small></td><td>Uranium</td><td>Brooding giant with immense, split-able power.</td></tr>
+              <tr><td class="element-atomic">Np<small>(93)</small></td><td>Neptunium</td><td>Sea-blue wanderer forged in reactors.</td></tr>
+              <tr><td class="element-atomic">Pu<small>(94)</small></td><td>Plutonium</td><td>Volatile antihero glowing with forbidden energy.</td></tr>
+              <tr><td class="element-atomic">Am<small>(95)</small></td><td>Americium</td><td>Smoke-alarm caretaker watching over every cottage.</td></tr>
+              <tr><td class="element-atomic">Cm<small>(96)</small></td><td>Curium</td><td>Radiant researcher named after legendary explorers.</td></tr>
+              <tr><td class="element-atomic">Bk<small>(97)</small></td><td>Berkelium</td><td>Lab-bound tinkerer born in a research town.</td></tr>
+              <tr><td class="element-atomic">Cf<small>(98)</small></td><td>Californium</td><td>Powerful but reclusive star of neutron shows.</td></tr>
+              <tr><td class="element-atomic">Es<small>(99)</small></td><td>Einsteinium</td><td>Brilliant but unstable genius glowing quietly.</td></tr>
+              <tr><td class="element-atomic">Fm<small>(100)</small></td><td>Fermium</td><td>Serious professor born in the heart of experiments.</td></tr>
+              <tr><td class="element-atomic">Md<small>(101)</small></td><td>Mendelevium</td><td>Archivist honoring the creator of the table itself.</td></tr>
+              <tr><td class="element-atomic">No<small>(102)</small></td><td>Nobelium</td><td>Prize-giving spirit of discovery and recognition.</td></tr>
+              <tr><td class="element-atomic">Lr<small>(103)</small></td><td>Lawrencium</td><td>Collider conjurer appearing only in high-energy labs.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+
+      <details class="element-group">
+        <summary>Superheavy and post-transition (Rf → Og)</summary>
+        <div class="periodic-table-wrapper">
+          <table border="1" cellpadding="4" cellspacing="0">
+            <thead>
+              <tr>
+                <th>Symbol</th>
+                <th>Name</th>
+                <th>Personality (Disney-style archetype)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td class="element-atomic">Rf<small>(104)</small></td><td>Rutherfordium</td><td>Nuclear pioneer examining tiny planetary orbits.</td></tr>
+              <tr><td class="element-atomic">Db<small>(105)</small></td><td>Dubnium</td><td>Secretive council member known mostly to scientists.</td></tr>
+              <tr><td class="element-atomic">Sg<small>(106)</small></td><td>Seaborgium</td><td>Wise elder named for a legendary element hunter.</td></tr>
+              <tr><td class="element-atomic">Bh<small>(107)</small></td><td>Bohrium</td><td>Thoughtful theorist with very short appearances.</td></tr>
+              <tr><td class="element-atomic">Hs<small>(108)</small></td><td>Hassium</td><td>Heavy guard who vanishes almost instantly.</td></tr>
+              <tr><td class="element-atomic">Mt<small>(109)</small></td><td>Meitnerium</td><td>Brilliant, under-recognized physicist spirit.</td></tr>
+              <tr><td class="element-atomic">Ds<small>(110)</small></td><td>Darmstadtium</td><td>Experimental newcomer with only cameo roles.</td></tr>
+              <tr><td class="element-atomic">Rg<small>(111)</small></td><td>Roentgenium</td><td>X-ray sorcerer appearing as a brief flash.</td></tr>
+              <tr><td class="element-atomic">Cn<small>(112)</small></td><td>Copernicium</td><td>Cosmic navigator who rearranged the heavens.</td></tr>
+              <tr><td class="element-atomic">Nh<small>(113)</small></td><td>Nihonium</td><td>Modern hero named for a far eastern land.</td></tr>
+              <tr><td class="element-atomic">Fl<small>(114)</small></td><td>Flerovium</td><td>Fleeting noble guest from a famed laboratory.</td></tr>
+              <tr><td class="element-atomic">Mc<small>(115)</small></td><td>Moscovium</td><td>Heavy statesman with a very short public address.</td></tr>
+              <tr><td class="element-atomic">Lv<small>(116)</small></td><td>Livermorium</td><td>Lab-born knight appearing for moments at a time.</td></tr>
+              <tr><td class="element-atomic">Ts<small>(117)</small></td><td>Tennessine</td><td>Mysterious borderland ranger on the periodic frontier.</td></tr>
+              <tr><td class="element-atomic">Og<small>(118)</small></td><td>Oganesson</td><td>Ghostly monarch of the far edge, almost beyond matter.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+
+      <div class="periodic-table-wrapper">
       <table border="1" cellpadding="4" cellspacing="0">
         <thead>
           <tr>
@@ -209,6 +573,7 @@
           <tr><td>Og</td><td>Oganesson</td><td>Ghostly monarch of the far edge, almost beyond matter.</td></tr>
         </tbody>
       </table>
+      </div>
     </section>
   </main>
   <script>
