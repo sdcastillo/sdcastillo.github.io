@@ -199,7 +199,7 @@ def run_step(instruction: str):
 
 if __name__ == "__main__":
     instruction = """
-    You must update ONLY the BUY.html page.  Embed this page in iframe: https://calculus-notebook-ace.lovable.app/
+    You must the headers of about.thml, buy.html, code.html, contact.html, index.itml, privacy.html, returns.thml, studymanual.html to have the style.css <link rel="stylesheet" href="style.css">
     """
 
     run_step(instruction)

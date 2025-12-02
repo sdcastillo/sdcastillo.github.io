@@ -1,0 +1,150 @@
+/* ============================================= */
+/*   BUBBLEGUM CYBERPUNK THEME – style.css       */
+/* ============================================= */
+
+:root {
+  --bg: #000000;
+  --pink: #FF69B4;        /* Bubblegum pink */
+  --hot-pink: #FF1493;
+  --soft-pink: #FFB6C1;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--bg);
+  color: var(--pink);
+  font-family: 'Courier New', monospace, sans-serif;
+  line-height: 1.7;
+  padding: 2rem 4rem;
+  min-height: 100vh;
+  position: relative;
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><text y="24" font-size="28">></text></svg>'), auto;
+  animation: blink-cursor 1s infinite;
+}
+
+@keyframes blink-cursor {
+  0%, 50%   { color: var(--pink); }
+  51%, 100% { color: var(--hot-pink); }
+}
+
+header { margin-bottom: 4rem; }
+
+.main-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 0;
+  border-bottom: 2px dashed var(--pink);
+  gap: 1rem;
+}
+
+.nav-left, .nav-right {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.main-nav a {
+  color: var(--soft-pink);
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  padding: 0.4rem 0;
+}
+
+.main-nav a:hover,
+.main-nav a.active {
+  color: var(--hot-pink);
+  text-shadow: 0 0 12px var(--hot-pink);
+}
+
+.buy-cta {
+  background: var(--hot-pink) !important;
+  color: black !important;
+  padding: 0.6rem 1.4rem !important;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.buy-cta:hover {
+  background: white !important;
+  box-shadow: 0 0 15px var(--hot-pink);
+}
+
+blockquote {
+  font-size: 1.5rem;
+  font-style: italic;
+  text-align: center;
+  margin: 3rem 0;
+  padding: 2rem;
+  color: var(--soft-pink);
+  border-left: 6px solid var(--pink);
+  background: rgba(255, 105, 180, 0.1);
+}
+
+h1, h2 {
+  color: var(--hot-pink);
+  margin: 3rem 0 1.5rem;
+  text-shadow: 0 0 10px var(--hot-pink);
+}
+
+h1 { font-size: 2.8rem; text-align: center; }
+h2 { font-size: 2rem; }
+
+p, li {
+  margin-bottom: 1.2rem;
+  padding: 0 1rem;
+  max-width: 900px;
+}
+
+ul, ol {
+  margin: 1.5rem 0;
+  padding-left: 3rem;
+}
+
+li { margin-bottom: 0.8rem; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 3rem 0;
+  background: rgba(255, 105, 180, 0.05);
+}
+
+th, td {
+  border: 1px solid var(--pink);
+  padding: 1rem;
+  text-align: left;
+}
+
+th {
+  background: var(--hot-pink);
+  color: black;
+  font-weight: bold;
+}
+
+.terminal-cursor {
+  font-size: 3.5rem;
+  color: var(--hot-pink);
+  animation: blink 0.8s step-end infinite;
+  margin-top: 6rem;
+  text-align: center;
+}
+
+@keyframes blink {
+  0%, 50%  { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 900px) {
+  body { padding: 2rem; }
+  .main-nav { flex-direction: column; text-align: center; }
+  .nav-left, .nav-right { justify-content: center; }
+}
