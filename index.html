@@ -97,6 +97,151 @@
     .cyber-section .cyber-refs a:hover {
       text-decoration: underline;
     }
+    /* Simple hero CTA styling (home page) */
+    .hero-intro {
+      max-width: 720px;
+      margin-bottom: 1.25rem;
+    }
+    .hero-intro p {
+      margin: 0.25rem 0;
+    }
+    .hero-cta {
+      display: inline-block;
+      margin-top: 0.75rem;
+      padding: 0.6rem 1.3rem;
+      border-radius: 999px;
+      background: #0b5ed7;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+    .hero-cta:hover {
+      background: #0948a6;
+    }
+    /* Home-page summaries for long essays */
+    .home-summaries {
+      margin: 2.5rem 0 2rem;
+      padding: 1.5rem 1.75rem;
+      border-radius: 8px;
+      background: #f5f7ff;
+      border: 1px solid #d3ddff;
+    }
+    .home-summaries h2 {
+      margin-top: 0;
+      margin-bottom: 0.75rem;
+    }
+    .summary-card {
+      margin-bottom: 1rem;
+      padding: 0.75rem 0.8rem;
+      border-radius: 6px;
+      background: #ffffff;
+      border: 1px solid #e0e6ff;
+    }
+    .summary-card h3 {
+      margin: 0 0 0.4rem;
+      font-size: 1.05rem;
+    }
+    .summary-card p {
+      margin: 0.25rem 0 0.4rem;
+      font-size: 0.95rem;
+    }
+    .summary-meta {
+      font-size: 0.8rem;
+      color: #555;
+      margin-bottom: 0.25rem;
+    }
+    .read-more-inline {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #0b5ed7;
+      text-decoration: none;
+    }
+    .read-more-inline:hover {
+      text-decoration: underline;
+    }
+    /* Consulting section styling */
+    .consulting-intro {
+      margin: 1.75rem 0 2rem;
+      padding: 1.4rem 1.6rem;
+      border-radius: 8px;
+      background: #050816;
+      color: #f9fbff;
+      box-shadow: 0 0 0 1px rgba(11,94,215,0.4), 0 16px 40px rgba(0,0,0,0.55);
+      max-width: 860px;
+    }
+    .consulting-intro h2 {
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+      font-size: 1.4rem;
+    }
+    .consulting-intro p {
+      margin: 0.3rem 0 0.6rem;
+      font-size: 0.96rem;
+    }
+    .consulting-columns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-top: 0.75rem;
+    }
+    .consulting-col {
+      flex: 1 1 260px;
+      min-width: 0;
+    }
+    .consulting-col h3 {
+      margin: 0 0 0.35rem;
+      font-size: 1.05rem;
+    }
+    .consulting-col ul {
+      margin: 0.15rem 0 0.4rem 1.1rem;
+      padding-left: 0;
+      font-size: 0.92rem;
+    }
+    .consulting-col li {
+      margin-bottom: 0.25rem;
+    }
+    .consulting-note {
+      font-size: 0.82rem;
+      opacity: 0.85;
+      margin-top: 0.35rem;
+    }
+    .consulting-cta-row {
+      margin-top: 0.75rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+    .consulting-cta-primary,
+    .consulting-cta-secondary {
+      display: inline-block;
+      padding: 0.55rem 1.15rem;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .consulting-cta-primary {
+      background: #0b5ed7;
+      color: #fff;
+    }
+    .consulting-cta-primary:hover {
+      background: #0948a6;
+    }
+    .consulting-cta-secondary {
+      background: transparent;
+      color: #c3d3ff;
+      border: 1px solid rgba(195,211,255,0.7);
+    }
+    .consulting-cta-secondary:hover {
+      background: rgba(195,211,255,0.08);
+    }
+    @media (max-width: 640px) {
+      .consulting-intro {
+        padding: 1.1rem 1.2rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -126,9 +271,93 @@
 
   <main>
     <h1>Quantum Computing: Data-Driven Insights for Unbreakable Code.</h1>
+    <div class="hero-intro">
+      <p><strong>Predictive Insights using AI</strong> helps you see around corners: I use machine learning and statistical modeling to surface the risks and opportunities hidden in your data.</p>
+      <p>As quantum hardware scales, those same predictive analytics will tap into exponentially larger state spaces, making it possible to explore threat scenarios, portfolios, and code paths that classical machines can only approximate.</p>
+      <p><a href="studymanual.html" class="hero-cta">Explore the Study Manual &amp; Predictive Insights</a></p>
+    </div>
+
+    <section class="consulting-intro" id="consulting">
+      <h2>Consulting: from messy data to defendable decisions</h2>
+      <p>I work with a small number of teams as a hands-on advisor and builder. If you want more than a slide deck—if you want working models, code, and clear risk trade‑offs—this is for you.</p>
+      <div class="consulting-columns">
+        <div class="consulting-col">
+          <h3>Who this is for</h3>
+          <ul>
+            <li>Founders and CTOs who need a <strong>technical co‑pilot</strong> on AI, LLMs, or data infra without hiring a full‑time lead yet.</li>
+            <li>Security and risk leaders who want a <strong>quantum‑aware view</strong> of cryptography, portfolio exposure, or regulatory impact.</li>
+            <li>Product and ops teams sitting on data they <strong>know is valuable</strong> but haven’t turned into models, dashboards, or automation.</li>
+            <li>Educators and content teams who want <strong>clear, technically accurate explainers</strong> on AI and quantum for non‑experts.</li>
+          </ul>
+        </div>
+        <div class="consulting-col">
+          <h3>What you get</h3>
+          <ul>
+            <li><strong>Deep‑dive working session</strong> (60–90 minutes) to map your data, constraints, and upside into a concrete plan.</li>
+            <li><strong>Written roadmap</strong> with 30/90‑day actions: architecture sketches, tool choices, and model priorities.</li>
+            <li><strong>Hands‑on builds</strong> where we actually ship: ETL pipelines, notebooks, LLM agents, or risk models in code.</li>
+            <li><strong>Executive‑ready notes</strong> explaining risk, ROI, and limitations in plain English for boards and non‑technical leaders.</li>
+          </ul>
+          <p class="consulting-note">Typical engagements range from a one‑off strategy sprint to a few days per month of fractional data/AI leadership.</p>
+        </div>
+      </div>
+      <div class="consulting-cta-row">
+        <a href="contact.html" class="consulting-cta-primary">Request a consulting call</a>
+        <a href="buy.html" class="consulting-cta-secondary">See current offers &amp; study products</a>
+      </div>
+    </section>
+
+    <!-- NEW: Home-page summaries pointing to longer essays hosted in existing sections/pages -->
+    <section class="home-summaries">
+      <h2>Featured Deep Dives (Skimmable Intros)</h2>
+
+      <article class="summary-card">
+        <div class="summary-meta">Cybersecurity • AI • Quantum • 8–12 minute read</div>
+        <h3>Future of Cybersecurity: AI Arms Races and Quantum-Risky Cryptography</h3>
+        <p>
+          A high-level tour of where cyber defense is heading between now and 2030: AI-assisted threat detection, zero-trust architectures, cybercrime-as-a-service, human-factor bottlenecks, and the uncomfortable overlap between large-scale quantum computers and today’s encryption.
+        </p>
+        <p>
+          This is the long-form essay that lives in the dark "Key Trends Shaping the Future of Cybersecurity" section below, but rewritten in plain language with concrete references and predictions.
+        </p>
+        <p>
+          <a href="#future-of-cybersecurity-full" class="read-more-inline">Read the full cybersecurity essay on this page ↓</a>
+        </p>
+      </article>
+
+      <article class="summary-card">
+        <div class="summary-meta">Crypto • Quantum Algorithms • 4–6 minute read</div>
+        <h3>Quantum vs. Bitcoin: Why Early Quantum Machines Could Steal Exposed Coins</h3>
+        <p>
+          Short, actionable explainer on how Shor’s algorithm interacts with ECDSA over secp256k1, why only some UTXOs are at direct risk, how a quantum attacker could race honest miners in the mempool, and what realistically happens to "all the Bitcoin" during the first quantum-break window.
+        </p>
+        <p>
+          The longer version sits in the paragraph starting with “Why the first humans to build powerful quantum machines could \"get all the Bitcoin\"” further down this home page.
+        </p>
+        <p>
+          <a href="#quantum-bitcoin-risk-full" class="read-more-inline">Read the full Bitcoin &amp; quantum risk note on this page ↓</a>
+        </p>
+      </article>
+
+      <article class="summary-card">
+        <div class="summary-meta">Education • Quantum Intuition • 6–10 minute read</div>
+        <h3>Quantum Computing in Plain Language (For Busy Adults and Curious Teens)</h3>
+        <p>
+          An analogy-first introduction to qubits, superposition, entanglement, and interference. No formalism required: coins in mid-air, arrows on a sphere, and how "trying all passwords at once" is both accurate and misleading as a metaphor.
+        </p>
+        <p>
+          The full article appears later on this page under the heading “Quantum computing in plain language” and pairs well with the 12-step roadmap in the <em>Study Manual</em>.
+        </p>
+        <p>
+          <a href="#quantum-plain-language-full" class="read-more-inline">Jump to the full plain-language explainer below ↓</a>
+        </p>
+      </article>
+    </section>
+
     <p>Quantum physics is the branch of physics that explains the behavior of matter and light at atomic and subatomic scales. It introduces ideas like superposition (a system being in multiple states at once), entanglement (strong correlations between distant systems), and measurement that probabilistically collapses possibilities into outcomes. These principles, encoded in wavefunctions and operators, underlie technologies from lasers and semiconductors to emerging quantum computers that process information in fundamentally new ways.</p>
 
-    <section class="cyber-section">
+    <!-- Anchor to treat this as the full cybersecurity blog post -->
+    <section class="cyber-section" id="future-of-cybersecurity-full">
       <h2>Key Trends Shaping the Future of Cybersecurity</h2>
 
       <h3>Artificial Intelligence (AI) and Automation</h3>
@@ -173,6 +402,22 @@
       <p>The future of cybersecurity will be defined by the interplay of advanced technologies—especially AI and quantum computing—shifting strategies from reactive to proactive, and a continuous tug-of-war between attackers and defenders. While no system will ever be 100% secure, organizations that invest in automation, continuous monitoring, user education, and adaptive defense will be best positioned to mitigate evolving threats.<span class="cyber-meta">[5][7][1][6]</span></p>
 
       <div class="cyber-refs">
+        <h4>Sources &amp; Further Reading</h4>
+        <p>
+          The cyber trends summarized here draw on a mix of practitioner write‑ups, academic and policy reports, and industry research. For a narrative, non‑academic view of where day‑to‑day security operations are heading, Field Effect’s overview of the future of cybersecurity and IE University’s <em>What is the future of cybersecurity?</em> both emphasize AI‑driven monitoring, incident‑response automation, and the continued importance of human training.
+        </p>
+        <p>
+          For longer‑horizon scenarios (toward 2030), Berkeley’s Center for Long‑Term Cybersecurity outlines seven structural trends—from skills shortages to shifting geopolitics—while Deloitte’s <em>Global Future of Cyber</em> and the World Economic Forum’s <em>Global Cybersecurity Outlook 2025</em> provide board‑level perspectives on risk, regulation, and public‑private collaboration.
+        </p>
+        <p>
+          Honeywell and ShareFile each offer accessible takes on operational trends like OT/ICS exposure, ransomware, and the impact of 5G and IoT on attack surface. A Forbes Technology Council piece usefully frames how emerging threats and defensive tooling interact from an executive standpoint.
+        </p>
+        <p>
+          If you prefer primary‑source PDFs and community discussion, the WEF report and Deloitte study (linked below) give data‑heavy context, while threads in communities like r/cybersecurity capture how practitioners on the ground feel about burnout, automation, and the AI arms race.
+        </p>
+        <p>
+          Original source links, for readers who want to go straight to the underlying reports and articles:
+        </p>
         <span>[1]</span> <a href="https://fieldeffect.com/blog/what-is-the-future-of-cyber-security" target="_blank" rel="noopener noreferrer">Field Effect – What is the future of cyber security</a><br>
         <span>[2]</span> <a href="https://cltc.berkeley.edu/publication/seven-trends-cybersecurity-2030/" target="_blank" rel="noopener noreferrer">Berkeley CLTC – Seven trends in cybersecurity 2030</a><br>
         <span>[3]</span> <a href="https://www.forbes.com/councils/forbestechcouncil/2024/07/11/the-future-of-cybersecurity-emerging-threats-and-how-to-combat-them/" target="_blank" rel="noopener noreferrer">Forbes Tech Council – The future of cybersecurity</a><br>
@@ -186,12 +431,13 @@
       </div>
     </section>
 
-    <h2>Why the first humans to build powerful quantum machines could "get all the Bitcoin"</h2>
+    <!-- Anchor id so the Bitcoin/quantum piece can be treated as a full post -->
+    <h2 id="quantum-bitcoin-risk-full">Why the first humans to build powerful quantum machines could "get all the Bitcoin"</h2>
     <p>Bitcoin’s security today relies heavily on elliptic‑curve digital signatures (ECDSA over secp256k1). A sufficiently large, fault‑tolerant quantum computer running Shor’s algorithm could, in principle, derive a private key from its corresponding public key (or from a signature) in practical time. That would let an attacker authorize transfers for any coins whose public keys have been revealed—e.g., legacy P2PK outputs, reused addresses, many exchange hot wallets, and any transaction as soon as it appears in the mempool. By racing the network with a higher‑fee, conflicting transaction, such an attacker could sweep funds before honest confirmations land. While “all the Bitcoin” is hype—coins whose public keys remain unknown (hashed-only addresses) are safer until they are spent, and the network can migrate to post‑quantum signatures—the first mover with a capable quantum machine would have a dramatic, short‑term asymmetric advantage to steal a vast amount of coins and disrupt the ecosystem.</p>
 
     <blockquote>“The most incomprehensible thing about the universe is that it is comprehensible.” — Albert Einstein</blockquote>
 
-    <section>
+    <section id="quantum-plain-language-full">
       <h2>Quantum computing in plain language</h2>
       <p>Imagine your regular computer is like a super-fast calculator that flips switches on and off—those are bits, and they’re either 0 or 1. Everything your laptop does (games, videos, homework) is just a giant pile of 0s and 1s getting shuffled around.</p>
       <p>Now, quantum computing is like giving those switches superhero powers. Instead of being stuck as 0 or 1, a quantum bit (called a qubit) can be 0, 1, or both at the same time. It’s like spinning a coin in the air—it’s heads and tails until it lands.</p>
@@ -274,7 +520,7 @@
       </details>
 
       <details class="element-group">
-        <summary>Transition metals & related (Sc → Zn, Y → Cd, Hf → Hg)</summary>
+        <summary>Transition metals &amp; related (Sc → Zn, Y → Cd, Hf → Hg)</summary>
         <div class="periodic-table-wrapper">
           <table border="1" cellpadding="4" cellspacing="0">
             <thead>
@@ -320,7 +566,7 @@
       </details>
 
       <details class="element-group">
-        <summary>p-block main group elements, halogens & noble gases</summary>
+        <summary>p-block main group elements, halogens &amp; noble gases</summary>
         <div class="periodic-table-wrapper">
           <table border="1" cellpadding="4" cellspacing="0">
             <thead>
@@ -367,7 +613,7 @@
       </details>
 
       <details class="element-group">
-        <summary>Lanthanides & actinides (La → Lu, Ac → Lr)</summary>
+        <summary>Lanthanides &amp; actinides (La → Lu, Ac → Lr)</summary>
         <div class="periodic-table-wrapper">
           <table border="1" cellpadding="4" cellspacing="0">
             <thead>
@@ -444,138 +690,6 @@
           </table>
         </div>
       </details>
-
-      <div class="periodic-table-wrapper">
-      <table border="1" cellpadding="4" cellspacing="0">
-        <thead>
-          <tr>
-            <th>Symbol</th>
-            <th>Name</th>
-            <th>Personality (Disney-style archetype)</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>H</td><td>Hydrogen</td><td>Curious kid sidekick who starts every adventure.</td></tr>
-          <tr><td>He</td><td>Helium</td><td>Giggly balloon jester floating above the crowd.</td></tr>
-          <tr><td>Li</td><td>Lithium</td><td>Stoic guardian keeping the kingdom’s mood balanced.</td></tr>
-          <tr><td>Be</td><td>Beryllium</td><td>Tough knight with a shiny, unbreakable armor.</td></tr>
-          <tr><td>B</td><td>Boron</td><td>Quiet engineer who makes everyone else’s gadgets work.</td></tr>
-          <tr><td>C</td><td>Carbon</td><td>Shape-shifting protagonist who can play any role.</td></tr>
-          <tr><td>N</td><td>Nitrogen</td><td>Calm, breezy storyteller who covers the whole world.</td></tr>
-          <tr><td>O</td><td>Oxygen</td><td>Energetic hero who keeps the entire cast alive and running.</td></tr>
-          <tr><td>F</td><td>Fluorine</td><td>Overly intense trickster with a bite, best handled carefully.</td></tr>
-          <tr><td>Ne</td><td>Neon</td><td>Flashy nightclub singer glowing on stage.</td></tr>
-          <tr><td>Na</td><td>Sodium</td><td>Impulsive friend who jumps into water and explodes with drama.</td></tr>
-          <tr><td>Mg</td><td>Magnesium</td><td>Reliable athlete who lights up the stadium when pushed.</td></tr>
-          <tr><td>Al</td><td>Aluminium</td><td>Flexible costume designer, light but surprisingly strong.</td></tr>
-          <tr><td>Si</td><td>Silicon</td><td>Geeky wizard of gadgets powering every magic mirror-screen.</td></tr>
-          <tr><td>P</td><td>Phosphorus</td><td>Glowing firefly guide who lights the hero’s path at night.</td></tr>
-          <tr><td>S</td><td>Sulfur</td><td>Grumpy swamp dweller with a suspicious smell but a good heart.</td></tr>
-          <tr><td>Cl</td><td>Chlorine</td><td>Strict pool lifeguard who keeps things clean and sharp.</td></tr>
-          <tr><td>Ar</td><td>Argon</td><td>Silent bodyguard who’s noble, inert, and unbothered.</td></tr>
-          <tr><td>K</td><td>Potassium</td><td>Hyperactive dancer who sparks on contact.</td></tr>
-          <tr><td>Ca</td><td>Calcium</td><td>Strong-boned mentor who builds castles and skeleton armies.</td></tr>
-          <tr><td>Sc</td><td>Scandium</td><td>Background knight whose loyalty strengthens the armor.</td></tr>
-          <tr><td>Ti</td><td>Titanium</td><td>Indestructible warrior with a sleek, shining suit.</td></tr>
-          <tr><td>V</td><td>Vanadium</td><td>Shape-tuning artisan who forges mighty tools.</td></tr>
-          <tr><td>Cr</td><td>Chromium</td><td>Mirror-finished fashionista obsessed with reflections.</td></tr>
-          <tr><td>Mn</td><td>Manganese</td><td>Busy coordinator keeping all metal heroes in line.</td></tr>
-          <tr><td>Fe</td><td>Iron</td><td>Blacksmith king building the backbone of kingdoms.</td></tr>
-          <tr><td>Co</td><td>Cobalt</td><td>Blue-armored paladin radiating courage.</td></tr>
-          <tr><td>Ni</td><td>Nickel</td><td>Street-smart hustler who never rusts under pressure.</td></tr>
-          <tr><td>Cu</td><td>Copper</td><td>Chatty messenger running through wires with gossip.</td></tr>
-          <tr><td>Zn</td><td>Zinc</td><td>Protective big sibling shielding others from the weather.</td></tr>
-          <tr><td>Ga</td><td>Gallium</td><td>Shapeless prankster who melts in your royal hand.</td></tr>
-          <tr><td>Ge</td><td>Germanium</td><td>Classic, old-school tech wizard in round glasses.</td></tr>
-          <tr><td>As</td><td>Arsenic</td><td>Elegant but dangerous court poisoner.</td></tr>
-          <tr><td>Se</td><td>Selenium</td><td>Sun-loving singer who converts light into music.</td></tr>
-          <tr><td>Br</td><td>Bromine</td><td>Mysterious cloaked figure swirling like red-brown mist.</td></tr>
-          <tr><td>Kr</td><td>Krypton</td><td>Shy glow spirit hiding in noble halls.</td></tr>
-          <tr><td>Rb</td><td>Rubidium</td><td>Drama-queen sparkler who reacts at the slightest touch.</td></tr>
-          <tr><td>Sr</td><td>Strontium</td><td>Fireworks choreographer painting the sky.</td></tr>
-          <tr><td>Y</td><td>Yttrium</td><td>Quiet healer backstage in high-tech potions.</td></tr>
-          <tr><td>Zr</td><td>Zirconium</td><td>Armor decorator who resists every flame.</td></tr>
-          <tr><td>Nb</td><td>Niobium</td><td>Graceful acrobat bending without breaking.</td></tr>
-          <tr><td>Mo</td><td>Molybdenum</td><td>Sturdy mechanic keeping engines from overheating.</td></tr>
-          <tr><td>Tc</td><td>Technetium</td><td>Radioactive time-traveler who never occurs naturally in the village.</td></tr>
-          <tr><td>Ru</td><td>Ruthenium</td><td>Stern judge polishing the rules of chemistry.</td></tr>
-          <tr><td>Rh</td><td>Rhodium</td><td>Ultra-rare diva shining brighter than royalty.</td></tr>
-          <tr><td>Pd</td><td>Palladium</td><td>Discreet butler catalyzing every plan behind the scenes.</td></tr>
-          <tr><td>Ag</td><td>Silver</td><td>Charming prince with shimmering armor and quick wit.</td></tr>
-          <tr><td>Cd</td><td>Cadmium</td><td>Moody artist whose pigments can be perilous.</td></tr>
-          <tr><td>In</td><td>Indium</td><td>Soft-spoken inventor leaving squeaky marks on glass.</td></tr>
-          <tr><td>Sn</td><td>Tin</td><td>Toy soldier marching proudly, resistant to rust.</td></tr>
-          <tr><td>Sb</td><td>Antimony</td><td>Alchemist mixing shiny and brittle potions.</td></tr>
-          <tr><td>Te</td><td>Tellurium</td><td>Eccentric storyteller with a subtle metallic accent.</td></tr>
-          <tr><td>I</td><td>Iodine</td><td>Traveling healer with a purple cloak and antiseptic charm.</td></tr>
-          <tr><td>Xe</td><td>Xenon</td><td>Regal light mage casting bright white spells.</td></tr>
-          <tr><td>Cs</td><td>Caesium</td><td>Highly dramatic royal who bursts into flames near water.</td></tr>
-          <tr><td>Ba</td><td>Barium</td><td>Friendly doctor showing glowing pictures of your insides.</td></tr>
-          <tr><td>La</td><td>Lanthanum</td><td>Hidden elder who quietly starts a whole new saga.</td></tr>
-          <tr><td>Ce</td><td>Cerium</td><td>Spark-throwing blacksmith lighting flint in one strike.</td></tr>
-          <tr><td>Pr</td><td>Praseodymium</td><td>Green-robed forest mage of rare earths.</td></tr>
-          <tr><td>Nd</td><td>Neodymium</td><td>Magnet-wielding warrior pulling metals from afar.</td></tr>
-          <tr><td>Pm</td><td>Promethium</td><td>Secretive fire thief whose glow is rarely seen.</td></tr>
-          <tr><td>Sm</td><td>Samarium</td><td>Steady guardian of nuclear secrets.</td></tr>
-          <tr><td>Eu</td><td>Europium</td><td>Glow-in-the-dark prankster who loves night scenes.</td></tr>
-          <tr><td>Gd</td><td>Gadolinium</td><td>Magnetic healer assisting in enchanted scans.</td></tr>
-          <tr><td>Tb</td><td>Terbium</td><td>Green-flame stage magician in the lighting crew.</td></tr>
-          <tr><td>Dy</td><td>Dysprosium</td><td>Resilient guardian who keeps his powers in extreme heat.</td></tr>
-          <tr><td>Ho</td><td>Holmium</td><td>Loud-voiced bard with magnetic charm.</td></tr>
-          <tr><td>Er</td><td>Erbium</td><td>Soft-spoken fiber mage guiding light through strands.</td></tr>
-          <tr><td>Tm</td><td>Thulium</td><td>Rare, scholarly wizard buried in ancient scrolls.</td></tr>
-          <tr><td>Yb</td><td>Ytterbium</td><td>Laid-back rare-earth surfer, surprisingly tough.</td></tr>
-          <tr><td>Lu</td><td>Lutetium</td><td>Densely packed librarian of the lanthanide wing.</td></tr>
-          <tr><td>Hf</td><td>Hafnium</td><td>Reactor guardian with a love for control rods.</td></tr>
-          <tr><td>Ta</td><td>Tantalum</td><td>Patient monk powering tiny devices peacefully.</td></tr>
-          <tr><td>W</td><td>Tungsten</td><td>Heavyweight champion holding up blazing lights.</td></tr>
-          <tr><td>Re</td><td>Rhenium</td><td>Jet-engine pilot thriving in blazing skies.</td></tr>
-          <tr><td>Os</td><td>Osmium</td><td>Dense, serious counselor who takes everything heavily.</td></tr>
-          <tr><td>Ir</td><td>Iridium</td><td>Unbreakable messenger crossing meteor storms.</td></tr>
-          <tr><td>Pt</td><td>Platinum</td><td>Refined royal advisor with impeccable taste.</td></tr>
-          <tr><td>Au</td><td>Gold</td><td>Charismatic ruler adored by treasuries everywhere.</td></tr>
-          <tr><td>Hg</td><td>Mercury</td><td>Silvery shapeshifter racing like liquid feet.</td></tr>
-          <tr><td>Tl</td><td>Thallium</td><td>Shadowy figure whose gifts should not be trusted.</td></tr>
-          <tr><td>Pb</td><td>Lead</td><td>Heavy, ancient guard once used in every castle wall.</td></tr>
-          <tr><td>Bi</td><td>Bismuth</td><td>Rainbow-crystal artist making iridescent stairs.</td></tr>
-          <tr><td>Po</td><td>Polonium</td><td>Radioactive spy whose touch is powerful and perilous.</td></tr>
-          <tr><td>At</td><td>Astatine</td><td>Elusive phantom appearing only in tiny whispers.</td></tr>
-          <tr><td>Rn</td><td>Radon</td><td>Invisible ghost drifting through old castle basements.</td></tr>
-          <tr><td>Fr</td><td>Francium</td><td>Short-lived royal firecracker, rarely seen on stage.</td></tr>
-          <tr><td>Ra</td><td>Radium</td><td>Glowing clockmaker with a dangerous past.</td></tr>
-          <tr><td>Ac</td><td>Actinium</td><td>Luminescent ancestor starting the actinide saga.</td></tr>
-          <tr><td>Th</td><td>Thorium</td><td>Stoic titan of slow-burning power.</td></tr>
-          <tr><td>Pa</td><td>Protactinium</td><td>Mysterious scholar lurking in rare samples.</td></tr>
-          <tr><td>U</td><td>Uranium</td><td>Brooding giant with immense, split-able power.</td></tr>
-          <tr><td>Np</td><td>Neptunium</td><td>Sea-blue wanderer forged in reactors.</td></tr>
-          <tr><td>Pu</td><td>Plutonium</td><td>Volatile antihero glowing with forbidden energy.</td></tr>
-          <tr><td>Am</td><td>Americium</td><td>Smoke-alarm caretaker watching over every cottage.</td></tr>
-          <tr><td>Cm</td><td>Curium</td><td>Radiant researcher named after legendary explorers.</td></tr>
-          <tr><td>Bk</td><td>Berkelium</td><td>Lab-bound tinkerer born in a research town.</td></tr>
-          <tr><td>Cf</td><td>Californium</td><td>Powerful but reclusive star of neutron shows.</td></tr>
-          <tr><td>Es</td><td>Einsteinium</td><td>Brilliant but unstable genius glowing quietly.</td></tr>
-          <tr><td>Fm</td><td>Fermium</td><td>Serious professor born in the heart of experiments.</td></tr>
-          <tr><td>Md</td><td>Mendelevium</td><td>Archivist honoring the creator of the table itself.</td></tr>
-          <tr><td>No</td><td>Nobelium</td><td>Prize-giving spirit of discovery and recognition.</td></tr>
-          <tr><td>Lr</td><td>Lawrencium</td><td>Collider conjurer appearing only in high-energy labs.</td></tr>
-          <tr><td>Rf</td><td>Rutherfordium</td><td>Nuclear pioneer examining tiny planetary orbits.</td></tr>
-          <tr><td>Db</td><td>Dubnium</td><td>Secretive council member known mostly to scientists.</td></tr>
-          <tr><td>Sg</td><td>Seaborgium</td><td>Wise elder named for a legendary element hunter.</td></tr>
-          <tr><td>Bh</td><td>Bohrium</td><td>Thoughtful theorist with very short appearances.</td></tr>
-          <tr><td>Hs</td><td>Hassium</td><td>Heavy guard who vanishes almost instantly.</td></tr>
-          <tr><td>Mt</td><td>Meitnerium</td><td>Brilliant, under-recognized physicist spirit.</td></tr>
-          <tr><td>Ds</td><td>Darmstadtium</td><td>Experimental newcomer with only cameo roles.</td></tr>
-          <tr><td>Rg</td><td>Roentgenium</td><td>X-ray sorcerer appearing as a brief flash.</td></tr>
-          <tr><td>Cn</td><td>Copernicium</td><td>Cosmic navigator who rearranged the heavens.</td></tr>
-          <tr><td>Nh</td><td>Nihonium</td><td>Modern hero named for a far eastern land.</td></tr>
-          <tr><td>Fl</td><td>Flerovium</td><td>Fleeting noble guest from a famed laboratory.</td></tr>
-          <tr><td>Mc</td><td>Moscovium</td><td>Heavy statesman with a very short public address.</td></tr>
-          <tr><td>Lv</td><td>Livermorium</td><td>Lab-born knight appearing for moments at a time.</td></tr>
-          <tr><td>Ts</td><td>Tennessine</td><td>Mysterious borderland ranger on the periodic frontier.</td></tr>
-          <tr><td>Og</td><td>Oganesson</td><td>Ghostly monarch of the far edge, almost beyond matter.</td></tr>
-        </tbody>
-      </table>
-      </div>
     </section>
   </main>
   <script>

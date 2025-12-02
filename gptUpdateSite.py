@@ -199,6 +199,6 @@ def run_step(instruction: str):
 
 if __name__ == "__main__":
     instruction = """
-    Update index.html, buy.html, about.html, code.html by adding meta tags to appear in google search results.  use tags that are relevant to the content of each page.  for example, for index.html, use tags like 'Samuel Castillo', 'AI researcher', 'predictive insights', 'machine learning', 'data science', 'artificial intelligence'.  for buy.html, use tags like 'purchase AI tools'.
+    Add a tight “Who this is for” and “What you get” section near the top for selling my consulting serviers.  Add bullet points to BUY/Contact so that users browsing the site will be funneletd here.
     """
     run_step(instruction)
