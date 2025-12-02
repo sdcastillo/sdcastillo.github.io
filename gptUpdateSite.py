@@ -199,6 +199,8 @@ def run_step(instruction: str):
 
 if __name__ == "__main__":
     instruction = """
-    Add a tight “Who this is for” and “What you get” section near the top for selling my consulting serviers.  Add bullet points to BUY/Contact so that users browsing the site will be funneletd here.
+    On the page, "Samuel Castillo" and "Futuro Home" both link to "/" (home page). This is confusing because it's unclear that these are the same.
+
+    Fix: Either remove one (keep "Samuel Castillo" as the logo link.
     """
     run_step(instruction)
