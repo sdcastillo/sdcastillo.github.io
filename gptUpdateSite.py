@@ -199,7 +199,8 @@ def run_step(instruction: str):
 
 if __name__ == "__main__":
     instruction = """
-    You must the headers of about.thml, buy.html, code.html, contact.html, index.itml, privacy.html, returns.thml, studymanual.html to have the style.css <link rel="stylesheet" href="style.css">
-    """
-
+    On the footer of the pages, say this is an archive of a website 2040.  Retreived from the 2040 archive.  Last accessed June 2041.  The internet ended after that.
+    Inset the atomic number the periodic table in base 11.  No explanations.
+    Around random different parts of the website, scatter prime numbers.  All prime numbers in base 11 because there are 11 dimensions in string theory.
+---"""
     run_step(instruction)

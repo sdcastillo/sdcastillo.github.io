@@ -8,133 +8,108 @@
   <!-- MathJax for beautiful equations -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
+  <!-- Shared site-wide stylesheet (missing before, so page CSS "wasn't working") -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Minimal local styles to keep custom sections readable even without global CSS -->
   <style>
-    /* === BUBBLEGUM CYBERPUNK THEME === */
-    :root {
-      --bg: #000000;
-      --pink: #FF69B4;        /* Classic bubblegum pink */
-      --hot-pink: #FF1493;
-      --soft-pink: #FFB6C1;
-    }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
     body {
-      background: var(--bg);
-      color: var(--pink);
-      font-family: 'Courier New', monospace;
-      line-height: 1.7;
-      padding: 2rem 4rem;
-      min-height: 100vh;
-      position: relative;
-      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><text y="24" font-size="28">➤</text></svg>'), auto;
-      animation: blink-cursor 1s infinite;
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
     }
-
-    @keyframes blink-cursor {
-      0%, 50% { color: var(--pink); }
-      51%, 100% { color: var(--hot-pink); }
-    }
-
-    header { margin-bottom: 4rem; }
-
     .main-nav {
       display: flex;
-      flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
-      padding: 1.5rem 0;
-      border-bottom: 2px dashed var(--pink);
-      gap: 1rem;
+      padding: 0.75rem 1.25rem;
+      border-bottom: 1px solid #ddd;
     }
-
-    .nav-left, .nav-right { display: flex; gap: 2rem; flex-wrap: wrap; }
-    .main-nav a {
-      color: var(--soft-pink);
+    .nav-left a,
+    .nav-right a {
+      margin-right: 0.75rem;
       text-decoration: none;
-      font-weight: bold;
-      transition: all 0.3s;
-      padding: 0.4rem 0;
     }
-    .main-nav a:hover, .main-nav a.active {
-      color: var(--hot-pink);
-      text-shadow: 0 0 10px var(--hot-pink);
+    .brand {
+      font-weight: 600;
     }
-    .buy-cta {
-      background: var(--hot-pink);
-      color: black !important;
-      padding: 0.6rem 1.2rem !important;
-      border-radius: 6px;
-      font-weight: bold;
+    main {
+      max-width: 960px;
+      margin: 1.5rem auto;
+      padding: 0 1rem 3rem;
     }
-    .buy-cta:hover { background: white !important; }
-
     blockquote {
-      font-size: 1.5rem;
+      margin: 1rem 0 2rem;
+      padding-left: 1rem;
+      border-left: 3px solid #ccc;
+      color: #555;
       font-style: italic;
-      text-align: center;
-      margin: 3rem 0;
-      padding: 2rem;
-      color: var(--soft-pink);
-      border-left: 6px solid var(--pink);
-      background: rgba(255, 105, 180, 0.1);
     }
-
-    h1, h2 {
-      color: var(--hot-pink);
-      margin: 3rem 0 1.5rem;
-      text-shadow: 0 0 8px var(--hot-pink);
+    .section-title,
+    .h2.article-title,
+    .h3,
+    h3 {
+      margin-top: 2rem;
+      margin-bottom: 0.75rem;
     }
-    h1 { font-size: 2.8rem; text-align: center; }
-    h2 { font-size: 2rem; }
-
-    p, li {
-      margin-bottom: 1.2rem;
-      padding: 0 1rem;
-      max-width: 900px;
+    .experience-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 2rem;
     }
-
-    ul, ol { margin: 1.5rem 0; padding-left: 3rem; }
-    li { margin-bottom: 0.8rem; }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 3rem 0;
-      background: rgba(255, 105, 180, 0.05);
+    .experience-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid #ddd;
     }
-    th, td {
-      border: 1px solid var(--pink);
-      padding: 1rem;
-      text-align: left;
+    .experience-banner img {
+      width: 64px;
+      height: 64px;
+      object-fit: contain;
+      border-radius: 4px;
     }
-    th {
-      background: var(--hot-pink);
-      color: black;
-      font-weight: bold;
+    .experience-content h4 {
+      margin: 0 0 0.25rem;
     }
-
-    /* Blinking terminal cursor at the end of the page */
+    .experience-content .title {
+      margin: 0;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+    .experience-content .dates {
+      margin: 0.25rem 0 0.5rem;
+      font-size: 0.85rem;
+      color: #555;
+    }
+    .experience-content ul {
+      margin: 0.25rem 0 0.25rem 1.2rem;
+    }
+    .education-item {
+      margin-top: 1rem;
+      border-top: 1px solid #ddd;
+      padding-top: 1rem;
+    }
+    .education-item .experience-banner img {
+      width: 64px;
+      height: 64px;
+    }
     .terminal-cursor {
-      font-size: 3rem;
-      color: var(--hot-pink);
-      animation: blink 0.8s step-end infinite;
-      margin-top: 6rem;
-      text-align: center;
+      margin-top: 2rem;
+      font-family: monospace;
+      animation: blink 1s step-end infinite;
     }
-
     @keyframes blink {
-      0%, 50% { opacity: 1; }
-      51%, 100% { opacity: 0; }
+      50% { opacity: 0; }
     }
-
-    @media (max-width: 900px) {
-      body { padding: 2rem; }
-      .main-nav { flex-direction: column; text-align: center; }
-      .nav-left, .nav-right { justify-content: center; }
+    /* Ensure the long embedded article block is visually separated */
+    article.about {
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 1px dashed #ccc;
     }
   </style>
-  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -173,7 +148,355 @@
 
     <!-- Blinking cursor at the very end for that retro terminal vibe -->
     <div class="terminal-cursor">_</div>
+
+    
   </main>
+   <!-- ABOUT SECTION -->
+      <article class="about active" data-page="about">
+        <header>
+          <h2 class="h2 article-title">About Me</h2>
+        </header>
+
+        <section class="about-text">
+          <p>
+            Entrepreneur with a passion for turning data-driven insights into tangible business outcomes. In 2021, I founded a startup and earned a spot in the Capital Factory Startup Accelerator, an experience that deepened my commitment to innovation and growth.
+          </p>
+          <p>
+            My professional journey includes working in actuarial science at Willis Towers Watson and contributing to AI development at Milliman IntelliScript. With over five years in corporate roles and several years as an independent contractor, I bring a versatile and analytical approach to every project.
+          </p>
+        </section>
+
+        <section class="service">
+          <h3 class="h3 service-title">What I Do</h3>
+          <ul class="service-list">
+            <li class="service-item">
+              <div class="service-icon-box">
+                <img src="./assets/images/icon-design.svg" alt="design icon" width="40">
+              </div>
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">Data Science &amp; Analytics</h4>
+                <p>Predictive modeling, machine learning, large-scale data processing</p>
+              </div>
+            </li>
+            <li class="service-item">
+              <div class="service-icon-box">
+                <img src="./assets/images/icon-dev.svg" alt="dev icon" width="40">
+              </div>
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">AI / LLM Engineering</h4>
+                <p>Training LLMs, building AI agents, N8N automation</p>
+              </div>
+            </li>
+            <!-- Add more as needed -->
+          </ul>
+
+          <!-- ===================================
+     ACTUARIAL EXAMS & CERTIFICATIONS
+=================================== -->
+
+<style>
+  .certifications-list {
+    list-style: none;
+    padding: 0;
+    font-size: 1.1em;
+  }
+  .certifications-list li {
+    padding: 12px 0;
+    border-bottom: 1px solid #444;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .passed {
+    background: #00c853;
+    color: white;
+    font-weight: bold;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.85em;
+  }
+  .honors-note {
+    margin-top: 25px;
+    font-style: italic;
+    opacity: 0.9;
+  }
+</style>
+</section>
+
+        <!-- EXPERIENCE -->
+        <h3 class="section-title">Professional Experience</h3>
+        
+    <ul class="experience-list">
+
+        <li class="experience-item">
+            <div class="experience-banner">
+                <a href="#">
+                    <img src="./assets/images/isclogo.jpeg" alt="Integrated Security Consultants Inc logo">
+                </a>
+            </div>
+            <div class="experience-content">
+                <h4>Integrated Security Consultants, Inc</h4>
+                <p class="title">AI Solutions Developer</p>
+                <p class="dates">March 2025 - June 2025 (4 months) · Massachusetts, United States</p>
+                <ul>
+                    <li>Trained LLMs to act as virtual tech guides, automating the step-by-step install process for surveillance cameras and security systems.</li>
+                </ul>
+            </div>
+        </li>
+
+        <li class="experience-item">
+            <div class="experience-banner">
+                <!-- No logo provided, placeholder or omit -->
+                <a href="#">
+                    <img src="./assets/images/favicon.png" alt="PassMyExam logo">
+                </a>
+            </div>
+            <div class="experience-content">
+                <h4>Pass My Exam, LLC</h4>
+                <p class="title">Product Developer</p>
+                <p class="dates">June 2024 - August 2024 (3 months) · Northampton, Massachusetts, United States</p>
+                <ul>
+                    <li>Recipient of AWS Activate Startups program (Tier 1)</li>
+                    <li>Built UI/UX materials for AI and Machine Learning</li>
+                    <li>Developed web applications using AWS</li>
+                    <li>Built YouTube channel from zero to 50,000+ lifetime views through strategic content development and audience engagement</li>
+                    <li>Analyzed viewer metrics and engagement data to optimize content performance and channel growth strategies</li>
+                </ul>
+            </div>
+        </li>
+
+        <li class="experience-item">
+            <div class="experience-banner">
+                <a href="#">
+                    <img src="./assets/images/eglogo.jpeg" alt="Expedia Group logo">
+                </a>
+            </div>
+            <div class="experience-content">
+                <h4>Expedia Group</h4>
+                <p class="title">Data Analyst</p>
+                <p class="dates">November 2022 - November 2023 (1 year 1 month) · Austin, Texas, United States</p>
+                <ul>
+                    <li>Analyzed large-scale travel data related to flight bookings, vacation rentals, hotels, and car rentals, handling data at scale.</li>
+                    <li>Architected predictive analytics models processing global travel datasets, encompassing flight bookings, hotel reservations, and vacation rentals.</li>
+                    <li>Accelerated data workflows from 3 days to hours using AI-tuned Python scripts. This enabled real-time data access.</li>
+                    <li>Explored datasets from 100+ countries with machine learning. Turned raw numbers into strategic insights that shaped where the company invested next.</li>
+                    <li>Developed AI agents with Python and R, which successfully performed tasks assigned to them, and addressed complex forecasting challenges, utilizing API get requests and scheduled scripts in PowerShell.</li>
+                    <li>Safeguarded sensitive customer data following international privacy regulations, ensuring strict compliance.</li>
+                </ul>
+            </div>
+        </li>
+
+        <li class="experience-item">
+            <div class="experience-banner">
+                <a href="#">
+                    <img src="./assets/images/centerofgravity.png" alt="Capital Factory">
+                </a>
+            </div>
+            <div class="experience-content">
+                <h4>Pass My Exam LLC</h4>
+                <p class="title">Founder, CEO</p>
+                <p class="dates">November 2019 - May 2022 (2 years 7 months) · Austin, Texas, United States</p>
+                <ul>
+                    <li>Started a business which secured early-stage support with Capital Factory, a leading startup accelerator in downtown Austin Texas that supports hundreds of small businesses and provides top-level business mentoring and resources in Capital Factory University sessions—founder-led masterclasses that translate entrepreneurial theory into real-world tactics.</li>
+                    <li>Completed a selective 12-week accelerator featuring daily workshops on AI, customer discovery, product-market fit, fundraising, and go-to-market strategy.</li>
+                    <li>Engineered and maintained a cloud-based data platform hosting predictive analytics models.</li>
+                    <li>Developed Python-based ETL pipelines for data ingestion and transformation.</li>
+                    <li>Deployed AWS services including S3, Lambda, and EC2 for cost-efficient computing.</li>
+                    <li>Mentored junior data engineers and led a team of freelancers.</li>
+                </ul>
+            </div>
+        </li>
+
+        <li class="experience-item">
+            <div class="experience-banner">
+                <a href="#">
+                    <img src="./assets/images/millimanlogo.png" alt="Boehringer Ingelheim logo"> <!-- Note: Logo might be incorrect; update if needed -->
+                </a>
+            </div>
+            <div class="experience-content">
+                <h4>Boehringer Ingelheim</h4>
+                <p class="title">Data Scientist Contractor</p>
+                <p class="dates">June 2021 - October 2021 (5 months) · Austin, Texas, United States</p>
+                <ul>
+                    <li>Brought on by an agency Data Science Talent Limited, for a contractor with the Animal Health Data team with Boehringer Ingelheim.</li>
+                    <li>Constructed convolutional neural network (CNN) models in TensorFlow for high-throughput biological data classification in pharmaceutical research applications that accelerated the pharmaceutical discovery timelines by 30%.</li>
+                    <li>Tested Neural Networks on genomic datasets for COVID-19 antibody vaccine research, demonstrating expertise in healthcare data applications.</li>
+                    <li>Developed comprehensive animal health databases enabling empirical analysis for veterinary medicine applications.</li>
+                    <li>Orchestrated SQL and Python/R for data pipeline engineering, creating clean, structured datasets optimized for machine learning model training.</li>
+                    <li>Managed large streaming datasets from search analytics, TV metrics, retail sales, and promotions. Supported strategic sales initiatives by identifying key trends in the healthcare sector.</li>
+                </ul>
+            </div>
+        </li>
+
+        <li class="experience-item">
+            <div class="experience-banner">
+                <a href="#">
+                    <img src="./assets/images/keywellai.png" alt="Keywell.ai logo">
+                </a>
+            </div>
+            <div class="experience-content">
+                <h4>Keywell.ai</h4>
+                <p class="title">Reporting Analyst Contractor</p> <!-- Assumed based on responsibilities; update as needed -->
+                <p class="dates">May 2021- July 2021 · Austin, Texas</p>
+                <ul>
+                    <li>Prepared data for AI/ML Initiatives using Python, improving data quality for advanced analytics.</li>
+                    <li>Helped a medical team track eating disorder treatment by building a data reporting pipeline using AWS Athena, RDS, Glue, and S3 that turns EHR data into a self-service reporting dashboard.</li>
+                    <li>Improved database design by refactoring a 600 line SQL script into 50 lines of code using inner joins, subqueries, case when statements, and lookup tables.</li>
+                </ul>
+            </div>
+        </li>
+
+        <li class="experience-item">
+            <div class="experience-banner">
+                <a href="#">
+                    <img src="./assets/images/millimanlogo.png" alt="Milliman IntelliScript logo">
+                </a>
+            </div>
+            <div class="experience-content">
+                <h4>Milliman IntelliScript</h4>
+                <p class="title">Data Scientist</p>
+                <p class="dates">January 2019 - April 2020 (1 year 4 months) · Greater Chicago Area</p>
+                <ul>
+                    <li>Trained AI and ML models on large scale data.</li>
+                    <li>Utilized distributed computing to efficiently handle large-scale data processing, optimizing system performance and enabling seamless integration.</li>
+                    <li>Engineered data pipelines for healthcare datasets containing 10+ million individual records, achieving 13% improvement in predictive model performance through advanced feature engineering.</li>
+                    <li>Integrated medical datasets using standardized healthcare coding systems (ICD, CPT, DRG), creating AI models for Fortune 500 health care companies.</li>
+                    <li>Leveraged distributed computing frameworks for processing 200TB healthcare workloads, achieving 50% cost reduction while maintaining data integrity.</li>
+                    <li>Ensured strict compliance with healthcare data security regulations including HIPAA and GDPR, implementing zero-trust infrastructure protocols.</li>
+                    <li>Developed privacy-preserving AI algorithms generating anonymized group-level insights while protecting individual patient data confidentiality.</li>
+                </ul>
+            </div>
+        </li>
+
+        <li class="experience-item">
+            <div class="experience-banner">
+                <a href="#">
+                    <img src="./assets/images/wtwlogo.png" alt="Willis Towers Watson logo">
+                </a>
+            </div>
+            <div class="experience-content">
+                <h4>Willis Towers Watson</h4>
+                <p class="title">Actuarial Analyst</p>
+                <p class="dates">February 2018 - January 2019 (1 year) · Greater Boston Area</p>
+                <ul>
+                    <li>Used Rescue, Radar, and Emblem to conduct reserving studies.</li>
+                    <li>Assisted account managers for international airlines &amp; hotels.</li>
+                    <li>Optimized big data framework and reduced costs by 50%.</li>
+                    <li>Subject matter expert on predictive analytics tools.</li>
+                    <li>Designed predictive models for customer behavior analysis serving major healthcare and travel clients, providing financial projections and strategic insights.</li>
+                    <li>Optimized big data architecture processing on 200TB scale, reducing operational costs by 50% through distributed computing implementation.</li>
+                    <li>Coordinated international AI/ML initiatives across multiple countries, delivering pre-trained models requiring client-specific fine-tuning and customization.</li>
+                </ul>
+            </div>
+        </li>
+
+        <!-- Internships as part of experience -->
+        <li class="experience-item">
+            <div class="experience-banner">
+                <!-- No logo, placeholder -->
+                <a href="#">
+                    <img src="./assets/images/millimanlogo.png" alt="Milliman logo"> <!-- Reusing from earlier -->
+                </a>
+            </div>
+            <div class="experience-content">
+                <h4>Milliman</h4>
+                <p class="title">Actuarial Intern</p>
+                <p class="dates">October 2017 - January 2018 (4 months) · Greater Boston Area</p>
+                <ul>
+                    <li>Updated reserving analysis for property and casualty insurance companies.</li>
+                    <li>Performed rate-filing reviews for New England carriers.</li>
+                    <li>Captive insurance feasibility studies for firms located in Bermuda.</li>
+                </ul>
+            </div>
+        </li>
+
+        <li class="experience-item">
+            <div class="experience-banner">
+                <!-- No logo, placeholder -->
+                <a href="#">
+                    <img src="./assets/images/bcbsma.png" alt="Blue Cross Blue Shield logo">
+                </a>
+            </div>
+            <div class="experience-content">
+                <h4>Blue Cross Blue Shield of Massachusetts</h4>
+                <p class="title">Data Science Intern</p>
+                <p class="dates">June 2017 - August 2017 (3 months) · Boston</p>
+                <ul>
+                    <li>Participated in research on health insurance plan design using analytics and machine learning.</li>
+                    <li>Presented at end-of-internship event about how people with low back pain can reduce the need for surgery.</li>
+                    <li>Attended cross-disciplinary mentoring sessions with actuaries and data scientists.</li>
+                </ul>
+            </div>
+        </li>
+
+    </ul>
+
+    <h3 class="section-title">Education</h3>
+    <div class="education-item">
+         <div class="experience-banner">
+                <!-- No logo, placeholder -->
+                <a href="#">
+                    <img src="./assets/images/umass.png" alt="">
+                </a>
+            </div>
+        <h4>University of Massachusetts, Amherst</h4>
+        <p class="title">Bachelor's Degree, Mathematics</p>
+        <p class="dates">2015 - May 2017</p>
+        <ul>
+            <li>Major in Mathematics</li>
+        </ul>
+        <p>Academic Tutor · September 2016 - May 2017 (9 months) · Amherst, MA</p>
+        <ul>
+            <li>Part-time peer tutoring (flexible schedule)</li>
+            <li>Led group discussions (1-4 people) using whiteboards and laptops</li>
+            <li>Classes Tutored: Algebra, Calculus, Linear Algebra, Finance, Differential Equations, Astronomy</li>
+        </ul>
+    </div>
+
+    <section class="certifications">
+  <h3 class="section-title">Actuarial Exams &amp; Certifications</h3>
+  
+  <p>
+    I have successfully passed the following Society of Actuaries (SOA) / Casualty Actuarial Society (CAS) exams 
+    — each one of the most rigorous professional credentialing programs in the world (graduate-level difficulty).
+  </p>
+
+  <ul class="certifications-list">
+    <li>
+      <strong>Exam P</strong> — Probability Theory <span class="passed">Passed</span>
+    </li>
+    <li>
+      <strong>Exam PA</strong> — Predictive Analytics (top-tier machine-learning exam) <span class="passed">Passed</span>
+    </li>
+    <li>
+      <strong>Exam MFE / 3F</strong> — Models for Financial Economics <span class="passed">Passed</span>
+    </li>
+    <li>
+      <strong>Exam STAM</strong> — Short-Term Actuarial Mathematics <span class="passed">Passed</span>
+    </li>
+    <li>
+      <strong>Exam FM / 2</strong> — Financial Mathematics <span class="passed">Passed</span>
+    </li>
+  </ul>
+
+  <div class="honors-note">
+    <p>
+      <strong>Undergraduate Honors Student</strong> — University of Massachusetts Amherst<br>
+      Graduated with honors in Mathematics while completing the majority of the actuarial exam track.
+    </p>
+  </div>
+
+  <div class="extra-value" style="margin-top: 30px; padding: 20px; background: rgba(255,255,255,0.05); border-radius: 8px;">
+    <h4 style="margin-top: 0;">Featured Content</h4>
+    <p>
+      <strong>“Top 7 Mistakes to Avoid on Exam PA (Predictive Analytics)”</strong><br>
+      I wrote one of the most widely-read independent guides for the SOA’s newest and hardest exam (Exam PA). 
+      Thousands of candidates have used it to pass on their first attempt.
+    </p>
+  </div>
+
+</section>
+
 
   <script>
     // Highlight current page
