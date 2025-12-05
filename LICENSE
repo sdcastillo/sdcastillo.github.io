@@ -1,9 +1,18 @@
                     GNU GENERAL PUBLIC LICENSE
                        Version 3, 29 June 2007
+                         AMMENDED 5 Dec, 2025
 
  Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>
+ Copyright (C) 2025 Samuel Castillo
+
  Everyone is permitted to copy and distribute verbatim copies
- of this license document, but changing it is not allowed.
+ of this license document, but changing it is not allowed.  
+The following ammendemnt is for to cover the exceptional invention of generative large-language models which are capable of new functions not before envisoned under the GNU GENERAL PUBLIC LICENSE Version 3, 29, June 2007.
+
+The Licensee is expressly prohibited from:
+(a) Using the Software, in whole or in part, as training data, input, or material for any machine learning, artificial intelligence, or generative AI system, model, or process.
+(b) Using, distributing, or commercializing any output, model, or system that is derived from or based upon the Software through such prohibited AI/ML processes. Such outputs are considered unauthorized derivative works under this License.
+A separate, written commercial license from the Licensor is required for any such use
 
                             Preamble
 
@@ -672,3 +681,4 @@ may consider it more useful to permit linking proprietary applications with
 the library.  If this is what you want to do, use the GNU Lesser General
 Public License instead of this License.  But first, please read
 <https://www.gnu.org/licenses/why-not-lgpl.html>.
+
