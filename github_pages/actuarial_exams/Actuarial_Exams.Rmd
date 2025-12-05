@@ -1,0 +1,510 @@
+---
+title: "Data Mining Practice Actuarial Exams from CoachingActuaries.com"
+author: "Samuel Castillo"
+date: "February 5, 2018"
+output: 
+  html_document:
+    toc: true
+    toc_depth: 3
+    theme: spacelab
+    highlight: tango
+---
+
+```{r global_options, warning= F, message= F, echo = F}
+#sets the options for all knitr markdown chunks below
+knitr::opts_chunk$set(fig.width=12, fig.height=8, fig.path='Figs/',
+                      echo=F, warning=FALSE, message=FALSE)
+
+#----------------------------------------------------Libraries Used -----------------------------------------
+
+suppressMessages({
+library(DT) #Create pretty output tables
+require(lubridate) #format dates/times
+library(tidyr)  #Data manipulation
+library(randomForest) #random forests
+library(e1071) #random forest dependency
+library(ROCR) #Receiver Operating Characteristics for model performance
+library(pROC) #Same as above
+library(pdp) #partial dependency plots
+library(AppliedPredictiveModeling) #create plot matrices
+library(mice) #missing value imputation
+library(Amelia)  #missing value exploration
+library(caret) #machine learning
+library(DMwR) #sub-sampling methods
+library(ROSE) #more subsampling methods
+library(corrplot) #correlation plots
+library(prettyR) #graphics
+library(readxl)  #read xl files
+library(VIM) #missing data analysis
+library(tidyverse) #always load last
+
+  
+#----------------------------------------------------Minor Adjustments -----------------------------------------
+  
+#data table options
+opts = list(searching = F)
+
+#load data source.  This has already been cleaned
+load("adapt_data.Rda")
+
+#round numeric columns for prettier datatables
+adapt_data = adapt_data %>% 
+  mutate_if(is.numeric, funs(round(., 1))) %>% 
+  mutate(q_ordinal = as.numeric(q_ordinal),
+          #Create numeric variable for use with corrplot.  Sunday is 1, Monday is 2, etc
+         numeric_weekday = zoo::index(weekday,levels(adapt_data$weekday)) + 2,
+         hist_repeat_question_YN = as.factor(ifelse(hist_repeat_question == 0, "Y", "N")))
+
+})#end suppress messages
+
+#for some models, the levels need to be valid variable names.  This means that they can't be "TRUE"/"FALSE"
+levels(adapt_data$correct) <- c("NO", "YES")
+levels(adapt_data$marked) <- c("NO", "YES")
+
+#describe what the features are
+feature_schema = read_excel('data_schema.xlsx')
+
+#----------------------------------------------------Functions to be use later -----------------------------------------
+
+#make a graph showing pairwise dotplots
+my_pairs_plot = function(cur_features){
+  transparentTheme(trans = .9)
+  caret::featurePlot(x = cur_features,
+            y = adapt_data$correct,
+            plot = "pairs",
+            scales = list(x = list(relation="free"), 
+                          y = list(relation="free")), 
+            adjust = 1.5, 
+            pch = "+",
+            auto.key = list(columns = 2))
+}
+
+#make a graph showing density
+my_density_plot = function(cur_features){
+  transparentTheme(trans = .9)
+  featurePlot(x = cur_features, 
+            y = adapt_data$correct,
+            plot = "density", 
+            ## Pass in options to xyplot() to 
+            ## make it prettier
+             scales = list(x = list(relation="free"), 
+                           y = list(relation="free")), 
+             adjust = 1.5, 
+            pch = "|",
+            auto.key = list(columns = 2)
+            )
+}
+
+#evaluate model performance using the TEST data
+eval_model = function(cur_name = "model",cur_model, cur_test_data){
+  #somehow this now works??  The documentation on roxygen is out of date
+  predictor = as.numeric(predict.train(object = cur_model, new  = cur_test_data %>% select(-correct), unkOnly = T))
+  label = as.numeric(cur_test_data$correct)
+  out <- confusionMatrix(label, predictor)
+ data_frame("Model" = cur_name,
+            'AUC' = round(roc(label, predictor)$auc, 5),
+       'Test Set Accuracy' = round(out$overall[1], 5))
+}
+```
+##1. Introduction
+
+###Motivation
+
+The actuarial profession has been rated highly for decades for low stress levels, high compensation, an interesting work environment, and job security; however, the elephant in the room is the rigorous actuarial exam requirements.  There are 10 exams in order to gain a Fellow credential, and each of these have pass rates between 40-50%.  There is a great deal of literature and study tutorials based on anectdotal evidence, offering prescriptive study methods and study schedules, but very little hard data.  This analysis uses maching learning and statistics to shed light onto which factors contribute to actuarial exam success.
+
+###Project Background
+
+My goal in this project was to gain experience using maching learning in a real-world scenario and to apply this knowledge to help actuarial students.  This data was provided by [CoachingActuaries.com](coachingactuaries.com), from my personal online-learning accounts for exams P/1, FM/2, and MFE/3F with the Adapt product.  This article would not have been possible without the support of Ben Kester, Thane Himes, and Tong Khon Teh, who sent me the data and published the result.  I do not work or receive funding from any company or organization that would benefit from this article.  A thank you to to Dr. Una-May OReilly for excellent research ideas.
+
+###Actuarial Exam Overview
+
+The premiminary actuarial exams consist of 3-hour, multiple-choice, computer-based math tests offered once every six months.  There are 30-35 questions for the first three exams.  My experience has been with exam P, covering probability theory, exam FM, covering financial mathematics, and exam MFE (soon to be IMF), covering models for financial economics. 
+
+###Adapt Product Overview
+
+Adapt is an automatic learning engine which generates problems to fit a user's current skill level.  These questions are intented to mimic the questions on real exams.  The adapt subscription includes access to a practice test bank, an exam simulator, tutorial videos, a user forum, and performance feedback.  Each user is given an Earned Level, which ranges from 1 - 10 and increases as they answer more difficult questions correctly.  There are two main types of practice within Adapt: quizzes and exams.  Quizzes are non timed, and are customized by the user.  Exams are limited to 3 hours, contain 30 questions, and are generated to simulate a real exam as closely as possible.
+
+The data and full R code for generating this article can be downloaded from [github](https://github.com/sdcastillo/Coaching-Actuaries-Article).  
+
+##2. Research Findings
+
+- **Practice questions can be predicted.**  Models had an accuracy rating of above 0.75 and an AUC of about 0.70.  The exam-takers history was measured to be meaningful in predicting future exam performance and 14 historical features were evaluated for predictive power.  The type of model used was found to be less significant than the quality of the input features.  
+
+ - **Exam time is valuable in a 30-question test.**  The minutes used per problem was consistently one of the most important features measured across several different models.  If the question is easy, the exam-taker should not spend much time on it.  The optimal time per problem is about 5.5 minutes for the single-question level, but this varies depending on the difficulty of the problem.
+ 
+ - **Experience trumps difficulty.**  The Been There; Done That (BTDT) rule is that in an exam setting, the student should already have seen every question before in practice.  When looking at the partial dependence plots, there was evidence in support of BTDT.  Question difficulty as Adapt rates it is not necessarily related to low success rate.  Simply because other people find a topic difficult does not imply that the person taking the exam should.  
+ 
+ - **Practice questions are less useful when answered incorrectly.** For each specific sub-category, these models calculated a running total of the problem difficulty which added to the total when a question was answered correctly and subtracting when incorrect. This feature could be used to predict whether any given question would be answered correctly.
+ 
+ - **Practice on hard questions.**  Baseball players practice-swing with weighted bats, martial artists punch bricks to strengthen their hands, and actuarial students should solve math problems more difficult than needed to prepare for the real exam.  These models used a feature which filters out questions of a lesser difficulty and found this to be significant in predicting question outcomes.
+
+##3. Data
+
+###Limitations
+
+These data represent only a single individual's experience, my own, and these results have not been verified against a broader population. These findings will not necessarily apply to other people's experience.  Since this data was collected, exams P, FM, and MFE have undergone significant curriculumn changes, and these have not been taken into consideration.  This analysis uses only a limited number of variables and does not consider environmental factors such noise level or testing environment.  For exams P, FM, and MFE, my account logged 36.7, 60.1, and 54.8 hours of practice respectively. These numbers are only estimates, as there is no clear measure for active screen time.  Time spent on the Adapt product represents only a fraction of my total study time, which included off-screen reviews and textbook practice.  The Society of Actuaries (SOA) recommends 100 study hours per hour of exam, or 300 for each of these three exams.
+
+
+##Timeline
+
+This data was collected between August 2016 - November 2017, where each exam had about a 2-week Adapt subscription.  As the graphs below indicate, as more time was spent practicing, the account earned level increased.  For exam P, the earned level was highest at about 7.3.  For MFE, the earned level was less significant as a larger majority of practice time was spent on quizzes, which do not impact earned level.
+
+```{r , fig.height= 3}
+#create plots for earned level over time
+p = adapt_data %>% 
+  filter(course == "P")
+
+fm = adapt_data %>% 
+  filter(course == "FM")
+
+mfe = adapt_data %>% 
+  filter(course == "MFE")
+
+p.plot <- p %>% 
+      filter(exam_type == "e") %>% 
+      group_by(creation_dt) %>% 
+      summarise(EL = max(EL_begin)) %>% 
+      ggplot(aes(creation_dt, EL)) +
+      geom_line(color = "darkblue", size = 1.5) + 
+      ylim(0,10) + 
+      ggtitle("Exam P") + 
+      xlab("Date") + 
+      ylab("Earned Level") + 
+  theme_light()
+
+fm.plot <- fm %>% 
+      filter(exam_type == "e") %>% 
+      group_by(creation_dt) %>% 
+      summarise(EL = max(EL_begin)) %>% 
+      filter(creation_dt > ymd("2016-11-19")) %>% 
+      ggplot(aes(creation_dt, EL)) +
+      geom_line(color = "darkgreen", size = 1.5) + 
+      ylim(0,10) + 
+      ggtitle("Exam FM") + 
+      xlab("Date") + 
+      ylab("Earned Level") + 
+  theme_light()
+
+mfe.plot <- mfe %>% 
+      filter(exam_type == "e") %>% 
+      group_by(creation_dt) %>% 
+      summarise(EL = max(EL_begin)) %>% 
+      ggplot(aes(creation_dt, EL)) +
+      geom_line(color = "orange", size = 1.5) + 
+      ylim(0,10) + 
+      ggtitle("Exam MFE") + 
+      xlab("Date") + 
+      ylab("Earned Level") + 
+  theme_light()
+
+grid.arrange(p.plot, fm.plot, mfe.plot, nrow = 1)
+```
+
+###Original Features
+
+These features were supplied directly from the CoachingActuaries website and underwent minimal modification.  This consisted of question-level detail for the online course. There are around 1500 math problems from my personal account, with details such as whether it was correct or not, the time spent on it, the curriculumn category, and so forth.  
+
+```{r }
+feature_schema %>% 
+  #exclude the NEW features, those containing "hist" in the name
+  filter(!str_detect(`Feature Name`, "hist")) %>% 
+  datatable(options = opts)
+```
+
+
+The main question is which features are impactful on exam performance.  A starting point is to look at the correlations between features.  This shows if any features are consistently different when the question is correct verses incorrect.  At this stage, there is not enough information to make causual inference, but to merely note the correlations.  A correlation of 1 means between two features means that information about one completely expains the other.  The correlation of 0.97 between question ordinal, `q_ordinal`, and `remaining_exam_time` means that questions later in the exam have less time remaining on the clock, and questions earlier have more time remaining.  Observations such as this serve as a consistency check for the data.  As shown below, there is a negative correlation with `difficulty`, `minutes_used`, and `remaining_exam_time`.  This is explored later in the modeling section.
+
+```{r , fig.width= 9, fig.height= 5}
+#bookmark only the numeric columns
+numeric_index <- sapply(adapt_data, is.numeric)
+numeric_cols = adapt_data[,numeric_index] %>% #get only numeric columns for corr plot
+  mutate(correct = as.numeric(adapt_data$correct)) %>% #convert from factor to numeric for corr plot
+  select(correct, everything(),- contains("hist"), -EL_begin, -EL_end, -nth_exam, - nth_e_or_q, -hrs_since_previous_e) %>%
+  rename(remaining_exam_time = approx_remaining_time,
+         weekday = numeric_weekday) %>% 
+  as.matrix() 
+corrplot(cor(numeric_cols),
+         method = "color",
+         type = "upper",
+         order="hclust", 
+         addCoef.col = "black", # Add coefficient of correlation
+         tl.col="black",
+         tl.srt=45, #Text label color and rotation
+         # Combine with significance
+         #p.mat = p.mat, 
+         sig.level = 0.01, 
+         insig = "blank", 
+         # hide correlation coefficient on the principal diagonal
+         diag=F)
+```
+
+Class separation is how well the x-features separate out the class label, `correct` in this case.  These graphs show the empirical probability distributions, with red corresponding to incorrect questions and blue to correct questions.  Generally, the greater the difference between the red and the blue distributions the more predictive power for the given feature.  The greatest class separation is for `difficulty` and `minutes_used`, as seen in the lower right.
+
+```{r fig.height = 5}
+#show class separation 
+numeric_cols %>%
+  as_data_frame() %>% 
+  select(-correct) %>% 
+  as.matrix() %>% 
+  my_density_plot()
+
+numeric_cols %>%
+  as_data_frame() %>% 
+  select(-correct) %>% 
+  select(-2) %>% 
+  slice(1:500) %>% 
+  my_pairs_plot()
+```
+
+###Categorical Features
+
+When created by the CoachingActuaries.com author, each question is assigned a series of categorical tags.  For instance, if a question on exam P asks for an expected value of a normal random variable with a deductible, the category tags might be "Continuous Probability Distributions", "Expected Value", and the subcategory tags might be "Univariate Normal Distribution", "Insurance Deductible".  From my understanding, these tags are used in the Adapt exam simulator in order to generate exams which are realistic to the SOA's curriculum. 
+
+###Historical Features
+
+These question tags were too numerous to understand directly, and so historical experience features were created in order to approximate a user's learning over time.  These features were useful in constructing predictive models, as seen later.  An importance point is that these historical features allow for the quiz questions to be incorporated to the training and testing sets.  Otherwise, the quiz questions could not be mixed with the exam questions due to data quality reasons; for quizzes, my behavior changed with respect to looking up formulas on note sheets, spending long amounts of time per problem, and otherwise giving consistent effort.  For these reasons, the exam only the exam data was used for modeling.
+
+```{r fig.width= 4, fig.height= 4}
+#show only the new features, those containing "hist" in the name
+feature_schema %>% 
+  filter(str_detect(`Feature Name`, "hist")) %>% 
+  datatable(options = opts)
+```
+
+As the below plot shows, there is improved class separation for several of the historical features.  Intuitively, this implies that my likelihood of answering a question correctly depends on the number of questions which I have answered in the past in the same category.  Not all of these features are useful, and in fact this graph is only showing a subset of the 13 historical features tested.
+
+```{r fig.height = 5}
+adapt_data %>%
+  #remove variables which look bad
+  select(contains("hist"), - hist_tot_time_correct, - hist_subcat_diff, - hist_total_time_q, - hist_total_time_q, - hist_cat_n, - hist_n_marked, - hist_repeat_question_YN, - hist_repeat_question) %>%
+  my_density_plot()
+```
+
+##4. Modeling
+
+###Model Statement
+
+The objective was to predict whether questions on the 3-hour practice exams would be answered correctly, with model interpretibility being a priority.  This was done on an aggregate-level, where questions were not grouped by exam and each question weighted equally.  All models were fit with the `caret` package (Classification And REgression Training) and subsequent dependencies.  
+
+###Treatment of Missing Values
+
+The first type of missingness was present in the raw data itself.  For instance, there were missing timestamp values for exam P in August 24, 2016.  As this was my first Adapt exam of 12 for exam P, this was deemed to not hold predictive value and was dropped.  Because each question could have between 1-3 category and subcategory tags, discretion was needed in order to compare all questions equally.  The method used was to weight each question tag so that questions with a single tag would be treated as having multiple copies of the same tag.  For example, a question with tag A would be treated as AAA, questions with tag BA would treated as BAA, questions with tag ABC would be left unchanged.  This method is not perfect, but given that the category tags are assigned by the problem author, this seemed like a reasonable means of treating the missing values.
+
+The second type of missingness was in questions with zero minutes used, or in practice exams where the 3-hour time limit was not followed.  A cutoff of 10 seconds was used to drop questions, as this is approximately the amount of time it would take to read a problem in an exam setting.  Questions with less than 10 seconds used were dropped.  This reduced the number of question observations in the data from 1734 to 1503.  For 10 practice exams, time limit rules were not followed, and so these were kept in the analysis while being treated as un-timed quizzes.  These questions would not be missing completely at random (MCAR) as there is a higher liklihood of going over the time limit when doing poorly on an exam than when succeeding.
+
+###Model Evaluation
+
+**Interpretability was considered in all stages, as the objective of this analysis was to understand the data.**  The Receiver Operating Characteristic Area Under the Curve (AUC) metric was used for model selection. A 75%-25% validation set split was first created, and then 10-fold cross validation with 3 repeats was used for model training.  The numeric variables were pre-processed to be scaled and centered for some of the models.  
+
+Because there were more cases of correct than incorrect problems in the training data, with a split of 63% correct, 37% incorrect, several subsampling techniques were tested including oversampling, undersampling, SMOTE, and ROSE.  When evaluated with cross validation against the testing data set, these led to a decrease in performance and so these methods were not used.  
+
+- **Naive Bayes:** A Naive Bayes classifier using Gaussian distributions was fit to a subset of the features.  The input numeric data was centered and scaled.  This performed well compared to more sophistocated models.
+- **Logistic Regression:** Several logit models were fit with different subsets of features.  The data was transformed prior to fitting with centering and scaling.  A power transformation was tested and increased accuracy by about 0.01, but this was not used in the final model due to lower interpretability.
+- **K-Nearest Neighbor:** KNN models were tested to the centered and scaled data.  These were tuned by varying the number of neighbors and testing with cross-validation. 
+- **Random Forest:** The random forest model was used throughout the feature engineering process to assess variable importance.  Several versions were fit to various subsets of the data.  The only parameter tuned was the number of variables available for splitting at each tree node.  The number of trees used was held constant at 500.
+
+```{r }
+#-----------------------------------------------------Data Splitting----------------------
+set.seed(400)
+#drop columns which have no predictive power
+#we only care about predicting exam outcomes
+model_data <- adapt_data %>% 
+  filter(exam_type == "e") %>% 
+  mutate(q_ordinal = ifelse(course == "FM", yes = q_ordinal*30/35, no = q_ordinal)) %>% 
+  select(- questionID, - examID, - exam_type, - creation_dt_time, - creation_dt) %>% 
+  ungroup() 
+
+#these features are ok
+best_subset <-  model_data %>% 
+  ungroup() %>% 
+  mutate_at(c("cat1", "cat2", "cat3", "subcat1", "subcat3", "subcat3"), funs(droplevels)) %>% 
+  #factor levels mess up models
+  dplyr::select( correct, difficulty, marked, minutes_used, hist_greater_diff, hist_net_diff, approx_remaining_time, creation_hr, cat1, hist_repeat_question_YN)
+
+#this is the easily-interpretible data
+#this splits to preserve the ORIGINAL class distribution, but doesn't over/undersample
+index_train <- createDataPartition(y = model_data$correct, p = 0.75, list = FALSE)
+
+#these have worked in the past
+best_training <- best_subset[index_train,] 
+best_testing <- best_subset[-index_train,]
+
+training <- model_data[index_train,]
+testing <- model_data[-index_train,] 
+
+#this is to improve accuracy for knn and logit
+preproc.values <- preProcess(x = best_subset, method = c("center", "scale"))
+best_transformed = predict(preproc.values, newdata = best_subset) 
+
+training_transformed <- best_transformed[index_train,]
+testing_transformed <- best_transformed[-index_train,]
+
+#Test out your own models using the data created up to this point
+
+#-----------------------------------------------------Naive Bayes--------------------------
+train_control <- trainControl(method = "cv", number=10)
+nb1 <- train(correct ~., data = training_transformed %>% select(-cat1), trControl=train_control, method="nb")
+nb_metrics = eval_model("Naive Bayes", nb1, testing_transformed)
+
+#Logistic Regression
+train_control<- trainControl(method="cv", number=10)
+
+#these models were inferior to the uncommented ones
+
+# f1 = correct ~ difficulty + minutes_used
+# logit1<- train(f1, data = training_transformed, trControl=train_control, method="glm", family=binomial())
+# 
+# f2 = correct ~ difficulty + minutes_used  + approx_remaining_time + creation_hr
+# logit2 <- train(f2, data = training_transformed, trControl = train_control, method="glm", family=binomial())
+
+f3 = correct ~ difficulty + marked + minutes_used +  hist_greater_diff + approx_remaining_time + creation_hr 
+logit3 <- train(f3, data = training_transformed, trControl = train_control, method="glm", family=binomial())
+logit_metrics = eval_model("Logistic Regression", logit3, testing_transformed)
+
+#--------------------------------------------------K-Nearest Neighbor-----------------------
+ctrl <- trainControl(method="repeatedcv", repeats = 3)
+knn1 <- train(correct ~ ., data = training_transformed, method = "knn", trControl = ctrl, tuneLength = 20)
+#inferior model
+#knn2 <- train(f3, data = training_transformed, method = "knn", trControl = ctrl, tuneLength = 40)
+
+knn_metrics <- eval_model("K-Nearest Neighbor", knn1, testing_transformed)
+
+#-----------------------------------------------------Random Forest--------------------------
+
+control <- trainControl(method = "repeatedcv", classProbs = T, number=10, repeats=3)
+seed <- 7; set.seed(seed)
+metric <- "Accuracy"
+
+#fit with the "best subset" to be consistent with other models
+mtry <- sqrt(ncol(best_training)) # mtry can be increased at the risk of over-fitting
+tunegrid <- expand.grid(.mtry=mtry)
+rf1 <- train(correct ~., data = best_training , method="rf", metric=metric, tuneGrid=tunegrid, trControl=control)
+
+mtry <- seq(3,7,1) # mtry can be increased at the risk of over-fitting
+tunegrid <- expand.grid(.mtry=mtry)
+
+#best random forest so far
+rf2 <- train(correct ~ marked + minutes_used + difficulty + q_ordinal + approx_remaining_time + hist_net_diff + hist_greater_diff + subcat1 + hist_repeat_question_YN, data = training , method="rf", metric=metric, tuneGrid=tunegrid, trControl=control)
+
+rf_metrics <- eval_model("Random Forest", rf2, testing)
+
+#-----------------------------------------------------Model Metrics Summary Table ----------------
+
+#create a summary table of model performance
+metrics_data = rbind(nb_metrics, logit_metrics, knn_metrics, rf_metrics)
+metrics_data %>% 
+  arrange(desc(AUC)) %>% 
+  datatable(options = opts)
+```
+
+###Model Selection
+
+The goal in modeling was to understand the data.  The Naive Bayes model performed best, although these results cannot be easily interpreted.  Given the amount of noise present in the data, the fact that this simple model out-performed its sophistocated counterparts is not surprising. While the logistic regression model performed well, there was doubt in the credibility of this performance due to the number of outliers present and p-values of the cofficients.  Because the random forest is the most resiliant to both outlying cases and multi-colinearity, this was chosen as the final model to use in interpretation.
+
+###Model Interpretation
+
+Variable importance gives a measure of how the value of a given variable influences the outcome of `correct`.  This plot below was generated using a random forest model, and shows which factors are most important to whether a question is answered correctly or not. 
+The most important feature to determening question outcomes was whether or not the question had been marked for review during the practice exam.  This is not surprising given that exam-takers can identify to a certain degree which questions they understand.  As this is a timed exam, `minutes_used` should be an important feature as is indicated.  The engineered historical feature `hist_greater_diff` measures the quantity and quality of preparation for the specific question type by taking the total difficulty of all questions previously answered under the current category.  `hist_net_diff` is has a similar definition.
+
+```{r fig.height= 5, fig.width = 8}
+#plot the importance of a broader range of predictors, so use rf1 instead of rf2
+plot(varImp(rf1), top = 15)
+```
+
+Partial dependency plots are used to interpret complex machine learning models.  These show how the expected outcome changes with different levels on inputs.  The plots below were created using the best random forest model from the model selection section, and show how the probability of answering a question correctly changes when adjusting for the other variables in the model. 
+
+These are not an exact measure of the conditional expectations, but are a useful tool in understanding the model.
+
+```{r}
+make_rf_partial_plot <- function(rf_train, var_name, plot_title){
+  rf_train %>% 
+  pdp::partial(pred.var = var_name) %>% 
+  autoplot(rug = T, train = best_subset) + 
+  geom_smooth(se = F, color = "blue") + 
+  scale_y_reverse() + 
+  ggtitle(plot_title) +
+  ylab("Probability of \nCorrect ") + 
+  theme_light() 
+}
+
+grid.arrange(make_rf_partial_plot(rf2, "difficulty", "Question Difficulty"),
+             make_rf_partial_plot(rf2, "minutes_used", "Minutes Spent on Question"),
+             make_rf_partial_plot(rf2, "approx_remaining_time", "Approximate Minutes Remaining"),
+             make_rf_partial_plot(rf2, "hist_net_diff", "Historical Net Difficulty"),
+             make_rf_partial_plot(rf2, "hist_greater_diff", "Sum of Difficulty for Previous Harder Questions")
+                     )
+```
+
+**Difficulty and Minutes Used (Below Left)**:
+
+We can plot any of the two partial dependencies together to examine how the probability changes as both of the inputs change.  In the graphs below, the dark blue color represents higher probability of a correct answer.  This is the same data as the above graphs only rearranged.  As the partial dependence plot of `difficulty` verses `minutes_used` (left below) shows, there is a cluster of highest probability for easy questions in which the exam-taker spends about 3 minutes on.  In other words, if a question is easy, the exam taker not spend much time on it.  This suggests an optimal strategy is to target the questions which are easiest.  
+
+**Difficulty and Experience Level (Below Right)**:
+
+In the graph of the partial dependence of `difficulty` verses experience with more difficult problems, `hist_greater_diff`, there is a clear relationship between how experience helps across all difficulty levels.  The maximum usefullness of exerience is in the range of 500-1000 total difficulty points.  This can be thought of as 100, 10-difficulty problems for the current topic, or 200, 5-difficulty problems.  The effect of prior experience improving the probability of success is consistent for all difficulty levels less than 6 or so.  This supports the Been There, Done That (BTDT) theory, that experience trumps difficulty.  Even if the difficulty is a 3, if the student lacks experience with questions of difficulty 3 or above (the y-axis is less than 500), they are unlikely to answer it correctly in an exam setting.
+
+```{r fig.height = 5}
+contour_data <- pdp::partial(rf2,pred.var = c("difficulty", "minutes_used"), train = training)
+
+p1 <- contour_data %>% 
+  as_data_frame() %>% 
+  mutate(yhat = -yhat) %>% 
+  rename(`Probability of Correct` = yhat) %>% 
+  ggplot(aes(difficulty, minutes_used, z = `Probability of Correct`)) +
+  #scale_color_gradient(high = "white", low = "black") +
+  geom_raster(aes(fill = `Probability of Correct`)) + 
+  scale_fill_gradient(low = "white", high = "blue") +
+  geom_contour(bins = 8, color = "white") + 
+  ggtitle("Minutes Used vs Difficulty") + 
+  xlab("Difficulty") + 
+  ylab("Minutes Spent \non Question") + 
+  theme(legend.position="bottom")
+
+contour_data2 <- pdp::partial(rf2,pred.var = c("difficulty", "hist_greater_diff"), train = training)
+
+p2 <- contour_data2 %>% 
+  as_data_frame() %>% 
+  mutate(yhat = -yhat) %>% 
+  rename(`Probability of Correct` = yhat) %>% 
+  ggplot(aes(difficulty, hist_greater_diff, z = `Probability of Correct`)) +
+  geom_raster(aes(fill = `Probability of Correct`)) + 
+  scale_fill_gradient(low = "white", high = "blue") +
+  geom_contour(bins = 8, color = "white") + 
+  ggtitle("Minutes Used vs \nGreater Difficulty Experience") + 
+  xlab("Difficulty") + 
+  ylab("Historical Greater \nDifficulty Experience") +
+  theme(legend.position="bottom")
+  
+grid.arrange(p1, p2, nrow = 1)
+```
+
+
+##4. Conclusion
+
+###Recap of Findings
+
+1.  Practice questions can be predicted.  Models had an accuracy rating of above 0.75 and an AUC of about 0.70.  The exam-takers history was measured to be meaningful in predicting future exam performance and 14 historical features were evaluated for predictive power.
+
+2.  Exam time is valuable in a 30-question test.  The minutes used per problem was consistently one of the most important features measured across several different models.  If the question is easy, the exam-taker should not spend much time on it.  
+ 
+3.  Experience trumps difficulty.  The Been There; Done That (BTDT) rule is that in an exam setting, the student should already have seen every question before in practice.  When looking at the partial dependence plots, there was evidence in support of BTDT. 
+ 
+4.  Practice questions are less useful when answered incorrectly. For each specific sub-category, these models calculated a running total of the problem difficulty which added to the total when a question was answered correctly and subtracting when incorrect. This feature could be used to predict whether any given question would be answered correctly. 
+ 
+5.  Practice on hard questions.  Baseball players practice-swing with weighted bats, martial artists punch bricks to strengthen their hands, and actuarial students should solve math problems more difficult than needed to prepare for the real exam.  These models used a feature which filters out questions of a lesser difficulty and found this to be significant in predicting question outcomes.
+
+###Future Improvements
+
+The source data from CoachingActuaries.com could be improved.  For example, there was no unique question or exam identifier provided, and `questionID` and `examID` needed to be created.  These were not perfect facsimiles.  The variable `remaining_exam_time` was an approximation, as the data source only includes a the order in which questions were generated and the time spent on the problem.  In a real environment, the order in which the questions appear is rarely the order in which they are answered, as a student often will read a problem, skip it, and then come back to the problem later.  Having precise information for this clickstream data could be insightful.
+
+Models could search over a broader range of category and subcategory combinations.  In this experiment, these category features did not improve model performance when included explicitely, but were included implicitely within the historical features.  A model which tests for connections between categories on a deeper level than these models used could lead to improved accuracy.  Alternatively, a diminsionality reduction such as factor analysis for the number of categories could be used. Given limited computational capacity, these models were evaluated using only the top 10 most frequent category levels for P, FM, and MFE.
+
+Total exam performance could be evaluated using the question-level predictive models.  One possible method of accomplishing this would be to feed in unseen practice exam questions in batches of 30 and simulate the user-generated behavior.  This would allow for maximazation of exam scores as opposed to the probability of answering a given question correct.  Various user time-allocation and other exam-taking strategies could be tested and evaluated for performance using monte carlo simulation.
+
+###References
+
+Hastie, T., Tibshirani, R., and Friedman, J.  2001.  "The Elements of Statistical Learning: Data Mining, Inference, and Prediction." Springer Series in Statistics.
+
+Taylor, Colin. [*Stopout Prediction in Massive Open Online Courses.*](http://groups.csail.mit.edu/EVO-DesignOpt/groupWebSite/uploads/Site/TaylorStopoutThesis.pdf). M.Eng Thesis completed in MIT Dept of EECS, 2014. 
+
+

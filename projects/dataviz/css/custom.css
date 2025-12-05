@@ -1,0 +1,118 @@
+body {
+  background-color: grey;
+  color: white;
+}
+
+.reveal {
+  font-family: "Futura", sans-serif;
+  color: white; 
+}
+
+.reveal .unprofessional {
+  font-family: "Comic Sans MS", sans-serif;
+  color: white; 
+  font-size: 300% ;
+}
+
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+  color: white;
+  font-family: "Futura", sans-serif;
+  font-size: 1.25em;
+}
+
+.reveal blockquote {
+  background: grey;
+}
+
+.reveal section p {
+  text-align: left;
+}
+
+/*********************************************
+ * NAVIGATION CONTROLS
+ *********************************************/
+ .reveal .controls .navigate-left,
+.reveal .controls .navigate-left.enabled {
+  border-right-color: white; }
+
+.reveal .controls .navigate-right,
+.reveal .controls .navigate-right.enabled {
+  border-left-color: white; }
+
+.reveal .controls .navigate-up,
+.reveal .controls .navigate-up.enabled {
+  border-bottom-color: white; }
+
+.reveal .controls .navigate-down,
+.reveal .controls .navigate-down.enabled {
+  border-top-color: white; }
+  
+.reveal section img {
+  background:none;
+  border:none;
+  box-shadow:none;
+}
+
+/*
+Two column layout
+*/
+
+.reveal .left {
+  font-size: 90%;
+  left: -8.33%;
+  float: left;
+  width: 48%;
+  text-align: left !important;
+}
+
+.reveal .right {
+  font-size: 90%;
+  left: 31.25%;
+  float: right;
+  width: 48%;
+  text-align: right !important;
+}
+
+.reveal .right > p {
+  text-align: right !important;
+}
+
+.reveal .left > p {
+  text-align: left !important;
+}
+
+.reveal .left .sourceCode {
+  font-size: 100%;
+}
+
+.gigantic-text {
+  font-size: 1800% !important;
+  text-align: center !important;
+}
+
+.gigantic-text > p {
+  font-size: 150% ;
+  text-align: center !important;
+  margin-top: -290px;
+}
+
+.very-large-text > p {
+  font-size: 1200% ;
+}
+
+.large-text > p {
+  font-size: 650% ;
+}
+
+.very-large-text-full > p {
+  font-size: 400% ;
+}
+
+.my-center {
+  text-align: center;
+}

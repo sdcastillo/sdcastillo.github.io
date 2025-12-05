@@ -1,0 +1,348 @@
+order_id,date,name,price,size,quantity
+1,2019-02-27,NA,1.65,16 fl oz,1
+1,2019-02-27,Salad,2.19,10 oz,1
+1,2019-02-27,Salad,0.99,12 oz,2
+1,2019-02-27,Casa Mamita Beef and Bean Burritos,2.99,8 x 8 x 4 oz,2
+1,2019-02-27,Parkview Polska Kielbasa,2.55,14 oz,2
+1,2019-02-27,Sausage,3.29,8 oz,2
+1,2019-02-27,Whole And Simple Mediterranean Chicken Quinoa Bowl,3.29,10.5 oz,4
+1,2019-02-27,Fusia Chicken Fried Rice,3.85,22 oz,2
+1,2019-02-27,Fusia Chicken Lo Mein,3.85,20 oz,2
+1,2019-02-27,Bremer Garlic Chicken Skillet,3.65,21 oz,2
+1,2019-02-27,Kirkwood Crispy Chicken Strips,5.49,25 oz,1
+1,2019-02-27,Savoritz Cracked Pepper Woven Wheat Crackers,2.09,9 oz,1
+1,2019-02-27,Savoritz Thin Wheat Crackers,1.89,9.1 oz,1
+1,2019-02-27,Savoritz Woven Whole Wheat Cracker,1.95,9 oz,1
+1,2019-02-27,Hummus,2.55,10 oz,1
+1,2019-02-27,Friendly Farms Vanilla Unsweetened Almondmilk,2.29,64 fl oz,3
+2,2019-03-06,Season's Choice Steamable Mediterranean Quinoa,3.29,12 oz,1
+2,2019-03-06,Simply Nature Creamy Almond Butter,5.39,12 oz,1
+2,2019-03-06,Savoritz Woven Whole Wheat Cracker,1.95,9 oz,1
+2,2019-03-06,Fusia Chicken Lo Mein,3.85,20 oz,1
+2,2019-03-06,Fusia Chicken Fried Rice,3.85,22 oz,1
+2,2019-03-06,Brookdale Cooked Ham,3.29,16 oz,2
+2,2019-03-06,Village Bakery Triple Chocolate Creme Cake,3.65,20 oz,1
+2,2019-03-06,Savoritz Cracked Pepper Woven Wheat Crackers,2.09,9 oz,1
+2,2019-03-06,Bremer Garlic Chicken Skillet,3.65,21 oz,1
+2,2019-03-06,Sausage,3.29,8 oz,1
+2,2019-03-06,Hummus,2.55,10 oz,1
+2,2019-03-06,Kirkwood Crispy Chicken Strips,5.49,25 oz,2
+3,2019-03-06,Salisbury Steak Dinner,2.79,14 oz,2
+3,2019-03-06,NA,1.5,2.1 oz,10
+3,2019-03-06,Hungry-Man Boneless Fried Chicken Frozen Dinner,3.19,16 oz,1
+3,2019-03-06,Marie Callender's Sweet And Sour Chicken Dinners,2.79,14 oz,2
+3,2019-03-06,NA,6.99,6 x 6 x 2.4 oz,1
+4,2019-03-16,Casa Mamita Beef and Bean Burritos,2.99,8 x 8 x 4 oz,1
+4,2019-03-16,Southern Grove Pitted Dates,2.09,8 oz,1
+4,2019-03-16,Benton's Cinnamon Graham Crackers,2.09,14.4 oz,1
+4,2019-03-16,Whole And Simple Mediterranean Chicken Quinoa Bowl,3.29,10.5 oz,2
+4,2019-03-16,Sausage,3.29,8 oz,2
+4,2019-03-16,Kirkwood Crispy Chicken Strips,5.49,25 oz,2
+4,2019-03-16,Hummus,2.55,10 oz,1
+4,2019-03-16,Savoritz Cracked Pepper Woven Wheat Crackers,2.09,9 oz,1
+4,2019-03-16,Bremer Garlic Chicken Skillet,3.65,21 oz,2
+4,2019-03-16,Friendly Farms Vanilla Unsweetened Almondmilk,2.29,64 fl oz,2
+4,2019-03-16,Savoritz Woven Whole Wheat Cracker,1.95,9 oz,1
+4,2019-03-16,Brookdale Cooked Ham,3.29,16 oz,2
+4,2019-03-16,Season's Choice Steamable Mediterranean Quinoa,3.29,12 oz,3
+4,2019-03-16,12 Grain Bread,2.09,24 oz,1
+4,2019-03-16,Millville Oats and Honey Protein Crunchy Granola,3.29,11 oz,1
+4,2019-03-16,NA,2.09,20 ct,1
+5,2019-03-24,Fusia Chicken Lo Mein,3.85,20 oz,1
+5,2019-03-24,Fusia Chicken Fried Rice,3.85,22 oz,2
+5,2019-03-24,Sausage,3.29,8 oz,1
+5,2019-03-24,Bremer Garlic Chicken Skillet,3.65,21 oz,2
+5,2019-03-24,Savoritz Woven Whole Wheat Cracker,1.95,9 oz,2
+5,2019-03-24,Whole And Simple Mediterranean Chicken Quinoa Bowl,3.29,10.5 oz,2
+5,2019-03-24,Hummus,2.55,10 oz,1
+5,2019-03-24,Kirkwood Crispy Chicken Strips,5.49,25 oz,2
+5,2019-03-24,Casa Mamita Beef and Bean Burritos,2.99,8 x 8 x 4 oz,2
+5,2019-03-24,Season's Choice Steamable Mediterranean Quinoa,3.29,12 oz,1
+5,2019-03-24,Parkview Polska Kielbasa,2.55,14 oz,1
+5,2019-03-24,12 Grain Bread,2.09,24 oz,1
+5,2019-03-24,Simply Nature Creamy Almond Butter,5.39,12 oz,1
+6,2019-03-30,12 Grain Bread,2.09,24 oz,1
+6,2019-03-30,Sausage,3.29,8 oz,2
+6,2019-03-30,Hummus,2.55,10 oz,2
+6,2019-03-30,Whole And Simple Mediterranean Chicken Quinoa Bowl,3.29,10.5 oz,2
+6,2019-03-30,Savoritz Cracked Pepper Woven Wheat Crackers,2.09,9 oz,2
+6,2019-03-30,Savoritz Woven Whole Wheat Cracker,1.95,9 oz,1
+6,2019-03-30,Casa Mamita Beef and Bean Burritos,2.99,8 x 8 x 4 oz,1
+6,2019-03-30,Kirkwood Crispy Chicken Strips,5.49,25 oz,2
+6,2019-03-30,Bremer Garlic Chicken Skillet,3.65,21 oz,1
+6,2019-03-30,Season's Choice Steamable Mediterranean Quinoa,3.29,12 oz,2
+6,2019-03-30,Friendly Farms Vanilla Unsweetened Almondmilk,2.29,64 fl oz,2
+6,2019-03-30,Salad,0.99,12 oz,1
+6,2019-03-30,Kirkwood Garlic and Herb Chicken Breast,7.69,40 oz,1
+7,2019-04-06,Hummus,2.55,10 oz,2
+7,2019-04-06,Whole And Simple Mediterranean Chicken Quinoa Bowl,3.29,10.5 oz,2
+7,2019-04-06,Savoritz Woven Whole Wheat Cracker,1.95,9 oz,2
+7,2019-04-06,12 Grain Bread,2.09,24 oz,1
+7,2019-04-06,NA,5.49,12 ct,1
+7,2019-04-06,NA,2.19,2 ct,1
+7,2019-04-06,NA,5.29,1 lb,1
+7,2019-04-06,Eggs,1.35,12 ct,1
+7,2019-04-06,Season's Choice Steamable Mediterranean Quinoa,3.29,12 oz,2
+7,2019-04-06,Whole And Simple Southwest Chicken Quinoa Bowl,3.29,10.5 oz,2
+7,2019-04-06,Salad,2.09,5 oz,1
+7,2019-04-06,Appleton Farms Premium Sliced Bacon,3.49,16 oz,1
+7,2019-04-06,Southern Grove Cashew Halves and Pieces,5.19,12 oz,1
+7,2019-04-06,Salad,1.35,8 oz,1
+7,2019-04-06,Southern Grove Pitted Dates,2.09,8 oz,1
+7,2019-04-06,Apples,4.39,2 lb,2
+8,2019-04-15,12 Grain Bread,2.09,24 oz,1
+8,2019-04-15,Sausage,3.29,12 oz,2
+8,2019-04-15,NA,1.35,75 ct,1
+8,2019-04-15,Parkview Polska Kielbasa,2.55,14 oz,1
+8,2019-04-15,Whole And Simple Southwest Chicken Quinoa Bowl,3.29,10.5 oz,2
+8,2019-04-15,Fusia Chicken Lo Mein,3.85,20 oz,1
+8,2019-04-15,Kirkwood Crispy Chicken Strips,5.49,25 oz,1
+8,2019-04-15,Whole And Simple Mediterranean Chicken Quinoa Bowl,3.29,10.5 oz,1
+8,2019-04-15,Savoritz Woven Whole Wheat Cracker,1.95,9 oz,2
+8,2019-04-15,Bremer Garlic Chicken Skillet,3.65,21 oz,1
+8,2019-04-15,Casa Mamita Beef and Bean Burritos,2.99,8 x 8 x 4 oz,2
+8,2019-04-15,Friendly Farms Vanilla Unsweetened Almondmilk,2.29,64 fl oz,2
+8,2019-04-15,Salad,0.99,12 oz,1
+8,2019-04-15,Appleton Farms Premium Sliced Bacon,3.49,16 oz,1
+8,2019-04-15,Southern Grove Cashew Halves and Pieces,5.19,12 oz,2
+8,2019-04-15,Salad,2.09,5 oz,1
+8,2019-04-15,Kirkwood Boneless Chicken Wyngz,5.49,22 oz,2
+8,2019-04-15,Park Street Deli Chicken Fajitas,6.59,16 oz,2
+8,2019-04-15,Bremer Chicken Pot Pie,0.79,7 oz,3
+9,2019-04-22,Fusia Chicken Fried Rice,3.85,22 oz,1
+9,2019-04-22,Whole And Simple Mediterranean Chicken Quinoa Bowl,3.29,10.5 oz,2
+9,2019-04-22,Savoritz Woven Whole Wheat Cracker,1.95,9 oz,2
+9,2019-04-22,Sausage,3.29,8 oz,2
+9,2019-04-22,Hummus,2.55,10 oz,2
+9,2019-04-22,Kirkwood Crispy Chicken Strips,5.49,25 oz,1
+9,2019-04-22,Season's Choice Steamable Mediterranean Quinoa,3.29,12 oz,2
+9,2019-04-22,Friendly Farms Vanilla Unsweetened Almondmilk,2.29,64 fl oz,2
+9,2019-04-22,Salad,0.99,12 oz,1
+9,2019-04-22,Whole And Simple Southwest Chicken Quinoa Bowl,3.29,10.5 oz,2
+9,2019-04-22,Salad,2.09,5 oz,1
+9,2019-04-22,Appleton Farms Premium Sliced Bacon,3.49,16 oz,1
+9,2019-04-22,Parkview Polska Kielbasa,2.55,14 oz,1
+9,2019-04-22,Park Street Deli Chicken Fajitas,6.59,16 oz,2
+9,2019-04-22,Season's Choice Steamable Mixed Vegetables,0.89,12 oz,1
+9,2019-04-22,Season's Choice Steamable Cut Green Beans,0.89,12 oz,1
+9,2019-04-22,Season's Choice Extra Fine Green Beans,1.75,16 oz,1
+9,2019-04-22,Season's Choice Frozen Sweet Peas,1.09,16 oz,1
+9,2019-04-22,Salisbury Steak Dinner,2.95,28 oz,3
+10,2019-04-30,Fusia Chicken Fried Rice,3.85,22 oz,1
+10,2019-04-30,12 Grain Bread,2.09,24 oz,1
+10,2019-04-30,Savoritz Woven Whole Wheat Cracker,1.95,9 oz,2
+10,2019-04-30,Whole And Simple Mediterranean Chicken Quinoa Bowl,3.29,10.5 oz,2
+10,2019-04-30,Kirkwood Crispy Chicken Strips,5.49,25 oz,1
+10,2019-04-30,Sausage,3.29,8 oz,2
+10,2019-04-30,Friendly Farms Vanilla Unsweetened Almondmilk,2.55,64 fl oz,1
+10,2019-04-30,Fusia Chicken Lo Mein,3.85,20 oz,1
+10,2019-04-30,Salad,0.99,12 oz,1
+10,2019-04-30,Park Street Deli Chicken Fajitas,6.59,16 oz,1
+10,2019-04-30,Bremer Chicken Pot Pie,0.79,7 oz,3
+10,2019-04-30,Apples,64.3,2 lb,1
+10,2019-04-30,Fusia Chicken Fried Rice,3.85,22 oz,1
+10,2019-04-30,Season's Choice Steamable Mixed Vegetables,0.89,12 oz,1
+10,2019-04-30,Season's Choice Steamable Cut Green Beans,0.89,12 oz,1
+10,2019-04-30,NA,1.35,75 ct,1
+10,2019-04-30,Salisbury Steak Dinner,2.95,28 oz,2
+10,2019-04-30,Hummus,2.55,10 oz,1
+10,2019-04-30,Pears,2.75,3 lb,1
+10,2019-04-30,Never Any! Hickory Bacon,5.49,12 oz,1
+10,2019-04-30,Parkview Stadium Bratwurst,2.75,14 oz,1
+11,2019-04-30,Kroger Bite Size Shredded Wheat Cereal,2.49,16.4 oz,1
+11,2019-04-30,NA,3.39,13.1 oz,2
+11,2019-04-30,Golden Star Dates Pitted,3.99,10 oz,1
+11,2019-04-30,Stouffer's Protein Bowls Moroccan-Style Chicken STOUFFER'S FIT KITCHEN Protein Bowls Moroccan-Style Chicken,4.69,12 oz,2
+11,2019-04-30,Marie Callender's Chicken Pot Pie,2.29,10 oz,3
+11,2019-04-30,Lean Cuisine Marketplace Sweet & Spicy Korean-Style Beef LEAN CUISINE MARKETPLACE Sweet & Spicy Korean-Style Beef,2.79,9 oz,1
+11,2019-04-30,Lean Cuisine Favorites Swedish Meatballs with Pasta,2.29,9.12 oz,2
+12,2019-05-12,12 Grain Bread,2.09,24 oz,1
+12,2019-05-12,Eggs,2.55,12 ct,1
+12,2019-05-12,Bremer Garlic Chicken Skillet,3.65,21 oz,1
+12,2019-05-12,Season's Choice Steamable Mediterranean Quinoa,3.29,12 oz,2
+12,2019-05-12,Whole And Simple Mediterranean Chicken Quinoa Bowl,3.29,10.5 oz,2
+12,2019-05-12,Savoritz Woven Whole Wheat Cracker,1.95,9 oz,2
+12,2019-05-12,Sausage,3.29,8 oz,1
+12,2019-05-12,Kirkwood Crispy Chicken Strips,5.49,25 oz,2
+12,2019-05-12,Friendly Farms Vanilla Unsweetened Almondmilk,2.55,64 fl oz,1
+12,2019-05-12,Salad,0.99,12 oz,1
+12,2019-05-12,Hummus,2.55,10 oz,1
+12,2019-05-12,Park Street Deli Chicken Fajitas,6.59,16 oz,2
+12,2019-05-12,Appleton Farms Premium Sliced Bacon,3.85,16 oz,2
+12,2019-05-12,Whole And Simple Southwest Chicken Quinoa Bowl,3.29,10.5 oz,1
+12,2019-05-12,Simply Nature Creamy Almond Butter,5.39,12 oz,1
+12,2019-05-12,NA,0.85,7.5 fl oz,1
+13,2019-05-20,Whole And Simple Mediterranean Chicken Quinoa Bowl,3.29,10.5 oz,2
+13,2019-05-20,Whole And Simple Southwest Chicken Quinoa Bowl,3.29,10.5 oz,2
+13,2019-05-20,Savoritz Woven Whole Wheat Cracker,1.95,9 oz,2
+13,2019-05-20,Sausage,3.29,8 oz,2
+13,2019-05-20,Friendly Farms Vanilla Unsweetened Almondmilk,2.55,64 fl oz,1
+13,2019-05-20,Kirkwood Crispy Chicken Strips,5.49,25 oz,1
+13,2019-05-20,Salad,1.35,12 oz,2
+13,2019-05-20,Park Street Deli Chicken Fajitas,6.59,16 oz,2
+13,2019-05-20,12 Grain Bread,2.09,24 oz,1
+13,2019-05-20,Hummus,2.55,10 oz,1
+13,2019-05-20,Fusia Chicken Fried Rice,3.85,22 oz,1
+13,2019-05-20,Season's Choice Steamable Mediterranean Quinoa,3.29,12 oz,3
+13,2019-05-20,Apples,4.39,2 lb,1
+13,2019-05-20,Never Any! Hickory Bacon,5.49,12 oz,2
+13,2019-05-20,Salisbury Steak Dinner,2.95,28 oz,1
+13,2019-05-20,Simply Nature Creamy Almond Butter,5.39,12 oz,1
+13,2019-05-20,Parkview Stadium Bratwurst,2.75,14 oz,1
+13,2019-05-20,Parkview Polska Kielbasa,2.55,14 oz,1
+14,2019-05-28,Hummus,2.55,10 oz,2
+14,2019-05-28,Park Street Deli Chicken Fajitas,6.59,16 oz,2
+14,2019-05-28,Savoritz Woven Whole Wheat Cracker,1.95,9 oz,2
+14,2019-05-28,Whole And Simple Mediterranean Chicken Quinoa Bowl,3.29,10.5 oz,1
+14,2019-05-28,Kirkwood Crispy Chicken Strips,5.49,25 oz,2
+14,2019-05-28,12 Grain Bread,2.09,24 oz,1
+14,2019-05-28,Bremer Garlic Chicken Skillet,3.65,21 oz,2
+14,2019-05-28,Season's Choice Steamable Mediterranean Quinoa,3.29,12 oz,2
+14,2019-05-28,Whole And Simple Southwest Chicken Quinoa Bowl,3.29,10.5 oz,2
+14,2019-05-28,Never Any! Hickory Bacon,5.49,12 oz,1
+14,2019-05-28,Apples,4.75,2 lb,1
+14,2019-05-28,Eggs,1.55,12 ct,1
+14,2019-05-28,Fusia Chicken Lo Mein,3.85,20 oz,1
+14,2019-05-28,Salisbury Steak Dinner,2.95,28 oz,1
+14,2019-05-28,Parkview Stadium Bratwurst,2.75,14 oz,1
+15,2019-06-07,Whole And Simple Mediterranean Chicken Quinoa Bowl,3.29,10.5 oz,1
+15,2019-06-07,Savoritz Woven Whole Wheat Cracker,1.95,9 oz,2
+15,2019-06-07,Kirkwood Crispy Chicken Strips,5.49,25 oz,2
+15,2019-06-07,Hummus,2.55,10 oz,2
+15,2019-06-07,12 Grain Bread,2.09,24 oz,1
+15,2019-06-07,Season's Choice Steamable Mediterranean Quinoa,3.29,12 oz,1
+15,2019-06-07,Park Street Deli Chicken Fajitas,6.59,16 oz,1
+15,2019-06-07,Whole And Simple Southwest Chicken Quinoa Bowl,3.29,10.5 oz,2
+15,2019-06-07,Friendly Farms Vanilla Unsweetened Almondmilk,2.55,64 fl oz,1
+15,2019-06-07,Salad,1.35,12 oz,2
+15,2019-06-07,Appleton Farms Premium Sliced Bacon,3.85,16 oz,1
+15,2019-06-07,Simply Nature Creamy Almond Butter,5.39,12 oz,2
+15,2019-06-07,Southern Grove Cashew Halves and Pieces,5.19,12 oz,1
+15,2019-06-07,"Strawberries, Package (Limit 6)",1.65,1 lb,1
+15,2019-06-07,Salisbury Steak Dinner,2.95,28 oz,1
+16,2019-06-13,Earthly Grains Instant Brown Rice,1.99,14 oz,1
+16,2019-06-13,Whole And Simple Mediterranean Chicken Quinoa Bowl,3.29,10.5 oz,2
+16,2019-06-13,Savoritz Woven Whole Wheat Cracker,1.95,9 oz,2
+16,2019-06-13,Kirkwood Crispy Chicken Strips,5.49,25 oz,1
+16,2019-06-13,Season's Choice Steamable Mediterranean Quinoa,3.29,12 oz,1
+16,2019-06-13,12 Grain Bread,2.09,24 oz,1
+16,2019-06-13,Friendly Farms Vanilla Unsweetened Almondmilk,2.55,64 fl oz,1
+16,2019-06-13,Whole And Simple Southwest Chicken Quinoa Bowl,3.29,10.5 oz,1
+16,2019-06-13,Salad,1.35,12 oz,2
+16,2019-06-13,Sausage,3.29,8 oz,1
+16,2019-06-13,Apples,3.85,3 lb,1
+16,2019-06-13,Parkview Stadium Bratwurst,2.75,14 oz,1
+16,2019-06-13,Eggs,1.45,12 ct,1
+16,2019-06-13,Appleton Farms Premium Sliced Bacon,3.85,16 oz,2
+16,2019-06-13,Southern Grove Cashew Halves and Pieces,5.19,12 oz,1
+16,2019-06-13,NA,5.49,12 ct,1
+16,2019-06-13,85/15 Ground Beef Patties,10.7,3 lb,1
+17,2019-06-25,Simply Nature Creamy Almond Butter,5.39,12 oz,1
+17,2019-06-25,Appleton Farms Premium Sliced Bacon,3.85,16 oz,1
+17,2019-06-25,Salad,1.35,12 oz,1
+17,2019-06-25,Season's Choice Steamable Mediterranean Quinoa,3.29,12 oz,2
+17,2019-06-25,Hummus,2.55,10 oz,1
+17,2019-06-25,Park Street Deli Chicken Fajitas,6.59,16 oz,1
+17,2019-06-25,Eggs,1.55,12 ct,1
+17,2019-06-25,Fusia Chicken Fried Rice,3.85,22 oz,2
+17,2019-06-25,Savoritz Cracked Pepper Woven Wheat Crackers,2.09,9 oz,2
+17,2019-06-25,Pears,3.85,3 lb,1
+17,2019-06-25,Season's Choice Extra Fine Green Beans,1.75,16 oz,1
+17,2019-06-25,Kirkwood Boneless Chicken Wyngz,5.49,22 oz,1
+17,2019-06-25,Kirkwood Fresh Chicken Tenderloins,2.69,~ 2 lb,1
+17,2019-06-25,Whole And Simple Southwest Chicken Quinoa Bowl,3.29,10.5 oz,2
+17,2019-06-25,Whole And Simple Mediterranean Chicken Quinoa Bowl,3.29,10.5 oz,1
+17,2019-06-25,Northern Catch Solid White Tuna in Water (Limit 6),1.29,5 oz,4
+18,2019-06-29,Savoritz Woven Whole Wheat Cracker,1.95,9 oz,1
+18,2019-06-29,Kirkwood Crispy Chicken Strips,5.49,25 oz,1
+18,2019-06-29,12 Grain Bread,2.09,24 oz,1
+18,2019-06-29,Friendly Farms Vanilla Unsweetened Almondmilk,2.55,64 fl oz,1
+18,2019-06-29,Sausage,3.29,8 oz,1
+18,2019-06-29,Eggs,1.09,12 ct,1
+18,2019-06-29,Kirkwood Fresh Chicken Tenderloins,2.69,~ 2 lb,1
+18,2019-06-29,Appleton Farms Premium Sliced Bacon,3.85,16 oz,1
+18,2019-06-29,Simply Nature Creamy Almond Butter,5.39,12 oz,2
+18,2019-06-29,Earthly Grains Instant Brown Rice,1.99,14 oz,1
+19,2019-07-05,Savoritz Woven Whole Wheat Cracker,1.95,9 oz,1
+19,2019-07-05,Hummus,2.55,10 oz,1
+19,2019-07-05,Salad,1.35,12 oz,2
+19,2019-07-05,Sausage,3.29,8 oz,1
+19,2019-07-05,Eggs,1.55,12 ct,1
+19,2019-07-05,Friendly Farms Vanilla Unsweetened Almondmilk,2.55,64 fl oz,1
+19,2019-07-05,Fusia Chicken Fried Rice,3.85,22 oz,1
+19,2019-07-05,Fusia Chicken Lo Mein,3.85,20 oz,1
+19,2019-07-05,Northern Catch Solid White Tuna in Water (Limit 6),1.29,5 oz,8
+19,2019-07-05,Kirkwood Crispy Chicken Strips,5.49,25 oz,2
+20,2019-07-10,Salad,1.55,8 oz,1
+20,2019-07-10,Whole And Simple Mediterranean Chicken Quinoa Bowl,3.29,10.5 oz,1
+20,2019-07-10,Whole And Simple Southwest Chicken Quinoa Bowl,3.29,10.5 oz,2
+20,2019-07-10,Kirkwood Crispy Chicken Strips,5.49,25 oz,1
+20,2019-07-10,Eggs,1.09,12 ct,1
+20,2019-07-10,Kirkwood Fresh Chicken Tenderloins,2.69,~ 2 lb,1
+20,2019-07-10,NA,4.29,16.9 fl oz,1
+20,2019-07-10,Season's Choice Steamable Mediterranean Quinoa,3.29,12 oz,1
+20,2019-07-10,Northern Catch Solid White Tuna in Water (Limit 6),1.29,5 oz,4
+21,2019-07-14,Salad,2.19,9 oz,2
+21,2019-07-14,NA,1.35,75 ct,2
+21,2019-07-14,Kirkwood Fresh Chicken Tenderloins,2.69,~ 2 lb,1
+21,2019-07-14,Kirkwood Turkey Burgers,6.59,48 oz,1
+21,2019-07-14,Simply Nature Organic Mixed Greens (Limit 6),2.99,5 oz,1
+21,2019-07-14,Season's Choice Frozen Broccoli Florets,1.05,12 oz,1
+21,2019-07-14,12 Grain Bread,2.09,24 oz,1
+21,2019-07-14,Apples,4.75,2 lb,1
+21,2019-07-14,Southern Grove Cashew Halves and Pieces,5.19,12 oz,1
+21,2019-07-14,Hummus,2.55,10 oz,1
+21,2019-07-14,Savoritz Woven Whole Wheat Cracker,1.95,9 oz,1
+21,2019-07-14,Savoritz Thin Wheat Crackers,1.89,9.1 oz,1
+22,2019-07-20,Friendly Farms Original Unsweetened Almondmilk,2.55,64 fl oz,1
+22,2019-07-20,Simply Nature Creamy Almond Butter,5.39,12 oz,1
+22,2019-07-20,Kirkwood Crispy Chicken Strips,5.49,25 oz,1
+22,2019-07-20,Eggs,1.09,12 ct,1
+22,2019-07-20,Hummus,2.55,10 oz,1
+22,2019-07-20,Whole And Simple Mediterranean Chicken Quinoa Bowl,3.29,10.5 oz,2
+22,2019-07-20,Whole And Simple Southwest Chicken Quinoa Bowl,3.29,10.5 oz,1
+22,2019-07-20,Kirkwood Fresh Chicken Tenderloins,2.69,~ 2 lb,1
+22,2019-07-20,Savoritz Cracked Pepper Woven Wheat Crackers,2.09,9 oz,1
+22,2019-07-20,Kirkwood Turkey Burgers,6.59,48 oz,1
+22,2019-07-20,Salad,1.35,12 oz,1
+22,2019-07-20,Sweet Potatoes (Limit 6),1.25,~ 0.88 lb,1
+22,2019-07-20,Southern Grove Raisins,3.95,20 oz,1
+22,2019-07-20,12 Grain Bread,2.09,24 oz,1
+22,2019-07-20,Fresh Family Pack Chicken Breasts,1.69,~ 6 lb,1
+23,2019-07-27,Appleton Farms Premium Sliced Bacon,4.19,16 oz,1
+23,2019-07-27,Fusia Chicken Fried Rice,3.85,22 oz,2
+23,2019-07-27,Whole And Simple Mediterranean Chicken Quinoa Bowl,3.29,10.5 oz,2
+23,2019-07-27,Eggs,1.09,12 ct,1
+23,2019-07-27,Whole And Simple Southwest Chicken Quinoa Bowl,3.29,10.5 oz,1
+23,2019-07-27,Season's Choice Steamable Mediterranean Quinoa,3.29,12 oz,2
+23,2019-07-27,Savoritz Woven Whole Wheat Cracker,1.95,9 oz,2
+23,2019-07-27,Kirkwood Fresh Chicken Tenderloins,2.69,~ 2 lb,1
+23,2019-07-27,Salad,1.35,12 oz,1
+23,2019-07-27,12 Grain Bread,2.09,24 oz,1
+23,2019-07-27,Northern Catch Solid White Tuna in Water (Limit 6),1.29,5 oz,6
+23,2019-07-27,Simply Nature Creamy Almond Butter,5.39,12 oz,1
+23,2019-07-27,Season's Choice Frozen Broccoli Florets,1.05,12 oz,1
+23,2019-07-27,Apples,4.75,2 lb,1
+23,2019-07-27,Southern Grove Cashew Halves and Pieces,5.19,12 oz,1
+23,2019-07-27,Kirkwood Turkey Burgers,6.59,48 oz,1
+23,2019-07-27,Casa Mamita Beef and Bean Burritos,2.99,8 x 8 x 4 oz,1
+23,2019-07-27,Salad,1.55,8 oz,1
+23,2019-07-27,Salad,2.19,9 oz,1
+23,2019-07-27,85/15 Ground Beef Patties,10.7,3 lb,1
+23,2019-07-27,Sweet Potatoes (Limit 6),1.25,~ 0.88 lb,1
+24,2019-08-10,Kirkwood Fresh Chicken Tenderloins,2.69,~ 2 lb,1
+24,2019-08-10,Hummus,2.55,10 oz,2
+24,2019-08-10,Whole And Simple Southwest Chicken Quinoa Bowl,3.29,10.5 oz,2
+24,2019-08-10,Savoritz Woven Whole Wheat Cracker,1.95,9 oz,1
+24,2019-08-10,Eggs,1.09,12 ct,1
+24,2019-08-10,Season's Choice Steamable Mediterranean Quinoa,3.29,12 oz,1
+24,2019-08-10,Kirkwood Turkey Burgers,6.59,48 oz,1
+24,2019-08-10,Salad,2.19,9 oz,2
+24,2019-08-10,Salad,1.55,8 oz,1
+24,2019-08-10,Apples,4.75,2 lb,1
+24,2019-08-10,Season's Choice Frozen Broccoli Florets,1.05,12 oz,1
+24,2019-08-10,Simply Nature Creamy Almond Butter,5.39,12 oz,2
+24,2019-08-10,Sweet Potatoes (Limit 6),1.09,~ 0.88 lb,1
+24,2019-08-10,Season's Choice Extra Fine Green Beans,1.75,16 oz,1
+24,2019-08-10,Appleton Farms Premium Sliced Bacon,4.19,16 oz,2
+24,2019-08-10,NA,5.49,45 ct,1

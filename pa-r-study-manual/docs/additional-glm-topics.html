@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title> 12 Additional GLM topics | Exam PA Study Guide, Spring 2022</title>
+  <meta name="description" content=" 12 Additional GLM topics | Exam PA Study Guide, Spring 2022" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content=" 12 Additional GLM topics | Exam PA Study Guide, Spring 2022" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content=" 12 Additional GLM topics | Exam PA Study Guide, Spring 2022" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="images/artificial_actuary_logo_favicon.png" type="image/x-icon" />
+<link rel="prev" href="classification-metrics.html"/>
+<link rel="next" href="glm-variable-selection.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Exam PA Study Manual</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a>
+<ul>
+<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#faq-frequently-asked-questions"><i class="fa fa-check"></i><b>0.1</b> FAQ: Frequently Asked Questions</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="the-exam.html"><a href="the-exam.html"><i class="fa fa-check"></i><b>1</b> The exam</a></li>
+<li class="chapter" data-level="2" data-path="prometric-demo.html"><a href="prometric-demo.html"><i class="fa fa-check"></i><b>2</b> Prometric Demo</a></li>
+<li class="chapter" data-level="3" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>3</b> Introduction</a></li>
+<li class="chapter" data-level="4" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>4</b> Getting started</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="getting-started.html"><a href="getting-started.html#installing-r"><i class="fa fa-check"></i><b>4.1</b> Installing R</a></li>
+<li class="chapter" data-level="4.2" data-path="getting-started.html"><a href="getting-started.html#installing-rstudio"><i class="fa fa-check"></i><b>4.2</b> Installing RStudio</a></li>
+<li class="chapter" data-level="4.3" data-path="getting-started.html"><a href="getting-started.html#download-the-data"><i class="fa fa-check"></i><b>4.3</b> Download the data</a></li>
+<li class="chapter" data-level="4.4" data-path="getting-started.html"><a href="getting-started.html#download-islr"><i class="fa fa-check"></i><b>4.4</b> Download ISLR</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="how-much-r-do-i-need-to-know-to-pass.html"><a href="how-much-r-do-i-need-to-know-to-pass.html"><i class="fa fa-check"></i><b>5</b> How much R do I need to know to pass?</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="how-much-r-do-i-need-to-know-to-pass.html"><a href="how-much-r-do-i-need-to-know-to-pass.html#how-to-use-the-pa-r-cheat-sheets"><i class="fa fa-check"></i><b>5.1</b> How to use the PA R cheat sheets?</a></li>
+<li class="chapter" data-level="5.2" data-path="how-much-r-do-i-need-to-know-to-pass.html"><a href="how-much-r-do-i-need-to-know-to-pass.html#example-soa-pa-61620-task-8"><i class="fa fa-check"></i><b>5.2</b> Example: SOA PA 6/16/20, Task 8</a></li>
+<li class="chapter" data-level="5.3" data-path="how-much-r-do-i-need-to-know-to-pass.html"><a href="how-much-r-do-i-need-to-know-to-pass.html#example-2---data-exploration"><i class="fa fa-check"></i><b>5.3</b> Example 2 - Data exploration</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="r-programming.html"><a href="r-programming.html"><i class="fa fa-check"></i><b>6</b> R programming</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="r-programming.html"><a href="r-programming.html#notebook-chunks"><i class="fa fa-check"></i><b>6.1</b> Notebook chunks</a></li>
+<li class="chapter" data-level="6.2" data-path="r-programming.html"><a href="r-programming.html#basic-operations"><i class="fa fa-check"></i><b>6.2</b> Basic operations</a></li>
+<li class="chapter" data-level="6.3" data-path="r-programming.html"><a href="r-programming.html#lists"><i class="fa fa-check"></i><b>6.3</b> Lists</a></li>
+<li class="chapter" data-level="6.4" data-path="r-programming.html"><a href="r-programming.html#functions"><i class="fa fa-check"></i><b>6.4</b> Functions</a></li>
+<li class="chapter" data-level="6.5" data-path="r-programming.html"><a href="r-programming.html#data-frames"><i class="fa fa-check"></i><b>6.5</b> Data frames</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="data-exploration.html"><a href="data-exploration.html"><i class="fa fa-check"></i><b>7</b> Data exploration</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="data-exploration.html"><a href="data-exploration.html#how-to-make-graphs-in-r"><i class="fa fa-check"></i><b>7.1</b> How to make graphs in R?</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="data-exploration.html"><a href="data-exploration.html#add-a-plot"><i class="fa fa-check"></i><b>7.1.1</b> Add a plot</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="data-exploration.html"><a href="data-exploration.html#the-different-graph-types"><i class="fa fa-check"></i><b>7.2</b> The different graph types</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="data-exploration.html"><a href="data-exploration.html#histogram"><i class="fa fa-check"></i><b>7.2.1</b> Histogram</a></li>
+<li class="chapter" data-level="7.2.2" data-path="data-exploration.html"><a href="data-exploration.html#box-plot"><i class="fa fa-check"></i><b>7.2.2</b> Box plot</a></li>
+<li class="chapter" data-level="7.2.3" data-path="data-exploration.html"><a href="data-exploration.html#scatterplot"><i class="fa fa-check"></i><b>7.2.3</b> Scatterplot</a></li>
+<li class="chapter" data-level="7.2.4" data-path="data-exploration.html"><a href="data-exploration.html#bar-charts"><i class="fa fa-check"></i><b>7.2.4</b> Bar charts</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="data-exploration.html"><a href="data-exploration.html#how-to-save-time-with-dplyr"><i class="fa fa-check"></i><b>7.3</b> How to save time with dplyr?</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="data-exploration.html"><a href="data-exploration.html#data-manipulation-chaining"><i class="fa fa-check"></i><b>7.3.1</b> Data manipulation chaining</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="data-exploration.html"><a href="data-exploration.html#how-to-explore-the-data"><i class="fa fa-check"></i><b>7.4</b> How to explore the data?</a></li>
+<li class="chapter" data-level="7.5" data-path="data-exploration.html"><a href="data-exploration.html#how-to-transform-the-data"><i class="fa fa-check"></i><b>7.5</b> How to transform the data?</a></li>
+<li class="chapter" data-level="7.6" data-path="data-exploration.html"><a href="data-exploration.html#missing-values"><i class="fa fa-check"></i><b>7.6</b> Missing values</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="data-exploration.html"><a href="data-exploration.html#types-of-missing-values"><i class="fa fa-check"></i><b>7.6.1</b> Types of Missing Values</a></li>
+<li class="chapter" data-level="7.6.2" data-path="data-exploration.html"><a href="data-exploration.html#missing-value-resolutions"><i class="fa fa-check"></i><b>7.6.2</b> Missing Value Resolutions:</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="data-exploration.html"><a href="data-exploration.html#example-soa-pa-121219-task-1"><i class="fa fa-check"></i><b>7.7</b> Example: SOA PA 12/12/19, Task 1</a>
+<ul>
+<li class="chapter" data-level="7.7.1" data-path="data-exploration.html"><a href="data-exploration.html#garbage-in-garbage-out"><i class="fa fa-check"></i><b>7.7.1</b> Garbage in; garbage out 🗑</a></li>
+<li class="chapter" data-level="7.7.2" data-path="data-exploration.html"><a href="data-exploration.html#be-a-detective"><i class="fa fa-check"></i><b>7.7.2</b> Be a detective 🔎</a></li>
+<li class="chapter" data-level="7.7.3" data-path="data-exploration.html"><a href="data-exploration.html#a-picture-is-worth-a-thousand-words"><i class="fa fa-check"></i><b>7.7.3</b> A picture is worth a thousand words 📷</a></li>
+<li class="chapter" data-level="7.7.4" data-path="data-exploration.html"><a href="data-exploration.html#factor-or-numeric"><i class="fa fa-check"></i><b>7.7.4</b> Factor or numeric ❓</a></li>
+<li class="chapter" data-level="7.7.5" data-path="data-exploration.html"><a href="data-exploration.html#of-statistics-are-false"><i class="fa fa-check"></i><b>7.7.5</b> 73.6% of statistics are false 😱</a></li>
+</ul></li>
+<li class="chapter" data-level="7.8" data-path="data-exploration.html"><a href="data-exploration.html#exercises"><i class="fa fa-check"></i><b>7.8</b> Exercises</a>
+<ul>
+<li class="chapter" data-level="7.8.1" data-path="data-exploration.html"><a href="data-exploration.html#data-exploration-practice"><i class="fa fa-check"></i><b>7.8.1</b> Data Exploration Practice</a></li>
+<li class="chapter" data-level="7.8.2" data-path="data-exploration.html"><a href="data-exploration.html#dplyr-practice"><i class="fa fa-check"></i><b>7.8.2</b> Dplyr Practice</a></li>
+</ul></li>
+<li class="chapter" data-level="7.9" data-path="data-exploration.html"><a href="data-exploration.html#answers-to-exercises"><i class="fa fa-check"></i><b>7.9</b> Answers to exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="introduction-to-modeling.html"><a href="introduction-to-modeling.html"><i class="fa fa-check"></i><b>8</b> Introduction to modeling</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="introduction-to-modeling.html"><a href="introduction-to-modeling.html#modeling-vocabulary"><i class="fa fa-check"></i><b>8.1</b> Modeling vocabulary</a></li>
+<li class="chapter" data-level="8.2" data-path="introduction-to-modeling.html"><a href="introduction-to-modeling.html#modeling-notation"><i class="fa fa-check"></i><b>8.2</b> Modeling notation</a></li>
+<li class="chapter" data-level="8.3" data-path="introduction-to-modeling.html"><a href="introduction-to-modeling.html#ordinary-least-squares-ols"><i class="fa fa-check"></i><b>8.3</b> Ordinary Least Squares (OLS)</a></li>
+<li class="chapter" data-level="8.4" data-path="introduction-to-modeling.html"><a href="introduction-to-modeling.html#r2-statistic"><i class="fa fa-check"></i><b>8.4</b> R^2 Statistic</a></li>
+<li class="chapter" data-level="8.5" data-path="introduction-to-modeling.html"><a href="introduction-to-modeling.html#correlation"><i class="fa fa-check"></i><b>8.5</b> Correlation</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="introduction-to-modeling.html"><a href="introduction-to-modeling.html#pearsons-correlation"><i class="fa fa-check"></i><b>8.5.1</b> Pearson’s correlation</a></li>
+<li class="chapter" data-level="8.5.2" data-path="introduction-to-modeling.html"><a href="introduction-to-modeling.html#spearman-rank-correlation"><i class="fa fa-check"></i><b>8.5.2</b> Spearman (rank) correlation</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="introduction-to-modeling.html"><a href="introduction-to-modeling.html#regression-vs.-classification"><i class="fa fa-check"></i><b>8.6</b> Regression vs. classification</a></li>
+<li class="chapter" data-level="8.7" data-path="introduction-to-modeling.html"><a href="introduction-to-modeling.html#regression-metrics"><i class="fa fa-check"></i><b>8.7</b> Regression metrics</a>
+<ul>
+<li class="chapter" data-level="8.7.1" data-path="introduction-to-modeling.html"><a href="introduction-to-modeling.html#example-soa-pa-61820-task-4"><i class="fa fa-check"></i><b>8.7.1</b> Example: SOA PA 6/18/20, Task 4</a></li>
+</ul></li>
+<li class="chapter" data-level="8.8" data-path="introduction-to-modeling.html"><a href="introduction-to-modeling.html#example-health-costs"><i class="fa fa-check"></i><b>8.8</b> Example: Health Costs</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="generalized-linear-models-glms.html"><a href="generalized-linear-models-glms.html"><i class="fa fa-check"></i><b>9</b> Generalized linear Models (GLMs)</a>
+<ul>
+<li class="chapter" data-level="9.0.1" data-path="generalized-linear-models-glms.html"><a href="generalized-linear-models-glms.html#assumptions-of-ols"><i class="fa fa-check"></i><b>9.0.1</b> Assumptions of OLS</a></li>
+<li class="chapter" data-level="9.0.2" data-path="generalized-linear-models-glms.html"><a href="generalized-linear-models-glms.html#assumptions-of-glms"><i class="fa fa-check"></i><b>9.0.2</b> Assumptions of GLMs</a></li>
+<li class="chapter" data-level="9.1" data-path="generalized-linear-models-glms.html"><a href="generalized-linear-models-glms.html#advantages-and-disadvantages"><i class="fa fa-check"></i><b>9.1</b> Advantages and disadvantages</a></li>
+<li class="chapter" data-level="9.2" data-path="generalized-linear-models-glms.html"><a href="generalized-linear-models-glms.html#glms-for-regression"><i class="fa fa-check"></i><b>9.2</b> GLMs for regression</a></li>
+<li class="chapter" data-level="9.3" data-path="generalized-linear-models-glms.html"><a href="generalized-linear-models-glms.html#interpretation-of-coefficients"><i class="fa fa-check"></i><b>9.3</b> Interpretation of coefficients</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="generalized-linear-models-glms.html"><a href="generalized-linear-models-glms.html#identity-link"><i class="fa fa-check"></i><b>9.3.1</b> Identity link</a></li>
+<li class="chapter" data-level="9.3.2" data-path="generalized-linear-models-glms.html"><a href="generalized-linear-models-glms.html#log-link"><i class="fa fa-check"></i><b>9.3.2</b> Log link</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="generalized-linear-models-glms.html"><a href="generalized-linear-models-glms.html#other-links"><i class="fa fa-check"></i><b>9.4</b> Other links</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="glms-for-classification.html"><a href="glms-for-classification.html"><i class="fa fa-check"></i><b>10</b> GLMs for classification</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="glms-for-classification.html"><a href="glms-for-classification.html#binary-target"><i class="fa fa-check"></i><b>10.1</b> Binary target</a></li>
+<li class="chapter" data-level="10.2" data-path="glms-for-classification.html"><a href="glms-for-classification.html#count-target"><i class="fa fa-check"></i><b>10.2</b> Count target</a></li>
+<li class="chapter" data-level="10.3" data-path="glms-for-classification.html"><a href="glms-for-classification.html#link-functions"><i class="fa fa-check"></i><b>10.3</b> Link functions</a></li>
+<li class="chapter" data-level="10.4" data-path="glms-for-classification.html"><a href="glms-for-classification.html#interpretation-of-coefficients-1"><i class="fa fa-check"></i><b>10.4</b> Interpretation of coefficients</a>
+<ul>
+<li class="chapter" data-level="10.4.1" data-path="glms-for-classification.html"><a href="glms-for-classification.html#logit"><i class="fa fa-check"></i><b>10.4.1</b> Logit</a></li>
+<li class="chapter" data-level="10.4.2" data-path="glms-for-classification.html"><a href="glms-for-classification.html#probit-cauchit-cloglog"><i class="fa fa-check"></i><b>10.4.2</b> Probit, Cauchit, Cloglog</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="glms-for-classification.html"><a href="glms-for-classification.html#demo-the-model-for-interpretation"><i class="fa fa-check"></i><b>10.5</b> Demo the model for interpretation</a></li>
+<li class="chapter" data-level="10.6" data-path="glms-for-classification.html"><a href="glms-for-classification.html#example---auto-claims"><i class="fa fa-check"></i><b>10.6</b> Example - Auto Claims</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="classification-metrics.html"><a href="classification-metrics.html"><i class="fa fa-check"></i><b>11</b> Classification metrics</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="classification-metrics.html"><a href="classification-metrics.html#area-under-the-roc-curve-auc"><i class="fa fa-check"></i><b>11.1</b> Area Under the ROC Curve (AUC)</a></li>
+<li class="chapter" data-level="11.2" data-path="classification-metrics.html"><a href="classification-metrics.html#example---auto-claims-1"><i class="fa fa-check"></i><b>11.2</b> Example - Auto Claims</a></li>
+<li class="chapter" data-level="11.3" data-path="classification-metrics.html"><a href="classification-metrics.html#example-soa-hr-task-5"><i class="fa fa-check"></i><b>11.3</b> Example: SOA HR, Task 5</a></li>
+<li class="chapter" data-level="11.4" data-path="classification-metrics.html"><a href="classification-metrics.html#example-soa-pa-121219-task-11"><i class="fa fa-check"></i><b>11.4</b> Example: SOA PA 12/12/19, Task 11</a></li>
+<li class="chapter" data-level="11.5" data-path="classification-metrics.html"><a href="classification-metrics.html#additional-reading"><i class="fa fa-check"></i><b>11.5</b> Additional reading</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="additional-glm-topics.html"><a href="additional-glm-topics.html"><i class="fa fa-check"></i><b>12</b> Additional GLM topics</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="additional-glm-topics.html"><a href="additional-glm-topics.html#residuals"><i class="fa fa-check"></i><b>12.1</b> Residuals</a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="additional-glm-topics.html"><a href="additional-glm-topics.html#raw-residuals"><i class="fa fa-check"></i><b>12.1.1</b> Raw residuals</a></li>
+<li class="chapter" data-level="12.1.2" data-path="additional-glm-topics.html"><a href="additional-glm-topics.html#deviance-residuals"><i class="fa fa-check"></i><b>12.1.2</b> Deviance residuals</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="additional-glm-topics.html"><a href="additional-glm-topics.html#example"><i class="fa fa-check"></i><b>12.2</b> Example</a></li>
+<li class="chapter" data-level="12.3" data-path="additional-glm-topics.html"><a href="additional-glm-topics.html#log-transforms-of-predictors"><i class="fa fa-check"></i><b>12.3</b> Log transforms of predictors</a></li>
+<li class="chapter" data-level="12.4" data-path="additional-glm-topics.html"><a href="additional-glm-topics.html#example-1"><i class="fa fa-check"></i><b>12.4</b> Example</a></li>
+<li class="chapter" data-level="12.5" data-path="additional-glm-topics.html"><a href="additional-glm-topics.html#reference-levels"><i class="fa fa-check"></i><b>12.5</b> Reference levels</a></li>
+<li class="chapter" data-level="12.6" data-path="additional-glm-topics.html"><a href="additional-glm-topics.html#interactions"><i class="fa fa-check"></i><b>12.6</b> Interactions</a></li>
+<li class="chapter" data-level="12.7" data-path="additional-glm-topics.html"><a href="additional-glm-topics.html#offsets"><i class="fa fa-check"></i><b>12.7</b> Offsets</a></li>
+<li class="chapter" data-level="12.8" data-path="additional-glm-topics.html"><a href="additional-glm-topics.html#tweedie-regression"><i class="fa fa-check"></i><b>12.8</b> Tweedie regression</a></li>
+<li class="chapter" data-level="12.9" data-path="additional-glm-topics.html"><a href="additional-glm-topics.html#combinations-of-link-functions-and-target-distributions"><i class="fa fa-check"></i><b>12.9</b> Combinations of Link Functions and Target Distributions</a>
+<ul>
+<li class="chapter" data-level="12.9.1" data-path="additional-glm-topics.html"><a href="additional-glm-topics.html#gaussian-response-with-log-link"><i class="fa fa-check"></i><b>12.9.1</b> Gaussian Response with Log Link</a></li>
+<li class="chapter" data-level="12.9.2" data-path="additional-glm-topics.html"><a href="additional-glm-topics.html#gaussian-response-with-inverse-link"><i class="fa fa-check"></i><b>12.9.2</b> Gaussian Response with Inverse Link</a></li>
+<li class="chapter" data-level="12.9.3" data-path="additional-glm-topics.html"><a href="additional-glm-topics.html#gaussian-response-with-identity-link"><i class="fa fa-check"></i><b>12.9.3</b> Gaussian Response with Identity Link</a></li>
+<li class="chapter" data-level="12.9.4" data-path="additional-glm-topics.html"><a href="additional-glm-topics.html#gaussian-response-with-log-link-and-negative-values"><i class="fa fa-check"></i><b>12.9.4</b> Gaussian Response with Log Link and Negative Values</a></li>
+<li class="chapter" data-level="12.9.5" data-path="additional-glm-topics.html"><a href="additional-glm-topics.html#gamma-response-with-log-link"><i class="fa fa-check"></i><b>12.9.5</b> Gamma Response with Log Link</a></li>
+<li class="chapter" data-level="12.9.6" data-path="additional-glm-topics.html"><a href="additional-glm-topics.html#gamma-with-inverse-link"><i class="fa fa-check"></i><b>12.9.6</b> Gamma with Inverse Link</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="glm-variable-selection.html"><a href="glm-variable-selection.html"><i class="fa fa-check"></i><b>13</b> GLM variable selection</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="glm-variable-selection.html"><a href="glm-variable-selection.html#stepwise-subset-selection"><i class="fa fa-check"></i><b>13.1</b> Stepwise subset selection</a></li>
+<li class="chapter" data-level="13.2" data-path="glm-variable-selection.html"><a href="glm-variable-selection.html#example-soa-pa-61219-task-6"><i class="fa fa-check"></i><b>13.2</b> Example: SOA PA 6/12/19, Task 6</a></li>
+<li class="chapter" data-level="13.3" data-path="glm-variable-selection.html"><a href="glm-variable-selection.html#penalized-linear-models"><i class="fa fa-check"></i><b>13.3</b> Penalized Linear Models</a></li>
+<li class="chapter" data-level="13.4" data-path="glm-variable-selection.html"><a href="glm-variable-selection.html#ridge-regression"><i class="fa fa-check"></i><b>13.4</b> Ridge Regression</a></li>
+<li class="chapter" data-level="13.5" data-path="glm-variable-selection.html"><a href="glm-variable-selection.html#lasso"><i class="fa fa-check"></i><b>13.5</b> Lasso</a></li>
+<li class="chapter" data-level="13.6" data-path="glm-variable-selection.html"><a href="glm-variable-selection.html#elastic-net"><i class="fa fa-check"></i><b>13.6</b> Elastic Net</a></li>
+<li class="chapter" data-level="13.7" data-path="glm-variable-selection.html"><a href="glm-variable-selection.html#advantages-and-disadvantages-1"><i class="fa fa-check"></i><b>13.7</b> Advantages and disadvantages</a></li>
+<li class="chapter" data-level="13.8" data-path="glm-variable-selection.html"><a href="glm-variable-selection.html#example-ridge-regression"><i class="fa fa-check"></i><b>13.8</b> Example: Ridge Regression</a></li>
+<li class="chapter" data-level="13.9" data-path="glm-variable-selection.html"><a href="glm-variable-selection.html#example-the-lasso"><i class="fa fa-check"></i><b>13.9</b> Example: The Lasso</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="bias-variance-trade-off.html"><a href="bias-variance-trade-off.html"><i class="fa fa-check"></i><b>14</b> Bias-variance trade-off</a></li>
+<li class="chapter" data-level="15" data-path="tree-based-models.html"><a href="tree-based-models.html"><i class="fa fa-check"></i><b>15</b> Tree-based models</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="tree-based-models.html"><a href="tree-based-models.html#decision-trees"><i class="fa fa-check"></i><b>15.1</b> Decision Trees</a>
+<ul>
+<li class="chapter" data-level="15.1.1" data-path="tree-based-models.html"><a href="tree-based-models.html#example-soa-pa-6182020-task-6"><i class="fa fa-check"></i><b>15.1.1</b> Example: SOA PA 6/18/2020, Task 6</a></li>
+<li class="chapter" data-level="15.1.2" data-path="tree-based-models.html"><a href="tree-based-models.html#advantages-and-disadvantages-2"><i class="fa fa-check"></i><b>15.1.2</b> Advantages and disadvantages</a></li>
+</ul></li>
+<li class="chapter" data-level="15.2" data-path="tree-based-models.html"><a href="tree-based-models.html#ensemble-learning"><i class="fa fa-check"></i><b>15.2</b> Ensemble learning</a>
+<ul>
+<li class="chapter" data-level="15.2.1" data-path="tree-based-models.html"><a href="tree-based-models.html#bagging"><i class="fa fa-check"></i><b>15.2.1</b> Bagging</a></li>
+<li class="chapter" data-level="15.2.2" data-path="tree-based-models.html"><a href="tree-based-models.html#boosting"><i class="fa fa-check"></i><b>15.2.2</b> Boosting</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="tree-based-models.html"><a href="tree-based-models.html#random-forests"><i class="fa fa-check"></i><b>15.3</b> Random Forests</a>
+<ul>
+<li class="chapter" data-level="15.3.1" data-path="tree-based-models.html"><a href="tree-based-models.html#example-2"><i class="fa fa-check"></i><b>15.3.1</b> Example</a></li>
+<li class="chapter" data-level="15.3.2" data-path="tree-based-models.html"><a href="tree-based-models.html#variable-importance"><i class="fa fa-check"></i><b>15.3.2</b> Variable Importance</a></li>
+<li class="chapter" data-level="15.3.3" data-path="tree-based-models.html"><a href="tree-based-models.html#partial-dependence"><i class="fa fa-check"></i><b>15.3.3</b> Partial dependence</a></li>
+<li class="chapter" data-level="15.3.4" data-path="tree-based-models.html"><a href="tree-based-models.html#advantages-and-disadvantages-3"><i class="fa fa-check"></i><b>15.3.4</b> Advantages and disadvantages</a></li>
+</ul></li>
+<li class="chapter" data-level="15.4" data-path="tree-based-models.html"><a href="tree-based-models.html#gradient-boosted-trees"><i class="fa fa-check"></i><b>15.4</b> Gradient Boosted Trees</a>
+<ul>
+<li class="chapter" data-level="15.4.1" data-path="tree-based-models.html"><a href="tree-based-models.html#gradient-boosting"><i class="fa fa-check"></i><b>15.4.1</b> Gradient Boosting</a></li>
+<li class="chapter" data-level="15.4.2" data-path="tree-based-models.html"><a href="tree-based-models.html#notation"><i class="fa fa-check"></i><b>15.4.2</b> Notation</a></li>
+<li class="chapter" data-level="15.4.3" data-path="tree-based-models.html"><a href="tree-based-models.html#parameters"><i class="fa fa-check"></i><b>15.4.3</b> Parameters</a></li>
+<li class="chapter" data-level="15.4.4" data-path="tree-based-models.html"><a href="tree-based-models.html#example-3"><i class="fa fa-check"></i><b>15.4.4</b> Example</a></li>
+<li class="chapter" data-level="15.4.5" data-path="tree-based-models.html"><a href="tree-based-models.html#advantages-and-disadvantages-4"><i class="fa fa-check"></i><b>15.4.5</b> Advantages and disadvantages</a></li>
+</ul></li>
+<li class="chapter" data-level="15.5" data-path="tree-based-models.html"><a href="tree-based-models.html#exercises-1"><i class="fa fa-check"></i><b>15.5</b> Exercises</a>
+<ul>
+<li class="chapter" data-level="15.5.1" data-path="tree-based-models.html"><a href="tree-based-models.html#rf-tuning-with-caret"><i class="fa fa-check"></i><b>15.5.1</b> 1. RF tuning with <code>caret</code></a></li>
+<li class="chapter" data-level="15.5.2" data-path="tree-based-models.html"><a href="tree-based-models.html#tuning-a-gbm-with-caret"><i class="fa fa-check"></i><b>15.5.2</b> 2. Tuning a GBM with <code>caret</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html"><i class="fa fa-check"></i><b>16</b> Unsupervised Learning</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#types-of-learning"><i class="fa fa-check"></i><b>16.1</b> Types of Learning</a></li>
+<li class="chapter" data-level="16.2" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#correlation-analysis"><i class="fa fa-check"></i><b>16.2</b> Correlation Analysis</a>
+<ul>
+<li class="chapter" data-level="16.2.1" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#correlation-does-not-equal-causation"><i class="fa fa-check"></i><b>16.2.1</b> Correlation does not equal causation</a></li>
+</ul></li>
+<li class="chapter" data-level="16.3" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#principal-component-analysis-pca"><i class="fa fa-check"></i><b>16.3</b> Principal Component Analysis (PCA)</a>
+<ul>
+<li class="chapter" data-level="16.3.1" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#example-us-arrests"><i class="fa fa-check"></i><b>16.3.1</b> Example: US Arrests</a></li>
+<li class="chapter" data-level="16.3.2" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#example-soa-pa-61219-task-3"><i class="fa fa-check"></i><b>16.3.2</b> Example: SOA PA 6/12/19, Task 3</a></li>
+<li class="chapter" data-level="16.3.3" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#example-pca-on-cancel-cells"><i class="fa fa-check"></i><b>16.3.3</b> Example: PCA on Cancel Cells</a></li>
+</ul></li>
+<li class="chapter" data-level="16.4" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#clustering"><i class="fa fa-check"></i><b>16.4</b> Clustering</a></li>
+<li class="chapter" data-level="16.5" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#k-means-clustering"><i class="fa fa-check"></i><b>16.5</b> K-Means Clustering</a></li>
+<li class="chapter" data-level="16.6" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#hierarchical-clustering"><i class="fa fa-check"></i><b>16.6</b> Hierarchical Clustering</a>
+<ul>
+<li class="chapter" data-level="16.6.1" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#example-clustering-cancel-cells"><i class="fa fa-check"></i><b>16.6.1</b> Example: Clustering Cancel Cells</a></li>
+<li class="chapter" data-level="16.6.2" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#references"><i class="fa fa-check"></i><b>16.6.2</b> References</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="writing-and-communication.html"><a href="writing-and-communication.html"><i class="fa fa-check"></i><b>17</b> Writing and Communication</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="writing-and-communication.html"><a href="writing-and-communication.html#spelling-and-grammar"><i class="fa fa-check"></i><b>17.1</b> Spelling and Grammar</a></li>
+<li class="chapter" data-level="17.2" data-path="writing-and-communication.html"><a href="writing-and-communication.html#final-review-webinar"><i class="fa fa-check"></i><b>17.2</b> Final Review Webinar</a></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="references-1.html"><a href="references-1.html"><i class="fa fa-check"></i><b>18</b> References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Exam PA Study Guide, Spring 2022</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="additional-glm-topics" class="section level1" number="12">
+<h1><span class="header-section-number"> 12</span> Additional GLM topics</h1>
+<p>As you can tell, PA has a lot of small topics related to GLMs. This chapter completes some of the <em>residual</em> (no pun intended) topics.</p>
+<div id="residuals" class="section level2" number="12.1">
+<h2><span class="header-section-number">12.1</span> Residuals</h2>
+<p>Learning from mistakes is the path to improvement. For GLMs, the residual analysis looks for patterns in the errors to find ways of improving the model.</p>
+<iframe width="563" height="383" src="https://www.youtube.com/embed/9T0wlKdew6I" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+<div id="raw-residuals" class="section level3" number="12.1.1">
+<h3><span class="header-section-number">12.1.1</span> Raw residuals</h3>
+<p>The word “residual” by itself means the “raw residual” in GLM language. This is the difference in actual vs. predicted values.</p>
+<p><span class="math display">\[\text{Raw Residual} = y_i - \hat{y_i}\]</span></p>
+</div>
+<div id="deviance-residuals" class="section level3" number="12.1.2">
+<h3><span class="header-section-number">12.1.2</span> Deviance residuals</h3>
+<p>This is not meant for GLMs with non-Gaussian distributions. To adjust for other distributions, we need the concept of deviance residuals.</p>
+<iframe width="563" height="383" src="https://www.youtube.com/embed/JC56jS2gVUE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+<p>Deviance is a way of assessing the adequacy of a model by comparing it with a more general model with the maximum number of parameters that can be estimated. It is referred to as the saturated model and it has one parameter per observation.</p>
+<p>The deviance assesses the goodness of fit for the model by looking at the difference between the log-likelihood functions of the saturated model and the model under investigation, i.e. <span class="math inline">\(l(b_{sat},y) - l(b,y)\)</span>. Here sat <span class="math inline">\(b_{sat}\)</span> denotes the maximum likelihood
+estimator of the parameter vector of the saturated model, <span class="math inline">\(\beta_{sat}\)</span> , and <span class="math inline">\(b\)</span> is the maximum
+likelihood estimator of the parameters of the model under investigation, <span class="math inline">\(\beta\)</span>. The maximum likelihood estimator is the estimator that maximizes the likelihood function. <strong>The deviance is defined as</strong></p>
+<p><span class="math display">\[D = 2[l(b_{sat},y) - l(b,y)]\]</span></p>
+<p>The deviance residual uses the deviance of the ith observation <span class="math inline">\(d_i\)</span> and then takes the square root and applies the same sign (aka, the + or - part) of the raw residual.</p>
+<p><span class="math display">\[\text{Deviance Residual} = \text{sign}(y_i - \hat{y_i})\sqrt{d_i}\]</span></p>
+</div>
+</div>
+<div id="example" class="section level2" number="12.2">
+<h2><span class="header-section-number">12.2</span> Example</h2>
+<p>Just as with OLS, there is a <code>formula</code> and <code>data argument</code>. In addition, we need to specify the target distribution and link function.</p>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="additional-glm-topics.html#cb234-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">=</span> <span class="fu">glm</span>(<span class="at">formula =</span> charges <span class="sc">~</span> age <span class="sc">+</span> sex <span class="sc">+</span> smoker, </span>
+<span id="cb234-2"><a href="additional-glm-topics.html#cb234-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">family =</span> <span class="fu">Gamma</span>(<span class="at">link =</span> <span class="st">&quot;log&quot;</span>),</span>
+<span id="cb234-3"><a href="additional-glm-topics.html#cb234-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">data =</span> health_insurance)</span></code></pre></div>
+<p>We see that <code>age</code>, <code>sex</code>, and <code>smoker</code> are all significant (p &lt;0.01). Reading off the coefficient signs, we see that claims</p>
+<ul>
+<li>Increase as age increases</li>
+<li>Are higher for women</li>
+<li>Are higher for smokers</li>
+</ul>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="additional-glm-topics.html#cb235-1" aria-hidden="true" tabindex="-1"></a>model <span class="sc">%&gt;%</span> <span class="fu">tidy</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 4 × 5
+##   term        estimate std.error statistic   p.value
+##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+## 1 (Intercept)   7.82     0.0600     130.   0        
+## 2 age           0.0290   0.00134     21.6  3.40e- 89
+## 3 sexmale      -0.0468   0.0377      -1.24 2.15e-  1
+## 4 smokeryes     1.50     0.0467      32.1  3.25e-168</code></pre>
+<p>Below you can see graph of deviance residuals vs. the predicted values.</p>
+<p><strong>If this were a perfect model, all of these below assumptions would be met:</strong></p>
+<ul>
+<li>Scattered around zero?</li>
+<li>Constant variance?</li>
+<li>No obvious pattern?</li>
+</ul>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="additional-glm-topics.html#cb237-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model, <span class="at">which =</span> <span class="dv">3</span>)</span></code></pre></div>
+<p><img src="Exam-PA-Study-Manual_files/figure-html/unnamed-chunk-143-1.png" width="576" /></p>
+<p>The quantile-quantile (QQ) plot shows the quantiles of the deviance residuals (i.e., after adjusting for the Gamma distribution) against theoretical Gaussian quantiles.</p>
+<p><strong>In a perfect model, all of these assumptions would be met:</strong></p>
+<ul>
+<li>Points lie on a straight line?<br />
+</li>
+<li>Tails are not significantly above or below line? Some tail deviation is ok.</li>
+<li>No sudden “jumps?” This indicates many <span class="math inline">\(Y\)</span>’s which have the same value, such as insurance claims which all have the exact value of $100.00 or $0.00.</li>
+</ul>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="additional-glm-topics.html#cb238-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model, <span class="at">which =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="Exam-PA-Study-Manual_files/figure-html/unnamed-chunk-144-1.png" width="576" /></p>
+</div>
+<div id="log-transforms-of-predictors" class="section level2" number="12.3">
+<h2><span class="header-section-number">12.3</span> Log transforms of predictors</h2>
+<p>When a log link is used, taking the natural logs of continuous variables allows for the scale of each predictor to match the scale of the thing that they are predicting, the log of the mean of the response. In addition, when the distribution of the continuous variable is skewed, taking the log helps to make it more symmetric.</p>
+<p>For <span class="math inline">\(\mu\)</span> the mean response,</p>
+<p><span class="math display">\[log(\mu) = \beta_0 + \beta_1 log(X)\]</span>
+To solve for <span class="math inline">\(\mu\)</span>, take the exponent of both sides</p>
+<p><span class="math display">\[\mu = e^{\beta_1} e^{\beta_1 log(X)} = e^{\beta_0} X^{\beta_1}\]</span></p>
+</div>
+<div id="example-1" class="section level2" number="12.4">
+<h2><span class="header-section-number">12.4</span> Example</h2>
+<p>In the Hospital Readmission sample project, one of the predictor variables, “Length of stay,” is the number of days since a person has been readmitted to the hospital. You can tell that it is right-skewd because the median is higher than the mean.</p>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="additional-glm-topics.html#cb239-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(readmission<span class="sc">$</span>LOS)</span></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   1.000   3.000   5.000   6.693   8.000  36.000</code></pre>
+<p>But it could also be thought of as a discrete variable because it only takes on 36 values. <strong>Should you still apply a log transform?</strong></p>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="additional-glm-topics.html#cb241-1" aria-hidden="true" tabindex="-1"></a>readmission <span class="sc">%&gt;%</span> <span class="fu">count</span>(LOS)</span></code></pre></div>
+<pre><code>## # A tibble: 36 × 2
+##      LOS     n
+##    &lt;dbl&gt; &lt;int&gt;
+##  1     1   986
+##  2     2  7646
+##  3     3  9775
+##  4     4 11325
+##  5     5  8365
+##  6     6  6020
+##  7     7  4600
+##  8     8  3534
+##  9     9  2719
+## 10    10  1997
+## # … with 26 more rows</code></pre>
+<p>Here are the histograms</p>
+<p><img src="Exam-PA-Study-Manual_files/figure-html/unnamed-chunk-147-1.png" width="576" /></p>
+<p><strong>Yes</strong>, the SOA’s solution applys the log transform.</p>
+</div>
+<div id="reference-levels" class="section level2" number="12.5">
+<h2><span class="header-section-number">12.5</span> Reference levels</h2>
+<p>When a categorical variable is used in a GLM, the model actually uses indicator variables for each level. The default reference level is the order of the R factors. For the <code>sex</code> variable, the order is <code>female</code> and then <code>male</code>. This means that the base level is <code>female</code> by default.</p>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="additional-glm-topics.html#cb243-1" aria-hidden="true" tabindex="-1"></a>health_insurance<span class="sc">$</span>sex <span class="sc">%&gt;%</span> <span class="fu">as.factor</span>() <span class="sc">%&gt;%</span> <span class="fu">levels</span>()</span></code></pre></div>
+<pre><code>## [1] &quot;female&quot; &quot;male&quot;</code></pre>
+<p>Why does this matter? Statistically, the coefficients are most stable when there are more observations.</p>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="additional-glm-topics.html#cb245-1" aria-hidden="true" tabindex="-1"></a>health_insurance<span class="sc">$</span>sex <span class="sc">%&gt;%</span> <span class="fu">as.factor</span>() <span class="sc">%&gt;%</span> <span class="fu">summary</span>()</span></code></pre></div>
+<pre><code>## female   male 
+##    662    676</code></pre>
+<p>There is already a function to do this in the <code>tidyverse</code> called <code>fct_infreq</code>. Let’s quickly fix the <code>sex</code> column so that these factor levels are in order of frequency.</p>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="additional-glm-topics.html#cb247-1" aria-hidden="true" tabindex="-1"></a>health_insurance <span class="ot">&lt;-</span> health_insurance <span class="sc">%&gt;%</span> </span>
+<span id="cb247-2"><a href="additional-glm-topics.html#cb247-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sex =</span> <span class="fu">fct_infreq</span>(sex))</span></code></pre></div>
+<p>Now <code>male</code> is the base level.</p>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="additional-glm-topics.html#cb248-1" aria-hidden="true" tabindex="-1"></a>health_insurance<span class="sc">$</span>sex <span class="sc">%&gt;%</span> <span class="fu">as.factor</span>() <span class="sc">%&gt;%</span> <span class="fu">levels</span>()</span></code></pre></div>
+<pre><code>## [1] &quot;male&quot;   &quot;female&quot;</code></pre>
+</div>
+<div id="interactions" class="section level2" number="12.6">
+<h2><span class="header-section-number">12.6</span> Interactions</h2>
+<p>An interaction occurs when the effect of a variable on the response is different depending on the level of other variables in the model.</p>
+<p>Consider this model:</p>
+<p>Let <span class="math inline">\(x_2\)</span> be an indicator variable, which is 1 for some observations and 0 otherwise.</p>
+<p><span class="math display">\[\hat{y_i} = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_1 x_2\]</span></p>
+<p>There are now two different linear models depending on whether <code>x_1</code> is 0 or 1.</p>
+<p>When <span class="math inline">\(x_1 = 0\)</span>,</p>
+<p><span class="math display">\[\hat{y_i} = \beta_0  + \beta_2 x_2\]</span></p>
+<p>and when <span class="math inline">\(x_1 = 1\)</span></p>
+<p><span class="math display">\[\hat{y_i} = \beta_0 + \beta_1 + \beta_2 x_2 + \beta_3 x_2\]</span>
+By rewriting this we can see that the intercept changes from <span class="math inline">\(\beta_0\)</span> to <span class="math inline">\(\beta_0^*\)</span> and the slope changes from <span class="math inline">\(\beta_1\)</span> to <span class="math inline">\(\beta_1^*\)</span></p>
+<p><span class="math display">\[
+(\beta_0 + \beta_1) + (\beta_2 + \beta_3 ) x_2 \\
+ = \beta_0^* + \beta_1^* x_2
+\]</span>
+Here is an example from the <code>auto_claim</code> data. The lines show the slope of a linear model, assuming that only <code>BLUEBOOK</code> and <code>CAR_TYPE</code> were predictors in the model. You can see that the slope for Sedans and Sports Cars is higher than for Vans and Panel Trucks.</p>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="additional-glm-topics.html#cb250-1" aria-hidden="true" tabindex="-1"></a>auto_claim <span class="sc">%&gt;%</span> </span>
+<span id="cb250-2"><a href="additional-glm-topics.html#cb250-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sample_frac</span>(<span class="fl">0.2</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb250-3"><a href="additional-glm-topics.html#cb250-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="fu">log</span>(CLM_AMT), <span class="fu">log</span>(BLUEBOOK), <span class="at">color =</span> CAR_TYPE)) <span class="sc">+</span> </span>
+<span id="cb250-4"><a href="additional-glm-topics.html#cb250-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span> </span>
+<span id="cb250-5"><a href="additional-glm-topics.html#cb250-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> F) <span class="sc">+</span> </span>
+<span id="cb250-6"><a href="additional-glm-topics.html#cb250-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Kelly Bluebook Value vs Claim Amount&quot;</span>)</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-152"></span>
+<img src="Exam-PA-Study-Manual_files/figure-html/unnamed-chunk-152-1.png" alt="Example of strong interaction" width="576" />
+<p class="caption">
+Figure 12.1: Example of strong interaction
+</p>
+</div>
+<p>Any time that effect of one variable on the response is different depending on the value of other variables, we say that there is an interaction. We can also use a hypothesis test with a GLM to check this. Simply include an interaction term and see if the coefficient is zero at the desired significance level.</p>
+</div>
+<div id="offsets" class="section level2" number="12.7">
+<h2><span class="header-section-number">12.7</span> Offsets</h2>
+<p>In certain situations, it is convenient to include a constant term in the linear predictor. This is the same as including a variable that has a coefficient equal to 1. We call this an <em>offset</em>.</p>
+<p><span class="math display">\[g(\mu) = \beta_0 + \beta_1 X_1 + ... + \beta_p X_p + \text{offset}\]</span>
+On Exam PA, offsets will only be used for one special case:</p>
+<ol style="list-style-type: decimal">
+<li>With Poisson regression</li>
+<li>With a log link function</li>
+<li>As a measure of exposure (usually length of policy period)</li>
+</ol>
+<p>While it is technically possible to use offsets in other ways, this is not likely to appear on PA.</p>
+<p>If modeling the spread of COVID, the exposure would be the number of people exposed to the virus and the response would be the number of people infected.</p>
+<p>In auto insurance, the exposure might be the number of months of coverage, and the response would be the claims incurred. Consider a very simple model which only uses the year that the car was manufactured as a predictor. This expected value of the claims, the target variable, would be</p>
+<p><span class="math display">\[log(E[\frac{\text{Claims}}{\text{Months}}]) = \beta_0 + \beta_1  \text{Year}\]</span>
+Then you can use the property of the log where <span class="math inline">\(log(\frac{A}{B}) = log(A) - log(B)\)</span> to move things around. Because <span class="math inline">\(\text{Months}\)</span> is known, you can remove the expected value. This is the offset term.</p>
+<p><span class="math display">\[log(E[\text{Claims}]) = \beta_0 + \beta_1  \text{Year} + \text{Months}\]</span></p>
+</div>
+<div id="tweedie-regression" class="section level2" number="12.8">
+<h2><span class="header-section-number">12.8</span> Tweedie regression</h2>
+<p>While this topic is briefly mentioned in the modules, the only R libraries which support Tweedie Regression (<code>statmod</code> and <code>tweedie</code>) are not on the syllabus, and so there is no way that the SOA could ask you to build a tweedie model. This means that you can safely skip this section.</p>
+</div>
+<div id="combinations-of-link-functions-and-target-distributions" class="section level2" number="12.9">
+<h2><span class="header-section-number">12.9</span> Combinations of Link Functions and Target Distributions</h2>
+<p>What is an example of when to use a log link with a Gaussian response? What about a Gamma family with an inverse link? What about an inverse</p>
+<p>Gaussian response and an inverse square link? As these questions illustrate, there are many combinations of link and response families. In the real world, a model never fits perfectly, and so often, these choices come down to the judgment of the modeler - which model is the best fit and meets the business objectives?</p>
+<p>However, there is one way that we can know for certain which link and response family is the best, and that is if we generate the data ourselves.</p>
+<p>Recall that a GLM has two parts:</p>
+<ol style="list-style-type: decimal">
+<li><p>A <strong>random component</strong>: <span class="math inline">\(Y|X \sim \text{some exponential family distribution}\)</span></p></li>
+<li><p>A <strong>link function</strong>: between the random component and the covariates: <span class="math inline">\(g(\mu(X)) = X\beta\)</span> where <span class="math inline">\(\mu = E[Y|X]\)</span></p></li>
+</ol>
+<p><strong>Following this recipe, we can simulate data from any combination of link function and response family. This helps us to understand the GLM framework very clearly.</strong></p>
+<div id="gaussian-response-with-log-link" class="section level3" number="12.9.1">
+<h3><span class="header-section-number">12.9.1</span> Gaussian Response with Log Link</h3>
+<p>We create a function that takes in data <span class="math inline">\(x\)</span> and returns a Gaussian random variable that has mean equal to the inverse link, which in the case of a log link is the exponent. We add 10 to <span class="math inline">\(x\)</span> so that the values will always be positive, as will be described later on.</p>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="additional-glm-topics.html#cb252-1" aria-hidden="true" tabindex="-1"></a>sim_norm <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb252-2"><a href="additional-glm-topics.html#cb252-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="at">mean =</span> <span class="fu">exp</span>(<span class="dv">10</span> <span class="sc">+</span> x), <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb252-3"><a href="additional-glm-topics.html#cb252-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>The values of <span class="math inline">\(X\)</span> do not need to be normal. The above assumption is merely that the mean of the response <span class="math inline">\(Y\)</span> is related to <span class="math inline">\(X\)</span> through the link function, <code>mean = exp(10 + x)</code>, and that the distribution is normal. This has been accomplished with <code>rnorm</code> already. For illustration, here we use <span class="math inline">\(X\)</span>’s from a uniform distribution.</p>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="additional-glm-topics.html#cb253-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">runif</span>(<span class="dv">500</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb253-2"><a href="additional-glm-topics.html#cb253-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">y =</span> x <span class="sc">%&gt;%</span> <span class="fu">map_dbl</span>(sim_norm))</span></code></pre></div>
+<p>We already know what the answer is: a Gaussian response with a log link. We fit a GLM and see a perfect fit.</p>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="additional-glm-topics.html#cb254-1" aria-hidden="true" tabindex="-1"></a>glm <span class="ot">&lt;-</span> <span class="fu">glm</span>(y <span class="sc">~</span> x, <span class="at">family =</span> <span class="fu">gaussian</span>(<span class="at">link =</span> <span class="st">&quot;log&quot;</span>), <span class="at">data =</span> data)</span>
+<span id="cb254-2"><a href="additional-glm-topics.html#cb254-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb254-3"><a href="additional-glm-topics.html#cb254-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(glm)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## glm(formula = y ~ x, family = gaussian(link = &quot;log&quot;), data = data)
+## 
+## Deviance Residuals: 
+##      Min        1Q    Median        3Q       Max  
+## -3.05488  -0.73818  -0.01268   0.71014   2.93377  
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 1.000e+01  2.981e-06 3354536   &lt;2e-16 ***
+## x           1.000e+00  4.383e-06  228152   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for gaussian family taken to be 1.061249)
+## 
+##     Null deviance: 5.817e+10  on 499  degrees of freedom
+## Residual deviance: 5.285e+02  on 498  degrees of freedom
+## AIC: 1452.7
+## 
+## Number of Fisher Scoring iterations: 2</code></pre>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="additional-glm-topics.html#cb256-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb256-2"><a href="additional-glm-topics.html#cb256-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(glm, <span class="at">cex =</span> <span class="fl">0.4</span>)</span></code></pre></div>
+<p><img src="Exam-PA-Study-Manual_files/figure-html/unnamed-chunk-155-1.png" width="576" /></p>
+</div>
+<div id="gaussian-response-with-inverse-link" class="section level3" number="12.9.2">
+<h3><span class="header-section-number">12.9.2</span> Gaussian Response with Inverse Link</h3>
+<p>The same steps are repeated except the link function is now the inverse, <code>mean = 1/x</code>. We see that some values of <span class="math inline">\(Y\)</span> are negative, which is ok.</p>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="additional-glm-topics.html#cb257-1" aria-hidden="true" tabindex="-1"></a>sim_norm <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb257-2"><a href="additional-glm-topics.html#cb257-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="at">mean =</span> <span class="dv">1</span><span class="sc">/</span>x, <span class="dv">1</span>)</span>
+<span id="cb257-3"><a href="additional-glm-topics.html#cb257-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb257-4"><a href="additional-glm-topics.html#cb257-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb257-5"><a href="additional-glm-topics.html#cb257-5" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">runif</span>(<span class="dv">500</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb257-6"><a href="additional-glm-topics.html#cb257-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">y =</span> x <span class="sc">%&gt;%</span> <span class="fu">map_dbl</span>(sim_norm))</span>
+<span id="cb257-7"><a href="additional-glm-topics.html#cb257-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(data)</span></code></pre></div>
+<pre><code>##        x                  y          
+##  Min.   :0.002351   Min.   : -1.392  
+##  1st Qu.:0.278258   1st Qu.:  1.149  
+##  Median :0.528553   Median :  2.287  
+##  Mean   :0.509957   Mean   :  6.875  
+##  3rd Qu.:0.760526   3rd Qu.:  4.014  
+##  Max.   :0.999992   Max.   :425.760</code></pre>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="additional-glm-topics.html#cb259-1" aria-hidden="true" tabindex="-1"></a>glm <span class="ot">&lt;-</span> <span class="fu">glm</span>(y <span class="sc">~</span> x, <span class="at">family =</span> <span class="fu">gaussian</span>(<span class="at">link =</span> <span class="st">&quot;inverse&quot;</span>), <span class="at">data =</span> data)</span>
+<span id="cb259-2"><a href="additional-glm-topics.html#cb259-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb259-3"><a href="additional-glm-topics.html#cb259-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(glm)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## glm(formula = y ~ x, family = gaussian(link = &quot;inverse&quot;), data = data)
+## 
+## Deviance Residuals: 
+##      Min        1Q    Median        3Q       Max  
+## -3.11464  -0.77276  -0.02954   0.70110   2.50767  
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 1.605e-06  1.238e-05    0.13    0.897    
+## x           9.983e-01  4.032e-03  247.58   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for gaussian family taken to be 1.080454)
+## 
+##     Null deviance: 383534.20  on 499  degrees of freedom
+## Residual deviance:    538.07  on 498  degrees of freedom
+## AIC: 1461.6
+## 
+## Number of Fisher Scoring iterations: 4</code></pre>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="additional-glm-topics.html#cb261-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb261-2"><a href="additional-glm-topics.html#cb261-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(glm, <span class="at">cex =</span> <span class="fl">0.4</span>)</span></code></pre></div>
+<p><img src="Exam-PA-Study-Manual_files/figure-html/unnamed-chunk-157-1.png" width="576" /></p>
+</div>
+<div id="gaussian-response-with-identity-link" class="section level3" number="12.9.3">
+<h3><span class="header-section-number">12.9.3</span> Gaussian Response with Identity Link</h3>
+<p>And now the link is the identity, <code>mean = x</code>.</p>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="additional-glm-topics.html#cb262-1" aria-hidden="true" tabindex="-1"></a>sim_norm <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb262-2"><a href="additional-glm-topics.html#cb262-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="at">mean =</span> x, <span class="dv">1</span>)</span>
+<span id="cb262-3"><a href="additional-glm-topics.html#cb262-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb262-4"><a href="additional-glm-topics.html#cb262-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb262-5"><a href="additional-glm-topics.html#cb262-5" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">rnorm</span>(<span class="dv">500</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb262-6"><a href="additional-glm-topics.html#cb262-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">y =</span> x <span class="sc">%&gt;%</span> <span class="fu">map_dbl</span>(sim_norm))</span>
+<span id="cb262-7"><a href="additional-glm-topics.html#cb262-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb262-8"><a href="additional-glm-topics.html#cb262-8" aria-hidden="true" tabindex="-1"></a>glm <span class="ot">&lt;-</span> <span class="fu">glm</span>(y <span class="sc">~</span> x, <span class="at">family =</span> <span class="fu">gaussian</span>(<span class="at">link =</span> <span class="st">&quot;identity&quot;</span>), <span class="at">data =</span> data)</span>
+<span id="cb262-9"><a href="additional-glm-topics.html#cb262-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb262-10"><a href="additional-glm-topics.html#cb262-10" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(glm)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## glm(formula = y ~ x, family = gaussian(link = &quot;identity&quot;), data = data)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -2.8731  -0.6460   0.0225   0.6519   3.3242  
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  0.02411    0.04503   0.535    0.593    
+## x            1.01347    0.04599  22.035   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for gaussian family taken to be 1.0125)
+## 
+##     Null deviance: 995.82  on 499  degrees of freedom
+## Residual deviance: 504.23  on 498  degrees of freedom
+## AIC: 1429.1
+## 
+## Number of Fisher Scoring iterations: 2</code></pre>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="additional-glm-topics.html#cb264-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb264-2"><a href="additional-glm-topics.html#cb264-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(glm, <span class="at">cex =</span> <span class="fl">0.4</span>)</span></code></pre></div>
+<p><img src="Exam-PA-Study-Manual_files/figure-html/unnamed-chunk-158-1.png" width="576" /></p>
+</div>
+<div id="gaussian-response-with-log-link-and-negative-values" class="section level3" number="12.9.4">
+<h3><span class="header-section-number">12.9.4</span> Gaussian Response with Log Link and Negative Values</h3>
+<p>By Gaussian response we say that the <em>mean</em> of the response is Gaussian. The range of a normal random variable is <span class="math inline">\((-\infty, +\infty)\)</span>, which means that negative values are always possible. If the mean is a large positive number, then negative values are much less likely but still possible: about 95% of the observations will be within 2 standard deviations of the mean.</p>
+<p>We see below that there are some <span class="math inline">\(Y\)</span> values which are negative.</p>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="additional-glm-topics.html#cb265-1" aria-hidden="true" tabindex="-1"></a>sim_norm <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb265-2"><a href="additional-glm-topics.html#cb265-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="at">mean =</span> <span class="fu">exp</span>(x), <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb265-3"><a href="additional-glm-topics.html#cb265-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb265-4"><a href="additional-glm-topics.html#cb265-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb265-5"><a href="additional-glm-topics.html#cb265-5" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">runif</span>(<span class="dv">500</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb265-6"><a href="additional-glm-topics.html#cb265-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">y =</span> x <span class="sc">%&gt;%</span> <span class="fu">map_dbl</span>(sim_norm))</span>
+<span id="cb265-7"><a href="additional-glm-topics.html#cb265-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(data)</span></code></pre></div>
+<pre><code>##        x                   y         
+##  Min.   :0.0002768   Min.   :-1.505  
+##  1st Qu.:0.2282455   1st Qu.: 0.947  
+##  Median :0.5205783   Median : 1.660  
+##  Mean   :0.5081372   Mean   : 1.680  
+##  3rd Qu.:0.7499811   3rd Qu.: 2.424  
+##  Max.   :0.9984118   Max.   : 4.707</code></pre>
+<p>We can also see this from the histogram.</p>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="additional-glm-topics.html#cb267-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(y)) <span class="sc">+</span> <span class="fu">geom_density</span>( <span class="at">fill =</span> <span class="dv">1</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>)</span></code></pre></div>
+<p><img src="Exam-PA-Study-Manual_files/figure-html/unnamed-chunk-160-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>If we try to fit a GLM with a log link, there is an error.</p>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="additional-glm-topics.html#cb268-1" aria-hidden="true" tabindex="-1"></a>glm <span class="ot">&lt;-</span> <span class="fu">glm</span>(y <span class="sc">~</span> x, <span class="at">family =</span> <span class="fu">gaussian</span>(<span class="at">link =</span> <span class="st">&quot;log&quot;</span>), <span class="at">data =</span> data)</span></code></pre></div>
+<p><code>Error in eval(family$initialize) : cannot find valid starting values: please specify some</code></p>
+<p>This is because the domain of the natural logarithm only includes positive numbers, and we just tried to take the log of negative numbers.</p>
+<p>Our initial reaction might be to add some constant to each <span class="math inline">\(Y\)</span>, say 10, for instance, so that they are all positive. This does produce a model which is a good fit.</p>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="additional-glm-topics.html#cb269-1" aria-hidden="true" tabindex="-1"></a>glm <span class="ot">&lt;-</span> <span class="fu">glm</span>(y <span class="sc">+</span> <span class="dv">10</span> <span class="sc">~</span> x, <span class="at">family =</span> <span class="fu">gaussian</span>(<span class="at">link =</span> <span class="st">&quot;log&quot;</span>), <span class="at">data =</span> data)</span>
+<span id="cb269-2"><a href="additional-glm-topics.html#cb269-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(glm)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## glm(formula = y + 10 ~ x, family = gaussian(link = &quot;log&quot;), data = data)
+## 
+## Deviance Residuals: 
+##      Min        1Q    Median        3Q       Max  
+## -3.14633  -0.63601  -0.01264   0.70930   2.87307  
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 2.386801   0.007862  303.58   &lt;2e-16 ***
+## x           0.138190   0.012846   10.76   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for gaussian family taken to be 1.017812)
+## 
+##     Null deviance: 624.76  on 499  degrees of freedom
+## Residual deviance: 506.87  on 498  degrees of freedom
+## AIC: 1431.8
+## 
+## Number of Fisher Scoring iterations: 4</code></pre>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="additional-glm-topics.html#cb271-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb271-2"><a href="additional-glm-topics.html#cb271-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(glm, <span class="at">cex =</span> <span class="fl">0.4</span>)</span></code></pre></div>
+<p><img src="Exam-PA-Study-Manual_files/figure-html/unnamed-chunk-162-1.png" width="576" /></p>
+<p>We see that on average, the predictions are 10 higher than the target. This is no surprise since <span class="math inline">\(E[Y + 10] = E[Y] + 10\)</span>.</p>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="additional-glm-topics.html#cb272-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> data<span class="sc">$</span>y </span>
+<span id="cb272-2"><a href="additional-glm-topics.html#cb272-2" aria-hidden="true" tabindex="-1"></a>y_hat <span class="ot">&lt;-</span> <span class="fu">predict</span>(glm, <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span>
+<span id="cb272-3"><a href="additional-glm-topics.html#cb272-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(y_hat) <span class="sc">-</span> <span class="fu">mean</span>(y)</span></code></pre></div>
+<pre><code>## [1] 9.999967</code></pre>
+<p>However, we see that the actual predictions are bad. If we were to look at the R-squared, MAE, RMSE, or any other metric, it would tell us the same story. This is because our GLM assumption <strong>not</strong> that <span class="math inline">\(Y\)</span> is related to the link function of <span class="math inline">\(X\)</span>, but that the <strong>mean</strong> of <span class="math inline">\(Y\)</span> is.</p>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="additional-glm-topics.html#cb274-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">y =</span> y, <span class="at">y_hat =</span> y_hat <span class="sc">-</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(y, y_hat)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="Exam-PA-Study-Manual_files/figure-html/unnamed-chunk-164-1.png" width="576" /></p>
+<p>One solution is to adjust the <span class="math inline">\(X\)</span> which the model is based on. Add a constant term to <span class="math inline">\(X\)</span> so that the mean of <span class="math inline">\(Y\)</span> is larger, and hence <span class="math inline">\(Y\)</span> is non zero. While is a viable approach in the case of only one predictor variable, with more predictors this would not be easy to do.</p>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="additional-glm-topics.html#cb275-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">runif</span>(<span class="dv">500</span>) <span class="sc">+</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb275-2"><a href="additional-glm-topics.html#cb275-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">y =</span> x <span class="sc">%&gt;%</span> <span class="fu">map_dbl</span>(sim_norm))</span>
+<span id="cb275-3"><a href="additional-glm-topics.html#cb275-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(data)</span></code></pre></div>
+<pre><code>##        x               y        
+##  Min.   :10.00   Min.   :22040  
+##  1st Qu.:10.27   1st Qu.:28835  
+##  Median :10.50   Median :36402  
+##  Mean   :10.50   Mean   :37838  
+##  3rd Qu.:10.75   3rd Qu.:46688  
+##  Max.   :11.00   Max.   :59756</code></pre>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="additional-glm-topics.html#cb277-1" aria-hidden="true" tabindex="-1"></a>glm <span class="ot">&lt;-</span> <span class="fu">glm</span>(y <span class="sc">~</span> x, <span class="at">family =</span> <span class="fu">gaussian</span>(<span class="at">link =</span> <span class="st">&quot;log&quot;</span>), <span class="at">data =</span> data)</span>
+<span id="cb277-2"><a href="additional-glm-topics.html#cb277-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb277-3"><a href="additional-glm-topics.html#cb277-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(glm, <span class="at">cex =</span> <span class="fl">0.4</span>)</span></code></pre></div>
+<p><img src="Exam-PA-Study-Manual_files/figure-html/unnamed-chunk-165-1.png" width="576" /></p>
+<p>A better approach may be to use an inverse link even though the data was generated from a log link. This is a good illustration of the saying “all models are wrong, but some are useful” in that the statistical assumption of the model is not correct but the model still works.</p>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="additional-glm-topics.html#cb278-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">runif</span>(<span class="dv">500</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb278-2"><a href="additional-glm-topics.html#cb278-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">y =</span> x <span class="sc">%&gt;%</span> <span class="fu">map_dbl</span>(sim_norm))</span>
+<span id="cb278-3"><a href="additional-glm-topics.html#cb278-3" aria-hidden="true" tabindex="-1"></a>glm <span class="ot">&lt;-</span> <span class="fu">glm</span>(y <span class="sc">~</span> x, <span class="at">family =</span> <span class="fu">gaussian</span>(<span class="at">link =</span> <span class="st">&quot;inverse&quot;</span>), <span class="at">data =</span> data)</span>
+<span id="cb278-4"><a href="additional-glm-topics.html#cb278-4" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb278-5"><a href="additional-glm-topics.html#cb278-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(glm, <span class="at">cex =</span> <span class="fl">0.4</span>)</span></code></pre></div>
+<p><img src="Exam-PA-Study-Manual_files/figure-html/unnamed-chunk-166-1.png" width="576" /></p>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="additional-glm-topics.html#cb279-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(glm)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## glm(formula = y ~ x, family = gaussian(link = &quot;inverse&quot;), data = data)
+## 
+## Deviance Residuals: 
+##      Min        1Q    Median        3Q       Max  
+## -2.63660  -0.71949  -0.02573   0.70123   2.68053  
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  0.87559    0.04503   19.44   &lt;2e-16 ***
+## x           -0.53090    0.05703   -9.31   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for gaussian family taken to be 1.104314)
+## 
+##     Null deviance: 662.67  on 499  degrees of freedom
+## Residual deviance: 549.95  on 498  degrees of freedom
+## AIC: 1472.5
+## 
+## Number of Fisher Scoring iterations: 6</code></pre>
+</div>
+<div id="gamma-response-with-log-link" class="section level3" number="12.9.5">
+<h3><span class="header-section-number">12.9.5</span> Gamma Response with Log Link</h3>
+<p>The gamma distribution with rate parameter <span class="math inline">\(\alpha\)</span> and scale parameter <span class="math inline">\(\theta\)</span> is density.</p>
+<p><span class="math display">\[f(y) = \frac{(y/\theta)^\alpha}{x \Gamma(\alpha)}e^{-x/\theta}\]</span></p>
+<p>The mean is <span class="math inline">\(\alpha\theta\)</span>.</p>
+<p>Let’s use a gamma with shape 2 and scale 0.5, which has mean 1.</p>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="additional-glm-topics.html#cb281-1" aria-hidden="true" tabindex="-1"></a>gammas <span class="ot">&lt;-</span> <span class="fu">rgamma</span>(<span class="dv">500</span>, <span class="at">shape=</span><span class="dv">2</span>, <span class="at">scale =</span> <span class="fl">0.5</span>)</span>
+<span id="cb281-2"><a href="additional-glm-topics.html#cb281-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(gammas)</span></code></pre></div>
+<pre><code>## [1] 1.018104</code></pre>
+<p>We then generate random gamma values. Because the mean now depends on two parameters instead of one, which was just <span class="math inline">\(\mu\)</span> in the Gaussian case, we need to use a slightly different approach to simulate the random values. The link function here is seen in <code>exp(x)</code>.</p>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="additional-glm-topics.html#cb283-1" aria-hidden="true" tabindex="-1"></a><span class="co">#random component</span></span>
+<span id="cb283-2"><a href="additional-glm-topics.html#cb283-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">1000</span>, <span class="at">min=</span><span class="dv">0</span>, <span class="at">max=</span><span class="dv">100</span>)</span>
+<span id="cb283-3"><a href="additional-glm-topics.html#cb283-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb283-4"><a href="additional-glm-topics.html#cb283-4" aria-hidden="true" tabindex="-1"></a><span class="co">#relate Y to X with a log link function</span></span>
+<span id="cb283-5"><a href="additional-glm-topics.html#cb283-5" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> gammas<span class="sc">*</span><span class="fu">exp</span>(x)</span>
+<span id="cb283-6"><a href="additional-glm-topics.html#cb283-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb283-7"><a href="additional-glm-topics.html#cb283-7" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x =</span> x, <span class="at">y  =</span> y)</span>
+<span id="cb283-8"><a href="additional-glm-topics.html#cb283-8" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(data)</span></code></pre></div>
+<pre><code>##        x                 y            
+##  Min.   : 0.1447   Min.   :0.000e+00  
+##  1st Qu.:25.0189   1st Qu.:4.231e+10  
+##  Median :49.2899   Median :1.476e+21  
+##  Mean   :50.0386   Mean   :2.544e+41  
+##  3rd Qu.:76.4823   3rd Qu.:8.476e+32  
+##  Max.   :99.8365   Max.   :2.595e+43</code></pre>
+<p>As expected, the residual plots are all perfect because the model is perfect.</p>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="additional-glm-topics.html#cb285-1" aria-hidden="true" tabindex="-1"></a>glm <span class="ot">&lt;-</span> <span class="fu">glm</span>(y <span class="sc">~</span> x, <span class="at">family =</span> <span class="fu">Gamma</span>(<span class="at">link =</span> <span class="st">&quot;log&quot;</span>), <span class="at">data =</span> data)</span>
+<span id="cb285-2"><a href="additional-glm-topics.html#cb285-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb285-3"><a href="additional-glm-topics.html#cb285-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(glm, <span class="at">cex =</span> <span class="fl">0.4</span>)</span></code></pre></div>
+<p><img src="Exam-PA-Study-Manual_files/figure-html/unnamed-chunk-169-1.png" width="576" /></p>
+<p>If we had tried using an inverse instead of the log, the residual plots would look much worse.</p>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="additional-glm-topics.html#cb286-1" aria-hidden="true" tabindex="-1"></a>glm <span class="ot">&lt;-</span> <span class="fu">glm</span>(y <span class="sc">~</span> x, <span class="at">family =</span> <span class="fu">Gamma</span>(<span class="at">link =</span> <span class="st">&quot;inverse&quot;</span>), <span class="at">data =</span> data)</span>
+<span id="cb286-2"><a href="additional-glm-topics.html#cb286-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb286-3"><a href="additional-glm-topics.html#cb286-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(glm, <span class="at">cex =</span> <span class="fl">0.4</span>)</span></code></pre></div>
+<pre><code>## Warning in sqrt(crit * p * (1 - hh)/hh): NaNs produced
+
+## Warning in sqrt(crit * p * (1 - hh)/hh): NaNs produced</code></pre>
+<p><img src="Exam-PA-Study-Manual_files/figure-html/unnamed-chunk-170-1.png" width="576" /></p>
+</div>
+<div id="gamma-with-inverse-link" class="section level3" number="12.9.6">
+<h3><span class="header-section-number">12.9.6</span> Gamma with Inverse Link</h3>
+<p>With the inverse link, the mean has a factor <code>1/(x + 1)</code>. Note that we need to add 1 to x to avoid dividing by zero.</p>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="additional-glm-topics.html#cb288-1" aria-hidden="true" tabindex="-1"></a><span class="co">#relate Y to X with a log link function</span></span>
+<span id="cb288-2"><a href="additional-glm-topics.html#cb288-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> gammas<span class="sc">*</span><span class="dv">1</span><span class="sc">/</span>(x <span class="sc">+</span> <span class="dv">1</span>)</span>
+<span id="cb288-3"><a href="additional-glm-topics.html#cb288-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb288-4"><a href="additional-glm-topics.html#cb288-4" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x =</span> x, <span class="at">y  =</span> y)</span>
+<span id="cb288-5"><a href="additional-glm-topics.html#cb288-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(data)</span></code></pre></div>
+<pre><code>##        x                 y            
+##  Min.   : 0.1447   Min.   :0.0005573  
+##  1st Qu.:25.0189   1st Qu.:0.0095364  
+##  Median :49.2899   Median :0.0177203  
+##  Mean   :50.0386   Mean   :0.0454184  
+##  3rd Qu.:76.4823   3rd Qu.:0.0383153  
+##  Max.   :99.8365   Max.   :1.5248073</code></pre>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="additional-glm-topics.html#cb290-1" aria-hidden="true" tabindex="-1"></a>glm <span class="ot">&lt;-</span> <span class="fu">glm</span>(y <span class="sc">~</span> x, <span class="at">family =</span> <span class="fu">Gamma</span>(<span class="at">link =</span> <span class="st">&quot;inverse&quot;</span>), <span class="at">data =</span> data)</span>
+<span id="cb290-2"><a href="additional-glm-topics.html#cb290-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb290-3"><a href="additional-glm-topics.html#cb290-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(glm, <span class="at">cex =</span> <span class="fl">0.4</span>)</span></code></pre></div>
+<p><img src="Exam-PA-Study-Manual_files/figure-html/unnamed-chunk-172-1.png" width="576" /></p>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="classification-metrics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="glm-variable-selection.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/sdcastillo/PA-R-Study-Manual/edit/master/04-linear-models.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["Exam-PA-Study-Manual.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

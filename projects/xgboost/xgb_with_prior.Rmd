@@ -1,0 +1,129 @@
+---
+title: "Bayesian XGBoost: How to Use Prior Probabilities with XGBoost"
+subtitle: "R Tutorial"
+author: "Sam Castillo"
+date: "`r Sys.Date()`"
+output:
+  prettydoc::html_pretty:
+    theme: cayman
+    highlight: github
+---
+
+Machine learning models learn by looking at examples.  In supervised learning, there is a known outcome, or label, and by looking at data of many, many examples, a relationship is found between the data and the label.  Having more examples makes it easier for the model to find patterns; having fewer examples makes it more difficult to learn, and hence, leads to worse performance.
+
+Often there are only a few examples available for certain groups in the data.  In these cases case, all that the model can do is "guess", or predict an average of the few examples present.  This often leads to poor performance. 
+
+[Prior probabilities](https://en.wikipedia.org/wiki/Prior_probability), also know as "offsets", help to solve this problem.  Instead of relying on the examples present in the data by themselves, and basing the prediction entirely on the data, we can be clever about setting the initial predictions, or "guesses", based on our own knowledge or intuition.  If there are a lot of examples present in the data, more weight is given to the model's prediction; if there are few examples, more weight is given to the prior probability.  
+
+**Potential Applications:**
+
+- If predicting a person's annual healthcare costs, use their last year's costs as the offset so that people with few records in the current year can use their data from the prior year;
+- In insurance ratemaking premium adjustment, use the manual premium as the offset as described in [this paper](https://pdfs.semanticscholar.org/c93b/36764413698a1f39f27969c5815363497370.pdf);
+- For a kaggle competition, use a competitor's model prediction as the offset to build a model that seeks to improve upon it using a new data source;
+
+## Example: Prediction if a mushroom is poisonous or edible
+
+In the `agaricus` data set, there are examples of different mushrooms described in terms of physical characteristics.  Each is either poisonous or edible.  There are a **lot** of characteristics.
+
+```{r message = F, warning = F}
+library(xgboost)
+library(tidyverse)
+library(scales)
+library(kableExtra)
+
+data(agaricus.train, package='xgboost')
+data(agaricus.test, package='xgboost')
+
+t <- function(df){df %>% 
+    knitr::kable() %>% kable_styling(bootstrap_options = c("striped", "hover", "condensed"))}
+
+agaricus.test$data %>% as.matrix() %>% as_tibble() %>% names()
+```
+
+Many of the characteristics are uncommon.  In data science language, these are "sparse" features.
+
+```{r}
+df = agaricus.test$data %>% as.matrix() %>% as_tibble() %>% summarise_all(mean) %>% gather(feature, percent_one) %>% arrange(desc(percent_one))
+
+df %>% head() %>% t()
+```
+
+Some characteristics are very common, such as `veil-type=partial` or `gill-attachment=free`, which are present in 100% and 97% of the example mushrooms respectively.
+
+```{r}
+df %>% tail() %>% t()
+```
+
+Other characteristics are very uncommon.  In fact, non appear in the test data set at all!
+
+But just because they are not in the data set does not mean that we know nothing about them.  Suppose that a botanist looks at this and makes a guess: "About 50% of mushrooms with a cup-shaped stalk-root are poisonous, and about 80% of mushrooms with cobwebby ring types are edible."  We could add these as prior weights of 50% and 20% into the model.
+
+We fit an xgboost model which does not use prior probabilities.
+
+```{r}
+dtrain <- xgb.DMatrix(agaricus.train$data, label = agaricus.train$label)
+dtest <- xgb.DMatrix(agaricus.test$data, label = agaricus.test$label)
+watchlist <- list(train = dtrain, eval = dtest)
+
+## A simple xgb.train example:
+param <- list(max_depth = 2, eta = 0.05, verbose = 0, nthread = 2,
+              objective = "binary:logistic", eval_metric = "auc")
+
+baseline <- xgb.train(param, dtrain, nrounds = 5, watchlist, verbose = 0)
+```
+
+```{r}
+df <- agaricus.test$data %>% as.matrix() %>% as_tibble() %>% 
+  mutate(
+    y_hat = predict(baseline, agaricus.test$data),
+    y = agaricus.test$label)
+
+df %>% 
+  group_by(`odor=musty`) %>% 
+  summarise(
+    avg_pred = percent(mean(y_hat))
+  ) %>% t()
+```
+
+Instead of the previous examples, which do not appear in the test data at all, consider the characteristic `odor=musty`.  Of those mushrooms with a musty odor, the average predicted probabilities are about 49%.  In other words, the model is just blindly guessing (making a 50% guess) and not differentiating musty mushrooms from non-musty mushrooms.
+
+We see that less than 0.5% (32) of the mushrooms in the training data set are actually musty.  This means that the model does not have many examples to learn from.  
+
+```{r}
+agaricus.train$data %>% as.matrix() %>% as_tibble() %>% 
+  summarise(perent_musty = percent(mean(`odor=musty`)), n_musty = sum(`odor=musty`)) %>% t()
+```
+
+
+Suppose that we had prior information that told us that musty mushrooms are edible 90% of the time.  We can use a prior probability of 90% edible by setting the [base margin](https://xgboost.readthedocs.io/en/latest/python/python_api.html) in xgboost.
+
+```{r}
+#set the prior weight for all musty-smelling mushrooms to be 50%
+prior_probabilities <- agaricus.train$data %>% 
+  as.matrix() %>% 
+  as_tibble() %>% 
+  transmute(prior_wts = ifelse(`odor=musty` == 1, 
+                               yes = 0.1, 
+                               no = 0.9)) %>% 
+  unlist() %>% 
+  as.numeric()
+
+setinfo(dtrain, "base_margin", log(prior_probabilities))
+prior_weighted <- xgb.train(param, dtrain, nrounds = 30, watchlist, verbose = 0)
+```
+
+```{r}
+agaricus.test$data %>% as.matrix() %>% as_tibble() %>% 
+  mutate(
+    y_hat_baseline = predict(baseline, agaricus.test$data),
+    y_hat_prior_wtd = predict(prior_weighted, agaricus.test$data),
+    y = agaricus.test$label) %>% 
+   group_by(`odor=musty`) %>% 
+  summarise(
+    baseline_xgboost = percent(mean(y_hat_baseline)),
+    prior_xgboost = percent(mean(y_hat_prior_wtd)),
+    percent_poisonous = percent(mean(y))
+  ) %>% t()
+```
+
+After adding the prior weights, the musty mushrooms are much more likely to be predicted as poisonous as the average predicted probability increases to 74.4% from 48.5%.  This is closer to reality, as 100% of the musty mushrooms in the test set are actually poisonous.

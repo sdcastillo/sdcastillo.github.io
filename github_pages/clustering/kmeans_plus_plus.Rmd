@@ -1,0 +1,147 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(dplyr)
+library(party)
+library(purrr)
+```
+##Motivation
+
+[David Arthur and Sergei Vassilvitskii](oemmndcbldboiebfnladdacbdfmadadm/http://ilpubs.stanford.edu:8090/778/1/2006-13.pdf) published a paper about an improved version of the well-known kmeans algorithm.  After searching, I was unable to find this implemented in and **R** packages, so here is my own implementation.
+
+The standard kmeans algorithm is as follows:
+
+1.  Arbitrarily choose k centers $C = \right{c_1, c_2, ..., c_k}\left
+2.  For each $i \in \right{1, ..., k}\left, set the cluster $C_i$ to be the set of points in $X$ closer to $c_i$ than to $c_j$ \forall $j \neq i$.
+3.  For each $i \in \right{1, ..., k}\left, set $c_i$ to be the mean over all dimensions, that is, $C_i: c_i = \frac{1}{|C_i|}\sum_{x \in X}x.
+4. Repeat steps 2 and 3 until $C$ no longer changes.
+
+##Kmeans++ Overview
+
+1.  Choose the first initial cluster center randomly
+2.  Choose the next initial cluster centers by sampling points with a weighted probability equal to
+
+For $C_k$ cluster centers at step  $k$, the probability of choosing a point for the next cluster center is equal to
+
+$P(x, C_k) = \frac{D(x, C_k)^2}{\sum_{x \in X}^k{D(x, C_k)^2}}$,
+
+where $D(x, C_K)$ is the distance to the closest cluster center as of step $K$.
+
+3.  Add this new cluster to $C$, the list of clusters.
+4.  Repeat until there are $k$ cluster centers $C = \right{c_1, c_2, ..., c_k}\left
+5.  Run the usual kmeans algorithm.
+
+The overall impact of these additional steps are to spread out the initial cluster centers.
+
+##Implementation
+
+To start, a few ingrediants are needed.  To find the distance between two points, or the kth observations $x_ki$ and $x_kj$ $\in R^n$, we will need the distance function $D(.)$.
+
+$\text{get_closest}: D(x) = \sqrt{\sum_{k=1}^{n}{(x_{ik} - x_{jk})^2}}$
+
+```{r}
+#find the distance between a point x and the closest center
+get_closest <- function(x, centers){
+  centers %>% 
+    map_dbl(~sqrt(sum(x - .x)^2)) %>% 
+    min()
+}
+
+```
+
+To find the special probability weighting to use for sampling the initial cluster centers, we will need the function as follows, call it $P(.)$.
+
+$\text{get_weight: }P(x, C_k) = \frac{D(x, C_k)^2}{\sum_{x \in X}^k{D(x, C_k)^2}}$
+
+```{r}
+#find the sample probability P
+get_weight <- function(x, centers, data){
+  x %>% 
+    map(~(get_closest(x = .x, centers))^2 / sum( get_closest(data, centers)^2))
+}
+```
+
+The final step is to iterate through each of the points and select the initial centers.  Because each new cluster center depends on all of the previous cluster centers, there is no simple means of parrallelizing the loop.  
+
+```{r}
+#create a kmeans plus plus algorithm
+kmeans_plus_plus <- function(data, k){
+  #create a list of observations
+  x_list <- as_data_frame(t(data))
+
+  #initialize an empty list for the centers
+  centers <- sample(x = x_list, size = 1) %>% 
+    t() %>% 
+    as_data_frame()
+
+  for( i in 2:k){
+    #store the sample weight
+    sample_weights <- get_weight(x_list, centers, x_list)
+    
+    #find a new center using this as a sample weight
+    new_center <- base::sample(x = x_list, size = 1, prob = sample_weights)
+    
+    #add this center to the list of centers
+    centers = centers %>% rbind(t(new_center))
+  }
+  
+  kmeans_plus_plus_fit <- kmeans(data, centers, nstart = 20)
+  kmeans_fit <- kmeans(data, centers = k, nstart = 20)
+  
+  return(list("kmeans_plus_plus" = kmeans_plus_plus_fit,
+              "kmeans_fit" = kmeans_fit,
+              "centers" = centers,
+              "k" = k))
+}
+
+```
+
+##Emperical Results
+
+The author of the paper talks about testing the kmeans++ agaist kmeans using a sample data set of normal distributions.  This used a three synthetic data sets, consisting 500x500 matrices with 10, 25, and 50 centers from a standard normal distribution.  Due to computer limitations, we will use 100x100 matrices.
+
+We will test both the kmeans and kmeans++ algorithms against each of these three data sets.  Because each run of the model is stochastic due to dependence on random sampling, we run both with 20 different starting configurations each time.  In total, this means that we are running kmeans and kmeans++ 20 + 20 + 20 = 60 times.
+
+```{r}
+
+make_sim_data <- function(num_col = 10, num_row, num_clusters){
+  var_names <- paste0("V", 1:num_col)
+  as_data_frame(matrix(ncol = num_col, nrow = num_row)) %>% 
+    mutate(row_mean = sample(1:num_clusters, size = num_row, replace = T)) %>% 
+    mutate_at(.vars = var_names, funs(rnorm(n = num_row, mean = row_mean, sd = 1))) %>%
+    select(-row_mean) %>% 
+    mutate_all(scale)
+}
+
+gaussian_10 <- make_sim_data(num_row = 50, num_clusters = 10)
+gaussian_20 <- make_sim_data(num_row = 100, num_clusters = 20)
+gaussian_50 <- make_sim_data(num_row = 100, num_clusters = 50)
+
+
+#Verify that the row means match the parameter means for the row
+gaussian_10 %>% 
+  select(-row_mean) %>% 
+  apply(., 1, mean) %>% 
+  as_data_frame(.) %>% 
+  mutate(actual_mean = gaussian_10$row_mean)
+
+```
+
+
+
+```{r}
+t1 <- Sys.time()
+fit_10 <- kmeans_plus_plus(gaussian_10, 10)
+t2 = Sys.time()
+
+fit_25 <- kmeans_plus_plus(gaussian_25, 25)
+
+fit_50 <- kmeans_plus_plus(gaussian_50, 50)
+
+t2 <- Sys.time()
+
+```
+

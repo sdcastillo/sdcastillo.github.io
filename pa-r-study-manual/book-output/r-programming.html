@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 R programming | The Predictive Analytics R Study Manual</title>
+  <meta name="description" content="This will help you pass these exams" />
+  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 R programming | The Predictive Analytics R Study Manual" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This will help you pass these exams" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 R programming | The Predictive Analytics R Study Manual" />
+  
+  <meta name="twitter:description" content="This will help you pass these exams" />
+  
+
+<meta name="author" content="Sam Castillo" />
+
+
+<meta name="date" content="2019-10-29" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="getting-started.html"/>
+<link rel="next" href="data-manipulation.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  { background-color: #f8f8f8; }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome</a></li>
+<li class="chapter" data-level="2" data-path="the-exam.html"><a href="the-exam.html"><i class="fa fa-check"></i><b>2</b> The Exam</a></li>
+<li class="chapter" data-level="3" data-path="preface-what-is-machine-learning.html"><a href="preface-what-is-machine-learning.html"><i class="fa fa-check"></i><b>3</b> Preface - What is Machine Learning?</a></li>
+<li class="chapter" data-level="4" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>4</b> Getting started</a><ul>
+<li class="chapter" data-level="4.1" data-path="getting-started.html"><a href="getting-started.html#download-islr"><i class="fa fa-check"></i><b>4.1</b> Download ISLR</a></li>
+<li class="chapter" data-level="4.2" data-path="getting-started.html"><a href="getting-started.html#installing-r"><i class="fa fa-check"></i><b>4.2</b> Installing R</a></li>
+<li class="chapter" data-level="4.3" data-path="getting-started.html"><a href="getting-started.html#installing-rstudio"><i class="fa fa-check"></i><b>4.3</b> Installing RStudio</a></li>
+<li class="chapter" data-level="4.4" data-path="getting-started.html"><a href="getting-started.html#set-the-r-library"><i class="fa fa-check"></i><b>4.4</b> Set the R library</a></li>
+<li class="chapter" data-level="4.5" data-path="getting-started.html"><a href="getting-started.html#download-the-data"><i class="fa fa-check"></i><b>4.5</b> Download the data</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="r-programming.html"><a href="r-programming.html"><i class="fa fa-check"></i><b>5</b> R programming</a><ul>
+<li class="chapter" data-level="5.1" data-path="r-programming.html"><a href="r-programming.html#notebook-chunks"><i class="fa fa-check"></i><b>5.1</b> Notebook chunks</a></li>
+<li class="chapter" data-level="5.2" data-path="r-programming.html"><a href="r-programming.html#basic-operations"><i class="fa fa-check"></i><b>5.2</b> Basic operations</a></li>
+<li class="chapter" data-level="5.3" data-path="r-programming.html"><a href="r-programming.html#lists"><i class="fa fa-check"></i><b>5.3</b> Lists</a></li>
+<li class="chapter" data-level="5.4" data-path="r-programming.html"><a href="r-programming.html#functions"><i class="fa fa-check"></i><b>5.4</b> Functions</a></li>
+<li class="chapter" data-level="5.5" data-path="r-programming.html"><a href="r-programming.html#data-frames"><i class="fa fa-check"></i><b>5.5</b> Data frames</a></li>
+<li class="chapter" data-level="5.6" data-path="r-programming.html"><a href="r-programming.html#pipes"><i class="fa fa-check"></i><b>5.6</b> Pipes</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="data-manipulation.html"><a href="data-manipulation.html"><i class="fa fa-check"></i><b>6</b> Data manipulation</a><ul>
+<li class="chapter" data-level="6.1" data-path="data-manipulation.html"><a href="data-manipulation.html#look-at-the-data"><i class="fa fa-check"></i><b>6.1</b> Look at the data</a></li>
+<li class="chapter" data-level="6.2" data-path="data-manipulation.html"><a href="data-manipulation.html#transform-the-data"><i class="fa fa-check"></i><b>6.2</b> Transform the data</a></li>
+<li class="chapter" data-level="6.3" data-path="data-manipulation.html"><a href="data-manipulation.html#exercises"><i class="fa fa-check"></i><b>6.3</b> Exercises</a></li>
+<li class="chapter" data-level="6.4" data-path="data-manipulation.html"><a href="data-manipulation.html#answers-to-exercises"><i class="fa fa-check"></i><b>6.4</b> Answers to exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="visualization.html"><a href="visualization.html"><i class="fa fa-check"></i><b>7</b> Visualization</a><ul>
+<li class="chapter" data-level="7.1" data-path="visualization.html"><a href="visualization.html#step-1.-put-the-data-in-a-pivotable-format"><i class="fa fa-check"></i><b>7.1</b> Step 1. Put the data in a pivotable format</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="visualization.html"><a href="visualization.html#example-of-wide-or-matrix-format"><i class="fa fa-check"></i><b>7.1.1</b> Example of “wide” or “matrix” format</a></li>
+<li class="chapter" data-level="7.1.2" data-path="visualization.html"><a href="visualization.html#example-of-pivotable-long-or-tidy-format"><i class="fa fa-check"></i><b>7.1.2</b> Example of “pivotable”, “long”, or “tidy” format</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="visualization.html"><a href="visualization.html#step-2.-create-a-plot-object-ggplot"><i class="fa fa-check"></i><b>7.2</b> Step 2. Create a plot object (ggplot)</a></li>
+<li class="chapter" data-level="7.3" data-path="visualization.html"><a href="visualization.html#step-3-add-a-plot"><i class="fa fa-check"></i><b>7.3</b> Step 3: Add a plot</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="tree-based-models.html"><a href="tree-based-models.html"><i class="fa fa-check"></i><b>8</b> Tree-based models</a><ul>
+<li class="chapter" data-level="8.1" data-path="tree-based-models.html"><a href="tree-based-models.html#decision-trees"><i class="fa fa-check"></i><b>8.1</b> Decision Trees</a></li>
+<li class="chapter" data-level="8.2" data-path="tree-based-models.html"><a href="tree-based-models.html#advantages-and-disadvantages"><i class="fa fa-check"></i><b>8.2</b> Advantages and disadvantages</a></li>
+<li class="chapter" data-level="8.3" data-path="tree-based-models.html"><a href="tree-based-models.html#random-forests"><i class="fa fa-check"></i><b>8.3</b> Random Forests</a></li>
+<li class="chapter" data-level="8.4" data-path="tree-based-models.html"><a href="tree-based-models.html#gradient-boosted-trees"><i class="fa fa-check"></i><b>8.4</b> Gradient Boosted Trees</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="a-mini-exam-example.html"><a href="a-mini-exam-example.html"><i class="fa fa-check"></i><b>9</b> A Mini-Exam Example</a><ul>
+<li class="chapter" data-level="9.1" data-path="a-mini-exam-example.html"><a href="a-mini-exam-example.html#project-statement"><i class="fa fa-check"></i><b>9.1</b> Project Statement</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="a-mini-exam-example.html"><a href="a-mini-exam-example.html#describe-the-data-1-point"><i class="fa fa-check"></i><b>9.1.1</b> Describe the data (1 point)</a></li>
+<li class="chapter" data-level="9.1.2" data-path="a-mini-exam-example.html"><a href="a-mini-exam-example.html#create-a-histogram-of-the-claims-and-comment-on-the-shape-1-point"><i class="fa fa-check"></i><b>9.1.2</b> Create a histogram of the claims and comment on the shape (1 point)</a></li>
+<li class="chapter" data-level="9.1.3" data-path="a-mini-exam-example.html"><a href="a-mini-exam-example.html#fit-a-linear-model-1-point"><i class="fa fa-check"></i><b>9.1.3</b> Fit a linear model (1 point)</a></li>
+<li class="chapter" data-level="9.1.4" data-path="a-mini-exam-example.html"><a href="a-mini-exam-example.html#describe-the-relationship-between-age-sex-and-claim-costs-1-point"><i class="fa fa-check"></i><b>9.1.4</b> Describe the relationship between age, sex, and claim costs (1 point)</a></li>
+<li class="chapter" data-level="9.1.5" data-path="a-mini-exam-example.html"><a href="a-mini-exam-example.html#write-a-summary-of-steps-1-4-in-non-technical-language-1-point"><i class="fa fa-check"></i><b>9.1.5</b> Write a summary of steps 1-4 in non-technical language (1 point)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="practice-exam.html"><a href="practice-exam.html"><i class="fa fa-check"></i><b>10</b> Practice Exam</a></li>
+<li class="chapter" data-level="11" data-path="prior-exams.html"><a href="prior-exams.html"><i class="fa fa-check"></i><b>11</b> Prior Exams</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">The Predictive Analytics R Study Manual</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="r-programming" class="section level1">
+<h1><span class="header-section-number">Chapter 5</span> R programming</h1>
+<p>There are already many great R tutorials available. To save time, this book will cover the absolute essentials. The book “R for Data Science” provides one such introduction.</p>
+<p><a href="https://r4ds.had.co.nz/" class="uri">https://r4ds.had.co.nz/</a></p>
+<div id="notebook-chunks" class="section level2">
+<h2><span class="header-section-number">5.1</span> Notebook chunks</h2>
+<p>On the Exam, you will start with an .Rmd (R Markdown) template. The way that this book writes code is in the <a href="https://bookdown.org/yihui/rmarkdown/notebook.html">R Notebook</a>. Learning markdown is useful for other web development and documentation tasks as well.</p>
+<p>Code is organized into chunks. To run everything in a chunk quickly, press <code>CTRL + SHIFT + ENTER</code>. To create a new chunk, use <code>CTRL + ALT + I</code>.</p>
+</div>
+<div id="basic-operations" class="section level2">
+<h2><span class="header-section-number">5.2</span> Basic operations</h2>
+<p>The usual math operations apply.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="co">#addition</span></a>
+<a class="sourceLine" id="cb5-2" title="2"><span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span> </a></code></pre></div>
+<pre><code>## [1] 3</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="dv">3</span> <span class="op">-</span><span class="st"> </span><span class="dv">2</span></a></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="co">#multiplication</span></a>
+<a class="sourceLine" id="cb9-2" title="2"><span class="dv">2</span><span class="op">*</span><span class="dv">2</span></a></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="co">#division</span></a>
+<a class="sourceLine" id="cb11-2" title="2"><span class="dv">4</span><span class="op">/</span><span class="dv">2</span></a></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="co">#exponentiation</span></a>
+<a class="sourceLine" id="cb13-2" title="2"><span class="dv">2</span><span class="op">^</span><span class="dv">3</span></a></code></pre></div>
+<pre><code>## [1] 8</code></pre>
+<p>There are two assignment operators: <code>=</code> and <code>&lt;-</code>. The latter is preferred because it is specific to assigning a variable to a value. The “=” operator is also used for assigning values in functions (see the functions section). In R, the shortcut <code>ALT + -</code> creates a <code>&lt;-</code>.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1"><span class="co">#variable assignment</span></a>
+<a class="sourceLine" id="cb15-2" title="2">x =<span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb15-3" title="3">y &lt;-<span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb15-4" title="4"></a>
+<a class="sourceLine" id="cb15-5" title="5"><span class="co">#equality</span></a>
+<a class="sourceLine" id="cb15-6" title="6"><span class="dv">4</span> <span class="op">==</span><span class="st"> </span><span class="dv">2</span> <span class="co">#False</span></a></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1"><span class="dv">5</span> <span class="op">==</span><span class="st"> </span><span class="dv">5</span> <span class="co">#true</span></a></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1"><span class="fl">3.14</span> <span class="op">&gt;</span><span class="st"> </span><span class="dv">3</span> <span class="co">#true</span></a></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1"><span class="fl">3.14</span> <span class="op">&gt;=</span><span class="st"> </span><span class="dv">3</span> <span class="co">#true</span></a></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<p>Vectors can be added just like numbers. The <code>c</code> stands for “concatenate”, which creates vectors.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb23-2" title="2">y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb23-3" title="3">x <span class="op">+</span><span class="st"> </span>y</a></code></pre></div>
+<pre><code>## [1] 4 6</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1">x<span class="op">*</span>y</a></code></pre></div>
+<pre><code>## [1] 3 8</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1">z &lt;-<span class="st"> </span>x <span class="op">+</span><span class="st"> </span>y</a>
+<a class="sourceLine" id="cb27-2" title="2">z<span class="op">^</span><span class="dv">2</span></a></code></pre></div>
+<pre><code>## [1] 16 36</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1">z<span class="op">/</span><span class="dv">2</span></a></code></pre></div>
+<pre><code>## [1] 2 3</code></pre>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" title="1">z <span class="op">+</span><span class="st"> </span><span class="dv">3</span></a></code></pre></div>
+<pre><code>## [1] 7 9</code></pre>
+<p>Lists are like vectors but can take any type of object type. I already mentioned <code>numeric</code> types. There are also <code>character</code> (string) types, <code>factor</code> types, and <code>boolean</code> types.</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1">character &lt;-<span class="st"> &quot;The&quot;</span></a>
+<a class="sourceLine" id="cb33-2" title="2">character_vector &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;The&quot;</span>, <span class="st">&quot;Quick&quot;</span>)</a></code></pre></div>
+<p>Factors are characters that expect only specific values. A character can take on any value. A factor is only allowed a finite number of values. This reduces the memory size.</p>
+<p>The below factor has only one “level”, which is the list of assigned values.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" title="1">factor =<span class="st"> </span><span class="kw">as.factor</span>(character)</a>
+<a class="sourceLine" id="cb34-2" title="2"><span class="kw">levels</span>(factor)</a></code></pre></div>
+<pre><code>## [1] &quot;The&quot;</code></pre>
+<p>The levels of a factor are by default in R in alphabetical order (Q comes alphabetically before T).</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" title="1">factor_vector &lt;-<span class="st"> </span><span class="kw">as.factor</span>(character_vector)</a>
+<a class="sourceLine" id="cb36-2" title="2"><span class="kw">levels</span>(factor_vector)</a></code></pre></div>
+<pre><code>## [1] &quot;Quick&quot; &quot;The&quot;</code></pre>
+<p>Booleans are just True and False values. R understands <code>T</code> or <code>TRUE</code> in the same way. When doing math, bools are converted to 0/1 values where 1 is equivalent to TRUE and 0 FALSE.</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" title="1">bool_true &lt;-<span class="st"> </span>T</a>
+<a class="sourceLine" id="cb38-2" title="2">bool_false &lt;-<span class="st"> </span>F</a>
+<a class="sourceLine" id="cb38-3" title="3">bool_true<span class="op">*</span>bool_false</a></code></pre></div>
+<pre><code>## [1] 0</code></pre>
+<p>Vectors work in the same way.</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" title="1">bool_vect &lt;-<span class="st"> </span><span class="kw">c</span>(T,T, F)</a>
+<a class="sourceLine" id="cb40-2" title="2"><span class="kw">sum</span>(bool_vect)</a></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<p>Vectors are indexed using <code>[]</code>.</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" title="1">abc &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>)</a>
+<a class="sourceLine" id="cb42-2" title="2">abc[<span class="dv">1</span>]</a></code></pre></div>
+<pre><code>## [1] &quot;a&quot;</code></pre>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" title="1">abc[<span class="dv">2</span>]</a></code></pre></div>
+<pre><code>## [1] &quot;b&quot;</code></pre>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" title="1">abc[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>)]</a></code></pre></div>
+<pre><code>## [1] &quot;a&quot; &quot;c&quot;</code></pre>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" title="1">abc[<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)]</a></code></pre></div>
+<pre><code>## [1] &quot;a&quot; &quot;b&quot;</code></pre>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" title="1">abc[<span class="op">-</span><span class="dv">2</span>]</a></code></pre></div>
+<pre><code>## [1] &quot;a&quot; &quot;c&quot;</code></pre>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" title="1">abc[<span class="op">-</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>)]</a></code></pre></div>
+<pre><code>## [1] &quot;a&quot;</code></pre>
+</div>
+<div id="lists" class="section level2">
+<h2><span class="header-section-number">5.3</span> Lists</h2>
+<p>Lists are vectors that can hold mixed object types. Vectors need to be all of the same type.</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" title="1">ls &lt;-<span class="st"> </span><span class="kw">list</span>(T, <span class="st">&quot;Character&quot;</span>, <span class="fl">3.14</span>)</a>
+<a class="sourceLine" id="cb54-2" title="2">ls</a></code></pre></div>
+<pre><code>## [[1]]
+## [1] TRUE
+## 
+## [[2]]
+## [1] &quot;Character&quot;
+## 
+## [[3]]
+## [1] 3.14</code></pre>
+<p>Lists can be named.</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" title="1">ls &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">bool =</span> T, <span class="dt">character =</span> <span class="st">&quot;character&quot;</span>, <span class="dt">numeric =</span> <span class="fl">3.14</span>)</a>
+<a class="sourceLine" id="cb56-2" title="2">ls</a></code></pre></div>
+<pre><code>## $bool
+## [1] TRUE
+## 
+## $character
+## [1] &quot;character&quot;
+## 
+## $numeric
+## [1] 3.14</code></pre>
+<p>The <code>$</code> operator indexes lists.</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" title="1">ls<span class="op">$</span>numeric</a></code></pre></div>
+<pre><code>## [1] 3.14</code></pre>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" title="1">ls<span class="op">$</span>numeric <span class="op">+</span><span class="st"> </span><span class="dv">5</span></a></code></pre></div>
+<pre><code>## [1] 8.14</code></pre>
+<p>Lists can also be indexed using <code>[]</code>.</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" title="1">ls[<span class="dv">1</span>]</a></code></pre></div>
+<pre><code>## $bool
+## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" title="1">ls[<span class="dv">2</span>]</a></code></pre></div>
+<pre><code>## $character
+## [1] &quot;character&quot;</code></pre>
+<p>Lists can contain vectors, other lists, and any other object.</p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" title="1">everything &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">vector =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>), <span class="dt">character =</span> <span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>), <span class="dt">list =</span> ls)</a>
+<a class="sourceLine" id="cb66-2" title="2">everything</a></code></pre></div>
+<pre><code>## $vector
+## [1] 1 2 3
+## 
+## $character
+## [1] &quot;a&quot; &quot;b&quot; &quot;c&quot;
+## 
+## $list
+## $list$bool
+## [1] TRUE
+## 
+## $list$character
+## [1] &quot;character&quot;
+## 
+## $list$numeric
+## [1] 3.14</code></pre>
+<p>To find out the type of an object, use <code>class</code> or <code>str</code> or <code>summary</code>.</p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" title="1"><span class="kw">class</span>(x)</a></code></pre></div>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" title="1"><span class="kw">class</span>(everything)</a></code></pre></div>
+<pre><code>## [1] &quot;list&quot;</code></pre>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" title="1"><span class="kw">str</span>(everything)</a></code></pre></div>
+<pre><code>## List of 3
+##  $ vector   : num [1:3] 1 2 3
+##  $ character: chr [1:3] &quot;a&quot; &quot;b&quot; &quot;c&quot;
+##  $ list     :List of 3
+##   ..$ bool     : logi TRUE
+##   ..$ character: chr &quot;character&quot;
+##   ..$ numeric  : num 3.14</code></pre>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb74-1" title="1"><span class="kw">summary</span>(everything)</a></code></pre></div>
+<pre><code>##           Length Class  Mode     
+## vector    3      -none- numeric  
+## character 3      -none- character
+## list      3      -none- list</code></pre>
+</div>
+<div id="functions" class="section level2">
+<h2><span class="header-section-number">5.4</span> Functions</h2>
+<p>You only need to understand the very basics of functions for this exam. Still, understanding functions helps you to understand <em>everything</em> in R, since R is a functional <a href="http://adv-r.had.co.nz/Functional-programming.html">programming language</a>, unlike Python, C, VBA, Java which are all object-oriented, or SQL which isn’t really a language but a series of set-operations.</p>
+<p>Functions do things. The convention is to name a function as a verb. The function <code>make_rainbows()</code> would create a rainbow. The function <code>summarise_vectors</code> would summarise vectors. Functions may or may not have an input and output.</p>
+<p>If you need to do something in R, there is a high probability that someone has already written a function to do it. That being said, creating simple functions is quite useful.</p>
+<p><strong>A function that does not return anything</strong></p>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb76-1" title="1">greet_me &lt;-<span class="st"> </span><span class="cf">function</span>(my_name){</a>
+<a class="sourceLine" id="cb76-2" title="2">  <span class="kw">print</span>(<span class="kw">paste0</span>(<span class="st">&quot;Hello, &quot;</span>, my_name))</a>
+<a class="sourceLine" id="cb76-3" title="3">}</a>
+<a class="sourceLine" id="cb76-4" title="4"></a>
+<a class="sourceLine" id="cb76-5" title="5"><span class="kw">greet_me</span>(<span class="st">&quot;Future Actuary&quot;</span>)</a></code></pre></div>
+<pre><code>## [1] &quot;Hello, Future Actuary&quot;</code></pre>
+<p><strong>A function that returns something</strong></p>
+<p>When returning something, the <code>return</code> statement is optional.</p>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb78-1" title="1">add_together &lt;-<span class="st"> </span><span class="cf">function</span>(x, y){</a>
+<a class="sourceLine" id="cb78-2" title="2">  x <span class="op">+</span><span class="st"> </span>y</a>
+<a class="sourceLine" id="cb78-3" title="3">}</a>
+<a class="sourceLine" id="cb78-4" title="4"></a>
+<a class="sourceLine" id="cb78-5" title="5"><span class="kw">add_together</span>(<span class="dv">2</span>,<span class="dv">5</span>)</a></code></pre></div>
+<pre><code>## [1] 7</code></pre>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb80-1" title="1">add_together &lt;-<span class="st"> </span><span class="cf">function</span>(x, y){</a>
+<a class="sourceLine" id="cb80-2" title="2">  <span class="kw">return</span>(x <span class="op">+</span><span class="st"> </span>y)</a>
+<a class="sourceLine" id="cb80-3" title="3">}</a>
+<a class="sourceLine" id="cb80-4" title="4"></a>
+<a class="sourceLine" id="cb80-5" title="5"><span class="kw">add_together</span>(<span class="dv">2</span>,<span class="dv">5</span>)</a></code></pre></div>
+<pre><code>## [1] 7</code></pre>
+<p>Functions can work with vectors.</p>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb82-1" title="1">x_vector &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb82-2" title="2">y_vector &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>)</a>
+<a class="sourceLine" id="cb82-3" title="3"><span class="kw">add_together</span>(x_vector, y_vector)</a></code></pre></div>
+<pre><code>## [1] 5 7 9</code></pre>
+</div>
+<div id="data-frames" class="section level2">
+<h2><span class="header-section-number">5.5</span> Data frames</h2>
+<p>R is an old programming language. The original <code>data.frame</code> object has been updated with the newer and better <code>tibble</code> (like the word “table”). <strong>Tibbles are really lists of vectors, where each column is a vector</strong>.</p>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb84-1" title="1"><span class="kw">library</span>(tibble) <span class="co">#the tibble library has functions for making tibbles</span></a>
+<a class="sourceLine" id="cb84-2" title="2">data &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">age =</span> <span class="kw">c</span>(<span class="dv">25</span>, <span class="dv">35</span>), <span class="dt">has_fsa =</span> <span class="kw">c</span>(F, T))</a>
+<a class="sourceLine" id="cb84-3" title="3"></a>
+<a class="sourceLine" id="cb84-4" title="4">data</a></code></pre></div>
+<pre><code>## # A tibble: 2 x 2
+##     age has_fsa
+##   &lt;dbl&gt; &lt;lgl&gt;  
+## 1    25 FALSE  
+## 2    35 TRUE</code></pre>
+<p>To index columns in a tibble, the same “$” is used as indexing a list.</p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb86-1" title="1">data<span class="op">$</span>age</a></code></pre></div>
+<pre><code>## [1] 25 35</code></pre>
+<p>To find the number of rows and columns, use <code>dim</code>.</p>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb88-1" title="1"><span class="kw">dim</span>(data)</a></code></pre></div>
+<pre><code>## [1] 2 2</code></pre>
+<p>To fine a summary, use <code>summary</code></p>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb90-1" title="1"><span class="kw">summary</span>(data)</a></code></pre></div>
+<pre><code>##       age        has_fsa       
+##  Min.   :25.0   Mode :logical  
+##  1st Qu.:27.5   FALSE:1        
+##  Median :30.0   TRUE :1        
+##  Mean   :30.0                  
+##  3rd Qu.:32.5                  
+##  Max.   :35.0</code></pre>
+</div>
+<div id="pipes" class="section level2">
+<h2><span class="header-section-number">5.6</span> Pipes</h2>
+<p>The pipe operator <code>%&gt;%</code> is a way of making code more readable and easier to edit. The way that we are taught to do functional composition is by nesting, which is slow to read and write.</p>
+<p>In five seconds, tell me what the below code is doing.</p>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb92-1" title="1"><span class="kw">log</span>(<span class="kw">sqrt</span>(<span class="kw">exp</span>(<span class="kw">log2</span>(<span class="kw">sqrt</span>((<span class="kw">max</span>(<span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">16</span>))))))))</a></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<p>Did you get the answer of 1? If so, you are good at reading parenthesis. This requires starting from the inner-most nested brackets and moving outwards from right to left.</p>
+<p>The math notation would be slightly easier to read, but still painful.</p>
+<p><span class="math display">\[log(\sqrt{e^{log_2(\sqrt{max(3,4,16)})}})\]</span></p>
+<p>Here is the same algebra using the pipe. To read this, replace the <code>%&gt;%</code> with the word <code>THEN</code>.</p>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb94-1" title="1"><span class="kw">library</span>(dplyr) <span class="co">#the pipe is from the dplyr library</span></a>
+<a class="sourceLine" id="cb94-2" title="2"><span class="kw">max</span>(<span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">16</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb94-3" title="3"><span class="st">  </span><span class="kw">sqrt</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb94-4" title="4"><span class="st">  </span><span class="kw">log2</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb94-5" title="5"><span class="st">  </span><span class="kw">exp</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb94-6" title="6"><span class="st">  </span><span class="kw">sqrt</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb94-7" title="7"><span class="st">  </span><span class="kw">log</span>()</a></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb96-1" title="1"><span class="co">#max(c(3, 4, 16) THEN   #The max of 3, 4, and 16 is 16</span></a>
+<a class="sourceLine" id="cb96-2" title="2"><span class="co">#  sqrt() THEN          #The square root of 16 is 4</span></a>
+<a class="sourceLine" id="cb96-3" title="3"><span class="co">#  log2() THEN          #The log in base 2 of 4 is 2</span></a>
+<a class="sourceLine" id="cb96-4" title="4"><span class="co">#  exp() THEN           #the exponent of 2 is e^2</span></a>
+<a class="sourceLine" id="cb96-5" title="5"><span class="co">#  sqrt() THEN          #the square root of e^2 is e</span></a>
+<a class="sourceLine" id="cb96-6" title="6"><span class="co">#  log()                #the natural logarithm of e is 1</span></a></code></pre></div>
+<p>You may not be convinced by this simple example using numbers; however, once we get to data manipulations in the next section the advantage of piping will become obvious.</p>
+<p>To quickly produce pipes, use <code>CTRL + SHIFT + M</code>. By highlighting only certain sections, we can run the code in steps as if we were using a debugger. This makes testing out code much faster.</p>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb97-1" title="1"><span class="kw">max</span>(<span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">16</span>))</a></code></pre></div>
+<pre><code>## [1] 16</code></pre>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb99-1" title="1"><span class="kw">max</span>(<span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">16</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb99-2" title="2"><span class="st">  </span><span class="kw">sqrt</span>() </a></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb101-1" title="1"><span class="kw">max</span>(<span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">16</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb101-2" title="2"><span class="st">  </span><span class="kw">sqrt</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb101-3" title="3"><span class="st">  </span><span class="kw">log2</span>() </a></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb103-1" title="1"><span class="kw">max</span>(<span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">16</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb103-2" title="2"><span class="st">  </span><span class="kw">sqrt</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb103-3" title="3"><span class="st">  </span><span class="kw">log2</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb103-4" title="4"><span class="st">  </span><span class="kw">exp</span>()</a></code></pre></div>
+<pre><code>## [1] 7.389056</code></pre>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb105-1" title="1"><span class="kw">max</span>(<span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">16</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb105-2" title="2"><span class="st">  </span><span class="kw">sqrt</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb105-3" title="3"><span class="st">  </span><span class="kw">log2</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb105-4" title="4"><span class="st">  </span><span class="kw">exp</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb105-5" title="5"><span class="st">  </span><span class="kw">sqrt</span>() </a></code></pre></div>
+<pre><code>## [1] 2.718282</code></pre>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb107-1" title="1"><span class="kw">max</span>(<span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">16</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb107-2" title="2"><span class="st">  </span><span class="kw">sqrt</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb107-3" title="3"><span class="st">  </span><span class="kw">log2</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb107-4" title="4"><span class="st">  </span><span class="kw">exp</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb107-5" title="5"><span class="st">  </span><span class="kw">sqrt</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb107-6" title="6"><span class="st">  </span><span class="kw">log</span>()</a></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<p>Those familiar with Python’s Pandas will be see that <code>%&gt;%</code> is quite similar to “.”.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="getting-started.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="data-manipulation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/02-r-programming.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["Exam PA Study Manual.pdf", "Exam PA Study Manual.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

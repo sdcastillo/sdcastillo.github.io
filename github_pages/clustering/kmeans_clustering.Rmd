@@ -1,0 +1,352 @@
+---
+title: "A Basic Explanation of KMeans Clustering"
+output:
+  html_document:
+    df_print: paged
+    toc: true
+    theme: spacelab
+    highlight: tango
+  html_notebook: default
+  pdf_document: default
+
+---
+```{r echo = F}
+#sets the options for all knitr markdown chunks below
+knitr::opts_chunk$set(fig.width=12, fig.height=8, fig.path='Figs/',
+                      echo=T, warning=FALSE, message=FALSE)
+
+```
+
+
+```{r}
+library(ggplot2) #create plots
+library(gridExtra) #plot output 
+library(purrr) #map functions.  Much, much better than apply/sapply
+#library(cluster) #neat PCA-based visualization of clusters
+library(caret)
+library(clue) #contains kmediods algorithm
+library(lpSolve) #dependency of clue above
+library(dplyr) #data manipulation.  Always load last
+theme_set(theme_light()) #set ggplot2 theme globally
+```
+#What is Clustering?
+
+Imagine that you are a large retailer interested in understanding the customer base.  There may be several "types" of customers, such as those shopping for business with corporate accounts, those shopping for leisure, or debt-strapped grad students.  Each of these customers would exhibit different behavior, and should be treated differently statistically.  But how can a customer's "type" be defined?  Especially for large customer data sets in the millions, one can imagine how this problem can be challenging.
+
+##Theory
+
+Statistically speaking, this would be an example of a heterogeneous or mixture distribution problem.  Cluster analysis, or data segmentation, seeks to group a collection of objects into homogeneous subsets.  In the customer example, this means that the corporate shoppers would go into bucket "A", the leisure shoppers into bucket "B", and so on.  
+
+There are several clustering algorithms which aim to accomplish this task.  
+
+#Kmeans Clustering
+
+Kmeans takes continuous data and assigns observations into k clusters, or groups.  In the two-dimensional example, this is the same as drawing lines around points together and assigning them to groups.  
+
+The kmeans algorithm consists of four steps:
+
+1.  The number of clusters, K, is defined manually;
+2.  K initial centers are randomly assigned;
+3.  For each data point, the closest cluster center (using Euclidean distance) is found;
+4.  Each cluster center is replaced by the coordinate average of all data points closest to it.
+
+*Example 1*
+
+To begin, we create sample data with two clusters.
+
+```{r}
+set.seed(2)
+dummy_data <- data_frame(x = rnorm(n = 50),
+                         y = rnorm(n = 50)) %>%
+  mutate(x = ifelse(row_number() >= 25, x + 2, x - 4),
+         y = ifelse(row_number() >= 10, y - 3, y))
+```
+
+This is a dataframe of the following vectors $X$ and $Y$ as columns.
+
+A plot shows that there are two distinct groupings, which is how the data was constructed.  In other words, the mean of the data changes for different observation indices, $1\leq i\leq n$.  The mixture distributions are defined from the above code as follows.
+
+For the first column of simulated data,
+
+$$X_i \sim  \{N(\mu = 2, \sigma = 1), i\geq 25,\\ N(\mu = -4, \sigma = 1),  i\leq 25 \} $$
+
+And for the second column,
+
+$$Y_i \sim  \{N(\mu = -3, \sigma = 1), i\geq 10,\\ N(\mu = -4, \sigma = 1),  i\leq 10 \} $$
+
+These points can be plotted.
+
+```{r fig.width = 4, fig.height= 4}
+dummy_data %>% 
+  ggplot(aes(x, y)) + 
+  geom_point() + 
+  ggtitle("Example 1: Simulated Data")
+```
+
+The goal of clustering is to find these groups.  In this example, we know that there should be 2 clusters, so the input is specified as `centers = 2`.  In more complicated examples, this needs to be specified by trial and error.
+
+```{r fig.width = 4, fig.height= 4}
+km1 <- kmeans(x = as.matrix(dummy_data),
+              centers = 2)
+
+dummy_data %>% 
+  mutate(cluster = as.factor(km1$cluster)) %>% 
+  ggplot(aes(x, y, color = cluster)) + 
+  geom_point() + 
+  ggtitle("Example 1: Simulated Data with Cluster Assignments")
+```
+
+##What happens with more than two clusters?  
+
+In the next example, the number of clusters is less well defined.  Should this be 2 or 3?  Let's see how the algorithm performs.
+
+*Example 2*
+
+```{r fig.width = 4, fig.height= 4}
+#Ignore this ugly indentation for now.
+dummy_data <- data_frame(x1 = rnorm(n = 50), x2 = rnorm(n = 50)) %>%
+  mutate(x1 = ifelse(row_number() <= 15, 
+                     yes = x1 + 2,
+                     no = ifelse(row_number() <= 25,
+                                 yes = x1 + 3,
+                                 no = x1 - 2)),
+         x2 = ifelse(row_number() >= 10, x2 - 3, x2))
+
+dummy_data %>% 
+  ggplot(aes(x1, x2)) + 
+  geom_point()
+```
+
+Because we created the data, we immediately know that k should be 3, but due to the randomness of the simulation this could change with each new draw.
+
+```{r fig.height= 5}
+km11 <- kmeans(x = as.matrix(dummy_data),
+              centers = 2)
+
+p1 <- dummy_data %>% 
+  mutate(cluster = as.factor(km1$cluster)) %>% 
+  ggplot(aes(x1, x2, color = cluster)) + 
+  geom_point() + 
+  ggtitle("Kmeans when K = 2")
+
+km12 <- kmeans(x = as.matrix(dummy_data),
+              centers = 3)
+
+p2 <- dummy_data %>% 
+  mutate(cluster = as.factor(km12$cluster)) %>% 
+  ggplot(aes(x1, x2, color = cluster)) + 
+  geom_point() + 
+  ggtitle("Kmeans when K = 3")
+
+grid.arrange(p1, p2, nrow = 1)
+```
+
+##How consistant is Kmeans?
+
+As is sometimes the case, kmeans gives counter-intuitive results.  This is because the algorithm can find *local minima* of the within-cluster deviance instead of the *global minimum*.  The common solution to this is to run the algorithm with many different starting points and take an average of the cluster assignments.  
+
+##How does kmeans perform with high dimensions?
+
+First, we need a higher dimension than 2.  The famous `iris` data set (Fisher's or Anderson's) gives the measurements in centimeters of the variables sepal length and width and petal length and width, respectively, for 50 flowers from each of 3 species of iris. The species are Iris setosa, versicolor, and virginica.
+
+```{r}
+data(iris)
+head(iris)
+
+model_data <- iris %>% 
+  select(-Species) %>% 
+  mutate_all(function(x){(x - mean(x))/sd(x)})
+```
+
+Because we are using a distance measure to assign points to clusters, the data needs to be scaled; otherwise, the algorithm would not work.  Now that the variables have been scaled by subtracting the mean and dividing by the standard deviation, the clustering can begin.
+
+For very large data sets, it can be impractical to scale (i.e., normalize) using the $(X - \mu)/\sigma$ scaling, and oftentimes [feature scaling](https://en.wikipedia.org/wiki/Feature_scaling) is used instead.
+
+How will we determine the optimal number of clusters, `k`?  Trial and error.  The objective is to minimize the within-cluster sum of squares (WCSS).  A good "rule of thumb" is to choose `k` so that the WCSS is about at its lowest point, without `k` being too large.  Obviously, if `k = n`, then WCSS would be minimized, but this would not provide useful information as each point would be in its own cluster!
+
+```{r fig.width = 5, fig.height= 4}
+#try out different values of k from 1 - 5 with kmeans
+clustering_models <- 1:10 %>% map(function(x){kmeans(model_data, x)})
+
+clustering_models %>% 
+  map_dbl("tot.withinss") %>% 
+  as_data_frame() %>% 
+  rename(total_ss = value) %>% 
+  mutate(k = 1:10) %>%
+  ggplot(aes(k, total_ss)) + 
+  geom_point() + 
+  geom_line(color = "red") + 
+  ggtitle("Total Sum of Within-Cluster Squared Error")
+  
+```
+
+The above graph suggests that $k = 3$ would be quite reasonable.  To set `k` higher would lead to instability and over fitting.
+
+##Comparison of pre-cluster and post-cluster distributions
+
+What does the "within cluster sum of squares" look like from a distributional perspective?  Recall that in a density plot, or histogram, that the variance is the amount of "width" or "x-axis-deviance" present.  The "skinnier" the distribution, the lower the variance.  
+
+We graph the pre-cluster and post-cluster distributions to see directly.
+
+*Example 3*
+
+```{r}
+make_hist <- function(x){
+  model_data %>% 
+  ggplot(aes(x)) +
+  geom_histogram() 
+}
+
+plots <- model_data %>%
+  map(make_hist) 
+
+title <- grid::textGrob("Pre-cluster distributions")
+
+grid.arrange(plots[[1]], 
+             plots[[2]],
+             plots[[3]],
+             plots[[4]],
+             top = title)
+```
+
+After splitting into homogeneous groups
+
+```{r}
+clustered_model_data <- model_data %>% 
+  mutate(cluster = as.factor(kmeans(model_data, 3)$cluster)) %>% 
+  map(unlist) %>% 
+  as_data_frame()
+
+make_hist <- function(x){
+  clustered_model_data %>% 
+  ggplot(aes(x, fill = cluster)) +
+  geom_density(alpha = 0.3) 
+}
+
+plots <- clustered_model_data %>%
+  map(make_hist) 
+
+title <- grid::textGrob("Post-cluster distributions")
+
+grid.arrange(plots[[1]], 
+             plots[[2]],
+             plots[[3]],
+             plots[[4]],
+             top = title)
+```
+
+#K-medoids
+
+##Theory
+
+Generally speaking the mean is just one type of statistical average.  Can we use other types of averages in the 'k-average' algorithm?  Absolutely.  One common choice is the m-mediods algorithm.  In simple language, the median is the value which splits half of the data points.  For example, the median of `c(1,1,2,3,3)` is `2` because two numbers are above and two numbers are below the number 2, or 50% is greater than 2 and 50% is less than 2.
+
+For probability distributions, the definition is as follows:
+
+Let $F(x)$ be a cumulative density function of $X$ and $m$ its median. 
+
+Then
+
+$\int_{-\infty, m}dF(x) \leq 0.5$ and $\int_{m, \infty}dF(x) \geq 0.5$.
+
+source: [wikipedia](https://en.wikipedia.org/wiki/Median#Probability_distributions)
+
+##Trade-offs of using KMediods
+
+Once advantage to the median versus the mean is that the former is more resilient to outliers.  For instance, imagine if one of the points in `c(1,1,2,3,3)` where changed to say, `1000`.  The median would be `median(c(1,1,2,3,1000)) = 2`, but the mean would be 201.4.  Without going into detail, the downside is that the median is much more computationally expensive. 
+
+*Example 4*
+
+We will "break" the iris data set by changing a few values to outliers and compare kmeans to kmediods.  You might ask, will the outliers be "fixed" by the scaling process?  Let's find out.  As an additional test, we will try scaling by standard score ($\mu$ / $\sigma$ scaling) as well as by feature scaling (i.e., using $min(.)$ / $max(.)$).
+
+
+```{r}
+#free up R memory.  This is becaues the medians function is inefficient
+rm(list = ls())
+
+outlier_standard_score_model_data <- iris %>% 
+  select(-Species) %>% 
+  mutate(Sepal.Length = ifelse(row_number() == 1, 
+                               yes = Sepal.Length + 100*rnorm(1),
+                               no = Sepal.Length)) %>% 
+  mutate_all(function(x){(x - mean(x))/sd(x)}) %>% 
+  slice(1:50) # makes computation easier
+
+outlier_feature_scaling_model_data <- iris %>% 
+  select(-Species) %>% 
+  mutate(Sepal.Length = ifelse(row_number() == 1, 
+                               yes = Sepal.Length + 100*rnorm(1),
+                               no = Sepal.Length)) %>% 
+  mutate_all(function(x){(x - min(x))/(max(x) - min(x))}) %>% 
+  slice(1:50) # makes computation easier
+```
+
+Notice that the outlier data sets have a `Sepal.Length` outlier.  Also notice that the scaling is performed *after* the outlier is added, and that the feature-scaled column is between 0 and 1. 
+
+```{r}
+outlier_standard_score_model_data %>% 
+  select(Sepal.Length) %>% 
+  summary()
+
+outlier_feature_scaling_model_data %>% 
+  select(Sepal.Length) %>% 
+  summary()
+```
+
+```{r}
+dist_matrix1 <- outlier_standard_score_model_data %>% dist() %>% as.matrix()
+dist_matrix2 <- outlier_feature_scaling_model_data %>% dist() %>% as.matrix()
+t1 <- kmedoids(dist_matrix1, k = 3)
+t2 <- kmedoids(dist_matrix2, k = 3)
+```
+
+Next, we calculate the within-cluster sum of squares manually.  This is because whoever wrote the function `kmediods` was too lazy to save this within the `kmediods` object.
+
+```{r}
+within_cluster_ss <- function(x){
+  sum((x - median(x))^2)
+}
+
+total_within_ss_standard <- outlier_standard_score_model_data %>% 
+  mutate(cluster = as.factor(t1$cluster)) %>% 
+  group_by(cluster) %>% 
+  summarise_if(is.numeric, within_cluster_ss) %>%
+  ungroup() %>% 
+  #there must be a cleaner way of doing this, but I don't know the map function well enought right now.
+  select(-cluster) %>% 
+  t() %>% 
+  as_data_frame() %>% 
+  map_if(is.numeric, sum) %>% 
+  as.numeric() %>% 
+  sum()
+
+total_within_ss_feature_scaled <- outlier_feature_scaling_model_data %>% 
+  mutate(cluster = as.factor(t2$cluster)) %>% 
+  group_by(cluster) %>% 
+  summarise_if(is.numeric, within_cluster_ss) %>%
+  ungroup() %>% 
+  #there must be a cleaner way of doing this, but I don't know the map function well enought right now.
+  select(-cluster) %>% 
+  t() %>% 
+  as_data_frame() %>% 
+  map_if(is.numeric, sum) %>% 
+  as.numeric() %>% 
+  sum()
+
+data_frame("Total within cluster SS with feature scaling" = total_within_ss_feature_scaled,
+           "Total within cluster SS with standard scaling" = total_within_ss_standard)
+```
+
+This example shows that kmediods handle outliers far better, as the total within cluster squared error is much smaller.
+
+#Conclusion
+
+* Clustering reduces the dimension of a data set
+* Clustering finds distributions of points which are "close" to each other by a distance measure.  Often this is Euclidean distance.
+* KMeans is the most popular, but there are many variations such as Kmediods, which is more resistant to outliers.
+
+Analysis loosely based on 
+https://rstudio-pubs-static.s3.amazonaws.com/33876_1d7794d9a86647ca90c4f182df93f0e8.html
+
+
+

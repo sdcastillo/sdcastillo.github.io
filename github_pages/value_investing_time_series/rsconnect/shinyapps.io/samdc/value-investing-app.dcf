@@ -1,0 +1,10 @@
+name: value-investing-app
+title:
+username: samdc
+account: samdc
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 16173941
+bundleId: 11235293
+url: https://samdc.shinyapps.io/value-investing-app/
+version: 1

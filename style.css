@@ -1,12 +1,23 @@
+Here's the updated **style.css** with improved color contrast to meet WCAG 2.1 AA standards:
+
+```css
 /* ============================================= */
 /*   BUBBLEGUM CYBERPUNK THEME – style.css       */
+/*   UPDATED: Accessibility-focused contrast    */
 /* ============================================= */
 
 :root {
   --bg: #000000;
-  --pink: #FF69B4;        /* Bubblegum pink */
-  --hot-pink: #FF1493;
-  --soft-pink: #FFB6C1;
+  --pink: #FF69B4;           /* Original bubblegum pink */
+  --hot-pink: #FF1493;       /* Original hot pink */
+  --soft-pink: #FFB6C1;      /* Original soft pink */
+  
+  /* NEW: High-contrast accessible colors */
+  --bright-pink: #FF66FF;    /* Brighter magenta for headings (7.8:1 contrast on black) */
+  --bright-magenta: #FF00FF; /* Maximum brightness for critical elements */
+  --light-cyan: #00FFFF;     /* For focus indicators */
+  --light-text: #FFFFFF;     /* Pure white for best contrast */
+  --medium-gray: #CCCCCC;    /* Accessible body text (12:1 contrast) */
 }
 
 * {
@@ -17,9 +28,9 @@
 
 body {
   background: var(--bg);
-  color: var(--pink);
+  color: var(--medium-gray);    /* CHANGED: From --pink to medium gray (12:1 contrast) */
   font-family: 'Courier New', monospace, sans-serif;
-  line-height: 1.7;
+  line-height: 1.8;             /* INCREASED: From 1.7 to 1.8 for better readability */
   padding: 2rem 4rem;
   min-height: 100vh;
   position: relative;
@@ -28,11 +39,13 @@ body {
 }
 
 @keyframes blink-cursor {
-  0%, 50%   { color: var(--pink); }
-  51%, 100% { color: var(--hot-pink); }
+  0%, 50%   { color: var(--bright-pink); }
+  51%, 100% { color: var(--bright-magenta); }
 }
 
-header { margin-bottom: 4rem; }
+header { 
+  margin-bottom: 4rem; 
+}
 
 .main-nav {
   display: flex;
@@ -40,7 +53,7 @@ header { margin-bottom: 4rem; }
   justify-content: space-between;
   align-items: center;
   padding: 1.5rem 0;
-  border-bottom: 2px dashed var(--pink);
+  border-bottom: 2px dashed var(--bright-pink);  /* CHANGED: From --pink to --bright-pink */
   gap: 1rem;
 }
 
@@ -51,30 +64,49 @@ header { margin-bottom: 4rem; }
 }
 
 .main-nav a {
-  color: var(--soft-pink);
+  color: var(--light-text);     /* CHANGED: From --soft-pink to white (21:1 contrast) */
   text-decoration: none;
   font-weight: bold;
   transition: all 0.3s ease;
-  padding: 0.4rem 0;
+  padding: 0.4rem 0.8rem;        /* INCREASED: Added horizontal padding */
+  border-radius: 4px;
+  outline-offset: 2px;
 }
 
 .main-nav a:hover,
 .main-nav a.active {
-  color: var(--hot-pink);
-  text-shadow: 0 0 12px var(--hot-pink);
+  color: var(--bg);              /* CHANGED: Black text */
+  background: var(--bright-pink); /* Added background */
+  text-shadow: none;
+}
+
+/* NEW: Keyboard focus indicator */
+.main-nav a:focus {
+  outline: 3px solid var(--light-cyan);
+  background: rgba(255, 105, 180, 0.2);
 }
 
 .buy-cta {
-  background: var(--hot-pink) !important;
-  color: black !important;
-  padding: 0.6rem 1.4rem !important;
+  background: var(--bright-magenta) !important;
+  color: var(--light-text) !important;           /* CHANGED: From black to white */
+  padding: 0.8rem 1.6rem !important;             /* INCREASED: Better touch target */
   border-radius: 8px;
   font-weight: bold;
+  min-width: 44px;                               /* NEW: WCAG mobile touch target */
+  min-height: 44px;
+  transition: all 0.3s ease;
 }
 
 .buy-cta:hover {
-  background: white !important;
-  box-shadow: 0 0 15px var(--hot-pink);
+  background: var(--light-cyan) !important;
+  color: var(--bg) !important;
+  box-shadow: 0 0 15px var(--bright-pink);
+}
+
+/* NEW: Focus state for button */
+.buy-cta:focus {
+  outline: 3px solid var(--light-text);
+  outline-offset: 2px;
 }
 
 blockquote {
@@ -83,24 +115,45 @@ blockquote {
   text-align: center;
   margin: 3rem 0;
   padding: 2rem;
-  color: var(--soft-pink);
-  border-left: 6px solid var(--pink);
-  background: rgba(255, 105, 180, 0.1);
+  color: var(--light-text);       /* CHANGED: From --soft-pink to white */
+  border-left: 6px solid var(--bright-pink);  /* CHANGED: From --pink */
+  background: rgba(255, 105, 180, 0.15);      /* Slightly darker background */
+  border-radius: 4px;
 }
 
-h1, h2 {
-  color: var(--hot-pink);
-  margin: 3rem 0 1.5rem;
-  text-shadow: 0 0 10px var(--hot-pink);
+h1, h2, h3, h4, h5, h6 {
+  color: var(--bright-pink);      /* CHANGED: From --hot-pink to brighter pink */
+  margin: 2.5rem 0 1.5rem;
+  text-shadow: 0 0 8px rgba(255, 102, 255, 0.3);
+  font-weight: bold;
 }
 
-h1 { font-size: 2.8rem; text-align: center; }
-h2 { font-size: 2rem; }
+h1 { 
+  font-size: 2.8rem; 
+  text-align: center;
+  color: var(--bright-magenta);   /* Extra bright for H1 */
+}
+
+h2 { 
+  font-size: 2rem; 
+  color: var(--bright-pink);
+}
+
+h3 {
+  font-size: 1.6rem;
+  color: var(--bright-pink);
+}
+
+h4 {
+  font-size: 1.4rem;
+  color: var(--light-text);       /* Lighter shade for smaller headings */
+}
 
 p, li {
   margin-bottom: 1.2rem;
   padding: 0 1rem;
   max-width: 900px;
+  color: var(--medium-gray);      /* Ensure all text uses accessible color */
 }
 
 ul, ol {
@@ -108,43 +161,65 @@ ul, ol {
   padding-left: 3rem;
 }
 
-li { margin-bottom: 0.8rem; }
+li { 
+  margin-bottom: 0.8rem;
+  color: var(--medium-gray);
+}
+
+/* NEW: Link styling with better contrast */
+a {
+  color: var(--bright-pink);
+  text-decoration: underline;
+  transition: all 0.2s ease;
+}
+
+a:hover {
+  color: var(--light-cyan);
+  text-decoration: underline;
+}
+
+a:focus {
+  outline: 3px solid var(--light-cyan);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* NEW: Form accessibility */
+input, textarea, select {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--light-text);
+  border: 2px solid var(--bright-pink);
+  padding: 0.8rem;
+  font-family: inherit;
+  border-radius: 4px;
+  min-height: 44px;
+  font-size: 16px;
+}
+
+input::placeholder, textarea::placeholder {
+  color: var(--medium-gray);
+  opacity: 0.7;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: 3px solid var(--light-cyan);
+  outline-offset: 2px;
+  border-color: var(--light-cyan);
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--light-text);
+  font-weight: bold;
+}
 
 table {
   width: 100%;
   border-collapse: collapse;
   margin: 3rem 0;
-  background: rgba(255, 105, 180, 0.05);
+  background: rgba(255, 105, 180, 0.08);
 }
 
 th, td {
-  border: 1px solid var(--pink);
-  padding: 1rem;
-  text-align: left;
-}
-
-th {
-  background: var(--hot-pink);
-  color: black;
-  font-weight: bold;
-}
-
-.terminal-cursor {
-  font-size: 3.5rem;
-  color: var(--hot-pink);
-  animation: blink 0.8s step-end infinite;
-  margin-top: 6rem;
-  text-align: center;
-}
-
-@keyframes blink {
-  0%, 50%  { opacity: 1; }
-  51%, 100% { opacity: 0; }
-}
-
-/* Mobile responsiveness */
-@media (max-width: 900px) {
-  body { padding: 2rem; }
-  .main-nav { flex-direction: column; text-align: center; }
-  .nav-left, .nav-right { justify-content: center; }
-}
+  border

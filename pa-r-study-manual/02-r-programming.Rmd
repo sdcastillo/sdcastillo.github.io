@@ -1,0 +1,438 @@
+# How much R do I need to know to pass?
+
+<span style="color: blue;">**This is a communication exam **</span>  because 30-40% of the points are based on your writing and data storytelling quality.
+
+You do not need to become an R expert for this exam. While you are expected to develop a basic familiarity with R, the .Rmd template will provide you with the vast majority of the R commands needed. You will need to practice taking code templates and adjusting them to the specific variables and formulas you need. The most difficult coding questions will be during data exploration. These will ask you to
+
+- Use basic mathematical operators and functions such as `exp()` and `log()`
+- Select, modify, and summarize data in a dataframe
+- Display data from a dataframe in common types of plots, using ggplot2
+
+When fitting predictive models, you will also need to
+
+- Modify or add a formula or other parameters to model-fitting functions like `glm()` and
+`rpart()`
+- Extract and displaying results from a fitted predictive model
+
+You are **not** expected to construct loops, write functions, or use other programmatic techniques with R. The scope is limited to single-line commands.
+
+You will have two cheat sheets for [data visualization](https://contentpreview.s3.us-east-2.amazonaws.com/Exam+PA+Spring+2021+Simplified+Data+Viz+Cheat+Sheet.pdf) and base R. You can use this in your study to become familiar with how to find the R code quickly. These cheat sheets that the SOA gives you were designed by the RStudio team for everyone who uses R, and so we have gone through and removed the parts that you will not need to learn. For example, no one will be making new types of ggplot graphs under the “graphical primitives” section, which has been blocked out. **Enroll in either of our online courses to get our simplified Base R cheat sheet and tutorial.**
+
+## How to use the PA R cheat sheets?
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/UVE9Zm6mqvM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+Be observant and expect to spend twice as long explaining what your code is doing as you write the code itself. A few points are based on the organization your .Rmd file, although you do not need this to read like an essay. The vast majority of your time will be spent on your Word document.
+
+The June 16 2020 Project Statement has this under "General information for candidates."
+
+>Each task will be graded on the quality of your thought process, **added or modified code**, and conclusions
+
+>At a minimum, you must submit your completed report template and an .Rmd file that supports your work. Graders expect that your .Rmd code can be run from beginning to end. The code snippets provided should either be commented out or adapted for execution. Ensure that it is clear where in the code each of the tasks is addressed. 
+
+In other words, the results of your report must be consistent with what the grading team finds when they run your .Rmd file.
+
+## Example: SOA PA 6/16/20, Task 8
+
+This question is from the June 16, 2020 exam. You can see that significantly only minor code changes need to be made. The remainder of this question consists of a short-answer response. This is very typical of Exam PA.  
+
+<iframe src="https://player.vimeo.com/video/467866045?title=0&byline=0&portrait=0" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+
+Already enrolled?  Watch the full video: <a target="_parent" href="https://course.exampa.net/mod/page/view.php?id=210&forceview=1
+">Practice Exams</a> | <a target="_parent" href="https://course.exampa.net/mod/page/view.php?id=161
+">Practice Exams + Lessons</a>
+
+>8. (4 obserations) Perform feature selection with lasso regression.
+>
+>Run a lasso regression using the code chunk provided. **The code will need to be modified to
+reflect your decision in Task 7 regarding the PCA variable.**
+
+You probably read this and asked "what is a lasso regression?" and with good reason - we haven't yet covered this topic.  All that you need to know is **highlighted in black:** you will need to change the code that they give you, which is below.
+
+You need to choose between using one of two data sets:
+
+- DATA SET A
+- DATA SET B
+
+Then ignore everything else!
+
+```{r eval = F , echo = T}
+# Format data as matrices (necessary for glmnet). 
+# Uncomment two items that reflect your decision from Task 7.
+
+#DATA SET A
+lasso.mat.train <- model.matrix(days ~ . - PC1, data.train)
+lasso.mat.test <- model.matrix(days ~ . - PC1, data.test)
+
+#DATA SET B
+# lasso.mat.train <- model.matrix(days ~ . - num_procs - num_meds - num_ip - num_diags, data.train)
+# lasso.mat.test <- model.matrix(days ~ . - num_procs - num_meds - num_ip - num_diags, data.test)
+
+set.seed(789)
+
+lasso.cv <- cv.glmnet(
+  x = lasso.mat.train,
+  y = data.train$days,
+  family = "poisson", # Do not change.
+  alpha = 1 # alpha = 1 for lasso
+)
+```
+
+
+If you wanted to use data set B, you would just add comments to data set A and uncomment B.
+
+```{r eval = F , echo = T}
+#DATA SET A
+# lasso.mat.train <- model.matrix(days ~ . - PC1, data.train)
+# lasso.mat.test <- model.matrix(days ~ . - PC1, data.test)
+
+#DATA SET B
+lasso.mat.train <- model.matrix(days ~ . - num_procs - num_meds - num_ip - num_diags, data.train)
+lasso.mat.test <- model.matrix(days ~ . - num_procs - num_meds - num_ip - num_diags, data.test)
+
+```
+
+## Example 2 - Data exploration
+
+That last example was easy. They might ask you to do something like the following:
+
+**Template code: **
+
+```{r eval = F, echo = T}
+# This code takes a continuous variable and creates a binned factor variable. 
+# The code applies it directly to the capital gain variable as an 
+# example. right = FALSE means that the left number is included and 
+# the right number excluded. So, in this case, the first bin runs from 0 to 
+# 1000 and includes 0 and excludes 1000. Note that the code creates a new 
+# variable, so the original variable is retained.
+df$cap_gain_cut <- cut(df$cap_gain, breaks = c(0, 1000, 5000, Inf), right = FALSE, labels = c("lowcg", "mediumcg", "highcg"))
+```
+
+To answer this question correctly, you would need to 
+
+- Understand that the code is taking the capital gains recorded on investments, `cap_gain`, and then creating bins so that the new variable is "lowcg" for values between 0 and 1000, "mediumcp" from 1000 to 5000, and "highcg" for all values above 5000.  
+- Then you would need to interpret a statistical model
+- Finally, use this result to change these cutoff values so that "low cg" is all values less than 5095.5, "medium cg" is all values from 5095.5 to 7055.5, and so forth.  You would need to do this for two data sets, `data.train`, and `data.test`.
+
+**Solution code: **
+
+```{r eval = F}
+# This code cuts a continuous variable into buckets. 
+# The process is applied to both the training and test sets. 
+
+data.train$cap_gain_cut <- cut(data.train$cap_gain, breaks = c(0, 5095.5, 7055.5, Inf), right = FALSE, labels = c("lowcg", "mediumcg", "highcg"))
+
+data.test$cap_gain_cut <- cut(data.test$cap_gain, breaks = c(0, 5095.5, 7055.5, Inf), right = FALSE, labels = c("lowcg", "mediumcg", "highcg"))
+```
+
+Do not panic if all of this code is confusing. Just focus on reading the comments. As you can see, this is less of a programming question than it is a “logic and reasoning” question.  
+
+# R programming
+
+This chapter teaches you the R skills that are needed to pass PA. 
+
+<iframe src="https://player.vimeo.com/video/487660455" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+
+## Notebook chunks
+
+On the Exam, you will start with an .Rmd (R Markdown) template, which organize 
+code into [R Notebooks](https://bookdown.org/yihui/rmarkdown/notebook.html). 
+Within each notebook, code is organized into chunks.  
+
+```{r}
+# This is a chunk
+```
+
+Your time is valuable.  Throughout this book, I will include useful keyboard shortcuts.
+
+</br>
+
+```{block, type='studytip'}
+**Shortcut:** To run everything in a chunk quickly, press `CTRL + SHIFT + ENTER`. 
+To create a new chunk, use `CTRL + ALT + I`.
+```
+</br>
+
+## Basic operations
+
+The usual math operations apply.
+
+```{r}
+# Addition
+1 + 2 
+3 - 2
+
+# Multiplication
+2 * 2
+
+# Division
+4 / 2
+
+# Exponentiation
+2^3
+```
+
+There are two assignment operators: `=` and `<-`.  The latter is preferred because 
+it is specific to assigning a variable to a value.  The `=` operator is also used 
+for specifying arguments in functions (see the functions section).  
+
+</br>
+```{block, type='studytip'}
+**Shortcut:** `ALT + -` creates a `<-`..
+```
+</br>
+
+```{r}
+# Variable assignment
+y <- 2
+
+# Equality
+4 == 2
+5 == 5
+3.14 > 3
+3.14 >= 3
+```
+
+Vectors can be added just like numbers.  The `c` stands for "concatenate", which
+creates vectors.
+
+```{r}
+x <- c(1, 2)
+y <- c(3, 4)
+x + y
+x * y
+
+z <- x + y
+z^2
+z / 2
+z + 3
+```
+
+I already mentioned `numeric` types. There are also `character` (string) types, 
+`factor` types, and `boolean` types.
+
+```{r}
+character <- "The"
+character_vector <- c("The", "Quick")
+```
+
+Character vectors can be combined with the `paste()` function.
+
+```{r}
+a <- "The"
+b <- "Quick"
+c <- "Brown"
+d <- "Fox"
+paste(a, b, c, d)
+```
+
+Factors look like character vectors but can only contain a finite number of predefined 
+values.
+
+The below factor has only one "level", which is the list of assigned values.
+
+```{r}
+factor <- as.factor(character)
+levels(factor)
+```
+
+The levels of a factor are by default in R in alphabetical order (Q comes alphabetically 
+before T).
+
+```{r}
+factor_vector <- as.factor(character_vector)
+levels(factor_vector)
+```
+
+**In building linear models, the order of the factors matters.**  In GLMs, the 
+"reference level" or "base level" should always be the level which has the most
+observations.  This will be covered in the section on linear models.
+
+Booleans are just `TRUE` and `FALSE` values.  R understands `T` or `TRUE` in the 
+same way, but the latter is preferred.  When doing math, bools are converted to 
+0/1 values where 1 is equivalent to TRUE and 0 FALSE.
+
+```{r}
+bool_true <- TRUE
+bool_false <- FALSE
+bool_true * bool_false
+```
+
+Booleans are automatically converted into 0/1 values when there is a math operation.
+
+```{r}
+bool_true + 1
+```
+
+Vectors work in the same way.
+
+```{r}
+bool_vect <- c(TRUE, TRUE, FALSE)
+sum(bool_vect)
+```
+
+Vectors are indexed using `[`. If you are only extracting a single element, you
+should use `[[` for clarity.
+
+```{r}
+abc <- c("a", "b", "c")
+abc[[1]]
+abc[[2]]
+abc[c(1, 3)]
+abc[c(1, 2)]
+abc[-2]
+abc[-c(2, 3)]
+```
+
+
+## Lists
+
+Lists are vectors that can hold mixed object types.
+
+```{r}
+my_list <- list(TRUE, "Character", 3.14)
+my_list
+```
+
+Lists can be named.
+
+```{r}
+my_list <- list(bool = TRUE, character = "character", numeric = 3.14)
+my_list
+```
+
+The `$` operator indexes lists.
+
+```{r}
+my_list$numeric
+
+my_list$numeric + 5
+```
+
+Lists can also be indexed using `[[`.
+
+```{r}
+my_list[[1]]
+my_list[[2]]
+```
+
+
+Lists can contain vectors, other lists, and any other object.
+
+```{r}
+everything <- list(vector = c(1, 2, 3), 
+                   character = c("a", "b", "c"), 
+                   list = my_list)
+everything
+```
+
+To find out the type of an object, use `class` or `str` or `summary`.
+
+```{r}
+class(x)
+class(everything)
+str(everything)
+summary(everything)
+```
+
+
+## Functions
+
+You only need to understand the very basics of functions. The big picture is that understanding functions help you to understand  *everything* in R, since R is a 
+functional [programming language](http://adv-r.had.co.nz/Functional-programming.html), 
+unlike Python, C, VBA, Java, all object-oriented, or SQL, which is not a language but a series of set-operations.
+
+Functions do things.  The convention is to name a function as a verb.  The function `make_rainbows()` would create a rainbow.  The function `summarise_vectors()` would summarise vectors.  Functions may or may not have an input and output.  
+
+If you need to do something in R, there is a high probability that someone has already written a function to do it. That being said, creating simple functions is quite helpful.
+
+Here is an example that has a side effect of printing the input:
+
+```{r}
+greet_me <- function(my_name){
+  print(paste0("Hello, ", my_name))
+}
+
+greet_me("Future Actuary")
+```
+
+**A function that returns something**
+
+When returning the last evaluated expression, the `return` statement is optional. In fact, it is discouraged by convention.
+
+```{r}
+add_together <- function(x, y) {
+  x + y
+}
+
+add_together(2, 5)
+
+add_together <- function(x, y) {
+  # Works, but bad practice
+  return(x + y)
+}
+
+add_together(2, 5)
+```
+
+Binary operations in R are vectorized. In other words, they are applied element-wise.
+
+```{r}
+x_vector <- c(1, 2, 3)
+y_vector <- c(4, 5, 6)
+add_together(x_vector, y_vector)
+```
+
+Many functions in R actually return lists!  This is why R objects can be indexed 
+with dollar sign.
+
+```{r}
+library(ExamPAData)
+model <- lm(charges ~ age, data = health_insurance)
+model$coefficients
+```
+
+Here's a function that returns a list.
+
+```{r}
+sum_multiply <- function(x,y) {
+  sum <- x + y
+  product <- x * y
+  list("Sum" = sum, "Product" = product)
+}
+
+result <- sum_multiply(2, 3)
+result$Sum
+result$Product
+```
+
+## Data frames
+
+You can think of a data frame as a table that is implemented as a list of vectors.
+
+```{r}
+df <- data.frame(
+  age = c(25, 35),
+  has_fsa = c(FALSE, TRUE)
+)
+df
+```
+
+To index columns in a data frame, the same "$" is used as indexing a list.
+
+```{r}
+df$age
+```
+
+To find the number of rows and columns, use `dim`.
+
+```{r}
+dim(df)
+```
+
+To find a summary, use `summary`
+
+```{r}
+summary(df)
+```
+

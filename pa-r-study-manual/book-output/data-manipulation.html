@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 6 Data manipulation | The Predictive Analytics R Study Manual</title>
+  <meta name="description" content="This will help you pass these exams" />
+  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 6 Data manipulation | The Predictive Analytics R Study Manual" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This will help you pass these exams" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 6 Data manipulation | The Predictive Analytics R Study Manual" />
+  
+  <meta name="twitter:description" content="This will help you pass these exams" />
+  
+
+<meta name="author" content="Sam Castillo" />
+
+
+<meta name="date" content="2019-10-29" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="r-programming.html"/>
+<link rel="next" href="visualization.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  { background-color: #f8f8f8; }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome</a></li>
+<li class="chapter" data-level="2" data-path="the-exam.html"><a href="the-exam.html"><i class="fa fa-check"></i><b>2</b> The Exam</a></li>
+<li class="chapter" data-level="3" data-path="preface-what-is-machine-learning.html"><a href="preface-what-is-machine-learning.html"><i class="fa fa-check"></i><b>3</b> Preface - What is Machine Learning?</a></li>
+<li class="chapter" data-level="4" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>4</b> Getting started</a><ul>
+<li class="chapter" data-level="4.1" data-path="getting-started.html"><a href="getting-started.html#download-islr"><i class="fa fa-check"></i><b>4.1</b> Download ISLR</a></li>
+<li class="chapter" data-level="4.2" data-path="getting-started.html"><a href="getting-started.html#installing-r"><i class="fa fa-check"></i><b>4.2</b> Installing R</a></li>
+<li class="chapter" data-level="4.3" data-path="getting-started.html"><a href="getting-started.html#installing-rstudio"><i class="fa fa-check"></i><b>4.3</b> Installing RStudio</a></li>
+<li class="chapter" data-level="4.4" data-path="getting-started.html"><a href="getting-started.html#set-the-r-library"><i class="fa fa-check"></i><b>4.4</b> Set the R library</a></li>
+<li class="chapter" data-level="4.5" data-path="getting-started.html"><a href="getting-started.html#download-the-data"><i class="fa fa-check"></i><b>4.5</b> Download the data</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="r-programming.html"><a href="r-programming.html"><i class="fa fa-check"></i><b>5</b> R programming</a><ul>
+<li class="chapter" data-level="5.1" data-path="r-programming.html"><a href="r-programming.html#notebook-chunks"><i class="fa fa-check"></i><b>5.1</b> Notebook chunks</a></li>
+<li class="chapter" data-level="5.2" data-path="r-programming.html"><a href="r-programming.html#basic-operations"><i class="fa fa-check"></i><b>5.2</b> Basic operations</a></li>
+<li class="chapter" data-level="5.3" data-path="r-programming.html"><a href="r-programming.html#lists"><i class="fa fa-check"></i><b>5.3</b> Lists</a></li>
+<li class="chapter" data-level="5.4" data-path="r-programming.html"><a href="r-programming.html#functions"><i class="fa fa-check"></i><b>5.4</b> Functions</a></li>
+<li class="chapter" data-level="5.5" data-path="r-programming.html"><a href="r-programming.html#data-frames"><i class="fa fa-check"></i><b>5.5</b> Data frames</a></li>
+<li class="chapter" data-level="5.6" data-path="r-programming.html"><a href="r-programming.html#pipes"><i class="fa fa-check"></i><b>5.6</b> Pipes</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="data-manipulation.html"><a href="data-manipulation.html"><i class="fa fa-check"></i><b>6</b> Data manipulation</a><ul>
+<li class="chapter" data-level="6.1" data-path="data-manipulation.html"><a href="data-manipulation.html#look-at-the-data"><i class="fa fa-check"></i><b>6.1</b> Look at the data</a></li>
+<li class="chapter" data-level="6.2" data-path="data-manipulation.html"><a href="data-manipulation.html#transform-the-data"><i class="fa fa-check"></i><b>6.2</b> Transform the data</a></li>
+<li class="chapter" data-level="6.3" data-path="data-manipulation.html"><a href="data-manipulation.html#exercises"><i class="fa fa-check"></i><b>6.3</b> Exercises</a></li>
+<li class="chapter" data-level="6.4" data-path="data-manipulation.html"><a href="data-manipulation.html#answers-to-exercises"><i class="fa fa-check"></i><b>6.4</b> Answers to exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="visualization.html"><a href="visualization.html"><i class="fa fa-check"></i><b>7</b> Visualization</a><ul>
+<li class="chapter" data-level="7.1" data-path="visualization.html"><a href="visualization.html#step-1.-put-the-data-in-a-pivotable-format"><i class="fa fa-check"></i><b>7.1</b> Step 1. Put the data in a pivotable format</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="visualization.html"><a href="visualization.html#example-of-wide-or-matrix-format"><i class="fa fa-check"></i><b>7.1.1</b> Example of “wide” or “matrix” format</a></li>
+<li class="chapter" data-level="7.1.2" data-path="visualization.html"><a href="visualization.html#example-of-pivotable-long-or-tidy-format"><i class="fa fa-check"></i><b>7.1.2</b> Example of “pivotable”, “long”, or “tidy” format</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="visualization.html"><a href="visualization.html#step-2.-create-a-plot-object-ggplot"><i class="fa fa-check"></i><b>7.2</b> Step 2. Create a plot object (ggplot)</a></li>
+<li class="chapter" data-level="7.3" data-path="visualization.html"><a href="visualization.html#step-3-add-a-plot"><i class="fa fa-check"></i><b>7.3</b> Step 3: Add a plot</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="tree-based-models.html"><a href="tree-based-models.html"><i class="fa fa-check"></i><b>8</b> Tree-based models</a><ul>
+<li class="chapter" data-level="8.1" data-path="tree-based-models.html"><a href="tree-based-models.html#decision-trees"><i class="fa fa-check"></i><b>8.1</b> Decision Trees</a></li>
+<li class="chapter" data-level="8.2" data-path="tree-based-models.html"><a href="tree-based-models.html#advantages-and-disadvantages"><i class="fa fa-check"></i><b>8.2</b> Advantages and disadvantages</a></li>
+<li class="chapter" data-level="8.3" data-path="tree-based-models.html"><a href="tree-based-models.html#random-forests"><i class="fa fa-check"></i><b>8.3</b> Random Forests</a></li>
+<li class="chapter" data-level="8.4" data-path="tree-based-models.html"><a href="tree-based-models.html#gradient-boosted-trees"><i class="fa fa-check"></i><b>8.4</b> Gradient Boosted Trees</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="a-mini-exam-example.html"><a href="a-mini-exam-example.html"><i class="fa fa-check"></i><b>9</b> A Mini-Exam Example</a><ul>
+<li class="chapter" data-level="9.1" data-path="a-mini-exam-example.html"><a href="a-mini-exam-example.html#project-statement"><i class="fa fa-check"></i><b>9.1</b> Project Statement</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="a-mini-exam-example.html"><a href="a-mini-exam-example.html#describe-the-data-1-point"><i class="fa fa-check"></i><b>9.1.1</b> Describe the data (1 point)</a></li>
+<li class="chapter" data-level="9.1.2" data-path="a-mini-exam-example.html"><a href="a-mini-exam-example.html#create-a-histogram-of-the-claims-and-comment-on-the-shape-1-point"><i class="fa fa-check"></i><b>9.1.2</b> Create a histogram of the claims and comment on the shape (1 point)</a></li>
+<li class="chapter" data-level="9.1.3" data-path="a-mini-exam-example.html"><a href="a-mini-exam-example.html#fit-a-linear-model-1-point"><i class="fa fa-check"></i><b>9.1.3</b> Fit a linear model (1 point)</a></li>
+<li class="chapter" data-level="9.1.4" data-path="a-mini-exam-example.html"><a href="a-mini-exam-example.html#describe-the-relationship-between-age-sex-and-claim-costs-1-point"><i class="fa fa-check"></i><b>9.1.4</b> Describe the relationship between age, sex, and claim costs (1 point)</a></li>
+<li class="chapter" data-level="9.1.5" data-path="a-mini-exam-example.html"><a href="a-mini-exam-example.html#write-a-summary-of-steps-1-4-in-non-technical-language-1-point"><i class="fa fa-check"></i><b>9.1.5</b> Write a summary of steps 1-4 in non-technical language (1 point)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="practice-exam.html"><a href="practice-exam.html"><i class="fa fa-check"></i><b>10</b> Practice Exam</a></li>
+<li class="chapter" data-level="11" data-path="prior-exams.html"><a href="prior-exams.html"><i class="fa fa-check"></i><b>11</b> Prior Exams</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">The Predictive Analytics R Study Manual</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="data-manipulation" class="section level1">
+<h1><span class="header-section-number">Chapter 6</span> Data manipulation</h1>
+<p>About two hours in this exam will be spent just on data manipulation. Putting in extra practice in this area is garanteed to give you a better score because it will free up time that you can use elsewhere.</p>
+<p>Suggested reading of <em>R for Data Science</em> (<a href="https://r4ds.had.co.nz/index.html" class="uri">https://r4ds.had.co.nz/index.html</a>):</p>
+<table>
+<thead>
+<tr class="header">
+<th>Chapter</th>
+<th>Topic</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>9</td>
+<td>Introduction</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>Tibbles</td>
+</tr>
+<tr class="odd">
+<td>12</td>
+<td>Tidy data</td>
+</tr>
+<tr class="even">
+<td>15</td>
+<td>Factors</td>
+</tr>
+<tr class="odd">
+<td>16</td>
+<td>Dates and times</td>
+</tr>
+<tr class="even">
+<td>17</td>
+<td>Introduction</td>
+</tr>
+<tr class="odd">
+<td>18</td>
+<td>Pipes</td>
+</tr>
+<tr class="even">
+<td>19</td>
+<td>Functions</td>
+</tr>
+<tr class="odd">
+<td>20</td>
+<td>Vectors</td>
+</tr>
+</tbody>
+</table>
+<p>All data for this book can be accessed from the package <code>ExamPAData</code>. In the real exam, you will read the file from the Prometric computer. To read files into R, the <a href="https://readr.tidyverse.org/articles/readr.html">readr</a> package has several tools, one for each data format. For instance, the most common format, comma separated values (csv) are read with the <code>read_csv()</code> function.</p>
+<p>Because the data is already loaded, simply use the below code to access the data.</p>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb109-1" title="1"><span class="kw">library</span>(ExamPAData)</a></code></pre></div>
+<div id="look-at-the-data" class="section level2">
+<h2><span class="header-section-number">6.1</span> Look at the data</h2>
+<p>The data that we are using is <code>health_insurance</code>, which has information on patients and their health care costs.</p>
+<p>The descriptions of the columns are below. The technical name for this is a “data dictionary”, and one will be provided to you on the real exam.</p>
+<ul>
+<li><code>age</code>: Age of the individual</li>
+<li><code>sex</code>: Sex</li>
+<li><code>bmi</code>: Body Mass Index</li>
+<li><code>children</code>: Number of children</li>
+<li><code>smoker</code>: Is this person a smoker?</li>
+<li><code>region</code>: Region</li>
+<li><code>charges</code>: Annual health care costs.</li>
+</ul>
+<p><code>head()</code> shows the top n rows. <code>head(20)</code> shows the top 20 rows.</p>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb110-1" title="1"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb110-2" title="2"><span class="kw">head</span>(health_insurance)</a></code></pre></div>
+<pre><code>## # A tibble: 6 x 7
+##     age sex      bmi children smoker region    charges
+##   &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;       &lt;dbl&gt;
+## 1    19 female  27.9        0 yes    southwest  16885.
+## 2    18 male    33.8        1 no     southeast   1726.
+## 3    28 male    33          3 no     southeast   4449.
+## 4    33 male    22.7        0 no     northwest  21984.
+## 5    32 male    28.9        0 no     northwest   3867.
+## 6    31 female  25.7        0 no     southeast   3757.</code></pre>
+<p>Using a pipe is an alternative way of doing this. Because this is more time-efficient, this will be the preferred method in this manual.</p>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb112-1" title="1">health_insurance <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">head</span>()</a></code></pre></div>
+<p>The <code>glimpse</code> function is a transpose of the <code>head()</code> function, which can be more spatially efficient. This also gives you the dimension (1,338 rows, 7 columns).</p>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb113-1" title="1">health_insurance <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">glimpse</span>()</a></code></pre></div>
+<pre><code>## Observations: 1,338
+## Variables: 7
+## $ age      &lt;dbl&gt; 19, 18, 28, 33, 32, 31, 46, 37, 37, 60, 25, 62, 23, 5...
+## $ sex      &lt;chr&gt; &quot;female&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;female&quot;, &quot;...
+## $ bmi      &lt;dbl&gt; 27.900, 33.770, 33.000, 22.705, 28.880, 25.740, 33.44...
+## $ children &lt;dbl&gt; 0, 1, 3, 0, 0, 0, 1, 3, 2, 0, 0, 0, 0, 0, 0, 1, 1, 0,...
+## $ smoker   &lt;chr&gt; &quot;yes&quot;, &quot;no&quot;, &quot;no&quot;, &quot;no&quot;, &quot;no&quot;, &quot;no&quot;, &quot;no&quot;, &quot;no&quot;, &quot;no&quot;...
+## $ region   &lt;chr&gt; &quot;southwest&quot;, &quot;southeast&quot;, &quot;southeast&quot;, &quot;northwest&quot;, &quot;...
+## $ charges  &lt;dbl&gt; 16884.924, 1725.552, 4449.462, 21984.471, 3866.855, 3...</code></pre>
+<p>One of the most useful data science tools is counting things. The function <code>count()</code> gives the number of records by a categorical feature.</p>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb115-1" title="1">health_insurance <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">count</span>(children)</a></code></pre></div>
+<pre><code>## # A tibble: 6 x 2
+##   children     n
+##      &lt;dbl&gt; &lt;int&gt;
+## 1        0   574
+## 2        1   324
+## 3        2   240
+## 4        3   157
+## 5        4    25
+## 6        5    18</code></pre>
+<p>Two categories can be counted at once. This creates a table with all combinations of <code>cut</code> and <code>color</code> and shows the number of records in each category.</p>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb117-1" title="1">health_insurance <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">count</span>(region, sex)</a></code></pre></div>
+<pre><code>## # A tibble: 8 x 3
+##   region    sex        n
+##   &lt;chr&gt;     &lt;chr&gt;  &lt;int&gt;
+## 1 northeast female   161
+## 2 northeast male     163
+## 3 northwest female   164
+## 4 northwest male     161
+## 5 southeast female   175
+## 6 southeast male     189
+## 7 southwest female   162
+## 8 southwest male     163</code></pre>
+<p>The <code>summary()</code> function is shows a statistical summary. One caveat is that each column needs to be in it’s appropriate type. For example, <code>smoker</code>, <code>region</code>, and <code>sex</code> are all listed as characters when if they were factors, <code>summary</code> would give you count info.</p>
+<p><strong>With incorrect data types</strong></p>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb119-1" title="1">health_insurance <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summary</span>()</a></code></pre></div>
+<pre><code>##       age            sex                 bmi           children    
+##  Min.   :18.00   Length:1338        Min.   :15.96   Min.   :0.000  
+##  1st Qu.:27.00   Class :character   1st Qu.:26.30   1st Qu.:0.000  
+##  Median :39.00   Mode  :character   Median :30.40   Median :1.000  
+##  Mean   :39.21                      Mean   :30.66   Mean   :1.095  
+##  3rd Qu.:51.00                      3rd Qu.:34.69   3rd Qu.:2.000  
+##  Max.   :64.00                      Max.   :53.13   Max.   :5.000  
+##     smoker             region             charges     
+##  Length:1338        Length:1338        Min.   : 1122  
+##  Class :character   Class :character   1st Qu.: 4740  
+##  Mode  :character   Mode  :character   Median : 9382  
+##                                        Mean   :13270  
+##                                        3rd Qu.:16640  
+##                                        Max.   :63770</code></pre>
+<p><strong>With correct data types</strong></p>
+<p>This tells you that there are 324 patients in the northeast, 325 in the northwest, 364 in the southeast, and so fourth.</p>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb121-1" title="1">health_insurance &lt;-<span class="st"> </span>health_insurance <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb121-2" title="2"><span class="st">  </span><span class="kw">modify_if</span>(is.character, as.factor)</a>
+<a class="sourceLine" id="cb121-3" title="3"></a>
+<a class="sourceLine" id="cb121-4" title="4">health_insurance <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb121-5" title="5"><span class="st">  </span><span class="kw">summary</span>()</a></code></pre></div>
+<pre><code>##       age            sex           bmi           children     smoker    
+##  Min.   :18.00   female:662   Min.   :15.96   Min.   :0.000   no :1064  
+##  1st Qu.:27.00   male  :676   1st Qu.:26.30   1st Qu.:0.000   yes: 274  
+##  Median :39.00                Median :30.40   Median :1.000             
+##  Mean   :39.21                Mean   :30.66   Mean   :1.095             
+##  3rd Qu.:51.00                3rd Qu.:34.69   3rd Qu.:2.000             
+##  Max.   :64.00                Max.   :53.13   Max.   :5.000             
+##        region       charges     
+##  northeast:324   Min.   : 1122  
+##  northwest:325   1st Qu.: 4740  
+##  southeast:364   Median : 9382  
+##  southwest:325   Mean   :13270  
+##                  3rd Qu.:16640  
+##                  Max.   :63770</code></pre>
+</div>
+<div id="transform-the-data" class="section level2">
+<h2><span class="header-section-number">6.2</span> Transform the data</h2>
+<p>Transforming, manipulating, querying, and wrangling are all words for the task of changing the values in a data frame. For those Excel users out there, this can be interpreted as “what Pivot tables, VLOOKUP, INDEX/MATCH, and SUMIFF do”.</p>
+<p>R syntax is designed to be similar to SQL. They begin with a <code>SELECT</code>, use <code>GROUP BY</code> to aggregate, and have a <code>WHERE</code> to remove records. Unlike SQL, the ordering of these does not matter. <code>SELECT</code> can come after a <code>WHERE</code>.</p>
+<p><strong>R to SQL translation</strong></p>
+<pre><code>select() -&gt; SELECT
+mutate() -&gt; user-defined columns
+summarize() -&gt; aggregated columns
+left_join() -&gt; LEFT JOIN
+filter() -&gt; WHERE
+group_by() -&gt; GROUP BY
+filter() -&gt; HAVING
+arrange() -&gt; ORDER BY
+</code></pre>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb124-1" title="1">health_insurance <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb124-2" title="2"><span class="st">  </span><span class="kw">select</span>(age, region) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb124-3" title="3"><span class="st">  </span><span class="kw">head</span>()</a></code></pre></div>
+<pre><code>## # A tibble: 6 x 2
+##     age region   
+##   &lt;dbl&gt; &lt;fct&gt;    
+## 1    19 southwest
+## 2    18 southeast
+## 3    28 southeast
+## 4    33 northwest
+## 5    32 northwest
+## 6    31 southeast</code></pre>
+<p>Tip: use <code>CTRL + SHIFT + M</code> to create pipes <code>%&gt;%</code>.</p>
+<p>Let’s look at only those in the southeast region. Instead of <code>WHERE</code>, use <code>filter</code>.</p>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb126-1" title="1">health_insurance <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb126-2" title="2"><span class="st">  </span><span class="kw">filter</span>(region <span class="op">==</span><span class="st"> &quot;southeast&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb126-3" title="3"><span class="st">  </span><span class="kw">select</span>(age, region) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb126-4" title="4"><span class="st">  </span><span class="kw">head</span>()</a></code></pre></div>
+<pre><code>## # A tibble: 6 x 2
+##     age region   
+##   &lt;dbl&gt; &lt;fct&gt;    
+## 1    18 southeast
+## 2    28 southeast
+## 3    31 southeast
+## 4    46 southeast
+## 5    62 southeast
+## 6    56 southeast</code></pre>
+<p>The SQL translation is</p>
+<div class="sourceCode" id="cb128"><pre class="sourceCode sql"><code class="sourceCode sql"><a class="sourceLine" id="cb128-1" title="1"><span class="kw">SELECT</span> age, region</a>
+<a class="sourceLine" id="cb128-2" title="2"><span class="kw">FROM</span> health_insurance</a>
+<a class="sourceLine" id="cb128-3" title="3"><span class="kw">WHERE</span> region <span class="op">=</span> <span class="st">&#39;southeast&#39;</span></a></code></pre></div>
+<p>Instead of <code>ORDER BY</code>, use <code>arrange</code>. Unlike SQL, the order does not matter and <code>ORDER BY</code> doesn’t need to be last.</p>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb129-1" title="1">health_insurance <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb129-2" title="2"><span class="st">  </span><span class="kw">arrange</span>(age) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb129-3" title="3"><span class="st">  </span><span class="kw">select</span>(age, region) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb129-4" title="4"><span class="st">  </span><span class="kw">head</span>()</a></code></pre></div>
+<pre><code>## # A tibble: 6 x 2
+##     age region   
+##   &lt;dbl&gt; &lt;fct&gt;    
+## 1    18 southeast
+## 2    18 southeast
+## 3    18 northeast
+## 4    18 northeast
+## 5    18 northeast
+## 6    18 southeast</code></pre>
+<p>The <code>group_by</code> comes before the aggregation, unlike in SQL where the <code>GROUP BY</code> comes last.</p>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb131-1" title="1">health_insurance <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb131-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(region) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb131-3" title="3"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">avg_age =</span> <span class="kw">mean</span>(age))</a></code></pre></div>
+<pre><code>## # A tibble: 4 x 2
+##   region    avg_age
+##   &lt;fct&gt;       &lt;dbl&gt;
+## 1 northeast    39.3
+## 2 northwest    39.2
+## 3 southeast    38.9
+## 4 southwest    39.5</code></pre>
+<p>In SQL, this would be</p>
+<div class="sourceCode" id="cb133"><pre class="sourceCode sql"><code class="sourceCode sql"><a class="sourceLine" id="cb133-1" title="1"><span class="kw">SELECT</span> region, </a>
+<a class="sourceLine" id="cb133-2" title="2">       <span class="fu">AVG</span>(age) <span class="kw">as</span> avg_age</a>
+<a class="sourceLine" id="cb133-3" title="3"><span class="kw">FROM</span> health_insurance</a>
+<a class="sourceLine" id="cb133-4" title="4"><span class="kw">GROUP</span> <span class="kw">BY</span> region</a></code></pre></div>
+<p>Just like in SQL, many different aggregate functions can be used such as <code>SUM</code>, <code>MEAN</code>, <code>MIN</code>, <code>MAX</code>, and so forth.</p>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb134-1" title="1">health_insurance <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb134-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(region) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb134-3" title="3"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">avg_age =</span> <span class="kw">mean</span>(age),</a>
+<a class="sourceLine" id="cb134-4" title="4">            <span class="dt">max_age =</span> <span class="kw">max</span>(age),</a>
+<a class="sourceLine" id="cb134-5" title="5">            <span class="dt">median_charges =</span> <span class="kw">median</span>(charges),</a>
+<a class="sourceLine" id="cb134-6" title="6">            <span class="dt">bmi_std_dev =</span> <span class="kw">sd</span>(bmi))</a></code></pre></div>
+<pre><code>## # A tibble: 4 x 5
+##   region    avg_age max_age median_charges bmi_std_dev
+##   &lt;fct&gt;       &lt;dbl&gt;   &lt;dbl&gt;          &lt;dbl&gt;       &lt;dbl&gt;
+## 1 northeast    39.3      64         10058.        5.94
+## 2 northwest    39.2      64          8966.        5.14
+## 3 southeast    38.9      64          9294.        6.48
+## 4 southwest    39.5      64          8799.        5.69</code></pre>
+<p>To create new columns, the <code>mutate</code> function is used. For example, if we wanted a column of the person’s annual charges divided by their age</p>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb136-1" title="1">health_insurance <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb136-2" title="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">charges_over_age =</span> charges<span class="op">/</span>age) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb136-3" title="3"><span class="st">  </span><span class="kw">select</span>(age, charges, charges_over_age) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb136-4" title="4"><span class="st">  </span><span class="kw">head</span>(<span class="dv">5</span>)</a></code></pre></div>
+<pre><code>## # A tibble: 5 x 3
+##     age charges charges_over_age
+##   &lt;dbl&gt;   &lt;dbl&gt;            &lt;dbl&gt;
+## 1    19  16885.            889. 
+## 2    18   1726.             95.9
+## 3    28   4449.            159. 
+## 4    33  21984.            666. 
+## 5    32   3867.            121.</code></pre>
+<p>We can create as many new columns as we want.</p>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb138-1" title="1">health_insurance <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb138-2" title="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">age_squared  =</span> age<span class="op">^</span><span class="dv">2</span>,</a>
+<a class="sourceLine" id="cb138-3" title="3">         <span class="dt">age_cubed =</span> age<span class="op">^</span><span class="dv">3</span>,</a>
+<a class="sourceLine" id="cb138-4" title="4">         <span class="dt">age_fourth =</span> age<span class="op">^</span><span class="dv">4</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb138-5" title="5"><span class="st">  </span><span class="kw">head</span>(<span class="dv">5</span>)</a></code></pre></div>
+<pre><code>## # A tibble: 5 x 10
+##     age sex     bmi children smoker region charges age_squared age_cubed
+##   &lt;dbl&gt; &lt;fct&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;fct&gt;  &lt;fct&gt;    &lt;dbl&gt;       &lt;dbl&gt;     &lt;dbl&gt;
+## 1    19 fema~  27.9        0 yes    south~  16885.         361      6859
+## 2    18 male   33.8        1 no     south~   1726.         324      5832
+## 3    28 male   33          3 no     south~   4449.         784     21952
+## 4    33 male   22.7        0 no     north~  21984.        1089     35937
+## 5    32 male   28.9        0 no     north~   3867.        1024     32768
+## # ... with 1 more variable: age_fourth &lt;dbl&gt;</code></pre>
+<p>The <code>CASE WHEN</code> function is quite similar to SQL. For example, we can create a column which is <code>0</code> when <code>age &lt; 50</code>, <code>1</code> when <code>50 &lt;= age &lt;= 70</code>, and <code>2</code> when <code>age &gt; 70</code>.</p>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb140-1" title="1">health_insurance <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb140-2" title="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">age_bucket =</span> <span class="kw">case_when</span>(age <span class="op">&lt;</span><span class="st"> </span><span class="dv">50</span> <span class="op">~</span><span class="st"> </span><span class="dv">0</span>,</a>
+<a class="sourceLine" id="cb140-3" title="3">                                age <span class="op">&lt;=</span><span class="st"> </span><span class="dv">70</span> <span class="op">~</span><span class="st"> </span><span class="dv">1</span>,</a>
+<a class="sourceLine" id="cb140-4" title="4">                                age <span class="op">&gt;</span><span class="st"> </span><span class="dv">70</span> <span class="op">~</span><span class="st"> </span><span class="dv">2</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb140-5" title="5"><span class="st">  </span><span class="kw">select</span>(age, age_bucket)</a></code></pre></div>
+<pre><code>## # A tibble: 1,338 x 2
+##      age age_bucket
+##    &lt;dbl&gt;      &lt;dbl&gt;
+##  1    19          0
+##  2    18          0
+##  3    28          0
+##  4    33          0
+##  5    32          0
+##  6    31          0
+##  7    46          0
+##  8    37          0
+##  9    37          0
+## 10    60          1
+## # ... with 1,328 more rows</code></pre>
+<p>SQL translation:</p>
+<div class="sourceCode" id="cb142"><pre class="sourceCode sql"><code class="sourceCode sql"><a class="sourceLine" id="cb142-1" title="1"><span class="kw">SELECT</span> <span class="cf">CASE</span> <span class="cf">WHEN</span> AGE <span class="op">&lt;</span> <span class="dv">50</span> <span class="cf">THEN</span> <span class="dv">0</span></a>
+<a class="sourceLine" id="cb142-2" title="2">       <span class="cf">ELSE</span> <span class="cf">WHEN</span> AGE <span class="op">&lt;=</span> <span class="dv">70</span> <span class="cf">THEN</span> <span class="dv">1</span></a>
+<a class="sourceLine" id="cb142-3" title="3">       <span class="cf">ELSE</span> <span class="dv">2</span></a>
+<a class="sourceLine" id="cb142-4" title="4"><span class="kw">FROM</span> health_insurance</a></code></pre></div>
+</div>
+<div id="exercises" class="section level2">
+<h2><span class="header-section-number">6.3</span> Exercises</h2>
+<p>The data <code>actuary_salaries</code> contains the salaries of actuaries collected from the DW Simpson survey. Use this data to answer the exercises below.</p>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb143-1" title="1">actuary_salaries <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">glimpse</span>()</a></code></pre></div>
+<pre><code>## Observations: 138
+## Variables: 6
+## $ industry    &lt;chr&gt; &quot;Casualty&quot;, &quot;Casualty&quot;, &quot;Casualty&quot;, &quot;Casualty&quot;, &quot;C...
+## $ exams       &lt;chr&gt; &quot;1 Exam&quot;, &quot;2 Exams&quot;, &quot;3 Exams&quot;, &quot;4 Exams&quot;, &quot;1 Exam...
+## $ experience  &lt;dbl&gt; 1, 1, 1, 1, 3, 3, 3, 3, 3, 3, 3, 3, 5, 5, 5, 5, 5,...
+## $ salary      &lt;chr&gt; &quot;48 - 65&quot;, &quot;50 - 71&quot;, &quot;54 - 77&quot;, &quot;58 - 82&quot;, &quot;54 - ...
+## $ salary_low  &lt;dbl&gt; 48, 50, 54, 58, 54, 57, 62, 63, 65, 70, 72, 85, 55...
+## $ salary_high &lt;chr&gt; &quot;65&quot;, &quot;71&quot;, &quot;77&quot;, &quot;82&quot;, &quot;72&quot;, &quot;81&quot;, &quot;87&quot;, &quot;91&quot;, &quot;9...</code></pre>
+<ol style="list-style-type: decimal">
+<li>How many industries are represented?</li>
+<li>The <code>salary_high</code> column is a character type when it should be numeric. Change this column to numeric.</li>
+<li>What are the highest and lowest salaries for an actuary in Health with 5 exams passed?</li>
+<li>Create a new column called <code>salary_mid</code> which has the middle of the <code>salary_low</code> and <code>salary_high</code> columns.</li>
+<li>When grouping by industry, what is the highest <code>salary_mid</code>? What about <code>salary_high</code>? What is the lowest <code>salary_low</code>?</li>
+<li>There is a mistake when <code>salary_low == 11</code>. Find and fix this mistake, and then rerun the code from the previous task.</li>
+<li>Create a new column, called <code>n_exams</code>, which is an integer. Use 7 for ASA/ACAS and 10 for FSA/FCAS. Use the code below as a starting point and fill in the <code>_</code> spaces</li>
+</ol>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb145-1" title="1">actuary_salaries &lt;-<span class="st"> </span>actuary_salaries <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb145-2" title="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">n_exams =</span> <span class="kw">case_when</span>(exams <span class="op">==</span><span class="st"> &quot;FSA&quot;</span> <span class="op">~</span><span class="st"> </span>_,</a>
+<a class="sourceLine" id="cb145-3" title="3">                             exams <span class="op">==</span><span class="st"> &quot;ASA&quot;</span> <span class="op">~</span><span class="st"> </span>_,</a>
+<a class="sourceLine" id="cb145-4" title="4">                             exams <span class="op">==</span><span class="st"> &quot;FCAS&quot;</span> <span class="op">~</span><span class="st"> </span>_,</a>
+<a class="sourceLine" id="cb145-5" title="5">                             exams <span class="op">==</span><span class="st"> &quot;ACAS&quot;</span> <span class="op">~</span><span class="st"> </span>_,</a>
+<a class="sourceLine" id="cb145-6" title="6">                             <span class="ot">TRUE</span> <span class="op">~</span><span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">substr</span>(exams,_,_)))) </a></code></pre></div>
+<ol start="8" style="list-style-type: decimal">
+<li>Create a column called <code>social_life</code>, which is equal to <code>n_exams</code>/<code>experience</code>. What is the average (mean) <code>social_life</code> by industry? Bonus question: what is wrong with using this as a statistical measure?</li>
+</ol>
+</div>
+<div id="answers-to-exercises" class="section level2">
+<h2><span class="header-section-number">6.4</span> Answers to exercises</h2>
+<ol style="list-style-type: decimal">
+<li>How many industries are represented?</li>
+</ol>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb146-1" title="1">actuary_salaries <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">count</span>(industry)</a></code></pre></div>
+<pre><code>## # A tibble: 4 x 2
+##   industry     n
+##   &lt;chr&gt;    &lt;int&gt;
+## 1 Casualty    45
+## 2 Health      31
+## 3 Life        31
+## 4 Pension     31</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>The <code>salary_high</code> column is a character type when it should be numeric. Change this column to numeric.</li>
+</ol>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb148-1" title="1"><span class="co">#method 1</span></a>
+<a class="sourceLine" id="cb148-2" title="2">actuary_salaries &lt;-<span class="st"> </span>actuary_salaries <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">salary_high =</span> <span class="kw">as.numeric</span>(salary_high))</a>
+<a class="sourceLine" id="cb148-3" title="3"></a>
+<a class="sourceLine" id="cb148-4" title="4"><span class="co">#method 2</span></a>
+<a class="sourceLine" id="cb148-5" title="5">actuary_salaries &lt;-<span class="st"> </span>actuary_salaries <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">modify_at</span>(<span class="st">&quot;salary_high&quot;</span>, as.numeric)</a></code></pre></div>
+<ol start="3" style="list-style-type: decimal">
+<li>What are the highest and lowest salaries for an actuary in Health with 5 exams passed?</li>
+</ol>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb149-1" title="1">actuary_salaries <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb149-2" title="2"><span class="st">  </span><span class="kw">filter</span>(industry <span class="op">==</span><span class="st"> &quot;Health&quot;</span>, exams <span class="op">==</span><span class="st"> </span><span class="dv">5</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb149-3" title="3"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">highest =</span> <span class="kw">max</span>(salary_high),</a>
+<a class="sourceLine" id="cb149-4" title="4">            <span class="dt">lowest =</span> <span class="kw">min</span>(salary_low))</a></code></pre></div>
+<pre><code>## # A tibble: 1 x 2
+##   highest lowest
+##     &lt;dbl&gt;  &lt;dbl&gt;
+## 1     126     68</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>Create a new column called <code>salary_mid</code> which has the middle of the <code>salary_low</code> and <code>salary_high</code> columns.</li>
+</ol>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb151-1" title="1">actuary_salaries &lt;-<span class="st"> </span>actuary_salaries <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb151-2" title="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">salary_mid =</span> (salary_low <span class="op">+</span><span class="st"> </span>salary_high)<span class="op">/</span><span class="dv">2</span>)</a></code></pre></div>
+<ol start="5" style="list-style-type: decimal">
+<li>When grouping by industry, what is the highest <code>salary_mid</code>? What about <code>salary_high</code>? What is the lowest <code>salary_low</code>?</li>
+</ol>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb152-1" title="1">actuary_salaries <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb152-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(industry) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb152-3" title="3"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">max_salary_mid =</span> <span class="kw">max</span>(salary_mid),</a>
+<a class="sourceLine" id="cb152-4" title="4">            <span class="dt">max_salary_high =</span> <span class="kw">max</span>(salary_high),</a>
+<a class="sourceLine" id="cb152-5" title="5">            <span class="dt">low_salary_low =</span> <span class="kw">min</span>(salary_low))</a></code></pre></div>
+<pre><code>## # A tibble: 4 x 4
+##   industry max_salary_mid max_salary_high low_salary_low
+##   &lt;chr&gt;             &lt;dbl&gt;           &lt;dbl&gt;          &lt;dbl&gt;
+## 1 Casualty           302.             447             11
+## 2 Health             272.             390             49
+## 3 Life               244              364             51
+## 4 Pension            224.             329             44</code></pre>
+<ol start="6" style="list-style-type: decimal">
+<li>There is a mistake when <code>salary_low == 11</code>. Find and fix this mistake, and then rerun the code from the previous task.</li>
+</ol>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb154-1" title="1">actuary_salaries &lt;-<span class="st"> </span>actuary_salaries <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb154-2" title="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">salary_low =</span> <span class="kw">ifelse</span>(salary_low <span class="op">==</span><span class="st"> </span><span class="dv">11</span>, <span class="dt">yes =</span> <span class="dv">114</span>, <span class="dt">no =</span> salary_low),</a>
+<a class="sourceLine" id="cb154-3" title="3">         <span class="dt">salary_high =</span> <span class="kw">ifelse</span>(salary_high <span class="op">==</span><span class="st"> </span><span class="dv">66</span>, <span class="dt">yes =</span> <span class="dv">166</span>, <span class="dt">no =</span> salary_high))</a>
+<a class="sourceLine" id="cb154-4" title="4"></a>
+<a class="sourceLine" id="cb154-5" title="5"><span class="co">#the minimum salary low is now 48</span></a>
+<a class="sourceLine" id="cb154-6" title="6">actuary_salaries <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb154-7" title="7"><span class="st">  </span><span class="kw">group_by</span>(industry) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb154-8" title="8"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">max_salary_mid =</span> <span class="kw">max</span>(salary_mid),</a>
+<a class="sourceLine" id="cb154-9" title="9">            <span class="dt">max_salary_high =</span> <span class="kw">max</span>(salary_high),</a>
+<a class="sourceLine" id="cb154-10" title="10">            <span class="dt">low_salary_low =</span> <span class="kw">min</span>(salary_low))</a></code></pre></div>
+<pre><code>## # A tibble: 4 x 4
+##   industry max_salary_mid max_salary_high low_salary_low
+##   &lt;chr&gt;             &lt;dbl&gt;           &lt;dbl&gt;          &lt;dbl&gt;
+## 1 Casualty           302.             447             48
+## 2 Health             272.             390             49
+## 3 Life               244              364             51
+## 4 Pension            224.             329             44</code></pre>
+<ol start="7" style="list-style-type: decimal">
+<li>Create a new column, called <code>n_exams</code>, which is an integer. Use 7 for ASA/ACAS and 10 for FSA/FCAS.</li>
+</ol>
+<p>Use the code below as a starting point and fill in the <code>_</code> spaces</p>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb156-1" title="1">actuary_salaries &lt;-<span class="st"> </span>actuary_salaries <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb156-2" title="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">n_exams =</span> <span class="kw">case_when</span>(exams <span class="op">==</span><span class="st"> &quot;FSA&quot;</span> <span class="op">~</span><span class="st"> </span>_,</a>
+<a class="sourceLine" id="cb156-3" title="3">                             exams <span class="op">==</span><span class="st"> &quot;ASA&quot;</span> <span class="op">~</span><span class="st"> </span>_,</a>
+<a class="sourceLine" id="cb156-4" title="4">                             exams <span class="op">==</span><span class="st"> &quot;FCAS&quot;</span> <span class="op">~</span><span class="st"> </span>_,</a>
+<a class="sourceLine" id="cb156-5" title="5">                             exams <span class="op">==</span><span class="st"> &quot;ACAS&quot;</span> <span class="op">~</span><span class="st"> </span>_,</a>
+<a class="sourceLine" id="cb156-6" title="6">                             <span class="ot">TRUE</span> <span class="op">~</span><span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">substr</span>(exams,_,_)))) </a></code></pre></div>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb157-1" title="1">actuary_salaries &lt;-<span class="st"> </span>actuary_salaries <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb157-2" title="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">n_exams =</span> <span class="kw">case_when</span>(exams <span class="op">==</span><span class="st"> &quot;FSA&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">10</span>,</a>
+<a class="sourceLine" id="cb157-3" title="3">                             exams <span class="op">==</span><span class="st"> &quot;ASA&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">7</span>,</a>
+<a class="sourceLine" id="cb157-4" title="4">                             exams <span class="op">==</span><span class="st"> &quot;FCAS&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">10</span>,</a>
+<a class="sourceLine" id="cb157-5" title="5">                             exams <span class="op">==</span><span class="st"> &quot;ACAS&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">7</span>,</a>
+<a class="sourceLine" id="cb157-6" title="6">                             <span class="ot">TRUE</span> <span class="op">~</span><span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">substr</span>(exams,<span class="dv">1</span>,<span class="dv">2</span>)))) </a></code></pre></div>
+<pre><code>## Warning in eval_tidy(pair$rhs, env = default_env): NAs introduced by
+## coercion</code></pre>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb159-1" title="1">actuary_salaries <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">count</span>(n_exams)</a></code></pre></div>
+<pre><code>## # A tibble: 8 x 2
+##   n_exams     n
+##     &lt;dbl&gt; &lt;int&gt;
+## 1       1    12
+## 2       2    17
+## 3       3    19
+## 4       4    21
+## 5       5    17
+## 6       6     5
+## 7       7    29
+## 8      10    18</code></pre>
+<ol start="8" style="list-style-type: decimal">
+<li>Create a column called <code>social_life</code>, which is equal to <code>n_exams</code>/<code>experience</code>. What is the average (mean) <code>social_life</code> by industry? Bonus question: what is wrong with using this as a statistical measure?</li>
+</ol>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb161-1" title="1">actuary_salaries <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb161-2" title="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">social_life =</span> n_exams<span class="op">/</span>experience) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb161-3" title="3"><span class="st">  </span><span class="kw">group_by</span>(industry) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb161-4" title="4"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">avg_social_life =</span> <span class="kw">mean</span>(social_life))</a></code></pre></div>
+<pre><code>## # A tibble: 4 x 2
+##   industry avg_social_life
+##   &lt;chr&gt;              &lt;dbl&gt;
+## 1 Casualty           0.985
+## 2 Health             1.06 
+## 3 Life               1.06 
+## 4 Pension            1.00</code></pre>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb163-1" title="1"><span class="co">#this is not REALLY an average as the number of people, or number of actuaries, are not taken into consideration.  To correctly take the average, we would need use a weighted average like sum(number_actuaries*social_life)/sum(number_actuaries)</span></a></code></pre></div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="r-programming.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="visualization.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/03-data-manipulation.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["Exam PA Study Manual.pdf", "Exam PA Study Manual.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

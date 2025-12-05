@@ -15,6 +15,33 @@
     gtag('js', new Date());
     gtag('config', 'G-ECY33592SW');
   </script>
+  <style>
+    details.qc-deepdive {
+      margin: 0.6rem 0 1rem;
+      border-radius: 6px;
+      border: 1px solid #d0d7ff;
+      background: #f7f8ff;
+      padding: 0.45rem 0.7rem 0.7rem;
+    }
+    details.qc-deepdive > summary {
+      cursor: pointer;
+      font-weight: 600;
+      list-style: none;
+      font-size: 0.95rem;
+    }
+    details.qc-deepdive[open] {
+      background: #edf0ff;
+    }
+    .qc-beginner-box {
+      margin: 1.25rem 0;
+      padding: 0.8rem 0.9rem;
+      border-radius: 8px;
+      background: #050816;
+      color: #f5f7ff;
+      border: 1px solid rgba(11,94,215,0.5);
+      font-size: 0.95rem;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -150,6 +177,12 @@
       with \(\mathcal{D}\) a task distribution. Lower \(L(z)\) and \(L(T\mid z)\) imply faster adaptation and thus accelerated convergence on new problems.
     </p>
 
+    <div class="qc-beginner-box">
+      <strong>Beginner note:</strong> If the math above feels heavy, you do not need to absorb every symbol. The key idea is simple:
+      <em>systems that can test and improve their own code can get better very quickly</em>.
+      Quantum computing plugs into this story by giving those systems a new kind of hardware to explore enormous search spaces more efficiently.
+    </div>
+
     <h2>How this page is assembled</h2>
     <p>This page was assembled with automated assistance: generative tooling produced structure and text, which were reviewed and emitted as static HTML. In other words, the site itself serves as a small example of code that helps author more code. AI for Not Bad.</p>
     <p>
@@ -172,6 +205,55 @@
       \]
       for a suitable distance metric \(d\) on documents.
     </p>
+
+    <details class="qc-deepdive">
+      <summary>Deep dive: a tiny quantum circuit in code and math</summary>
+      <div>
+        <p>Here is a minimal example of preparing a Bell state using Python-style pseudocode with a Qiskit‑like API, plus the matching math.</p>
+        <pre><code># Pseudocode using a Qiskit-like API
+from qiskit import QuantumCircuit
+
+qc = QuantumCircuit(2, 2)  # 2 qubits, 2 classical bits
+
+# 1. Put qubit 0 into a superposition
+qc.h(0)
+
+# 2. Use it as control for a CNOT on qubit 1
+qc.cx(0, 1)
+
+# 3. Measure both qubits
+qc.measure(0, 0)
+qc.measure(1, 1)</code></pre>
+        <p>Mathematically, in the \(|00\rangle,|01\rangle,|10\rangle,|11\rangle\) basis:</p>
+        <ol>
+          <li>Start in \(|00\rangle\).</li>
+          <li>Apply \(H\) to the first qubit:
+            \[
+              H|0\rangle = \tfrac{1}{\sqrt{2}}(|0\rangle + |1\rangle),
+            \]
+            so the joint state becomes
+            \[
+              |\psi_1\rangle = \tfrac{1}{\sqrt{2}}(|00\rangle + |10\rangle).
+            \]</li>
+          <li>Apply CNOT with qubit 0 as control and qubit 1 as target:
+            \[
+              \text{CNOT}|00\rangle = |00\rangle, \quad
+              \text{CNOT}|10\rangle = |11\rangle.
+            \]
+            Therefore
+            \[
+              |\psi_2\rangle = \tfrac{1}{\sqrt{2}}(|00\rangle + |11\rangle) = |\Phi^+\rangle.
+            \]</li>
+        </ol>
+        <p>When you measure both qubits in the computational basis, you get:</p>
+        <ul>
+          <li>\(P(00) = 1/2\)</li>
+          <li>\(P(11) = 1/2\)</li>
+          <li>\(P(01) = P(10) = 0\)</li>
+        </ul>
+        <p>This is “maximal entanglement” in its simplest form.</p>
+      </div>
+    </details>
 
     <h2>Minimal meta-programming sketch</h2>
     <pre><code>// Pseudocode for a self-improving loop
@@ -295,8 +377,7 @@ vector[n] w;
 real R_p = dot_product(w, R);     // portfolio return
 
 real mean_p   = dot_product(w, μ);
-real var_p    = quad_form(Σ, w);  // w^T Σ w
-</code></pre>
+real var_p    = quad_form(Σ, w);  // w^T Σ w</code></pre>
       <p><em>LaTeX form:</em> \( \mathbb{E}[R] = \mu \), \( \operatorname{Cov}(R) = \Sigma \), \( R_p = w^\top R \), \( \mathbb{E}[R_p] = w^\top \mu \), \( \operatorname{Var}(R_p) = w^\top \Sigma w \).</p>
 
       <h3>Quantum-style upgrade</h3>
@@ -321,8 +402,7 @@ for (i in 1:n) {
 }
 
 // quantum expectation of portfolio return
-complex mean_p_q = trace(rho * R_op); // &approx; classical w^T μ
-</code></pre>
+complex mean_p_q = trace(rho * R_op); // &approx; classical w^T μ</code></pre>
       <p>Mathematically,</p>
       <pre>ρ = |ψ><ψ|
 &lt;R̂>_ψ = &lt;ψ| R̂ |ψ> = Tr(ρ R̂)</pre>
@@ -337,8 +417,7 @@ for (m in 1:M) {
   R[m] ~ mvnormal(μ[m], Σ[m]);     // draw returns
   R_p[m] = dot_product(w, R[m]);
 }
-// compute empirical mean/var/VaR of R_p from samples
-</code></pre>
+// compute empirical mean/var/VaR of R_p from samples</code></pre>
       <p>In the wave-function view, instead of sampling many \(\theta\), we evolve the state itself under a Hamiltonian \(\hat H\) that encodes drift/volatility/market structure:</p>
       <pre><code>// time evolution of portfolio state ψ_t
 // i ℏ d|ψ_t>/dt = Ĥ |ψ_t>
@@ -347,8 +426,7 @@ psi_t+Δt ≈ exp(-i Δt Ĥ / ℏ) * psi_t;
 
 // at horizon T, density matrix ρ_T = |ψ_T><ψ_T|
 // expected payoff under operator Π̂
-price_0 ≈ discount * trace(ρ_T * Π̂);
-</code></pre>
+price_0 ≈ discount * trace(ρ_T * Π̂);</code></pre>
       <p>This is the code-level version of “instead of running Stan simulations over parameter space, we let the whole portfolio turn into a wave function and flow under \(\hat H\).”</p>
 
       <h3>Black–Scholes as the one-asset limit</h3>
@@ -511,8 +589,7 @@ function run_classical(program P, input bits_in[]):
 
   // 3. read out output bits from RAM
   bits_out = ram.read(P.output_region)
-  return bits_out
-</code></pre>
+  return bits_out</code></pre>
 
       <h3>Quantum processor (QPU + classical control computer)</h3>
       <pre><code>// physical picture
@@ -545,8 +622,7 @@ function run_quantum(circuit C, classical_input bits_in[]):
 
   // 5. classical post-processing
   result = ctrl.post_process(measurement_record)
-  return result
-</code></pre>
+  return result</code></pre>
 
       <p>Conceptually:</p>
       <ul>
@@ -562,8 +638,7 @@ function run_quantum(circuit C, classical_input bits_in[]):
   acc = 0
   for b in bits:
     acc = acc XOR b
-  return acc  // 0 = even, 1 = odd
-</code></pre>
+  return acc  // 0 = even, 1 = odd</code></pre>
 
       <h4>Quantum parity sketch (conceptual)</h4>
       <pre><code>function parity_quantum(bits[]):
@@ -578,9 +653,25 @@ function run_quantum(circuit C, classical_input bits_in[]):
 
   // 3. measure only the ancilla qubit
   result = measure(ancilla)
-  return result  // 0 = even, 1 = odd
-</code></pre>
+  return result  // 0 = even, 1 = odd</code></pre>
       <p>On such a small task, the quantum route is not “better” than the classical one—it is just a different physical implementation of the same logical function. Real quantum advantage typically appears in problems that exploit superposition and interference over huge state spaces.</p>
+      
+      <details class="qc-deepdive">
+        <summary>Deep dive: complexity classes BPP vs BQP</summary>
+        <div>
+          <p>If you like big‑picture theory, the usual cartoon is:</p>
+          <ul>
+            <li><strong>BPP</strong> (“bounded‑error probabilistic polynomial time”): problems efficiently solvable by a classical computer that can flip random bits, with error probability \(< 1/3\) (or any fixed constant &lt; 1/2).</li>
+            <li><strong>BQP</strong> (“bounded‑error quantum polynomial time”): problems efficiently solvable by a quantum computer, again with error probability \(< 1/3\).</li>
+          </ul>
+          <p>Formally, a language \(L\) is in BQP if there is a family of quantum circuits \(\{C_n\}\) of size polynomial in \(n\) such that for all inputs \(x\) of length \(n\):</p>
+          <ul>
+            <li>If \(x \in L\), then \(\Pr[C_n(x) = 1] \ge 2/3\).</li>
+            <li>If \(x \notin L\), then \(\Pr[C_n(x) = 1] \le 1/3\).</li>
+          </ul>
+          <p>We know that \(\text{BPP} \subseteq \text{BQP}\) (quantum can simulate classical randomness), but we do not know whether \(\text{BPP} = \text{BQP}\) or \(\text{BPP} \subsetneq \text{BQP}\). Evidence from Shor’s algorithm and other candidates strongly suggests that \(\text{BQP}\) is strictly more powerful than \(\text{BPP}\) for some natural problems (like factoring large integers), but there is no proof yet.</p>
+        </div>
+      </details>
     </section>
 
     <section>

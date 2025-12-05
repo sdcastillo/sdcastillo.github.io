@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title> 12 Penalized Linear Models | Exam PA R Study Manual</title>
+  <meta name="description" content=" 12 Penalized Linear Models | Exam PA R Study Manual" />
+  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
+
+  <meta property="og:title" content=" 12 Penalized Linear Models | Exam PA R Study Manual" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="sdcastillo/PA-R-Study-Manual" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content=" 12 Penalized Linear Models | Exam PA R Study Manual" />
+  
+  
+  
+
+<meta name="author" content="Sam Castillo" />
+
+
+<meta name="date" content="2020-01-08" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="images/artificial_actuary_logo_favicon.png" type="image/x-icon" />
+<link rel="prev" href="glms-for-classification.html"/>
+<link rel="next" href="tree-based-models.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  { background-color: #f8f8f8; }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Exam PA Study Manual</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> How to use this book</a></li>
+<li class="chapter" data-level="2" data-path="the-exam.html"><a href="the-exam.html"><i class="fa fa-check"></i><b>2</b> The exam</a></li>
+<li class="chapter" data-level="3" data-path="prometric-demo.html"><a href="prometric-demo.html"><i class="fa fa-check"></i><b>3</b> Prometric Demo</a></li>
+<li class="chapter" data-level="4" data-path="you-already-know-what-learning-is.html"><a href="you-already-know-what-learning-is.html"><i class="fa fa-check"></i><b>4</b> You already know what learning is</a></li>
+<li class="chapter" data-level="5" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>5</b> Getting started</a><ul>
+<li class="chapter" data-level="5.1" data-path="getting-started.html"><a href="getting-started.html#download-the-data"><i class="fa fa-check"></i><b>5.1</b> Download the data</a></li>
+<li class="chapter" data-level="5.2" data-path="getting-started.html"><a href="getting-started.html#download-islr"><i class="fa fa-check"></i><b>5.2</b> Download ISLR</a></li>
+<li class="chapter" data-level="5.3" data-path="getting-started.html"><a href="getting-started.html#new-users"><i class="fa fa-check"></i><b>5.3</b> New users</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="r-programming.html"><a href="r-programming.html"><i class="fa fa-check"></i><b>6</b> R programming</a><ul>
+<li class="chapter" data-level="6.1" data-path="r-programming.html"><a href="r-programming.html#notebook-chunks"><i class="fa fa-check"></i><b>6.1</b> Notebook chunks</a></li>
+<li class="chapter" data-level="6.2" data-path="r-programming.html"><a href="r-programming.html#basic-operations"><i class="fa fa-check"></i><b>6.2</b> Basic operations</a></li>
+<li class="chapter" data-level="6.3" data-path="r-programming.html"><a href="r-programming.html#lists"><i class="fa fa-check"></i><b>6.3</b> Lists</a></li>
+<li class="chapter" data-level="6.4" data-path="r-programming.html"><a href="r-programming.html#functions"><i class="fa fa-check"></i><b>6.4</b> Functions</a></li>
+<li class="chapter" data-level="6.5" data-path="r-programming.html"><a href="r-programming.html#data-frames"><i class="fa fa-check"></i><b>6.5</b> Data frames</a></li>
+<li class="chapter" data-level="6.6" data-path="r-programming.html"><a href="r-programming.html#pipes"><i class="fa fa-check"></i><b>6.6</b> Pipes</a></li>
+<li class="chapter" data-level="6.7" data-path="r-programming.html"><a href="r-programming.html#the-soas-code-doesnt-use-pipes-or-dplyr-so-can-i-skip-learning-this"><i class="fa fa-check"></i><b>6.7</b> The SOA’s code doesn’t use pipes or dplyr, so can I skip learning this?</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="data-manipulation.html"><a href="data-manipulation.html"><i class="fa fa-check"></i><b>7</b> Data manipulation</a><ul>
+<li class="chapter" data-level="7.1" data-path="data-manipulation.html"><a href="data-manipulation.html#look-at-the-data"><i class="fa fa-check"></i><b>7.1</b> Look at the data</a></li>
+<li class="chapter" data-level="7.2" data-path="data-manipulation.html"><a href="data-manipulation.html#transform-the-data"><i class="fa fa-check"></i><b>7.2</b> Transform the data</a></li>
+<li class="chapter" data-level="7.3" data-path="data-manipulation.html"><a href="data-manipulation.html#exercises"><i class="fa fa-check"></i><b>7.3</b> Exercises</a></li>
+<li class="chapter" data-level="7.4" data-path="data-manipulation.html"><a href="data-manipulation.html#answers-to-exercises"><i class="fa fa-check"></i><b>7.4</b> Answers to exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="visualization.html"><a href="visualization.html"><i class="fa fa-check"></i><b>8</b> Visualization</a><ul>
+<li class="chapter" data-level="8.1" data-path="visualization.html"><a href="visualization.html#create-a-plot-object-ggplot"><i class="fa fa-check"></i><b>8.1</b> Create a plot object (ggplot)</a></li>
+<li class="chapter" data-level="8.2" data-path="visualization.html"><a href="visualization.html#add-a-plot"><i class="fa fa-check"></i><b>8.2</b> Add a plot</a></li>
+<li class="chapter" data-level="8.3" data-path="visualization.html"><a href="visualization.html#data-manipulation-chaining"><i class="fa fa-check"></i><b>8.3</b> Data manipulation chaining</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="introduction-to-modeling.html"><a href="introduction-to-modeling.html"><i class="fa fa-check"></i><b>9</b> Introduction to Modeling</a><ul>
+<li class="chapter" data-level="9.1" data-path="introduction-to-modeling.html"><a href="introduction-to-modeling.html#modeling-vocabulary"><i class="fa fa-check"></i><b>9.1</b> Modeling Vocabulary</a></li>
+<li class="chapter" data-level="9.2" data-path="introduction-to-modeling.html"><a href="introduction-to-modeling.html#modeling-notation"><i class="fa fa-check"></i><b>9.2</b> Modeling Notation</a></li>
+<li class="chapter" data-level="9.3" data-path="introduction-to-modeling.html"><a href="introduction-to-modeling.html#ordinary-least-squares-ols"><i class="fa fa-check"></i><b>9.3</b> Ordinary Least Squares (OLS)</a></li>
+<li class="chapter" data-level="9.4" data-path="introduction-to-modeling.html"><a href="introduction-to-modeling.html#regression-vs.-classification"><i class="fa fa-check"></i><b>9.4</b> Regression vs. Classification</a></li>
+<li class="chapter" data-level="9.5" data-path="introduction-to-modeling.html"><a href="introduction-to-modeling.html#performance-metrics"><i class="fa fa-check"></i><b>9.5</b> Performance Metrics</a></li>
+<li class="chapter" data-level="9.6" data-path="introduction-to-modeling.html"><a href="introduction-to-modeling.html#example"><i class="fa fa-check"></i><b>9.6</b> Example</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="generalized-linear-models-glms.html"><a href="generalized-linear-models-glms.html"><i class="fa fa-check"></i><b>10</b> Generalized linear models (GLMs)</a><ul>
+<li class="chapter" data-level="10.0.1" data-path="generalized-linear-models-glms.html"><a href="generalized-linear-models-glms.html#assumptions-of-ols"><i class="fa fa-check"></i><b>10.0.1</b> Assumptions of OLS</a></li>
+<li class="chapter" data-level="10.0.2" data-path="generalized-linear-models-glms.html"><a href="generalized-linear-models-glms.html#assumptions-of-glms"><i class="fa fa-check"></i><b>10.0.2</b> Assumptions of GLMs</a></li>
+<li class="chapter" data-level="10.1" data-path="generalized-linear-models-glms.html"><a href="generalized-linear-models-glms.html#glms-for-regression"><i class="fa fa-check"></i><b>10.1</b> GLMs for regression</a></li>
+<li class="chapter" data-level="10.2" data-path="generalized-linear-models-glms.html"><a href="generalized-linear-models-glms.html#interpretation-of-coefficients"><i class="fa fa-check"></i><b>10.2</b> Interpretation of coefficients</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="generalized-linear-models-glms.html"><a href="generalized-linear-models-glms.html#log-link"><i class="fa fa-check"></i><b>10.2.1</b> Log link</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="generalized-linear-models-glms.html"><a href="generalized-linear-models-glms.html#other-links"><i class="fa fa-check"></i><b>10.3</b> Other links</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="glms-for-classification.html"><a href="glms-for-classification.html"><i class="fa fa-check"></i><b>11</b> GLMs for classification</a><ul>
+<li class="chapter" data-level="11.1" data-path="glms-for-classification.html"><a href="glms-for-classification.html#binary-target"><i class="fa fa-check"></i><b>11.1</b> Binary target</a></li>
+<li class="chapter" data-level="11.2" data-path="glms-for-classification.html"><a href="glms-for-classification.html#count-target"><i class="fa fa-check"></i><b>11.2</b> Count target</a></li>
+<li class="chapter" data-level="11.3" data-path="glms-for-classification.html"><a href="glms-for-classification.html#link-functions"><i class="fa fa-check"></i><b>11.3</b> Link Functions</a></li>
+<li class="chapter" data-level="11.4" data-path="glms-for-classification.html"><a href="glms-for-classification.html#interpretation-of-coefficients-1"><i class="fa fa-check"></i><b>11.4</b> Interpretation of coefficients</a><ul>
+<li class="chapter" data-level="11.4.1" data-path="glms-for-classification.html"><a href="glms-for-classification.html#logit"><i class="fa fa-check"></i><b>11.4.1</b> Logit</a></li>
+<li class="chapter" data-level="11.4.2" data-path="glms-for-classification.html"><a href="glms-for-classification.html#probit-cauchit-cloglog"><i class="fa fa-check"></i><b>11.4.2</b> Probit, Cauchit, Cloglog</a></li>
+<li class="chapter" data-level="11.4.3" data-path="glms-for-classification.html"><a href="glms-for-classification.html#classification-example"><i class="fa fa-check"></i><b>11.4.3</b> Classification Example</a></li>
+</ul></li>
+<li class="chapter" data-level="11.5" data-path="glms-for-classification.html"><a href="glms-for-classification.html#classification-metrics"><i class="fa fa-check"></i><b>11.5</b> Classification metrics</a><ul>
+<li class="chapter" data-level="11.5.1" data-path="glms-for-classification.html"><a href="glms-for-classification.html#area-under-the-roc-curv-auc"><i class="fa fa-check"></i><b>11.5.1</b> Area Under the ROC Curv (AUC)</a></li>
+<li class="chapter" data-level="11.5.2" data-path="glms-for-classification.html"><a href="glms-for-classification.html#additional-reading"><i class="fa fa-check"></i><b>11.5.2</b> Additional reading</a></li>
+</ul></li>
+<li class="chapter" data-level="11.6" data-path="glms-for-classification.html"><a href="glms-for-classification.html#glm-residuals"><i class="fa fa-check"></i><b>11.6</b> GLM Residuals</a></li>
+<li class="chapter" data-level="11.7" data-path="glms-for-classification.html"><a href="glms-for-classification.html#example-1"><i class="fa fa-check"></i><b>11.7</b> Example</a></li>
+<li class="chapter" data-level="11.8" data-path="glms-for-classification.html"><a href="glms-for-classification.html#combinations-of-link-functions-and-target-distributions"><i class="fa fa-check"></i><b>11.8</b> Combinations of Link Functions and Target Distributions</a><ul>
+<li class="chapter" data-level="11.8.1" data-path="glms-for-classification.html"><a href="glms-for-classification.html#gaussian-response-with-log-link"><i class="fa fa-check"></i><b>11.8.1</b> Gaussian Response with Log Link</a></li>
+<li class="chapter" data-level="11.8.2" data-path="glms-for-classification.html"><a href="glms-for-classification.html#gaussian-response-with-inverse-link"><i class="fa fa-check"></i><b>11.8.2</b> Gaussian Response with Inverse Link</a></li>
+<li class="chapter" data-level="11.8.3" data-path="glms-for-classification.html"><a href="glms-for-classification.html#gaussian-response-with-identity-link"><i class="fa fa-check"></i><b>11.8.3</b> Gaussian Response with Identity Link</a></li>
+<li class="chapter" data-level="11.8.4" data-path="glms-for-classification.html"><a href="glms-for-classification.html#gaussian-response-with-log-link-and-negative-values"><i class="fa fa-check"></i><b>11.8.4</b> Gaussian Response with Log Link and Negative Values</a></li>
+<li class="chapter" data-level="11.8.5" data-path="glms-for-classification.html"><a href="glms-for-classification.html#gamma-response-with-log-link"><i class="fa fa-check"></i><b>11.8.5</b> Gamma Response with Log Link</a></li>
+<li class="chapter" data-level="11.8.6" data-path="glms-for-classification.html"><a href="glms-for-classification.html#gamma-with-inverse-link"><i class="fa fa-check"></i><b>11.8.6</b> Gamma with Inverse Link</a></li>
+</ul></li>
+<li class="chapter" data-level="11.9" data-path="glms-for-classification.html"><a href="glms-for-classification.html#log-transforms-of-continuous-predictors"><i class="fa fa-check"></i><b>11.9</b> Log transforms of continuous predictors</a></li>
+<li class="chapter" data-level="11.10" data-path="glms-for-classification.html"><a href="glms-for-classification.html#reference-levels"><i class="fa fa-check"></i><b>11.10</b> Reference levels</a></li>
+<li class="chapter" data-level="11.11" data-path="glms-for-classification.html"><a href="glms-for-classification.html#interactions"><i class="fa fa-check"></i><b>11.11</b> Interactions</a></li>
+<li class="chapter" data-level="11.12" data-path="glms-for-classification.html"><a href="glms-for-classification.html#offsets"><i class="fa fa-check"></i><b>11.12</b> Offsets</a></li>
+<li class="chapter" data-level="11.13" data-path="glms-for-classification.html"><a href="glms-for-classification.html#tweedie-regression"><i class="fa fa-check"></i><b>11.13</b> Tweedie regression</a></li>
+<li class="chapter" data-level="11.14" data-path="glms-for-classification.html"><a href="glms-for-classification.html#stepwise-subset-selection"><i class="fa fa-check"></i><b>11.14</b> Stepwise subset selection</a></li>
+<li class="chapter" data-level="11.15" data-path="glms-for-classification.html"><a href="glms-for-classification.html#advantages-and-disadvantages"><i class="fa fa-check"></i><b>11.15</b> Advantages and disadvantages</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="penalized-linear-models.html"><a href="penalized-linear-models.html"><i class="fa fa-check"></i><b>12</b> Penalized Linear Models</a><ul>
+<li class="chapter" data-level="12.1" data-path="penalized-linear-models.html"><a href="penalized-linear-models.html#ridge-regression"><i class="fa fa-check"></i><b>12.1</b> Ridge Regression</a></li>
+<li class="chapter" data-level="12.2" data-path="penalized-linear-models.html"><a href="penalized-linear-models.html#lasso"><i class="fa fa-check"></i><b>12.2</b> Lasso</a></li>
+<li class="chapter" data-level="12.3" data-path="penalized-linear-models.html"><a href="penalized-linear-models.html#elastic-net"><i class="fa fa-check"></i><b>12.3</b> Elastic Net</a></li>
+<li class="chapter" data-level="12.4" data-path="penalized-linear-models.html"><a href="penalized-linear-models.html#advantages-and-disadvantages-1"><i class="fa fa-check"></i><b>12.4</b> Advantages and disadvantages</a></li>
+<li class="chapter" data-level="12.5" data-path="penalized-linear-models.html"><a href="penalized-linear-models.html#example-ridge-regression"><i class="fa fa-check"></i><b>12.5</b> Example: Ridge Regression</a></li>
+<li class="chapter" data-level="12.6" data-path="penalized-linear-models.html"><a href="penalized-linear-models.html#example-the-lasso"><i class="fa fa-check"></i><b>12.6</b> Example: The Lasso</a></li>
+<li class="chapter" data-level="12.7" data-path="penalized-linear-models.html"><a href="penalized-linear-models.html#references"><i class="fa fa-check"></i><b>12.7</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="tree-based-models.html"><a href="tree-based-models.html"><i class="fa fa-check"></i><b>13</b> Tree-based models</a><ul>
+<li class="chapter" data-level="13.1" data-path="tree-based-models.html"><a href="tree-based-models.html#decision-trees"><i class="fa fa-check"></i><b>13.1</b> Decision Trees</a><ul>
+<li class="chapter" data-level="13.1.1" data-path="tree-based-models.html"><a href="tree-based-models.html#model-form"><i class="fa fa-check"></i><b>13.1.1</b> Model form</a></li>
+<li class="chapter" data-level="13.1.2" data-path="tree-based-models.html"><a href="tree-based-models.html#advantages-and-disadvantages-2"><i class="fa fa-check"></i><b>13.1.2</b> Advantages and disadvantages</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="tree-based-models.html"><a href="tree-based-models.html#ensemble-learning"><i class="fa fa-check"></i><b>13.2</b> Ensemble learning</a><ul>
+<li class="chapter" data-level="13.2.1" data-path="tree-based-models.html"><a href="tree-based-models.html#bagging"><i class="fa fa-check"></i><b>13.2.1</b> Bagging</a></li>
+<li class="chapter" data-level="13.2.2" data-path="tree-based-models.html"><a href="tree-based-models.html#boosting"><i class="fa fa-check"></i><b>13.2.2</b> Boosting</a></li>
+</ul></li>
+<li class="chapter" data-level="13.3" data-path="tree-based-models.html"><a href="tree-based-models.html#random-forests"><i class="fa fa-check"></i><b>13.3</b> Random Forests</a><ul>
+<li class="chapter" data-level="13.3.1" data-path="tree-based-models.html"><a href="tree-based-models.html#model-form-1"><i class="fa fa-check"></i><b>13.3.1</b> Model form</a></li>
+<li class="chapter" data-level="13.3.2" data-path="tree-based-models.html"><a href="tree-based-models.html#example-2"><i class="fa fa-check"></i><b>13.3.2</b> Example</a></li>
+<li class="chapter" data-level="13.3.3" data-path="tree-based-models.html"><a href="tree-based-models.html#variable-importance"><i class="fa fa-check"></i><b>13.3.3</b> Variable Importance</a></li>
+<li class="chapter" data-level="13.3.4" data-path="tree-based-models.html"><a href="tree-based-models.html#partial-dependence"><i class="fa fa-check"></i><b>13.3.4</b> Partial dependence</a></li>
+<li class="chapter" data-level="13.3.5" data-path="tree-based-models.html"><a href="tree-based-models.html#advantages-and-disadvantages-3"><i class="fa fa-check"></i><b>13.3.5</b> Advantages and disadvantages</a></li>
+</ul></li>
+<li class="chapter" data-level="13.4" data-path="tree-based-models.html"><a href="tree-based-models.html#gradient-boosted-trees"><i class="fa fa-check"></i><b>13.4</b> Gradient Boosted Trees</a><ul>
+<li class="chapter" data-level="13.4.1" data-path="tree-based-models.html"><a href="tree-based-models.html#parameters"><i class="fa fa-check"></i><b>13.4.1</b> Parameters</a></li>
+<li class="chapter" data-level="13.4.2" data-path="tree-based-models.html"><a href="tree-based-models.html#example-3"><i class="fa fa-check"></i><b>13.4.2</b> Example</a></li>
+<li class="chapter" data-level="13.4.3" data-path="tree-based-models.html"><a href="tree-based-models.html#advantages-and-disadvantages-4"><i class="fa fa-check"></i><b>13.4.3</b> Advantages and disadvantages</a></li>
+</ul></li>
+<li class="chapter" data-level="13.5" data-path="tree-based-models.html"><a href="tree-based-models.html#exercises-1"><i class="fa fa-check"></i><b>13.5</b> Exercises</a><ul>
+<li class="chapter" data-level="13.5.1" data-path="tree-based-models.html"><a href="tree-based-models.html#rf-with-randomforest"><i class="fa fa-check"></i><b>13.5.1</b> 1. RF with <code>randomForest</code></a></li>
+<li class="chapter" data-level="13.5.2" data-path="tree-based-models.html"><a href="tree-based-models.html#rf-tuning-with-caret"><i class="fa fa-check"></i><b>13.5.2</b> 2. RF tuning with <code>caret</code></a></li>
+<li class="chapter" data-level="13.5.3" data-path="tree-based-models.html"><a href="tree-based-models.html#tuning-a-gbm-with-caret"><i class="fa fa-check"></i><b>13.5.3</b> 3. Tuning a GBM with <code>caret</code></a></li>
+</ul></li>
+<li class="chapter" data-level="13.6" data-path="tree-based-models.html"><a href="tree-based-models.html#answers-to-exercises-1"><i class="fa fa-check"></i><b>13.6</b> Answers to Exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html"><i class="fa fa-check"></i><b>14</b> Unsupervised Learning</a><ul>
+<li class="chapter" data-level="14.1" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#principal-componant-analysis-pca"><i class="fa fa-check"></i><b>14.1</b> Principal Componant Analysis (PCA)</a><ul>
+<li class="chapter" data-level="14.1.1" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#example-pca-on-us-arrests"><i class="fa fa-check"></i><b>14.1.1</b> Example: PCA on US Arrests</a></li>
+<li class="chapter" data-level="14.1.2" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#example-pca-on-cancel-cells"><i class="fa fa-check"></i><b>14.1.2</b> Example: PCA on Cancel Cells</a></li>
+</ul></li>
+<li class="chapter" data-level="14.2" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#clustering"><i class="fa fa-check"></i><b>14.2</b> Clustering</a><ul>
+<li class="chapter" data-level="14.2.1" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#k-means-clustering"><i class="fa fa-check"></i><b>14.2.1</b> K-Means Clustering</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#hierarchical-clustering"><i class="fa fa-check"></i><b>14.3</b> Hierarchical Clustering</a><ul>
+<li class="chapter" data-level="14.3.1" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#example-clustering-cancel-cells"><i class="fa fa-check"></i><b>14.3.1</b> Example: Clustering Cancel Cells</a></li>
+<li class="chapter" data-level="14.3.2" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#references-1"><i class="fa fa-check"></i><b>14.3.2</b> References</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="practice-exams.html"><a href="practice-exams.html"><i class="fa fa-check"></i><b>15</b> Practice Exams</a></li>
+<li class="chapter" data-level="16" data-path="references-2.html"><a href="references-2.html"><i class="fa fa-check"></i><b>16</b> References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Exam PA R Study Manual</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="penalized-linear-models" class="section level1">
+<h1><span class="header-section-number"> 12</span> Penalized Linear Models</h1>
+<p>One of the main weaknesses of the GLM, including all linear models in this chapter, is that the features need to be selected by hand. Stepwise selection helps to improve this process, but fails when the inputs are correlated and often has a strong dependence on seemingly arbitrary choices of evaluation metrics such as using AIC or BIC and forward or backwise directions.</p>
+<p>The Bias Variance Tradoff is about finding the lowest error by changing the flexibility of the model. Penalization methods use a parameter to control for this flexibility directly.</p>
+<p>Earlier on we said that the linear model minimizes the sum of square terms, known as the residual sum of squares (RSS)</p>
+<p><span class="math display">\[
+\text{RSS} = \sum_i(y_i - \hat{y})^2 = \sum_i(y_i - \beta_0 - \sum_{j = 1}^p\beta_j x_{ij})^2
+\]</span></p>
+<p>This loss function can be modified so that models which include more (and larger) coefficients are considered as worse. In other words, when there are more <span class="math inline">\(\beta\)</span>’s, or <span class="math inline">\(\beta\)</span>’s which are larger, the RSS is higher.</p>
+<div id="ridge-regression" class="section level2">
+<h2><span class="header-section-number">12.1</span> Ridge Regression</h2>
+<p>Ridge regression adds a penalty term which is proportional to the square of the sum of the coefficients. This is known as the “L2” norm.</p>
+<p><span class="math display">\[
+\sum_i(y_i - \beta_0 - \sum_{j = 1}^p\beta_j x_{ij})^2 + \lambda \sum_{j = 1}^p\beta_j^2
+\]</span></p>
+<p>This <span class="math inline">\(\lambda\)</span> controls how much of a penalty is imposed on the size of the coefficients. When <span class="math inline">\(\lambda\)</span> is high, simpler models are treated more favorably because the <span class="math inline">\(\sum_{j = 1}^p\beta_j^2\)</span> carries more weight. Conversely, then <span class="math inline">\(\lambda\)</span> is low, complex models are more favored. When <span class="math inline">\(\lambda = 0\)</span>, we have an ordinary GLM.</p>
+</div>
+<div id="lasso" class="section level2">
+<h2><span class="header-section-number">12.2</span> Lasso</h2>
+<p>The official name is the Least Absolute Shrinkage and Selection Operator, but the common name is just “the lasso”. Just as with Ridge regression, we want to favor simpler models; however, we also want to <em>select</em> variables. This is the same as forcing some coefficients to be equal to 0.</p>
+<p>Instead of taking the square of the coefficients (L2 norm), we take the absolute value (L1 norm).</p>
+<p><span class="math display">\[
+\sum_i(y_i - \beta_0 - \sum_{j = 1}^p\beta_j x_{ij})^2 + \lambda \sum_{j = 1}^p|\beta_j|
+\]</span></p>
+<p>In ISLR, Hastie et al show that this results in coefficients being forced to be exactly 0. This is extremely useful because it means that by changing <span class="math inline">\(\lambda\)</span>, we can select how many variables to use in the model.</p>
+<p><strong>Note</strong>: While any response family is possible with penalized regression, in R, only the Gaussian family is possible in the library <code>glmnet</code>, and so this is the only type of question that the SOA can ask.</p>
+</div>
+<div id="elastic-net" class="section level2">
+<h2><span class="header-section-number">12.3</span> Elastic Net</h2>
+<p>The Elastic Net uses a penalty term which is between the L1 and L2 norms. The penalty term is a weighted average using the mixing parameter <span class="math inline">\(0 \leq \alpha \leq 1\)</span>. The loss fucntion is then</p>
+<p><span class="math display">\[\text{RSS} + (1 - \alpha)/2 \sum_{j = 1}^{p}\beta_j^2 + \alpha \sum_{j = 1}^p |\beta_j|\]</span>
+When <span class="math inline">\(\alpha = 1\)</span> is turns into a Lasso; when <span class="math inline">\(\alpha = 1\)</span> this is the Ridge model.</p>
+<p>Luckily, none of this needs to be memorized. On the exam, read the documentation in R to refresh your memory. For the Elastic Net, the function is <code>glmnet</code>, and so running <code>?glmnet</code> will give you this info.</p>
+<blockquote>
+<p><strong>Shortcut</strong>: When using complicated functions on the exam, use <code>?function_name</code> to get the documentation.</p>
+</blockquote>
+</div>
+<div id="advantages-and-disadvantages-1" class="section level2">
+<h2><span class="header-section-number">12.4</span> Advantages and disadvantages</h2>
+<p><strong>Elastic Net/Lasso/Ridge Advantages</strong></p>
+<ul>
+<li>All benefits from GLMS</li>
+<li>Automatic variable selection for Lasso; smaller coefficients for Ridge</li>
+<li>Better predictive power than GLM</li>
+</ul>
+<p><strong>Elastic Net/Lasso/Ridge Disadvantages</strong></p>
+<ul>
+<li>All cons of GLMs</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>Readings</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ISLR 6.1 Subset Selection</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>ISLR 6.2 Shrinkage Methods</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="example-ridge-regression" class="section level2">
+<h2><span class="header-section-number">12.5</span> Example: Ridge Regression</h2>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb270-1" title="1"><span class="kw">library</span>(ISLR)</a>
+<a class="sourceLine" id="cb270-2" title="2"><span class="kw">library</span>(glmnet)</a>
+<a class="sourceLine" id="cb270-3" title="3"><span class="kw">library</span>(dplyr)</a>
+<a class="sourceLine" id="cb270-4" title="4"><span class="kw">library</span>(tidyr)</a></code></pre></div>
+<p>We will use the <code>glmnet</code> package in order to perform ridge regression and
+the lasso. The main function in this package is <code>glmnet()</code>, which can be used
+to fit ridge regression models, lasso models, and more. This function has
+slightly different syntax from other model-fitting functions that we have
+encountered thus far in this book. In particular, we must pass in an <span class="math inline">\(x\)</span>
+matrix as well as a <span class="math inline">\(y\)</span> vector, and we do not use the <span class="math inline">\(y \sim x\)</span> syntax.</p>
+<p>Before proceeding, let’s first ensure that the missing values have
+been removed from the data, as described in the previous lab.</p>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb271-1" title="1">Hitters =<span class="st"> </span><span class="kw">na.omit</span>(Hitters)</a></code></pre></div>
+<p>We will now perform ridge regression and the lasso in order to predict <code>Salary</code> on
+the <code>Hitters</code> data. Let’s set up our data:</p>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb272-1" title="1">x =<span class="st"> </span><span class="kw">model.matrix</span>(Salary<span class="op">~</span>., Hitters)[,<span class="op">-</span><span class="dv">1</span>] <span class="co"># trim off the first column</span></a>
+<a class="sourceLine" id="cb272-2" title="2">                                         <span class="co"># leaving only the predictors</span></a>
+<a class="sourceLine" id="cb272-3" title="3">y =<span class="st"> </span>Hitters <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb272-4" title="4"><span class="st">  </span><span class="kw">select</span>(Salary) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb272-5" title="5"><span class="st">  </span><span class="kw">unlist</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb272-6" title="6"><span class="st">  </span><span class="kw">as.numeric</span>()</a></code></pre></div>
+<p>The <code>model.matrix()</code> function is particularly useful for creating <span class="math inline">\(x\)</span>; not only
+does it produce a matrix corresponding to the 19 predictors but it also
+automatically transforms any qualitative variables into dummy variables.
+The latter property is important because <code>glmnet()</code> can only take numerical,
+quantitative inputs.</p>
+<p>The <code>glmnet()</code> function has an alpha argument that determines what type
+of model is fit. If <code>alpha = 0</code> then a ridge regression model is fit, and if <code>alpha = 1</code>
+then a lasso model is fit. We first fit a ridge regression model:</p>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb273-1" title="1">grid =<span class="st"> </span><span class="dv">10</span><span class="op">^</span><span class="kw">seq</span>(<span class="dv">10</span>, <span class="dv">-2</span>, <span class="dt">length =</span> <span class="dv">100</span>)</a>
+<a class="sourceLine" id="cb273-2" title="2">ridge_mod =<span class="st"> </span><span class="kw">glmnet</span>(x, y, <span class="dt">alpha =</span> <span class="dv">0</span>, <span class="dt">lambda =</span> grid)</a></code></pre></div>
+<p>By default the <code>glmnet()</code> function performs ridge regression for an automatically
+selected range of <span class="math inline">\(\lambda\)</span> values. However, here we have chosen to implement
+the function over a grid of values ranging from <span class="math inline">\(\lambda = 10^10\)</span> to <span class="math inline">\(\lambda = 10^{-2}\)</span>, essentially covering the full range of scenarios from the null model containing
+only the intercept, to the least squares fit.</p>
+<p>As we will see, we can also compute
+model fits for a particular value of <span class="math inline">\(\lambda\)</span> that is not one of the original
+grid values. Note that by default, the <code>glmnet()</code> function standardizes the
+variables so that they are on the same scale. To turn off this default setting,
+use the argument <code>standardize = FALSE</code>.</p>
+<p>Associated with each value of <span class="math inline">\(\lambda\)</span> is a vector of ridge regression coefficients,
+stored in a matrix that can be accessed by <code>coef()</code>. In this case, it is a <span class="math inline">\(20 \times 100\)</span>
+matrix, with 20 rows (one for each predictor, plus an intercept) and 100
+columns (one for each value of <span class="math inline">\(\lambda\)</span>).</p>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb274-1" title="1"><span class="kw">dim</span>(<span class="kw">coef</span>(ridge_mod))</a></code></pre></div>
+<pre><code>## [1]  20 100</code></pre>
+<p>We expect the coefficient estimates to be much smaller, in terms of <span class="math inline">\(l_2\)</span> norm,
+when a large value of <span class="math inline">\(\lambda\)</span> is used, as compared to when a small value of <span class="math inline">\(\lambda\)</span> is
+used. These are the coefficients when <span class="math inline">\(\lambda = 11498\)</span>, along with their <span class="math inline">\(l_2\)</span> norm:</p>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb276-1" title="1">ridge_mod<span class="op">$</span>lambda[<span class="dv">50</span>] <span class="co">#Display 50th lambda value</span></a></code></pre></div>
+<pre><code>## [1] 11497.57</code></pre>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb278-1" title="1"><span class="kw">coef</span>(ridge_mod)[,<span class="dv">50</span>] <span class="co"># Display coefficients associated with 50th lambda value</span></a></code></pre></div>
+<pre><code>##   (Intercept)         AtBat          Hits         HmRun          Runs 
+## 407.356050200   0.036957182   0.138180344   0.524629976   0.230701523 
+##           RBI         Walks         Years        CAtBat         CHits 
+##   0.239841459   0.289618741   1.107702929   0.003131815   0.011653637 
+##        CHmRun         CRuns          CRBI        CWalks       LeagueN 
+##   0.087545670   0.023379882   0.024138320   0.025015421   0.085028114 
+##     DivisionW       PutOuts       Assists        Errors    NewLeagueN 
+##  -6.215440973   0.016482577   0.002612988  -0.020502690   0.301433531</code></pre>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb280-1" title="1"><span class="kw">sqrt</span>(<span class="kw">sum</span>(<span class="kw">coef</span>(ridge_mod)[<span class="op">-</span><span class="dv">1</span>,<span class="dv">50</span>]<span class="op">^</span><span class="dv">2</span>)) <span class="co"># Calculate l2 norm</span></a></code></pre></div>
+<pre><code>## [1] 6.360612</code></pre>
+<p>In contrast, here are the coefficients when <span class="math inline">\(\lambda = 705\)</span>, along with their <span class="math inline">\(l_2\)</span>
+norm. Note the much larger <span class="math inline">\(l_2\)</span> norm of the coefficients associated with this
+smaller value of <span class="math inline">\(\lambda\)</span>.</p>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb282-1" title="1">ridge_mod<span class="op">$</span>lambda[<span class="dv">60</span>] <span class="co">#Display 60th lambda value</span></a></code></pre></div>
+<pre><code>## [1] 705.4802</code></pre>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb284-1" title="1"><span class="kw">coef</span>(ridge_mod)[,<span class="dv">60</span>] <span class="co"># Display coefficients associated with 60th lambda value</span></a></code></pre></div>
+<pre><code>##  (Intercept)        AtBat         Hits        HmRun         Runs 
+##  54.32519950   0.11211115   0.65622409   1.17980910   0.93769713 
+##          RBI        Walks        Years       CAtBat        CHits 
+##   0.84718546   1.31987948   2.59640425   0.01083413   0.04674557 
+##       CHmRun        CRuns         CRBI       CWalks      LeagueN 
+##   0.33777318   0.09355528   0.09780402   0.07189612  13.68370191 
+##    DivisionW      PutOuts      Assists       Errors   NewLeagueN 
+## -54.65877750   0.11852289   0.01606037  -0.70358655   8.61181213</code></pre>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb286-1" title="1"><span class="kw">sqrt</span>(<span class="kw">sum</span>(<span class="kw">coef</span>(ridge_mod)[<span class="op">-</span><span class="dv">1</span>,<span class="dv">60</span>]<span class="op">^</span><span class="dv">2</span>)) <span class="co"># Calculate l2 norm</span></a></code></pre></div>
+<pre><code>## [1] 57.11001</code></pre>
+<p>We can use the <code>predict()</code> function for a number of purposes. For instance,
+we can obtain the ridge regression coefficients for a new value of <span class="math inline">\(\lambda\)</span>, say 50:</p>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb288-1" title="1"><span class="kw">predict</span>(ridge_mod, <span class="dt">s=</span><span class="dv">50</span>, <span class="dt">type=</span><span class="st">&quot;coefficients&quot;</span>)[<span class="dv">1</span><span class="op">:</span><span class="dv">20</span>,]</a></code></pre></div>
+<pre><code>##   (Intercept)         AtBat          Hits         HmRun          Runs 
+##  4.876610e+01 -3.580999e-01  1.969359e+00 -1.278248e+00  1.145892e+00 
+##           RBI         Walks         Years        CAtBat         CHits 
+##  8.038292e-01  2.716186e+00 -6.218319e+00  5.447837e-03  1.064895e-01 
+##        CHmRun         CRuns          CRBI        CWalks       LeagueN 
+##  6.244860e-01  2.214985e-01  2.186914e-01 -1.500245e-01  4.592589e+01 
+##     DivisionW       PutOuts       Assists        Errors    NewLeagueN 
+## -1.182011e+02  2.502322e-01  1.215665e-01 -3.278600e+00 -9.496680e+00</code></pre>
+<p>We now split the samples into a training set and a test set in order
+to estimate the test error of ridge regression and the lasso.</p>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb290-1" title="1"><span class="kw">set.seed</span>(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb290-2" title="2"></a>
+<a class="sourceLine" id="cb290-3" title="3">train =<span class="st"> </span>Hitters <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb290-4" title="4"><span class="st">  </span><span class="kw">sample_frac</span>(<span class="fl">0.5</span>)</a>
+<a class="sourceLine" id="cb290-5" title="5"></a>
+<a class="sourceLine" id="cb290-6" title="6">test =<span class="st"> </span>Hitters <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb290-7" title="7"><span class="st">  </span><span class="kw">setdiff</span>(train)</a>
+<a class="sourceLine" id="cb290-8" title="8"></a>
+<a class="sourceLine" id="cb290-9" title="9">x_train =<span class="st"> </span><span class="kw">model.matrix</span>(Salary<span class="op">~</span>., train)[,<span class="op">-</span><span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb290-10" title="10">x_test =<span class="st"> </span><span class="kw">model.matrix</span>(Salary<span class="op">~</span>., test)[,<span class="op">-</span><span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb290-11" title="11"></a>
+<a class="sourceLine" id="cb290-12" title="12">y_train =<span class="st"> </span>train <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb290-13" title="13"><span class="st">  </span><span class="kw">select</span>(Salary) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb290-14" title="14"><span class="st">  </span><span class="kw">unlist</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb290-15" title="15"><span class="st">  </span><span class="kw">as.numeric</span>()</a>
+<a class="sourceLine" id="cb290-16" title="16"></a>
+<a class="sourceLine" id="cb290-17" title="17">y_test =<span class="st"> </span>test <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb290-18" title="18"><span class="st">  </span><span class="kw">select</span>(Salary) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb290-19" title="19"><span class="st">  </span><span class="kw">unlist</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb290-20" title="20"><span class="st">  </span><span class="kw">as.numeric</span>()</a></code></pre></div>
+<p>Next we fit a ridge regression model on the training set, and evaluate
+its MSE on the test set, using <span class="math inline">\(\lambda = 4\)</span>. Note the use of the <code>predict()</code>
+function again: this time we get predictions for a test set, by replacing
+<code>type="coefficients"</code> with the <code>newx</code> argument.</p>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb291-1" title="1">ridge_mod =<span class="st"> </span><span class="kw">glmnet</span>(x_train, y_train, <span class="dt">alpha=</span><span class="dv">0</span>, <span class="dt">lambda =</span> grid, <span class="dt">thresh =</span> <span class="fl">1e-12</span>)</a>
+<a class="sourceLine" id="cb291-2" title="2">ridge_pred =<span class="st"> </span><span class="kw">predict</span>(ridge_mod, <span class="dt">s =</span> <span class="dv">4</span>, <span class="dt">newx =</span> x_test)</a>
+<a class="sourceLine" id="cb291-3" title="3"><span class="kw">mean</span>((ridge_pred <span class="op">-</span><span class="st"> </span>y_test)<span class="op">^</span><span class="dv">2</span>)</a></code></pre></div>
+<pre><code>## [1] 139858.6</code></pre>
+<p>The test MSE is 101242.7. Note that if we had instead simply fit a model
+with just an intercept, we would have predicted each test observation using
+the mean of the training observations. In that case, we could compute the
+test set MSE like this:</p>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb293-1" title="1"><span class="kw">mean</span>((<span class="kw">mean</span>(y_train) <span class="op">-</span><span class="st"> </span>y_test)<span class="op">^</span><span class="dv">2</span>)</a></code></pre></div>
+<pre><code>## [1] 224692.1</code></pre>
+<p>We could also get the same result by fitting a ridge regression model with
+a very large value of <span class="math inline">\(\lambda\)</span>. Note that <code>1e10</code> means <span class="math inline">\(10^{10}\)</span>.</p>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb295-1" title="1">ridge_pred =<span class="st"> </span><span class="kw">predict</span>(ridge_mod, <span class="dt">s =</span> <span class="fl">1e10</span>, <span class="dt">newx =</span> x_test)</a>
+<a class="sourceLine" id="cb295-2" title="2"><span class="kw">mean</span>((ridge_pred <span class="op">-</span><span class="st"> </span>y_test)<span class="op">^</span><span class="dv">2</span>)</a></code></pre></div>
+<pre><code>## [1] 224692.1</code></pre>
+<p>So fitting a ridge regression model with <span class="math inline">\(\lambda = 4\)</span> leads to a much lower test
+MSE than fitting a model with just an intercept. We now check whether
+there is any benefit to performing ridge regression with <span class="math inline">\(\lambda = 4\)</span> instead of
+just performing least squares regression. Recall that least squares is simply
+ridge regression with <span class="math inline">\(\lambda = 0\)</span>.</p>
+<p>* Note: In order for <code>glmnet()</code> to yield the <strong>exact</strong> least squares coefficients when <span class="math inline">\(\lambda = 0\)</span>,
+we use the argument <code>exact=T</code> when calling the <code>predict()</code> function. Otherwise, the
+<code>predict()</code> function will interpolate over the grid of <span class="math inline">\(\lambda\)</span> values used in fitting the
+<code>glmnet()</code> model, yielding approximate results. Even when we use <code>exact = T</code>, there remains
+a slight discrepancy in the third decimal place between the output of <code>glmnet()</code> when
+<span class="math inline">\(\lambda = 0\)</span> and the output of <code>lm()</code>; this is due to numerical approximation on the part of
+<code>glmnet()</code>.</p>
+<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb297-1" title="1">ridge_pred =<span class="st"> </span><span class="kw">predict</span>(ridge_mod, <span class="dt">s =</span> <span class="dv">0</span>, <span class="dt">x =</span> x_train, <span class="dt">y =</span> y_train, <span class="dt">newx =</span> x_test, <span class="dt">exact =</span> T)</a>
+<a class="sourceLine" id="cb297-2" title="2"><span class="kw">mean</span>((ridge_pred <span class="op">-</span><span class="st"> </span>y_test)<span class="op">^</span><span class="dv">2</span>)</a></code></pre></div>
+<pre><code>## [1] 175051.7</code></pre>
+<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb299-1" title="1"><span class="kw">lm</span>(Salary<span class="op">~</span>., <span class="dt">data =</span> train)</a></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Salary ~ ., data = train)
+## 
+## Coefficients:
+## (Intercept)        AtBat         Hits        HmRun         Runs  
+##   2.398e+02   -1.639e-03   -2.179e+00    6.337e+00    7.139e-01  
+##         RBI        Walks        Years       CAtBat        CHits  
+##   8.735e-01    3.594e+00   -1.309e+01   -7.136e-01    3.316e+00  
+##      CHmRun        CRuns         CRBI       CWalks      LeagueN  
+##   3.407e+00   -5.671e-01   -7.525e-01    2.347e-01    1.322e+02  
+##   DivisionW      PutOuts      Assists       Errors   NewLeagueN  
+##  -1.346e+02    2.099e-01    6.229e-01   -4.616e+00   -8.330e+01</code></pre>
+<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb301-1" title="1"><span class="kw">predict</span>(ridge_mod, <span class="dt">s =</span> <span class="dv">0</span>, <span class="dt">x =</span> x_train, <span class="dt">y =</span> y_train, <span class="dt">exact =</span> T, <span class="dt">type=</span><span class="st">&quot;coefficients&quot;</span>)[<span class="dv">1</span><span class="op">:</span><span class="dv">20</span>,]</a></code></pre></div>
+<pre><code>##   (Intercept)         AtBat          Hits         HmRun          Runs 
+##  239.83274953   -0.00175359   -2.17853087    6.33694957    0.71369687 
+##           RBI         Walks         Years        CAtBat         CHits 
+##    0.87329878    3.59421378  -13.09231408   -0.71351092    3.31523605 
+##        CHmRun         CRuns          CRBI        CWalks       LeagueN 
+##    3.40701392   -0.56709530   -0.75240961    0.23467433  132.15949536 
+##     DivisionW       PutOuts       Assists        Errors    NewLeagueN 
+## -134.58503816    0.20992473    0.62288126   -4.61583857  -83.29432536</code></pre>
+<p>It looks like we are indeed improving over regular least-squares! Side note: in general, if we want to fit a (unpenalized) least squares model, then
+we should use the <code>lm()</code> function, since that function provides more useful
+outputs, such as standard errors and <span class="math inline">\(p\)</span>-values for the coefficients.</p>
+<p>Instead of arbitrarily choosing <span class="math inline">\(\lambda = 4\)</span>, it would be better to
+use cross-validation to choose the tuning parameter <span class="math inline">\(\lambda\)</span>. We can do this using
+the built-in cross-validation function, <code>cv.glmnet()</code>. By default, the function
+performs 10-fold cross-validation, though this can be changed using the
+argument <code>folds</code>. Note that we set a random seed first so our results will be
+reproducible, since the choice of the cross-validation folds is random.</p>
+<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb303-1" title="1"><span class="kw">set.seed</span>(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb303-2" title="2">cv.out =<span class="st"> </span><span class="kw">cv.glmnet</span>(x_train, y_train, <span class="dt">alpha =</span> <span class="dv">0</span>) <span class="co"># Fit ridge regression model on training data</span></a>
+<a class="sourceLine" id="cb303-3" title="3"><span class="kw">plot</span>(cv.out) <span class="co"># Draw plot of training MSE as a function of lambda</span></a></code></pre></div>
+<p><img src="05-linear-models_files/figure-html/unnamed-chunk-79-1.png" width="672" /></p>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb304-1" title="1">bestlam =<span class="st"> </span>cv.out<span class="op">$</span>lambda.min  <span class="co"># Select lamda that minimizes training MSE</span></a>
+<a class="sourceLine" id="cb304-2" title="2">bestlam</a></code></pre></div>
+<pre><code>## [1] 326.1406</code></pre>
+<p>Therefore, we see that the value of <span class="math inline">\(\lambda\)</span> that results in the smallest cross-validation
+error is 339.1845 What is the test MSE associated with this value of
+<span class="math inline">\(\lambda\)</span>?</p>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb306-1" title="1">ridge_pred =<span class="st"> </span><span class="kw">predict</span>(ridge_mod, <span class="dt">s =</span> bestlam, <span class="dt">newx =</span> x_test) <span class="co"># Use best lambda to predict test data</span></a>
+<a class="sourceLine" id="cb306-2" title="2"><span class="kw">mean</span>((ridge_pred <span class="op">-</span><span class="st"> </span>y_test)<span class="op">^</span><span class="dv">2</span>) <span class="co"># Calculate test MSE</span></a></code></pre></div>
+<pre><code>## [1] 140056.2</code></pre>
+<p>This represents a further improvement over the test MSE that we got using
+<span class="math inline">\(\lambda = 4\)</span>. Finally, we refit our ridge regression model on the full data set,
+using the value of <span class="math inline">\(\lambda\)</span> chosen by cross-validation, and examine the coefficient
+estimates.</p>
+<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb308-1" title="1">out =<span class="st"> </span><span class="kw">glmnet</span>(x, y, <span class="dt">alpha =</span> <span class="dv">0</span>) <span class="co"># Fit ridge regression model on full dataset</span></a>
+<a class="sourceLine" id="cb308-2" title="2"><span class="kw">predict</span>(out, <span class="dt">type =</span> <span class="st">&quot;coefficients&quot;</span>, <span class="dt">s =</span> bestlam)[<span class="dv">1</span><span class="op">:</span><span class="dv">20</span>,] <span class="co"># Display coefficients using lambda chosen by CV</span></a></code></pre></div>
+<pre><code>##  (Intercept)        AtBat         Hits        HmRun         Runs 
+##  15.44835008   0.07716945   0.85906253   0.60120339   1.06366687 
+##          RBI        Walks        Years       CAtBat        CHits 
+##   0.87936073   1.62437580   1.35296287   0.01134998   0.05746377 
+##       CHmRun        CRuns         CRBI       CWalks      LeagueN 
+##   0.40678422   0.11455696   0.12115916   0.05299953  22.08942749 
+##    DivisionW      PutOuts      Assists       Errors   NewLeagueN 
+## -79.03490973   0.16618830   0.02941513  -1.36075644   9.12528398</code></pre>
+<p>As expected, none of the coefficients are exactly zero - ridge regression does not
+perform variable selection!</p>
+</div>
+<div id="example-the-lasso" class="section level2">
+<h2><span class="header-section-number">12.6</span> Example: The Lasso</h2>
+<p>We saw that ridge regression with a wise choice of <span class="math inline">\(\lambda\)</span> can outperform least
+squares as well as the null model on the Hitters data set. We now ask
+whether the lasso can yield either a more accurate or a more interpretable
+model than ridge regression. In order to fit a lasso model, we once again
+use the <code>glmnet()</code> function; however, this time we use the argument <code>alpha=1</code>.
+Other than that change, we proceed just as we did in fitting a ridge model:</p>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb310-1" title="1">lasso_mod =<span class="st"> </span><span class="kw">glmnet</span>(x_train, y_train, <span class="dt">alpha =</span> <span class="dv">1</span>, <span class="dt">lambda =</span> grid) <span class="co"># Fit lasso model on training data</span></a>
+<a class="sourceLine" id="cb310-2" title="2"><span class="kw">plot</span>(lasso_mod)                                          <span class="co"># Draw plot of coefficients</span></a></code></pre></div>
+<p><img src="05-linear-models_files/figure-html/unnamed-chunk-82-1.png" width="672" /></p>
+<p>Notice that in the coefficient plot that depending on the choice of tuning
+parameter, some of the coefficients are exactly equal to zero. We now
+perform cross-validation and compute the associated test error:</p>
+<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb311-1" title="1"><span class="kw">set.seed</span>(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb311-2" title="2">cv.out =<span class="st"> </span><span class="kw">cv.glmnet</span>(x_train, y_train, <span class="dt">alpha =</span> <span class="dv">1</span>) <span class="co"># Fit lasso model on training data</span></a>
+<a class="sourceLine" id="cb311-3" title="3"><span class="kw">plot</span>(cv.out) <span class="co"># Draw plot of training MSE as a function of lambda</span></a></code></pre></div>
+<p><img src="05-linear-models_files/figure-html/unnamed-chunk-83-1.png" width="672" /></p>
+<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb312-1" title="1">bestlam =<span class="st"> </span>cv.out<span class="op">$</span>lambda.min <span class="co"># Select lamda that minimizes training MSE</span></a>
+<a class="sourceLine" id="cb312-2" title="2">lasso_pred =<span class="st"> </span><span class="kw">predict</span>(lasso_mod, <span class="dt">s =</span> bestlam, <span class="dt">newx =</span> x_test) <span class="co"># Use best lambda to predict test data</span></a>
+<a class="sourceLine" id="cb312-3" title="3"><span class="kw">mean</span>((lasso_pred <span class="op">-</span><span class="st"> </span>y_test)<span class="op">^</span><span class="dv">2</span>) <span class="co"># Calculate test MSE</span></a></code></pre></div>
+<pre><code>## [1] 143273</code></pre>
+<p>This is substantially lower than the test set MSE of the null model and of
+least squares, and very similar to the test MSE of ridge regression with <span class="math inline">\(\lambda\)</span>
+chosen by cross-validation.</p>
+<p>However, the lasso has a substantial advantage over ridge regression in
+that the resulting coefficient estimates are sparse. Here we see that 12 of
+the 19 coefficient estimates are exactly zero:</p>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb314-1" title="1">out =<span class="st"> </span><span class="kw">glmnet</span>(x, y, <span class="dt">alpha =</span> <span class="dv">1</span>, <span class="dt">lambda =</span> grid) <span class="co"># Fit lasso model on full dataset</span></a>
+<a class="sourceLine" id="cb314-2" title="2">lasso_coef =<span class="st"> </span><span class="kw">predict</span>(out, <span class="dt">type =</span> <span class="st">&quot;coefficients&quot;</span>, <span class="dt">s =</span> bestlam)[<span class="dv">1</span><span class="op">:</span><span class="dv">20</span>,] <span class="co"># Display coefficients using lambda chosen by CV</span></a>
+<a class="sourceLine" id="cb314-3" title="3">lasso_coef</a></code></pre></div>
+<pre><code>##   (Intercept)         AtBat          Hits         HmRun          Runs 
+##    1.27429897   -0.05490834    2.18012455    0.00000000    0.00000000 
+##           RBI         Walks         Years        CAtBat         CHits 
+##    0.00000000    2.29189433   -0.33767315    0.00000000    0.00000000 
+##        CHmRun         CRuns          CRBI        CWalks       LeagueN 
+##    0.02822467    0.21627609    0.41713051    0.00000000   20.28190194 
+##     DivisionW       PutOuts       Assists        Errors    NewLeagueN 
+## -116.16524424    0.23751978    0.00000000   -0.85604181    0.00000000</code></pre>
+<p>Selecting only the predictors with non-zero coefficients, we see that the lasso model with <span class="math inline">\(\lambda\)</span>
+chosen by cross-validation contains only seven variables:</p>
+<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb316-1" title="1">lasso_coef[lasso_coef<span class="op">!=</span><span class="dv">0</span>] <span class="co"># Display only non-zero coefficients</span></a></code></pre></div>
+<pre><code>##   (Intercept)         AtBat          Hits         Walks         Years 
+##    1.27429897   -0.05490834    2.18012455    2.29189433   -0.33767315 
+##        CHmRun         CRuns          CRBI       LeagueN     DivisionW 
+##    0.02822467    0.21627609    0.41713051   20.28190194 -116.16524424 
+##       PutOuts        Errors 
+##    0.23751978   -0.85604181</code></pre>
+<p>Practice questions:</p>
+<ul>
+<li>How do ridge regression and the lasso improve on simple least squares?</li>
+<li>In what cases would you expect ridge regression outperform the lasso, and vice versa?</li>
+</ul>
+</div>
+<div id="references" class="section level2">
+<h2><span class="header-section-number">12.7</span> References</h2>
+<p>These examples of the Ridge and Lasso are an adaptation of p. 251-255 of “Introduction to
+Statistical Learning with Applications in R” by Gareth James, Daniela Witten, Trevor Hastie and Robert
+Tibshirani. Adapted by R. Jordan Crouser at Smith College for SDS293: Machine Learning (Spring 2016), and re-implemented in Fall 2016 in <code>tidyverse</code> format by Amelia McNamara and R. Jordan Crouser at Smith College.</p>
+<p>Used with permission from Jordan Crouser at Smith College. Additional Thanks to the following contributors on github:</p>
+<ul>
+<li>github.com/jcrouser</li>
+<li>github.com/AmeliaMN</li>
+<li>github.com/mhusseinmidd</li>
+<li>github.com/rudeboybert</li>
+<li>github.com/ijlyttle</li>
+</ul>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="glms-for-classification.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="tree-based-models.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/sdcastillo/PA-R-Study-Manual/edit/master/05-linear-models.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["Exam-PA-Study-Manual.pdf", "Exam-PA-Study-Manual.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,26 @@
+Package: placeholder
+Type: Book
+Title: Does not matter.
+Version: 0.0.1
+Imports:
+  bookdown,
+  pROC,
+  magrittr,
+  Cairo,
+  caret,
+  dplyr,
+  e1071,
+  broom,
+  kableExtra,
+  ExamPAData,
+  rpart,
+  rpart.plot,
+  pdp,
+  gbm,
+  tidyverse,
+  randomForest,
+  ggpubr
+Remotes: 
+  rstudio/bookdown,
+  sdcastillo/ExamPAData
+License: GPL-3

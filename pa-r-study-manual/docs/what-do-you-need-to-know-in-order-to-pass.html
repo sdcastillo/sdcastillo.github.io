@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title> 5 What do you need to know in order to pass? | Predictive Analytics for Actuaries</title>
+  <meta name="description" content=" 5 What do you need to know in order to pass? | Predictive Analytics for Actuaries" />
+  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+
+  <meta property="og:title" content=" 5 What do you need to know in order to pass? | Predictive Analytics for Actuaries" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content=" 5 What do you need to know in order to pass? | Predictive Analytics for Actuaries" />
+  
+  
+  
+
+<meta name="author" content="Sam Castillo" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  <link rel="shortcut icon" href="images/artificial_actuary_logo_favicon.png" type="image/x-icon" />
+<link rel="prev" href="getting-started.html"/>
+<link rel="next" href="r-programming.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  { background-color: #f8f8f8; }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Exam PA Study Manual</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="1" data-path="the-exam.html"><a href="the-exam.html"><i class="fa fa-check"></i><b>1</b> The exam</a></li>
+<li class="chapter" data-level="2" data-path="prometric-demo.html"><a href="prometric-demo.html"><i class="fa fa-check"></i><b>2</b> Prometric Demo</a></li>
+<li class="chapter" data-level="3" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>3</b> Introduction</a></li>
+<li class="chapter" data-level="4" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>4</b> Getting started</a><ul>
+<li class="chapter" data-level="4.1" data-path="getting-started.html"><a href="getting-started.html#download-the-data"><i class="fa fa-check"></i><b>4.1</b> Download the data</a></li>
+<li class="chapter" data-level="4.2" data-path="getting-started.html"><a href="getting-started.html#download-islr"><i class="fa fa-check"></i><b>4.2</b> Download ISLR</a></li>
+<li class="chapter" data-level="4.3" data-path="getting-started.html"><a href="getting-started.html#new-users"><i class="fa fa-check"></i><b>4.3</b> New users</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="what-do-you-need-to-know-in-order-to-pass.html"><a href="what-do-you-need-to-know-in-order-to-pass.html"><i class="fa fa-check"></i><b>5</b> What do you need to know in order to pass?</a><ul>
+<li class="chapter" data-level="5.1" data-path="what-do-you-need-to-know-in-order-to-pass.html"><a href="what-do-you-need-to-know-in-order-to-pass.html#example-1---making-parameter-changes"><i class="fa fa-check"></i><b>5.1</b> Example 1 - Making parameter changes</a></li>
+<li class="chapter" data-level="5.2" data-path="what-do-you-need-to-know-in-order-to-pass.html"><a href="what-do-you-need-to-know-in-order-to-pass.html#example-2---data-exploration"><i class="fa fa-check"></i><b>5.2</b> Example 2 - Data exploration</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="r-programming.html"><a href="r-programming.html"><i class="fa fa-check"></i><b>6</b> R programming</a><ul>
+<li class="chapter" data-level="6.1" data-path="r-programming.html"><a href="r-programming.html#notebook-chunks"><i class="fa fa-check"></i><b>6.1</b> Notebook chunks</a></li>
+<li class="chapter" data-level="6.2" data-path="r-programming.html"><a href="r-programming.html#basic-operations"><i class="fa fa-check"></i><b>6.2</b> Basic operations</a></li>
+<li class="chapter" data-level="6.3" data-path="r-programming.html"><a href="r-programming.html#lists"><i class="fa fa-check"></i><b>6.3</b> Lists</a></li>
+<li class="chapter" data-level="6.4" data-path="r-programming.html"><a href="r-programming.html#functions"><i class="fa fa-check"></i><b>6.4</b> Functions</a></li>
+<li class="chapter" data-level="6.5" data-path="r-programming.html"><a href="r-programming.html#data-frames"><i class="fa fa-check"></i><b>6.5</b> Data frames</a></li>
+<li class="chapter" data-level="6.6" data-path="r-programming.html"><a href="r-programming.html#pipes"><i class="fa fa-check"></i><b>6.6</b> Pipes</a></li>
+<li class="chapter" data-level="6.7" data-path="r-programming.html"><a href="r-programming.html#the-soas-code-doesnt-use-pipes-or-dplyr-so-can-i-skip-learning-this"><i class="fa fa-check"></i><b>6.7</b> The SOA’s code doesn’t use pipes or dplyr, so can I skip learning this?</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="data-exploration.html"><a href="data-exploration.html"><i class="fa fa-check"></i><b>7</b> Data exploration</a><ul>
+<li class="chapter" data-level="7.1" data-path="data-exploration.html"><a href="data-exploration.html#how-to-make-graphs-in-r"><i class="fa fa-check"></i><b>7.1</b> How to make graphs in R</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="data-exploration.html"><a href="data-exploration.html#add-a-plot"><i class="fa fa-check"></i><b>7.1.1</b> Add a plot</a></li>
+<li class="chapter" data-level="7.1.2" data-path="data-exploration.html"><a href="data-exploration.html#data-manipulation-chaining"><i class="fa fa-check"></i><b>7.1.2</b> Data manipulation chaining</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="data-exploration.html"><a href="data-exploration.html#the-different-graph-types"><i class="fa fa-check"></i><b>7.2</b> The different graph types</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="data-exploration.html"><a href="data-exploration.html#histogram"><i class="fa fa-check"></i><b>7.2.1</b> Histogram</a></li>
+<li class="chapter" data-level="7.2.2" data-path="data-exploration.html"><a href="data-exploration.html#box-plot"><i class="fa fa-check"></i><b>7.2.2</b> Box plot</a></li>
+<li class="chapter" data-level="7.2.3" data-path="data-exploration.html"><a href="data-exploration.html#scatterplot"><i class="fa fa-check"></i><b>7.2.3</b> Scatterplot</a></li>
+<li class="chapter" data-level="7.2.4" data-path="data-exploration.html"><a href="data-exploration.html#bar-charts"><i class="fa fa-check"></i><b>7.2.4</b> Bar charts</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="data-exploration.html"><a href="data-exploration.html#how-to-save-time-with-dplyr"><i class="fa fa-check"></i><b>7.3</b> How to save time with dplyr</a></li>
+<li class="chapter" data-level="7.4" data-path="data-exploration.html"><a href="data-exploration.html#how-to-explore-the-data"><i class="fa fa-check"></i><b>7.4</b> How to explore the data</a></li>
+<li class="chapter" data-level="7.5" data-path="data-exploration.html"><a href="data-exploration.html#how-to-transform-the-data"><i class="fa fa-check"></i><b>7.5</b> How to transform the data</a></li>
+<li class="chapter" data-level="7.6" data-path="data-exploration.html"><a href="data-exploration.html#a-real-example"><i class="fa fa-check"></i><b>7.6</b> A real example</a><ul>
+<li class="chapter" data-level="7.6.1" data-path="data-exploration.html"><a href="data-exploration.html#garbage-in-garbage-out"><i class="fa fa-check"></i><b>7.6.1</b> Garbage in; garbage out 🗑</a></li>
+<li class="chapter" data-level="7.6.2" data-path="data-exploration.html"><a href="data-exploration.html#be-a-detective"><i class="fa fa-check"></i><b>7.6.2</b> Be a detective 🔎</a></li>
+<li class="chapter" data-level="7.6.3" data-path="data-exploration.html"><a href="data-exploration.html#a-picture-is-worth-a-thousand-words"><i class="fa fa-check"></i><b>7.6.3</b> A picture is worth a thousand words 📷</a></li>
+<li class="chapter" data-level="7.6.4" data-path="data-exploration.html"><a href="data-exploration.html#factor-or-numeric"><i class="fa fa-check"></i><b>7.6.4</b> Factor or numeric ❓</a></li>
+<li class="chapter" data-level="7.6.5" data-path="data-exploration.html"><a href="data-exploration.html#of-statistics-are-false"><i class="fa fa-check"></i><b>7.6.5</b> 73.6% of statistics are false 🤯</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="data-exploration.html"><a href="data-exploration.html#exercises"><i class="fa fa-check"></i><b>7.7</b> Exercises</a></li>
+<li class="chapter" data-level="7.8" data-path="data-exploration.html"><a href="data-exploration.html#answers-to-exercises"><i class="fa fa-check"></i><b>7.8</b> Answers to exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="introduction-to-modeling.html"><a href="introduction-to-modeling.html"><i class="fa fa-check"></i><b>8</b> Introduction to modeling</a><ul>
+<li class="chapter" data-level="8.1" data-path="introduction-to-modeling.html"><a href="introduction-to-modeling.html#modeling-vocabulary"><i class="fa fa-check"></i><b>8.1</b> Modeling vocabulary</a></li>
+<li class="chapter" data-level="8.2" data-path="introduction-to-modeling.html"><a href="introduction-to-modeling.html#modeling-notation"><i class="fa fa-check"></i><b>8.2</b> Modeling notation</a></li>
+<li class="chapter" data-level="8.3" data-path="introduction-to-modeling.html"><a href="introduction-to-modeling.html#ordinary-least-squares-ols"><i class="fa fa-check"></i><b>8.3</b> Ordinary Least Squares (OLS)</a></li>
+<li class="chapter" data-level="8.4" data-path="introduction-to-modeling.html"><a href="introduction-to-modeling.html#r2-statistic"><i class="fa fa-check"></i><b>8.4</b> R^2 Statistic</a></li>
+<li class="chapter" data-level="8.5" data-path="introduction-to-modeling.html"><a href="introduction-to-modeling.html#correlation"><i class="fa fa-check"></i><b>8.5</b> Correlation</a><ul>
+<li class="chapter" data-level="8.5.1" data-path="introduction-to-modeling.html"><a href="introduction-to-modeling.html#pearsons-correlation"><i class="fa fa-check"></i><b>8.5.1</b> Pearson’s correlation</a></li>
+<li class="chapter" data-level="8.5.2" data-path="introduction-to-modeling.html"><a href="introduction-to-modeling.html#spearman-rank-correlation"><i class="fa fa-check"></i><b>8.5.2</b> Spearman (rank) correlation</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="introduction-to-modeling.html"><a href="introduction-to-modeling.html#regression-vs.-classification"><i class="fa fa-check"></i><b>8.6</b> Regression vs. classification</a></li>
+<li class="chapter" data-level="8.7" data-path="introduction-to-modeling.html"><a href="introduction-to-modeling.html#regression-metrics"><i class="fa fa-check"></i><b>8.7</b> Regression metrics</a></li>
+<li class="chapter" data-level="8.8" data-path="introduction-to-modeling.html"><a href="introduction-to-modeling.html#example"><i class="fa fa-check"></i><b>8.8</b> Example</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="generalized-linear-models-glms.html"><a href="generalized-linear-models-glms.html"><i class="fa fa-check"></i><b>9</b> Generalized linear Models (GLMs)</a><ul>
+<li class="chapter" data-level="9.0.1" data-path="generalized-linear-models-glms.html"><a href="generalized-linear-models-glms.html#assumptions-of-ols"><i class="fa fa-check"></i><b>9.0.1</b> Assumptions of OLS</a></li>
+<li class="chapter" data-level="9.0.2" data-path="generalized-linear-models-glms.html"><a href="generalized-linear-models-glms.html#assumptions-of-glms"><i class="fa fa-check"></i><b>9.0.2</b> Assumptions of GLMs</a></li>
+<li class="chapter" data-level="9.1" data-path="generalized-linear-models-glms.html"><a href="generalized-linear-models-glms.html#advantages-and-disadvantages"><i class="fa fa-check"></i><b>9.1</b> Advantages and disadvantages</a></li>
+<li class="chapter" data-level="9.2" data-path="generalized-linear-models-glms.html"><a href="generalized-linear-models-glms.html#glms-for-regression"><i class="fa fa-check"></i><b>9.2</b> GLMs for regression</a></li>
+<li class="chapter" data-level="9.3" data-path="generalized-linear-models-glms.html"><a href="generalized-linear-models-glms.html#interpretation-of-coefficients"><i class="fa fa-check"></i><b>9.3</b> Interpretation of coefficients</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="generalized-linear-models-glms.html"><a href="generalized-linear-models-glms.html#identity-link"><i class="fa fa-check"></i><b>9.3.1</b> Identity link</a></li>
+<li class="chapter" data-level="9.3.2" data-path="generalized-linear-models-glms.html"><a href="generalized-linear-models-glms.html#log-link"><i class="fa fa-check"></i><b>9.3.2</b> Log link</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="generalized-linear-models-glms.html"><a href="generalized-linear-models-glms.html#other-links"><i class="fa fa-check"></i><b>9.4</b> Other links</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="glms-for-classification.html"><a href="glms-for-classification.html"><i class="fa fa-check"></i><b>10</b> GLMs for classification</a><ul>
+<li class="chapter" data-level="10.1" data-path="glms-for-classification.html"><a href="glms-for-classification.html#binary-target"><i class="fa fa-check"></i><b>10.1</b> Binary target</a></li>
+<li class="chapter" data-level="10.2" data-path="glms-for-classification.html"><a href="glms-for-classification.html#count-target"><i class="fa fa-check"></i><b>10.2</b> Count target</a></li>
+<li class="chapter" data-level="10.3" data-path="glms-for-classification.html"><a href="glms-for-classification.html#link-functions"><i class="fa fa-check"></i><b>10.3</b> Link functions</a></li>
+<li class="chapter" data-level="10.4" data-path="glms-for-classification.html"><a href="glms-for-classification.html#interpretation-of-coefficients-1"><i class="fa fa-check"></i><b>10.4</b> Interpretation of coefficients</a><ul>
+<li class="chapter" data-level="10.4.1" data-path="glms-for-classification.html"><a href="glms-for-classification.html#logit"><i class="fa fa-check"></i><b>10.4.1</b> Logit</a></li>
+<li class="chapter" data-level="10.4.2" data-path="glms-for-classification.html"><a href="glms-for-classification.html#probit-cauchit-cloglog"><i class="fa fa-check"></i><b>10.4.2</b> Probit, Cauchit, Cloglog</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="glms-for-classification.html"><a href="glms-for-classification.html#example-1"><i class="fa fa-check"></i><b>10.5</b> Example</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="classification-metrics.html"><a href="classification-metrics.html"><i class="fa fa-check"></i><b>11</b> Classification metrics</a><ul>
+<li class="chapter" data-level="11.1" data-path="classification-metrics.html"><a href="classification-metrics.html#area-under-the-roc-curve-auc"><i class="fa fa-check"></i><b>11.1</b> Area Under the ROC Curve (AUC)</a></li>
+<li class="chapter" data-level="11.2" data-path="classification-metrics.html"><a href="classification-metrics.html#additional-reading"><i class="fa fa-check"></i><b>11.2</b> Additional reading</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="additional-glm-topics.html"><a href="additional-glm-topics.html"><i class="fa fa-check"></i><b>12</b> Additional GLM topics</a><ul>
+<li class="chapter" data-level="12.1" data-path="additional-glm-topics.html"><a href="additional-glm-topics.html#residuals"><i class="fa fa-check"></i><b>12.1</b> Residuals</a><ul>
+<li class="chapter" data-level="12.1.1" data-path="additional-glm-topics.html"><a href="additional-glm-topics.html#raw-residuals"><i class="fa fa-check"></i><b>12.1.1</b> Raw residuals</a></li>
+<li class="chapter" data-level="12.1.2" data-path="additional-glm-topics.html"><a href="additional-glm-topics.html#deviance-residuals"><i class="fa fa-check"></i><b>12.1.2</b> Deviance residuals</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="additional-glm-topics.html"><a href="additional-glm-topics.html#example-2"><i class="fa fa-check"></i><b>12.2</b> Example</a></li>
+<li class="chapter" data-level="12.3" data-path="additional-glm-topics.html"><a href="additional-glm-topics.html#log-transforms-of-predictors"><i class="fa fa-check"></i><b>12.3</b> Log transforms of predictors</a></li>
+<li class="chapter" data-level="12.4" data-path="additional-glm-topics.html"><a href="additional-glm-topics.html#reference-levels"><i class="fa fa-check"></i><b>12.4</b> Reference levels</a></li>
+<li class="chapter" data-level="12.5" data-path="additional-glm-topics.html"><a href="additional-glm-topics.html#interactions"><i class="fa fa-check"></i><b>12.5</b> Interactions</a></li>
+<li class="chapter" data-level="12.6" data-path="additional-glm-topics.html"><a href="additional-glm-topics.html#offsets"><i class="fa fa-check"></i><b>12.6</b> Offsets</a></li>
+<li class="chapter" data-level="12.7" data-path="additional-glm-topics.html"><a href="additional-glm-topics.html#tweedie-regression"><i class="fa fa-check"></i><b>12.7</b> Tweedie regression</a></li>
+<li class="chapter" data-level="12.8" data-path="additional-glm-topics.html"><a href="additional-glm-topics.html#combinations-of-link-functions-and-target-distributions"><i class="fa fa-check"></i><b>12.8</b> Combinations of Link Functions and Target Distributions</a><ul>
+<li class="chapter" data-level="12.8.1" data-path="additional-glm-topics.html"><a href="additional-glm-topics.html#gaussian-response-with-log-link"><i class="fa fa-check"></i><b>12.8.1</b> Gaussian Response with Log Link</a></li>
+<li class="chapter" data-level="12.8.2" data-path="additional-glm-topics.html"><a href="additional-glm-topics.html#gaussian-response-with-inverse-link"><i class="fa fa-check"></i><b>12.8.2</b> Gaussian Response with Inverse Link</a></li>
+<li class="chapter" data-level="12.8.3" data-path="additional-glm-topics.html"><a href="additional-glm-topics.html#gaussian-response-with-identity-link"><i class="fa fa-check"></i><b>12.8.3</b> Gaussian Response with Identity Link</a></li>
+<li class="chapter" data-level="12.8.4" data-path="additional-glm-topics.html"><a href="additional-glm-topics.html#gaussian-response-with-log-link-and-negative-values"><i class="fa fa-check"></i><b>12.8.4</b> Gaussian Response with Log Link and Negative Values</a></li>
+<li class="chapter" data-level="12.8.5" data-path="additional-glm-topics.html"><a href="additional-glm-topics.html#gamma-response-with-log-link"><i class="fa fa-check"></i><b>12.8.5</b> Gamma Response with Log Link</a></li>
+<li class="chapter" data-level="12.8.6" data-path="additional-glm-topics.html"><a href="additional-glm-topics.html#gamma-with-inverse-link"><i class="fa fa-check"></i><b>12.8.6</b> Gamma with Inverse Link</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="glm-variable-selection.html"><a href="glm-variable-selection.html"><i class="fa fa-check"></i><b>13</b> GLM variable selection</a><ul>
+<li class="chapter" data-level="13.1" data-path="glm-variable-selection.html"><a href="glm-variable-selection.html#stepwise-subset-selection"><i class="fa fa-check"></i><b>13.1</b> Stepwise subset selection</a></li>
+<li class="chapter" data-level="13.2" data-path="glm-variable-selection.html"><a href="glm-variable-selection.html#penalized-linear-models"><i class="fa fa-check"></i><b>13.2</b> Penalized Linear Models</a></li>
+<li class="chapter" data-level="13.3" data-path="glm-variable-selection.html"><a href="glm-variable-selection.html#ridge-regression"><i class="fa fa-check"></i><b>13.3</b> Ridge Regression</a></li>
+<li class="chapter" data-level="13.4" data-path="glm-variable-selection.html"><a href="glm-variable-selection.html#lasso"><i class="fa fa-check"></i><b>13.4</b> Lasso</a></li>
+<li class="chapter" data-level="13.5" data-path="glm-variable-selection.html"><a href="glm-variable-selection.html#elastic-net"><i class="fa fa-check"></i><b>13.5</b> Elastic Net</a></li>
+<li class="chapter" data-level="13.6" data-path="glm-variable-selection.html"><a href="glm-variable-selection.html#advantages-and-disadvantages-1"><i class="fa fa-check"></i><b>13.6</b> Advantages and disadvantages</a></li>
+<li class="chapter" data-level="13.7" data-path="glm-variable-selection.html"><a href="glm-variable-selection.html#example-ridge-regression"><i class="fa fa-check"></i><b>13.7</b> Example: Ridge Regression</a></li>
+<li class="chapter" data-level="13.8" data-path="glm-variable-selection.html"><a href="glm-variable-selection.html#example-the-lasso"><i class="fa fa-check"></i><b>13.8</b> Example: The Lasso</a></li>
+<li class="chapter" data-level="13.9" data-path="glm-variable-selection.html"><a href="glm-variable-selection.html#references"><i class="fa fa-check"></i><b>13.9</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="tree-based-models.html"><a href="tree-based-models.html"><i class="fa fa-check"></i><b>14</b> Tree-based models</a><ul>
+<li class="chapter" data-level="14.1" data-path="tree-based-models.html"><a href="tree-based-models.html#decision-trees"><i class="fa fa-check"></i><b>14.1</b> Decision Trees</a><ul>
+<li class="chapter" data-level="14.1.1" data-path="tree-based-models.html"><a href="tree-based-models.html#advantages-and-disadvantages-2"><i class="fa fa-check"></i><b>14.1.1</b> Advantages and disadvantages</a></li>
+</ul></li>
+<li class="chapter" data-level="14.2" data-path="tree-based-models.html"><a href="tree-based-models.html#ensemble-learning"><i class="fa fa-check"></i><b>14.2</b> Ensemble learning</a><ul>
+<li class="chapter" data-level="14.2.1" data-path="tree-based-models.html"><a href="tree-based-models.html#bagging"><i class="fa fa-check"></i><b>14.2.1</b> Bagging</a></li>
+<li class="chapter" data-level="14.2.2" data-path="tree-based-models.html"><a href="tree-based-models.html#boosting"><i class="fa fa-check"></i><b>14.2.2</b> Boosting</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="tree-based-models.html"><a href="tree-based-models.html#random-forests"><i class="fa fa-check"></i><b>14.3</b> Random Forests</a><ul>
+<li class="chapter" data-level="14.3.1" data-path="tree-based-models.html"><a href="tree-based-models.html#example-3"><i class="fa fa-check"></i><b>14.3.1</b> Example</a></li>
+<li class="chapter" data-level="14.3.2" data-path="tree-based-models.html"><a href="tree-based-models.html#variable-importance"><i class="fa fa-check"></i><b>14.3.2</b> Variable Importance</a></li>
+<li class="chapter" data-level="14.3.3" data-path="tree-based-models.html"><a href="tree-based-models.html#partial-dependence"><i class="fa fa-check"></i><b>14.3.3</b> Partial dependence</a></li>
+<li class="chapter" data-level="14.3.4" data-path="tree-based-models.html"><a href="tree-based-models.html#advantages-and-disadvantages-3"><i class="fa fa-check"></i><b>14.3.4</b> Advantages and disadvantages</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="tree-based-models.html"><a href="tree-based-models.html#gradient-boosted-trees"><i class="fa fa-check"></i><b>14.4</b> Gradient Boosted Trees</a><ul>
+<li class="chapter" data-level="14.4.1" data-path="tree-based-models.html"><a href="tree-based-models.html#adaboost"><i class="fa fa-check"></i><b>14.4.1</b> AdaBoost</a></li>
+<li class="chapter" data-level="14.4.2" data-path="tree-based-models.html"><a href="tree-based-models.html#gradient-boosting"><i class="fa fa-check"></i><b>14.4.2</b> Gradient Boosting</a></li>
+<li class="chapter" data-level="14.4.3" data-path="tree-based-models.html"><a href="tree-based-models.html#notation"><i class="fa fa-check"></i><b>14.4.3</b> Notation</a></li>
+<li class="chapter" data-level="14.4.4" data-path="tree-based-models.html"><a href="tree-based-models.html#parameters"><i class="fa fa-check"></i><b>14.4.4</b> Parameters</a></li>
+<li class="chapter" data-level="14.4.5" data-path="tree-based-models.html"><a href="tree-based-models.html#example-4"><i class="fa fa-check"></i><b>14.4.5</b> Example</a></li>
+<li class="chapter" data-level="14.4.6" data-path="tree-based-models.html"><a href="tree-based-models.html#advantages-and-disadvantages-4"><i class="fa fa-check"></i><b>14.4.6</b> Advantages and disadvantages</a></li>
+</ul></li>
+<li class="chapter" data-level="14.5" data-path="tree-based-models.html"><a href="tree-based-models.html#exercises-1"><i class="fa fa-check"></i><b>14.5</b> Exercises</a><ul>
+<li class="chapter" data-level="14.5.1" data-path="tree-based-models.html"><a href="tree-based-models.html#rf-with-randomforest"><i class="fa fa-check"></i><b>14.5.1</b> 1. RF with <code>randomForest</code></a></li>
+<li class="chapter" data-level="14.5.2" data-path="tree-based-models.html"><a href="tree-based-models.html#rf-tuning-with-caret"><i class="fa fa-check"></i><b>14.5.2</b> 2. RF tuning with <code>caret</code></a></li>
+<li class="chapter" data-level="14.5.3" data-path="tree-based-models.html"><a href="tree-based-models.html#tuning-a-gbm-with-caret"><i class="fa fa-check"></i><b>14.5.3</b> 3. Tuning a GBM with <code>caret</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html"><i class="fa fa-check"></i><b>15</b> Unsupervised Learning</a><ul>
+<li class="chapter" data-level="15.1" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#principal-component-analysis-pca"><i class="fa fa-check"></i><b>15.1</b> Principal Component Analysis (PCA)</a><ul>
+<li class="chapter" data-level="15.1.1" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#example-pca-on-us-arrests"><i class="fa fa-check"></i><b>15.1.1</b> Example: PCA on US Arrests</a></li>
+<li class="chapter" data-level="15.1.2" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#example-pca-on-cancel-cells"><i class="fa fa-check"></i><b>15.1.2</b> Example: PCA on Cancel Cells</a></li>
+</ul></li>
+<li class="chapter" data-level="15.2" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#clustering"><i class="fa fa-check"></i><b>15.2</b> Clustering</a><ul>
+<li class="chapter" data-level="15.2.1" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#k-means-clustering"><i class="fa fa-check"></i><b>15.2.1</b> K-Means Clustering</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#hierarchical-clustering"><i class="fa fa-check"></i><b>15.3</b> Hierarchical Clustering</a><ul>
+<li class="chapter" data-level="15.3.1" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#example-clustering-cancel-cells"><i class="fa fa-check"></i><b>15.3.1</b> Example: Clustering Cancel Cells</a></li>
+<li class="chapter" data-level="15.3.2" data-path="unsupervised-learning.html"><a href="unsupervised-learning.html#references-1"><i class="fa fa-check"></i><b>15.3.2</b> References</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="references-2.html"><a href="references-2.html"><i class="fa fa-check"></i><b>16</b> References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Predictive Analytics for Actuaries</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="what-do-you-need-to-know-in-order-to-pass" class="section level1">
+<h1><span class="header-section-number"> 5</span> What do you need to know in order to pass?</h1>
+<p>There is no need to become an R expert for this exam. They will provide you with a lot of code and the challenging part will be in interpreting what it does. You won’t be expected to do complex tasks from scratch. The most programming-intensive part is the data exploration, but this is only the first few questions. Subsequent questions on modeling will ask you to make changes to parameters.</p>
+<p>You will be expected to tweak parts and explore what happens. A good attention to detail and a close reading of the R documention will go a long ways. You will spend much more of your time writing in English and explaining what the code is doing than writing it yourself. You will also be graded based on how well you document your code in the .Rmd file.</p>
+<p>The June 16 2020 Project Statement has this under “General information for candidates.”</p>
+<blockquote>
+<p>Each task will be graded on the quality of your thought process, <strong>added or modified code</strong>, and conclusions</p>
+</blockquote>
+<blockquote>
+<p>At a minimum you must submit your completed report template and an Rmd file that supports your
+work. Graders expect that your Rmd code can be run from beginning to end. The code snippets provided
+should either be commented out or adapted for execution. Ensure that it is clear where in the code each
+of the tasks is addressed.</p>
+</blockquote>
+<p>In other words, whatever results you have in your report will need to be consistent with what the grading team finds when they run your .rmd file.</p>
+<div id="example-1---making-parameter-changes" class="section level2">
+<h2><span class="header-section-number">5.1</span> Example 1 - Making parameter changes</h2>
+<p><strong>SOA Exam PA June 16, 2020, Task 8</strong></p>
+<blockquote>
+<ol start="8" style="list-style-type: decimal">
+<li>(4 points) Perform feature selection with lasso regression.</li>
+</ol>
+<p>Run a lasso regression using the code chunk provided. <strong>The code will need to be modified to
+reflect your decision in Task 7 regarding the PCA variable.</strong></p>
+</blockquote>
+<p>You probably read this and asked “what is a lasso regression?” and with good reason - we haven’t yet covered this topic. All that you need to know is <strong>highlighted in black:</strong> you will need to change the code that they give you, which is below.</p>
+<p>You need to choose between using one of two data sets:</p>
+<ul>
+<li>DATA SET A</li>
+<li>DATA SET B</li>
+</ul>
+<p>Then ignore everything else!</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="co"># Format data as matrices (necessary for glmnet). </span></a>
+<a class="sourceLine" id="cb5-2" title="2"><span class="co"># Uncomment two items that reflect your decision from Task 7.</span></a>
+<a class="sourceLine" id="cb5-3" title="3"></a>
+<a class="sourceLine" id="cb5-4" title="4"><span class="co">#DATA SET A</span></a>
+<a class="sourceLine" id="cb5-5" title="5">lasso.mat.train &lt;-<span class="st"> </span><span class="kw">model.matrix</span>(days <span class="op">~</span><span class="st"> </span>. <span class="op">-</span><span class="st"> </span>PC1, data.train)</a>
+<a class="sourceLine" id="cb5-6" title="6">lasso.mat.test &lt;-<span class="st"> </span><span class="kw">model.matrix</span>(days <span class="op">~</span><span class="st"> </span>. <span class="op">-</span><span class="st"> </span>PC1, data.test)</a>
+<a class="sourceLine" id="cb5-7" title="7"></a>
+<a class="sourceLine" id="cb5-8" title="8"><span class="co">#DATA SET B</span></a>
+<a class="sourceLine" id="cb5-9" title="9"><span class="co"># lasso.mat.train &lt;- model.matrix(days ~ . - num_procs - num_meds - num_ip - num_diags, data.train)</span></a>
+<a class="sourceLine" id="cb5-10" title="10"><span class="co"># lasso.mat.test &lt;- model.matrix(days ~ . - num_procs - num_meds - num_ip - num_diags, data.test)</span></a>
+<a class="sourceLine" id="cb5-11" title="11"></a>
+<a class="sourceLine" id="cb5-12" title="12"><span class="kw">set.seed</span>(<span class="dv">789</span>)</a>
+<a class="sourceLine" id="cb5-13" title="13"></a>
+<a class="sourceLine" id="cb5-14" title="14">lasso.cv &lt;-<span class="st"> </span><span class="kw">cv.glmnet</span>(</a>
+<a class="sourceLine" id="cb5-15" title="15">  <span class="dt">x =</span> lasso.mat.train,</a>
+<a class="sourceLine" id="cb5-16" title="16">  <span class="dt">y =</span> data.train<span class="op">$</span>days,</a>
+<a class="sourceLine" id="cb5-17" title="17">  <span class="dt">family =</span> <span class="st">&quot;poisson&quot;</span>, <span class="co"># Do not change.</span></a>
+<a class="sourceLine" id="cb5-18" title="18">  <span class="dt">alpha =</span> <span class="dv">1</span> <span class="co"># alpha = 1 for lasso</span></a>
+<a class="sourceLine" id="cb5-19" title="19">)</a></code></pre></div>
+<p>If you wanted to use data set B, you would just add comments to data set A and uncomment B.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="co">#DATA SET A</span></a>
+<a class="sourceLine" id="cb6-2" title="2"><span class="co"># lasso.mat.train &lt;- model.matrix(days ~ . - PC1, data.train)</span></a>
+<a class="sourceLine" id="cb6-3" title="3"><span class="co"># lasso.mat.test &lt;- model.matrix(days ~ . - PC1, data.test)</span></a>
+<a class="sourceLine" id="cb6-4" title="4"></a>
+<a class="sourceLine" id="cb6-5" title="5"><span class="co">#DATA SET B</span></a>
+<a class="sourceLine" id="cb6-6" title="6">lasso.mat.train &lt;-<span class="st"> </span><span class="kw">model.matrix</span>(days <span class="op">~</span><span class="st"> </span>. <span class="op">-</span><span class="st"> </span>num_procs <span class="op">-</span><span class="st"> </span>num_meds <span class="op">-</span><span class="st"> </span>num_ip <span class="op">-</span><span class="st"> </span>num_diags, data.train)</a>
+<a class="sourceLine" id="cb6-7" title="7">lasso.mat.test &lt;-<span class="st"> </span><span class="kw">model.matrix</span>(days <span class="op">~</span><span class="st"> </span>. <span class="op">-</span><span class="st"> </span>num_procs <span class="op">-</span><span class="st"> </span>num_meds <span class="op">-</span><span class="st"> </span>num_ip <span class="op">-</span><span class="st"> </span>num_diags, data.test)</a></code></pre></div>
+</div>
+<div id="example-2---data-exploration" class="section level2">
+<h2><span class="header-section-number">5.2</span> Example 2 - Data exploration</h2>
+<p>That last example was easy. They might ask you to do something like the following:</p>
+<p><strong>Template code: </strong></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="co"># This code takes a continuous variable and creates a binned factor variable. </span></a>
+<a class="sourceLine" id="cb7-2" title="2"><span class="co"># The code applies it directly to the capital gain variable as an </span></a>
+<a class="sourceLine" id="cb7-3" title="3"><span class="co"># example. right = FALSE means that the left number is included and </span></a>
+<a class="sourceLine" id="cb7-4" title="4"><span class="co"># the right number excluded. So, in this case, the first bin runs from 0 to </span></a>
+<a class="sourceLine" id="cb7-5" title="5"><span class="co"># 1000 and includes 0 and excludes 1000. Note that the code creates a new </span></a>
+<a class="sourceLine" id="cb7-6" title="6"><span class="co"># variable, so the original variable is retained.</span></a>
+<a class="sourceLine" id="cb7-7" title="7">df<span class="op">$</span>cap_gain_cut &lt;-<span class="st"> </span><span class="kw">cut</span>(df<span class="op">$</span>cap_gain, <span class="dt">breaks =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1000</span>, <span class="dv">5000</span>, <span class="ot">Inf</span>), <span class="dt">right =</span> <span class="ot">FALSE</span>, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;lowcg&quot;</span>, <span class="st">&quot;mediumcg&quot;</span>, <span class="st">&quot;highcg&quot;</span>))</a></code></pre></div>
+<p>To answer this question correctly, you would need to</p>
+<ul>
+<li>Understand that the code is taking the capital gains recorded on investments, <code>cap_gain</code>, and then creating bins so that the new variable is “lowcg” for values between 0 and 1000, “mediumcp” from 1000 to 5000, and “highcg” for all values above 5000.<br />
+</li>
+<li>Then you would need to interpret a statistical model</li>
+<li>Finally, use this result to change these cutoff values so that “low cg” is all values less than 5095.5, “medium cg” is all values from 5095.5 to 7055.5, and so forth. You would need to do this for two data sets, <code>data.train</code>, and <code>data.test</code>.</li>
+</ul>
+<p><strong>Solution code: </strong></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="co"># This code cuts a continuous variable into buckets. </span></a>
+<a class="sourceLine" id="cb8-2" title="2"><span class="co"># The process is applied to both the training and test sets. </span></a>
+<a class="sourceLine" id="cb8-3" title="3"></a>
+<a class="sourceLine" id="cb8-4" title="4">data.train<span class="op">$</span>cap_gain_cut &lt;-<span class="st"> </span><span class="kw">cut</span>(data.train<span class="op">$</span>cap_gain, <span class="dt">breaks =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">5095.5</span>, <span class="fl">7055.5</span>, <span class="ot">Inf</span>), <span class="dt">right =</span> <span class="ot">FALSE</span>, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;lowcg&quot;</span>, <span class="st">&quot;mediumcg&quot;</span>, <span class="st">&quot;highcg&quot;</span>))</a>
+<a class="sourceLine" id="cb8-5" title="5"></a>
+<a class="sourceLine" id="cb8-6" title="6">data.test<span class="op">$</span>cap_gain_cut &lt;-<span class="st"> </span><span class="kw">cut</span>(data.test<span class="op">$</span>cap_gain, <span class="dt">breaks =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">5095.5</span>, <span class="fl">7055.5</span>, <span class="ot">Inf</span>), <span class="dt">right =</span> <span class="ot">FALSE</span>, <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;lowcg&quot;</span>, <span class="st">&quot;mediumcg&quot;</span>, <span class="st">&quot;highcg&quot;</span>))</a></code></pre></div>
+<p>Don’t panic if all of this code is confusing. Just focus on reading the comments. As you can see, this is less of a programming question than it is a “logic and reasoning” question.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="getting-started.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="r-programming.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/sdcastillo/PA-R-Study-Manual/edit/master/02-r-programming.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["Exam-PA-Study-Manual.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

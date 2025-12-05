@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title> 6 Linear Models | The Predictive Analytics R Study Manual</title>
+  <meta name="description" content="This will help you pass these exams" />
+  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
+
+  <meta property="og:title" content=" 6 Linear Models | The Predictive Analytics R Study Manual" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This will help you pass these exams" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content=" 6 Linear Models | The Predictive Analytics R Study Manual" />
+  
+  <meta name="twitter:description" content="This will help you pass these exams" />
+  
+
+<meta name="author" content="Sam Castillo" />
+
+
+<meta name="date" content="2019-11-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="visualization.html"/>
+<link rel="next" href="tree-based-models.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  { background-color: #f8f8f8; }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Exam PA Study Manual</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Welcome</a></li>
+<li class="chapter" data-level="2" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>2</b> Getting started</a><ul>
+<li class="chapter" data-level="2.1" data-path="getting-started.html"><a href="getting-started.html#download-islr"><i class="fa fa-check"></i><b>2.1</b> Download ISLR</a></li>
+<li class="chapter" data-level="2.2" data-path="getting-started.html"><a href="getting-started.html#installing-r"><i class="fa fa-check"></i><b>2.2</b> Installing R</a></li>
+<li class="chapter" data-level="2.3" data-path="getting-started.html"><a href="getting-started.html#installing-rstudio"><i class="fa fa-check"></i><b>2.3</b> Installing RStudio</a></li>
+<li class="chapter" data-level="2.4" data-path="getting-started.html"><a href="getting-started.html#set-the-r-library"><i class="fa fa-check"></i><b>2.4</b> Set the R library</a></li>
+<li class="chapter" data-level="2.5" data-path="getting-started.html"><a href="getting-started.html#download-the-data"><i class="fa fa-check"></i><b>2.5</b> Download the data</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="r-programming.html"><a href="r-programming.html"><i class="fa fa-check"></i><b>3</b> R programming</a><ul>
+<li class="chapter" data-level="3.1" data-path="r-programming.html"><a href="r-programming.html#notebook-chunks"><i class="fa fa-check"></i><b>3.1</b> Notebook chunks</a></li>
+<li class="chapter" data-level="3.2" data-path="r-programming.html"><a href="r-programming.html#basic-operations"><i class="fa fa-check"></i><b>3.2</b> Basic operations</a></li>
+<li class="chapter" data-level="3.3" data-path="r-programming.html"><a href="r-programming.html#lists"><i class="fa fa-check"></i><b>3.3</b> Lists</a></li>
+<li class="chapter" data-level="3.4" data-path="r-programming.html"><a href="r-programming.html#functions"><i class="fa fa-check"></i><b>3.4</b> Functions</a></li>
+<li class="chapter" data-level="3.5" data-path="r-programming.html"><a href="r-programming.html#data-frames"><i class="fa fa-check"></i><b>3.5</b> Data frames</a></li>
+<li class="chapter" data-level="3.6" data-path="r-programming.html"><a href="r-programming.html#pipes"><i class="fa fa-check"></i><b>3.6</b> Pipes</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="data-manipulation.html"><a href="data-manipulation.html"><i class="fa fa-check"></i><b>4</b> Data manipulation</a><ul>
+<li class="chapter" data-level="4.1" data-path="data-manipulation.html"><a href="data-manipulation.html#look-at-the-data"><i class="fa fa-check"></i><b>4.1</b> Look at the data</a></li>
+<li class="chapter" data-level="4.2" data-path="data-manipulation.html"><a href="data-manipulation.html#transform-the-data"><i class="fa fa-check"></i><b>4.2</b> Transform the data</a></li>
+<li class="chapter" data-level="4.3" data-path="data-manipulation.html"><a href="data-manipulation.html#exercises"><i class="fa fa-check"></i><b>4.3</b> Exercises</a></li>
+<li class="chapter" data-level="4.4" data-path="data-manipulation.html"><a href="data-manipulation.html#answers-to-exercises"><i class="fa fa-check"></i><b>4.4</b> Answers to exercises</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="visualization.html"><a href="visualization.html"><i class="fa fa-check"></i><b>5</b> Visualization</a><ul>
+<li class="chapter" data-level="5.1" data-path="visualization.html"><a href="visualization.html#create-a-plot-object-ggplot"><i class="fa fa-check"></i><b>5.1</b> Create a plot object (ggplot)</a></li>
+<li class="chapter" data-level="5.2" data-path="visualization.html"><a href="visualization.html#add-a-plot"><i class="fa fa-check"></i><b>5.2</b> Add a plot</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="linear-models.html"><a href="linear-models.html"><i class="fa fa-check"></i><b>6</b> Linear Models</a><ul>
+<li class="chapter" data-level="6.1" data-path="linear-models.html"><a href="linear-models.html#introduction"><i class="fa fa-check"></i><b>6.1</b> Introduction</a></li>
+<li class="chapter" data-level="6.2" data-path="linear-models.html"><a href="linear-models.html#ordinary-least-squares-ols"><i class="fa fa-check"></i><b>6.2</b> Ordinary least squares (OLS)</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="linear-models.html"><a href="linear-models.html#example"><i class="fa fa-check"></i><b>6.2.1</b> Example</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="linear-models.html"><a href="linear-models.html#generalized-linear-models-glms"><i class="fa fa-check"></i><b>6.3</b> Generalized linear models (GLMs)</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="linear-models.html"><a href="linear-models.html#example-1"><i class="fa fa-check"></i><b>6.3.1</b> Example</a></li>
+<li class="chapter" data-level="6.3.2" data-path="linear-models.html"><a href="linear-models.html#reference-levels"><i class="fa fa-check"></i><b>6.3.2</b> Reference levels</a></li>
+<li class="chapter" data-level="6.3.3" data-path="linear-models.html"><a href="linear-models.html#interactions"><i class="fa fa-check"></i><b>6.3.3</b> Interactions</a></li>
+<li class="chapter" data-level="6.3.4" data-path="linear-models.html"><a href="linear-models.html#logistic-regression"><i class="fa fa-check"></i><b>6.3.4</b> Logistic Regression</a></li>
+<li class="chapter" data-level="6.3.5" data-path="linear-models.html"><a href="linear-models.html#example-2"><i class="fa fa-check"></i><b>6.3.5</b> Example</a></li>
+<li class="chapter" data-level="6.3.6" data-path="linear-models.html"><a href="linear-models.html#area-under-the-roc-curv-auc"><i class="fa fa-check"></i><b>6.3.6</b> Area under the ROC Curv (AUC)</a></li>
+<li class="chapter" data-level="6.3.7" data-path="linear-models.html"><a href="linear-models.html#poisson-regression"><i class="fa fa-check"></i><b>6.3.7</b> Poisson Regression</a></li>
+<li class="chapter" data-level="6.3.8" data-path="linear-models.html"><a href="linear-models.html#tweedie-regression"><i class="fa fa-check"></i><b>6.3.8</b> Tweedie regression</a></li>
+<li class="chapter" data-level="6.3.9" data-path="linear-models.html"><a href="linear-models.html#stepwise-subset-selection"><i class="fa fa-check"></i><b>6.3.9</b> Stepwise subset selection</a></li>
+<li class="chapter" data-level="6.3.10" data-path="linear-models.html"><a href="linear-models.html#advantages-and-disadvantages"><i class="fa fa-check"></i><b>6.3.10</b> Advantages and disadvantages</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="linear-models.html"><a href="linear-models.html#penalized-linear-models"><i class="fa fa-check"></i><b>6.4</b> Penalized Linear Models</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="linear-models.html"><a href="linear-models.html#ridge-regression"><i class="fa fa-check"></i><b>6.4.1</b> Ridge Regression</a></li>
+<li class="chapter" data-level="6.4.2" data-path="linear-models.html"><a href="linear-models.html#lasso"><i class="fa fa-check"></i><b>6.4.2</b> Lasso</a></li>
+<li class="chapter" data-level="6.4.3" data-path="linear-models.html"><a href="linear-models.html#elastic-net"><i class="fa fa-check"></i><b>6.4.3</b> Elastic Net</a></li>
+<li class="chapter" data-level="6.4.4" data-path="linear-models.html"><a href="linear-models.html#advantages-and-disadvantages-1"><i class="fa fa-check"></i><b>6.4.4</b> Advantages and disadvantages</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="tree-based-models.html"><a href="tree-based-models.html"><i class="fa fa-check"></i><b>7</b> Tree-based models</a><ul>
+<li class="chapter" data-level="7.1" data-path="tree-based-models.html"><a href="tree-based-models.html#decision-trees"><i class="fa fa-check"></i><b>7.1</b> Decision Trees</a></li>
+<li class="chapter" data-level="7.2" data-path="tree-based-models.html"><a href="tree-based-models.html#advantages-and-disadvantages-2"><i class="fa fa-check"></i><b>7.2</b> Advantages and disadvantages</a></li>
+<li class="chapter" data-level="7.3" data-path="tree-based-models.html"><a href="tree-based-models.html#ensemble-learning"><i class="fa fa-check"></i><b>7.3</b> Ensemble learning</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="tree-based-models.html"><a href="tree-based-models.html#bagging"><i class="fa fa-check"></i><b>7.3.1</b> Bagging</a></li>
+<li class="chapter" data-level="7.3.2" data-path="tree-based-models.html"><a href="tree-based-models.html#boosting"><i class="fa fa-check"></i><b>7.3.2</b> Boosting</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="tree-based-models.html"><a href="tree-based-models.html#random-forests"><i class="fa fa-check"></i><b>7.4</b> Random Forests</a></li>
+<li class="chapter" data-level="7.5" data-path="tree-based-models.html"><a href="tree-based-models.html#gradient-boosted-trees"><i class="fa fa-check"></i><b>7.5</b> Gradient Boosted Trees</a><ul>
+<li class="chapter" data-level="7.5.1" data-path="tree-based-models.html"><a href="tree-based-models.html#variable-importance"><i class="fa fa-check"></i><b>7.5.1</b> Variable importance</a></li>
+<li class="chapter" data-level="7.5.2" data-path="tree-based-models.html"><a href="tree-based-models.html#partial-dependence"><i class="fa fa-check"></i><b>7.5.2</b> Partial dependence</a></li>
+<li class="chapter" data-level="7.5.3" data-path="tree-based-models.html"><a href="tree-based-models.html#exercises-1"><i class="fa fa-check"></i><b>7.5.3</b> Exercises</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="a-mini-exam-example.html"><a href="a-mini-exam-example.html"><i class="fa fa-check"></i><b>8</b> A Mini-Exam Example</a><ul>
+<li class="chapter" data-level="8.1" data-path="a-mini-exam-example.html"><a href="a-mini-exam-example.html#project-statement"><i class="fa fa-check"></i><b>8.1</b> Project Statement</a><ul>
+<li class="chapter" data-level="8.1.1" data-path="a-mini-exam-example.html"><a href="a-mini-exam-example.html#describe-the-data-1-point"><i class="fa fa-check"></i><b>8.1.1</b> Describe the data (1 point)</a></li>
+<li class="chapter" data-level="8.1.2" data-path="a-mini-exam-example.html"><a href="a-mini-exam-example.html#create-a-histogram-of-the-claims-and-comment-on-the-shape-1-point"><i class="fa fa-check"></i><b>8.1.2</b> Create a histogram of the claims and comment on the shape (1 point)</a></li>
+<li class="chapter" data-level="8.1.3" data-path="a-mini-exam-example.html"><a href="a-mini-exam-example.html#fit-a-linear-model-1-point"><i class="fa fa-check"></i><b>8.1.3</b> Fit a linear model (1 point)</a></li>
+<li class="chapter" data-level="8.1.4" data-path="a-mini-exam-example.html"><a href="a-mini-exam-example.html#describe-the-relationship-between-age-sex-and-claim-costs-1-point"><i class="fa fa-check"></i><b>8.1.4</b> Describe the relationship between age, sex, and claim costs (1 point)</a></li>
+<li class="chapter" data-level="8.1.5" data-path="a-mini-exam-example.html"><a href="a-mini-exam-example.html#write-a-summary-of-steps-1-4-in-non-technical-language-1-point"><i class="fa fa-check"></i><b>8.1.5</b> Write a summary of steps 1-4 in non-technical language (1 point)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="practice-exam.html"><a href="practice-exam.html"><i class="fa fa-check"></i><b>9</b> Practice Exam</a></li>
+<li class="chapter" data-level="10" data-path="prior-exams.html"><a href="prior-exams.html"><i class="fa fa-check"></i><b>10</b> Prior Exams</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">The Predictive Analytics R Study Manual</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="linear-models" class="section level1">
+<h1><span class="header-section-number"> 6</span> Linear Models</h1>
+<div id="introduction" class="section level2">
+<h2><span class="header-section-number">6.1</span> Introduction</h2>
+<p>The number of observations will be denoted by <span class="math inline">\(n\)</span>. When we refer to the size of a data set, we are referring to <span class="math inline">\(n\)</span>. We use <span class="math inline">\(p\)</span> to refer the number of input variables used. The word “variables” is synonymous with “features”. For example, in the <code>health_insurance</code> data, the variables are <code>age</code>, <code>sex</code>, <code>bmi</code>, <code>children</code>, <code>smoker</code> and <code>region</code>. These 7 variables mean that <span class="math inline">\(p = 7\)</span>. The data is collected from 1,338 patients, which means that <span class="math inline">\(n = 1,338\)</span>.</p>
+<p>Scalar numbers are denoted by ordinary variables (i.e., <span class="math inline">\(x = 2\)</span>, <span class="math inline">\(z = 4\)</span>), and vectors are denoted by bold-faced letters</p>
+<p><span class="math display">\[\mathbf{a} = \begin{pmatrix} a_1 \\ a_2 \\ a_3 \end{pmatrix}\]</span></p>
+<p>We use <span class="math inline">\(\mathbf{y}\)</span> to denote the target variable. This is the variable which we are trying to predict. This can be either a whole number, in which case we are performing <em>regression</em>, or a category, in which case we are performing <em>classification</em>. In the health insurance example, <code>y = charges</code>, which are the annual health care costs for a patient.</p>
+<p>Both <span class="math inline">\(n\)</span> and <span class="math inline">\(p\)</span> are important because they tell us what types of models are likely to work well, and which methods are likely to fail. For the PA exam, we will be dealing with small <span class="math inline">\(n\)</span> (&lt;100,000) due to the limitations of the Prometric computers. We will use a small <span class="math inline">\(p\)</span> (&lt; 20) in order to make the data sets easier to interpret.</p>
+<p>We organize these variables into matrices. Take an example with <span class="math inline">\(p\)</span> = 2 columns and 3 observations. The matrix is said to be <span class="math inline">\(3 \times 2\)</span> (read as “2-by-3”) matrix.</p>
+<p><span class="math display">\[
+\mathbf{X} = \begin{pmatrix}x_{11} &amp; x_{21}\\
+x_{21} &amp; x_{22}\\
+x_{31} &amp; x_{32}
+\end{pmatrix}
+\]</span></p>
+<p>The target is</p>
+<p><span class="math display">\[\mathbf{y} = \begin{pmatrix} y_1 \\ y_2 \\ y_3 \end{pmatrix}\]</span>
+This represents the <em>unknown</em> quantity that we want to be able to predict. In the health care costs example, <span class="math inline">\(y_1\)</span> would be the costs of the first patient, <span class="math inline">\(y_2\)</span> the costs of the second patient, and so forth. The variables <span class="math inline">\(x_{11}\)</span> and <span class="math inline">\(x_{12}\)</span> might represent the first patient’s age and sex respectively, where <span class="math inline">\(x_{i1}\)</span> is the patient’s age, and <span class="math inline">\(x_{i2} = 1\)</span> if the ith patient is male and 0 if female.</p>
+<p>Machine learning is about using <span class="math inline">\(\mathbf{X}\)</span> to predict <span class="math inline">\(\mathbf{y}\)</span>. We call this “y-hat”, or simply the prediction. This is based on a function of the data <span class="math inline">\(X\)</span>.</p>
+<p><span class="math display">\[\mathbf{\hat{y}} = f(\mathbf{X}) = \begin{pmatrix} \hat{y_1} \\ \hat{y_2} \\ \hat{y_3} \end{pmatrix}\]</span></p>
+<p>This is almost never going to happen perfectly, and so there is always an error term, <span class="math inline">\(\mathbf{\epsilon}\)</span>. This can be made smaller, but is never exactly zero.</p>
+<p><span class="math display">\[
+\mathbf{\hat{y}} + \mathbf{\epsilon} = f(\mathbf{X}) + \mathbf{\epsilon}
+\]</span></p>
+<p>In other words, <span class="math inline">\(\epsilon = y - \hat{y}\)</span>. We call this the <em>residual</em>. When we predict a person’s health care costs, this is the difference between the predicted costs (which we had created the year before) and the actual costs that the patient experienced (of that current year).</p>
+</div>
+<div id="ordinary-least-squares-ols" class="section level2">
+<h2><span class="header-section-number">6.2</span> Ordinary least squares (OLS)</h2>
+<p>The type of model used refers to the class of function of <span class="math inline">\(f\)</span>. If <span class="math inline">\(f\)</span> is linear, then we are using a linear model. If <span class="math inline">\(f\)</span> is non-parametric (does not have input parameters), then it is non-parametric modeling. Linear models are the simplest type of model.</p>
+<p>We have the data <span class="math inline">\(\mathbf{X}\)</span> and the target <span class="math inline">\(\mathbf{y}\)</span>, where all of the y’s are real numbers, or <span class="math inline">\(y_i \in \mathbb{R}\)</span>.</p>
+<p>We want to find a <span class="math inline">\(\mathbf{\beta}\)</span> so that</p>
+<p><span class="math display">\[
+\mathbf{\hat{y}} = \mathbf{X} \mathbf{\beta}
+\]</span></p>
+<p>Which means that each <span class="math inline">\(y_i\)</span> is a linear combination of the variables <span class="math inline">\(x_1, ..., x_p\)</span>, plus a constant <span class="math inline">\(\beta_0\)</span> which is called the <em>intercept</em> term.</p>
+<p><span class="math display">\[
+\begin{equation}
+y_i = \beta_0 + \beta_1 x_1 + ... + \beta_p x_p
+\end{equation}
+\]</span></p>
+<p>In the one-dimensional case, this creates a line connecting the points. In higher dimensions, this creates a hyperplane.</p>
+<p><img src="Exam-PA-Study-Manual_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p>The question then is <strong>how can we choose the best values of</strong> <span class="math inline">\(\beta?\)</span> First of all, we need to define what we mean by “best”. Ideally, we will choose these values which will create close predictions of <span class="math inline">\(\mathbf{y}\)</span> on new, unseen data.</p>
+<p>To solve for <span class="math inline">\(\mathbf{\beta}\)</span>, we first need to define a <em>loss function</em>. This allows us to compare how well a model is fitting the data. The most commonly used loss function is the residual sum of squares (RSS), also called the <em>squared error loss</em> or the L2 norm. When RSS is small, then the predictions are close to the actual values and the model is a good fit. When RSS is large, the model is a poor fit.</p>
+<p><span class="math display">\[
+\text{RSS} = \sum_i(y_i - \hat{y})^2
+\]</span></p>
+<p>When you replace <span class="math inline">\(\hat{y_i}\)</span> in the above equation with <span class="math inline">\(\beta_0 + \beta_1 x_1 + ... + \beta_p x_p\)</span>, take the derivative with respect to <span class="math inline">\(\beta\)</span>, set equal to zero, and solve, we can find the optimal values. This turns the problem of statistics into a problem of numeric optimization, which computers can do quickly.</p>
+<p>You might be asking: why does this need to be the squared error? Why not the absolute error, or the cubed error? Technically, these could be used as well. In fact, the absolute error (L1 norm) is useful in other models. Taking the square has a number of advantages.</p>
+<ul>
+<li>It provides the same solution if we assume that the distribution of <span class="math inline">\(\mathbf{Y}|\mathbf{X}\)</span> is guassian and maximize the likelihood function. This method is used for GLMs, in the next chapter.</li>
+<li>Empirically it has been shown to be less likely to overfit as compared to other loss functions</li>
+</ul>
+<div id="example" class="section level3">
+<h3><span class="header-section-number">6.2.1</span> Example</h3>
+<p>In our health, we can create a linear model using <code>bmi</code>, <code>age</code>, and <code>sex</code> as an inputs.</p>
+<p>The <code>formula</code> controls which variables are included. There are a few shortcuts for using R formulas.</p>
+<table>
+<colgroup>
+<col width="43%" />
+<col width="56%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Formula</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>charges</code> ~ <code>bmi</code> + <code>age</code></td>
+<td>Use <code>age</code> and <code>bmi</code> to predict <code>charges</code></td>
+</tr>
+<tr class="even">
+<td><code>charges</code> ~ <code>bmi</code> + <code>age</code> + <code>bmi</code>*<code>age</code></td>
+<td>Use <code>age</code>,<code>bmi</code> as well as an interaction to predict <code>charges</code></td>
+</tr>
+<tr class="odd">
+<td><code>charges</code> ~ (<code>bmi &gt; 20</code>) + <code>age</code></td>
+<td>Use an indicator variable for <code>bmi &gt; 20</code> <code>age</code> to predict <code>charges</code></td>
+</tr>
+<tr class="even">
+<td>log(<code>charges</code>) ~ log(<code>bmi</code>) + log(<code>age</code>)</td>
+<td>Use the logs of <code>age</code> and <code>bmi</code> to predict log(<code>charges</code>)</td>
+</tr>
+<tr class="odd">
+<td><code>charges</code> ~ .</td>
+<td>Use all variables to predict <code>charges</code></td>
+</tr>
+</tbody>
+</table>
+<p>You can use formulas to create new variables (aka feature engineering). This can save you from needing to re-run code to create data.</p>
+<p>Below we fit a simple linear model to predict charges.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">library</span>(ExamPAData)</a>
+<a class="sourceLine" id="cb1-2" title="2"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb1-3" title="3"></a>
+<a class="sourceLine" id="cb1-4" title="4">model &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="dt">data =</span> health_insurance, <span class="dt">formula =</span> charges <span class="op">~</span><span class="st"> </span>bmi <span class="op">+</span><span class="st"> </span>age)</a></code></pre></div>
+<p>The <code>summary</code> function gives details about the model. First, the <code>Estimate</code>, gives you the coefficients. The <code>Std. Error</code> is the error of the estimate for the coefficient. Higher standard error means greater uncertainty. This is relative to the average value of that variable. The <code>t value</code> tells you how “big” this error really is based on standard deviations. A larger <code>t value</code> implies a low probability of the null hypothesis being rejected saying that the coefficient is zero. This is the same as having a p-value (<code>Pr (&gt;|t|))</code>) being close to zero.</p>
+<p>The little <code>*</code>, <code>**</code>, <code>***</code> indicate that the variable is either somewhat significant, significant, or highly significant. “significance” here means that there is a low probability of the coefficient being that size if there were <em>no actual casual relationship</em>, or if the data was random noise.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw">summary</span>(model)</a></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = charges ~ bmi + age, data = health_insurance)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -14457  -7045  -5136   7211  48022 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -6424.80    1744.09  -3.684 0.000239 ***
+## bmi           332.97      51.37   6.481 1.28e-10 ***
+## age           241.93      22.30  10.850  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 11390 on 1335 degrees of freedom
+## Multiple R-squared:  0.1172, Adjusted R-squared:  0.1159 
+## F-statistic:  88.6 on 2 and 1335 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>When evaluating model performance, you should not rely on the <code>summary</code> alone as this is based on the training data. To look at performance, test the model on validation data. This can be done by a) using a hold out set, or b) using cross-validation, which is even better.</p>
+<p>Let’s create an 80% training set and 20% testing set. You don’t need to worry about understanding this code as the exam will always give this to you.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">library</span>(caret)</a>
+<a class="sourceLine" id="cb4-2" title="2"><span class="co">#create a train/test split</span></a>
+<a class="sourceLine" id="cb4-3" title="3">index &lt;-<span class="st"> </span><span class="kw">createDataPartition</span>(<span class="dt">y =</span> health_insurance<span class="op">$</span>charges, <span class="dt">p =</span> <span class="fl">0.8</span>, <span class="dt">list =</span> F) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.numeric</span>()</a>
+<a class="sourceLine" id="cb4-4" title="4">train &lt;-<span class="st">  </span>health_insurance <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">slice</span>(index)</a>
+<a class="sourceLine" id="cb4-5" title="5">test &lt;-<span class="st"> </span>health_insurance <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">slice</span>(<span class="op">-</span>index)</a></code></pre></div>
+<p>Train the model on the <code>train</code> and test on <code>test</code>.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">model &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="dt">data =</span> train, <span class="dt">formula =</span> charges <span class="op">~</span><span class="st"> </span>bmi <span class="op">+</span><span class="st"> </span>age)</a>
+<a class="sourceLine" id="cb5-2" title="2">pred =<span class="st"> </span><span class="kw">predict</span>(model, test)</a></code></pre></div>
+<p>Let’s look at the Root Mean Squared Error (RMSE).</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">get_rmse &lt;-<span class="st"> </span><span class="cf">function</span>(y, y_hat){</a>
+<a class="sourceLine" id="cb6-2" title="2">  <span class="kw">sqrt</span>(<span class="kw">mean</span>((y <span class="op">-</span><span class="st"> </span>y_hat)<span class="op">^</span><span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb6-3" title="3">}</a>
+<a class="sourceLine" id="cb6-4" title="4"></a>
+<a class="sourceLine" id="cb6-5" title="5"><span class="kw">get_rmse</span>(pred, test<span class="op">$</span>charges)</a></code></pre></div>
+<pre><code>## [1] 11401.39</code></pre>
+<p>The above number does not tell us if this is a good model or not by itself. We need a comparison. The fastest check is to compare against a prediction of the mean. In other words, all values of the <code>y_hat</code> are the average of <code>charges</code></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="kw">get_rmse</span>(<span class="kw">mean</span>(test<span class="op">$</span>charges), test<span class="op">$</span>charges)</a></code></pre></div>
+<pre><code>## [1] 11919.09</code></pre>
+<p>The RMSE is <strong>higher</strong> (worse) when using just the mean, which is what we expect. <strong>If you ever fit a model and get an error which is worse than the average prediction, something must be wrong.</strong></p>
+<p>The next test is to see if any assumptions have been violated.</p>
+<p>First, is there a pattern in the residuals? If there is, this means that the model is missing key information. For the model below, this is a <strong>yes</strong>, which means that this is a bad model. Because this is just for illustration, I’m going to continue using it, however.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="kw">plot</span>(model, <span class="dt">which =</span> <span class="dv">1</span>)</a></code></pre></div>
+<div class="figure"><span id="fig:unnamed-chunk-8"></span>
+<img src="Exam-PA-Study-Manual_files/figure-html/unnamed-chunk-8-1.png" alt="Residuals vs. Fitted" width="672" />
+<p class="caption">
+Figure 6.1: Residuals vs. Fitted
+</p>
+</div>
+<p>The normal QQ shows how well the quantiles of the predictions fit to a theoretical normal distribution. If this is true, then the graph is a straight 45-degree line. In this model, you can definitely see that this is not the case. If this were a good model, this distribution would be closer to normal.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="kw">plot</span>(model, <span class="dt">which =</span> <span class="dv">2</span>)</a></code></pre></div>
+<div class="figure"><span id="fig:unnamed-chunk-9"></span>
+<img src="Exam-PA-Study-Manual_files/figure-html/unnamed-chunk-9-1.png" alt="Normal Q-Q" width="672" />
+<p class="caption">
+Figure 6.2: Normal Q-Q
+</p>
+</div>
+<p><strong>Caution: This test only applies to linear models which have a gaussian response distribution.</strong></p>
+<p>The below is from an excellent post of Stack Exchange.</p>
+<blockquote>
+<p>R does not have a distinct plot.glm() method. When you fit a model with glm() and run plot(), it calls ?plot.lm, which is appropriate for linear models (i.e., with a normally distributed error term).</p>
+</blockquote>
+<blockquote>
+<p>More specifically, the plots will often ‘look funny’ and lead people to believe that there is something wrong with the model when it is perfectly fine. We can see this by looking at those plots with a couple of simple simulations where we know the model is correct:</p>
+</blockquote>
+<p>Once you have chosen your model, you should re-train over the entire data set. This is to make the coefficients more stable because <code>n</code> is larger. Below you can see that the standard error is lower after training over the entire data set.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">model_full_data &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="dt">data =</span> health_insurance, <span class="dt">formula =</span> charges <span class="op">~</span><span class="st"> </span>bmi <span class="op">+</span><span class="st"> </span>age)</a>
+<a class="sourceLine" id="cb12-2" title="2">model_test_data &lt;-<span class="st">  </span><span class="kw">lm</span>(<span class="dt">data =</span> train, <span class="dt">formula =</span> charges <span class="op">~</span><span class="st"> </span>bmi <span class="op">+</span><span class="st"> </span>age)</a></code></pre></div>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+term
+</th>
+<th style="text-align:right;">
+full_data_std_error
+</th>
+<th style="text-align:right;">
+test_data_std_error
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+(Intercept)
+</td>
+<td style="text-align:right;">
+1744.1
+</td>
+<td style="text-align:right;">
+1916.1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+bmi
+</td>
+<td style="text-align:right;">
+51.4
+</td>
+<td style="text-align:right;">
+57.3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+age
+</td>
+<td style="text-align:right;">
+22.3
+</td>
+<td style="text-align:right;">
+24.8
+</td>
+</tr>
+</tbody>
+</table>
+<p>All interpretations should be based on the model which was trained on the entire data set. Obviously, this only makes a difference if you are interpreting the precise values of the coefficients. If you are just looking at which variables are included, or at the size and sign of the coefficients, then this would not change.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="kw">coefficients</span>(model_full_data)</a></code></pre></div>
+<pre><code>## (Intercept)         bmi         age 
+##  -6424.8046    332.9651    241.9308</code></pre>
+<p>Translating the above into an equation we have</p>
+<p><span class="math display">\[\hat{y_i} = -6,424.80 + 332.97 \space\text{bmi} + 241.93\space \text{age}\]</span></p>
+<p>For example, if a patient has <code>bmi = 27.9</code> and <code>age = 19</code> then predicted value is</p>
+<p><span class="math display">\[\hat{y_1} = -6,424.80 + (332.97)(27.9) + (241.93)(19) = 7,461.73\]</span></p>
+<p>This model structure implies that each of the variables <span class="math inline">\(\mathbf{x_1}, ..., \mathbf{x_p}\)</span> each change the predicted <span class="math inline">\(\mathbf{\hat{y}}\)</span>. If <span class="math inline">\(x_{ij}\)</span> increases by one unit, then <span class="math inline">\(y_i\)</span> increases by <span class="math inline">\(\beta_j\)</span> units, regardless of what happens to all of the other variables. This is one of the main assumptions of linear models: <em>variable indepdendence</em>. If the variables are correlated, say, then this assumption will be violated.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Readings</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ISLR 2.1 What is statistical learning?</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>ISLR 2.2 Assessing model accuracy</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="generalized-linear-models-glms" class="section level2">
+<h2><span class="header-section-number">6.3</span> Generalized linear models (GLMs)</h2>
+<p>Instead of the model being a direct linear combination of the variables, there is an intermediate step called a <em>link function</em> <span class="math inline">\(g\)</span>.</p>
+<p><span class="math display">\[
+g(\mathbf{\hat{y}}) = \mathbf{X} \mathbf{\beta}
+\]</span></p>
+<p>This implies that the response <span class="math inline">\(\mathbf{y}\)</span> is related to the linear predictor <span class="math inline">\(\mathbf{X} \mathbf{\beta}\)</span> through the <em>inverse</em> link function.</p>
+<p><span class="math display">\[
+\mathbf{\hat{y}} = g^-1(\mathbf{X} \mathbf{\beta})
+\]</span></p>
+<p>This means that <span class="math inline">\(g(.)\)</span> must be an invertable. For example, if <span class="math inline">\(g\)</span> is the natural logarithm (aka, the “log-link”), then</p>
+<p><span class="math display">\[
+log(\mathbf{\hat{y}}) = \mathbf{X} \mathbf{\beta} \Rightarrow \mathbf{\hat{y}} = e^{\mathbf{X} \mathbf{\beta}}
+\]</span></p>
+<p>This is useful when the distribution of <span class="math inline">\(Y\)</span> is skewed, as taking the log corrects skewness.</p>
+<div class="figure"><span id="fig:unnamed-chunk-13"></span>
+<img src="Exam-PA-Study-Manual_files/figure-html/unnamed-chunk-13-1.png" alt="Taking the log corrects for skewness" width="672" />
+<p class="caption">
+Figure 6.3: Taking the log corrects for skewness
+</p>
+</div>
+<p>You might be asking, what if the distribution of <span class="math inline">\(Y\)</span> is not normal, no matter what choice we have for <span class="math inline">\(g\)</span>? The short answer is that we can change our assumption of the distribution of <span class="math inline">\(Y\)</span>, and use this to change the parameters. If you have taken exam STAM then you are familiar with <em>maximum likelihood estimation</em>.</p>
+<p>We have a response <span class="math inline">\(\mathbf{Y}\)</span>, and we fit a distribution to <span class="math inline">\(\mathbf{Y} | \mathbf{X}\)</span>. This is the target variable conditioned on the data. For each <span class="math inline">\(y_i\)</span>, each observation, we assign a probability <span class="math inline">\(f_Y(y_i)\)</span></p>
+<p><span class="math display">\[
+f_y(y_i | X_1 = x_1, X_2 = x_2, ..., X_p = x_p) = Pr(Y = y_i | \mathbf{X})
+\]</span></p>
+<p>Now, when we choose the response family, we are simply changing <span class="math inline">\(f_Y\)</span>. If we say that the response family is Gaussian, then <span class="math inline">\(f\)</span> has a Gaussian PDF. If we are modeling counts, then <span class="math inline">\(f\)</span> is a Poisson PDF. This only works if <span class="math inline">\(f\)</span> is in the <em>exponential family</em> of distributions, which consists of the common names such as Gaussian, Binomial, Gamma, Inverse Gamma, and so forth. Reading the CAS Monograph 5 will provide more detail into this.</p>
+<p>The possible combinations of link functions and distribution families are summarized nicely on <a href="https://en.wikipedia.org/wiki/Generalized_linear_model#Link_function">Wikipedia</a>.</p>
+<div class="figure"><span id="fig:unnamed-chunk-14"></span>
+<img src="images/glm_links.png" alt="Distribution-Link Function Combinations" width="804" />
+<p class="caption">
+Figure 6.4: Distribution-Link Function Combinations
+</p>
+</div>
+<p>For this exam, a common question is to ask candiates to choose the best distribution and link function. There is no all-encompasing answer, but a few suggestions are</p>
+<ul>
+<li>If <span class="math inline">\(Y\)</span> is counting something, such as the number of claims, number of accidents, or some other discrete and positive counting sequence, use the Poisson;</li>
+<li>If <span class="math inline">\(Y\)</span> contains negative values, then do not use the Exponential, Gamma, or Inverse Gaussian as these are strictly positive. Conversely, if <span class="math inline">\(Y\)</span> is only positive, such as the price of a policy (price is always &gt; 0), or the claim costs, then these are good choices;</li>
+<li>If <span class="math inline">\(Y\)</span> is binary, the the binomial response with either a Probit or Logit link. The Logit is more common.</li>
+<li>If <span class="math inline">\(Y\)</span> has more than two categories, the multinomial distribution with either the Probit or Logic link.</li>
+</ul>
+<p>The exam will always ask you to interpret the GLM. These questions can usually be answered by inverting the link function and interpreting the coefficients. In the case of the log link, simply take the exponent of the coefficients and each of these represents a “relativity” factor.</p>
+<p><span class="math display">\[
+log(\mathbf{\hat{y}}) = \mathbf{X} \mathbf{\beta} \Rightarrow \mathbf{\hat{y}} = e^{\mathbf{X} \mathbf{\beta}}
+\]</span></p>
+<p>For a single observation <span class="math inline">\(y_i\)</span>, this is</p>
+<p><span class="math display">\[
+\text{exp}(\beta_0 + \beta_1 x_{i1} + \beta_2 x_{i2} + ... + \beta_p x_{ip}) = \\
+e^{\beta_0} e^{\beta_1 x_{i1}}e^{\beta_2 x_{i2}} ...  e^{\beta_p x_{ip}} = 
+R_o R_2 R_3 ... R_{p}
+\]</span></p>
+<p>Where <span class="math inline">\(R_k\)</span> is the <em>relativity</em> of the kth variable. This terminology is from insurance ratemaking, where actuaries need to be able to explain the impact of each variable in pricing insurance. The data science community does not use this language.</p>
+<p>For binary outcomes with logit or probit link, there is no easy interpretation. This has come up in at least one past sample exam, and the solution was to create “psuedo” observations and observe how changing each <span class="math inline">\(x_k\)</span> would change the predicted value. Due to the time requirements, this is unlikely to come up on an exam. So if you are asked to use a logit or probit link, saying that the result is not easy to interpret should suffice.</p>
+<div id="example-1" class="section level3">
+<h3><span class="header-section-number">6.3.1</span> Example</h3>
+<p>Just as with OLS, there is a <code>formula</code> and <code>data argument</code>. In addition, we need to specify the response distribution and link function.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1">model =<span class="st"> </span><span class="kw">glm</span>(<span class="dt">formula =</span> charges <span class="op">~</span><span class="st"> </span>age <span class="op">+</span><span class="st"> </span>sex <span class="op">+</span><span class="st"> </span>children, </a>
+<a class="sourceLine" id="cb15-2" title="2">            <span class="dt">family =</span> <span class="kw">gaussian</span>(<span class="dt">link =</span> <span class="st">&quot;log&quot;</span>),</a>
+<a class="sourceLine" id="cb15-3" title="3">            <span class="dt">data =</span> health_insurance)</a></code></pre></div>
+<p>We see that <code>age</code>, <code>sex</code>, and <code>children</code> are all significant (p &lt;0.01). Reading off the coefficient signs, we see that claims</p>
+<ul>
+<li>Increase as age increases</li>
+<li>Are higher for men</li>
+<li>Are slightly higher for patients wich children</li>
+</ul>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1">model <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">tidy</span>()</a></code></pre></div>
+<pre><code>## # A tibble: 4 x 5
+##   term        estimate std.error statistic  p.value
+##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+## 1 (Intercept)   8.55     0.0953      89.7  0.      
+## 2 age           0.0201   0.00179     11.3  3.12e-28
+## 3 sexmale       0.112    0.0459       2.44 1.49e- 2
+## 4 children      0.0489   0.0182       2.69 7.29e- 3</code></pre>
+</div>
+<div id="reference-levels" class="section level3">
+<h3><span class="header-section-number">6.3.2</span> Reference levels</h3>
+<p>When a categorical variable is used in a GLM, the model actually uses indicator variables for each level. The default reference level is the order of the R factors. For the <code>sex</code> variable, the order is <code>female</code> and then <code>male</code>. This means that the base level is <code>female</code> by default.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1">health_insurance<span class="op">$</span>sex <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.factor</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">levels</span>()</a></code></pre></div>
+<pre><code>## [1] &quot;female&quot; &quot;male&quot;</code></pre>
+<p>Why does this matter? Statistically, the coefficients are most stable when there are more observations.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1">health_insurance<span class="op">$</span>sex <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.factor</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summary</span>()</a></code></pre></div>
+<pre><code>## female   male 
+##    662    676</code></pre>
+<p>There is already a function to do this in the <code>tidyverse</code> called <code>fct_infreq</code>. Let’s quickly fix the <code>sex</code> column so that these factor levels are in order of frequency.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1">health_insurance &lt;-<span class="st"> </span>health_insurance <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb22-2" title="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sex =</span> <span class="kw">fct_infreq</span>(sex))</a></code></pre></div>
+<p>Now <code>male</code> is the base level.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1">health_insurance<span class="op">$</span>sex <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.factor</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">levels</span>()</a></code></pre></div>
+<pre><code>## [1] &quot;male&quot;   &quot;female&quot;</code></pre>
+</div>
+<div id="interactions" class="section level3">
+<h3><span class="header-section-number">6.3.3</span> Interactions</h3>
+<p>An interaction occurs when the effect of a variable on the response is different depending on the level of other variables in the model.</p>
+<p>Consider this model:</p>
+<p>Let <span class="math inline">\(x_2\)</span> be an indicator variable, which is 1 for some records and 0 otherwise.</p>
+<p><span class="math display">\[\hat{y_i} = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_1 x_2\]</span></p>
+<p>There are now two different linear models dependong on whether <code>x_1</code> is 0 or 1.</p>
+<p>When <span class="math inline">\(x_1 = 0\)</span>,</p>
+<p><span class="math display">\[\hat{y_i} = \beta_0  + \beta_2 x_2\]</span></p>
+<p>and when <span class="math inline">\(x_1 = 1\)</span></p>
+<p><span class="math display">\[\hat{y_i} = \beta_0 + \beta_1 + \beta_2 x_2 + \beta_3 x_2\]</span>
+By rewriting this we can see that the intercept changes from <span class="math inline">\(\beta_0\)</span> to <span class="math inline">\(\beta_0^*\)</span> and the slope changes from <span class="math inline">\(\beta_1\)</span> to <span class="math inline">\(\beta_1^*\)</span></p>
+<p><span class="math display">\[
+(\beta_0 + \beta_1) + (\beta_2 + \beta_3 ) x_2 \\
+ = \beta_0^* + \beta_1^* x_2
+\]</span></p>
+<p>The SOA’s modules give an example with the using age and gender as below. This is not a very strong interaction, as the slopes are almost identical across <code>gender</code>.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1">interactions <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb25-2" title="2"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(age, actual, <span class="dt">color =</span> gender)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb25-3" title="3"><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb25-4" title="4"><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb25-5" title="5"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Age vs. Actual by Gender&quot;</span>, </a>
+<a class="sourceLine" id="cb25-6" title="6">       <span class="dt">subtitle =</span> <span class="st">&quot;Interactions imply different slopes&quot;</span>,</a>
+<a class="sourceLine" id="cb25-7" title="7">       <span class="dt">caption=</span> <span class="st">&quot;data: interactions&quot;</span>)</a></code></pre></div>
+<div class="figure"><span id="fig:unnamed-chunk-21"></span>
+<img src="Exam-PA-Study-Manual_files/figure-html/unnamed-chunk-21-1.png" alt="Example of weak interaction" width="672" />
+<p class="caption">
+Figure 6.5: Example of weak interaction
+</p>
+</div>
+<p>Here is a clearer example from the <code>auto_claim</code> data. The lines show the slope of a linear model, assuming that only <code>BLUEBOOK</code> and <code>CAR_TYPE</code> were predictors in the model. You can see that the slope for Sedans and Sports Cars is higher than for Vans and Panel Trucks.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1">auto_claim <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb26-2" title="2"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="kw">log</span>(CLM_AMT), <span class="kw">log</span>(BLUEBOOK), <span class="dt">color =</span> CAR_TYPE)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb26-3" title="3"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.3</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb26-4" title="4"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> F) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb26-5" title="5"><span class="st">  </span><span class="kw">theme_bw</span>()  <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb26-6" title="6"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Kelly Bluebook Value vs Claim Amount&quot;</span>)</a></code></pre></div>
+<pre><code>## Warning: Removed 7556 rows containing non-finite values (stat_smooth).</code></pre>
+<div class="figure"><span id="fig:unnamed-chunk-22"></span>
+<img src="Exam-PA-Study-Manual_files/figure-html/unnamed-chunk-22-1.png" alt="Example of strong interaction" width="672" />
+<p class="caption">
+Figure 6.6: Example of strong interaction
+</p>
+</div>
+<p>Any time that the effect that one variable has on the response is different depending on the value of other variables we say that there is an interaction. We can also use an hypothesis test with a GLM to check this. Simply include an interaction term and see if the coefficient is zero at the desired significance level.</p>
+</div>
+<div id="logistic-regression" class="section level3">
+<h3><span class="header-section-number">6.3.4</span> Logistic Regression</h3>
+<p>The name “logistic regression” is confusing because the objective is <em>classification</em> and not regression. While most examples focus on binary classification, logistic regression also works for multiclass classification.</p>
+<p>The GLM model form is as before</p>
+<p><span class="math display">\[g(\mathbf{\hat{y}}) = \mathbf{X} \mathbf{\beta}\]</span></p>
+<p>However, now the target <span class="math inline">\(y_i\)</span> is a category. Our objective is to predict a probability of being in each category. For Regression problems, <span class="math inline">\(\hat{y_i}\)</span> can be any number, but now we need <span class="math inline">\(0 \leq \hat{y_i} \leq 1\)</span>.</p>
+<p>We can use a special link function, known as the <em>standard logistic function</em> , <em>sigmoid</em>, or <em>logit</em>, to force the output to be in this range of <span class="math inline">\(\{0,1\}\)</span>.</p>
+<p><span class="math display">\[\mathbf{\hat{y}} = g^{-1}(\mathbf{X} \mathbf{\beta}) = \frac{1}{1 + e^{-\mathbf{X} \mathbf{\beta}}}\]</span></p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1"><span class="kw">tibble</span>(<span class="dt">x =</span> <span class="dv">-6</span><span class="op">:</span><span class="dv">6</span>,<span class="dt">y =</span> <span class="dv">1</span><span class="op">/</span>(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="kw">exp</span>(<span class="dv">6</span><span class="op">:-</span><span class="dv">6</span>))) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb28-2" title="2"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(x,y)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb28-3" title="3"><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">color =</span> <span class="st">&quot;red&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb28-4" title="4"><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb28-5" title="5"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;x&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb28-6" title="6"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;g^-1(x)&quot;</span>) </a></code></pre></div>
+<div class="figure"><span id="fig:unnamed-chunk-23"></span>
+<img src="Exam-PA-Study-Manual_files/figure-html/unnamed-chunk-23-1.png" alt="Standard Logistic Function" width="384" />
+<p class="caption">
+Figure 6.7: Standard Logistic Function
+</p>
+</div>
+</div>
+<div id="example-2" class="section level3">
+<h3><span class="header-section-number">6.3.5</span> Example</h3>
+<p>Using the <code>auto_claim</code> data, we predict the total claims using a frequency and severity approach. We build one model for frequency (whether or not a claim occures) and another for severity (the amount of a claim).</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1">auto_claim <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">count</span>(CLM_FLAG)</a></code></pre></div>
+<pre><code>## # A tibble: 2 x 2
+##   CLM_FLAG     n
+##   &lt;chr&gt;    &lt;int&gt;
+## 1 No        7556
+## 2 Yes       2740</code></pre>
+<p>We see that about 40% do not have a claim while 60% have at least one claim.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" title="1">index &lt;-<span class="st"> </span><span class="kw">createDataPartition</span>(<span class="dt">y =</span> auto_claim<span class="op">$</span>CLM_FLAG, <span class="dt">p =</span> <span class="fl">0.8</span>, <span class="dt">list =</span> F) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">as.numeric</span>()</a>
+<a class="sourceLine" id="cb31-2" title="2">auto_claim &lt;-<span class="st"> </span>auto_claim <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">target =</span> <span class="kw">as.factor</span>(<span class="kw">ifelse</span>(CLM_FLAG <span class="op">==</span><span class="st"> &quot;Yes&quot;</span>, <span class="dv">1</span>,<span class="dv">0</span>)))</a>
+<a class="sourceLine" id="cb31-3" title="3">train &lt;-<span class="st">  </span>auto_claim <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">slice</span>(index)</a>
+<a class="sourceLine" id="cb31-4" title="4">test &lt;-<span class="st"> </span>auto_claim <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">slice</span>(<span class="op">-</span>index)</a>
+<a class="sourceLine" id="cb31-5" title="5"></a>
+<a class="sourceLine" id="cb31-6" title="6">frequency &lt;-<span class="st"> </span><span class="kw">glm</span>(target <span class="op">~</span><span class="st"> </span>AGE <span class="op">+</span><span class="st"> </span>GENDER <span class="op">+</span><span class="st"> </span>MARRIED <span class="op">+</span><span class="st"> </span>CAR_USE <span class="op">+</span><span class="st"> </span>BLUEBOOK <span class="op">+</span><span class="st"> </span>CAR_TYPE <span class="op">+</span><span class="st"> </span>AREA</a>
+<a class="sourceLine" id="cb31-7" title="7">             , <span class="dt">data=</span>train, </a>
+<a class="sourceLine" id="cb31-8" title="8">             <span class="dt">family =</span> <span class="kw">binomial</span>(<span class="dt">link=</span><span class="st">&quot;logit&quot;</span>))</a></code></pre></div>
+<p>We see that all of the variables except for the <code>CAR_TYPE</code> are highly significant. The car types <code>SPORTS CAR</code> and <code>SUV</code> appear to be significant, and so if we wanted to make the model simpler we could create indicator variables for <code>CAR_TYPE == SPORTS CAR</code> and <code>CAR_TYPE == SUV</code>.</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1">frequency <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summary</span>()</a></code></pre></div>
+<pre><code>## 
+## Call:
+## glm(formula = target ~ AGE + GENDER + MARRIED + CAR_USE + BLUEBOOK + 
+##     CAR_TYPE + AREA, family = binomial(link = &quot;logit&quot;), data = train)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -1.8671  -0.8024  -0.5180   0.9347   3.0606  
+## 
+## Coefficients:
+##                      Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept)        -3.456e-01  2.536e-01  -1.363  0.17296    
+## AGE                -2.370e-02  3.215e-03  -7.373 1.66e-13 ***
+## GENDERM            -2.964e-02  9.379e-02  -0.316  0.75202    
+## MARRIEDYes         -6.287e-01  5.465e-02 -11.504  &lt; 2e-16 ***
+## CAR_USEPrivate     -9.840e-01  6.586e-02 -14.941  &lt; 2e-16 ***
+## BLUEBOOK           -4.214e-05  4.730e-06  -8.909  &lt; 2e-16 ***
+## CAR_TYPEPickup     -3.750e-02  1.402e-01  -0.267  0.78910    
+## CAR_TYPESedan      -4.605e-01  1.409e-01  -3.269  0.00108 ** 
+## CAR_TYPESports Car  6.140e-01  1.904e-01   3.224  0.00126 ** 
+## CAR_TYPESUV         2.744e-01  1.786e-01   1.537  0.12435    
+## CAR_TYPEVan         4.678e-02  1.337e-01   0.350  0.72643    
+## AREAUrban           2.211e+00  1.085e-01  20.380  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 9544.3  on 8236  degrees of freedom
+## Residual deviance: 8237.8  on 8225  degrees of freedom
+## AIC: 8261.8
+## 
+## Number of Fisher Scoring iterations: 5</code></pre>
+<p>There is no easy way of interpreting the coefficients when using a logit link function. The most inference that we can make is to note which variables are significant.</p>
+<p>The output is a predicted probability. We can see that this is centered around a probability of about 0.5.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" title="1">preds &lt;-<span class="st"> </span><span class="kw">predict</span>(frequency, <span class="dt">newdat=</span>test,<span class="dt">type=</span><span class="st">&quot;response&quot;</span>)</a>
+<a class="sourceLine" id="cb34-2" title="2"><span class="kw">qplot</span>(preds) <span class="op">+</span><span class="st"> </span><span class="kw">theme_bw</span>()</a></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<div class="figure"><span id="fig:unnamed-chunk-27"></span>
+<img src="Exam-PA-Study-Manual_files/figure-html/unnamed-chunk-27-1.png" alt="Distribution of Predicted Probability" width="480" />
+<p class="caption">
+Figure 6.8: Distribution of Predicted Probability
+</p>
+</div>
+<p>In order to convert these values to predicted 0’s and 1’s, we assign a <em>cutoff</em> value so that if <span class="math inline">\(\hat{y}\)</span> is above this threshold we use a 1 and 0 othersise. The default cutoff is 0.5. We change this to 0.8 and see that there are 372 policies where at least one claim is predicted.</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" title="1">test &lt;-<span class="st"> </span>test <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">pred_zero_one =</span> <span class="kw">as.factor</span>(<span class="dv">1</span><span class="op">*</span>(preds<span class="op">&gt;</span>.<span class="dv">8</span>)))</a>
+<a class="sourceLine" id="cb36-2" title="2"><span class="kw">summary</span>(test<span class="op">$</span>pred_zero_one)</a></code></pre></div>
+<pre><code>##    0    1 
+## 2057    2</code></pre>
+<p>How do we decide on this cutoff value? We need to compare cutoff values based on some evaluation metric. For example, we can use <em>accuracy</em>.</p>
+<p><span class="math display">\[\text{Accuracy} = \frac{\text{Correct Guesses}}{\text{Total Guesses}}\]</span>
+This results in an accuracy of 53%. But is this good?</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" title="1">test <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="dt">accuracy =</span> <span class="kw">mean</span>(pred_zero_one <span class="op">==</span><span class="st"> </span>target))</a></code></pre></div>
+<pre><code>## # A tibble: 1 x 1
+##   accuracy
+##      &lt;dbl&gt;
+## 1    0.735</code></pre>
+<p>Consider what would happen if we just predicted all 0’s. The accuracy is 39%.</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" title="1">test <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="dt">accuracy =</span> <span class="kw">mean</span>(<span class="dv">0</span> <span class="op">==</span><span class="st"> </span>target))</a></code></pre></div>
+<pre><code>## # A tibble: 1 x 1
+##   accuracy
+##      &lt;dbl&gt;
+## 1    0.734</code></pre>
+<p>For policies which experience claims the accuracy is 26%.</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" title="1">test <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb42-2" title="2"><span class="st">  </span><span class="kw">filter</span>(target <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb42-3" title="3"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">accuracy =</span> <span class="kw">mean</span>(pred_zero_one <span class="op">==</span><span class="st"> </span>target))</a></code></pre></div>
+<pre><code>## # A tibble: 1 x 1
+##   accuracy
+##      &lt;dbl&gt;
+## 1  0.00365</code></pre>
+<p>But for policies that don’t actually experience claims this is 95%.</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" title="1">test <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb44-2" title="2"><span class="st">  </span><span class="kw">filter</span>(target <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb44-3" title="3"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">accuracy =</span> <span class="kw">mean</span>(pred_zero_one <span class="op">==</span><span class="st"> </span>target))</a></code></pre></div>
+<pre><code>## # A tibble: 1 x 1
+##   accuracy
+##      &lt;dbl&gt;
+## 1        1</code></pre>
+<p>How do we know if this is a good model? We can repeat this process with a different cutoff value and get different accuracy metrics for these groups. Let’s use a cutoff of 0.4.</p>
+<p>61%</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" title="1">test &lt;-<span class="st"> </span>test <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">pred_zero_one =</span> <span class="kw">as.factor</span>(<span class="dv">1</span><span class="op">*</span>(preds<span class="op">&gt;</span>.<span class="dv">4</span>)))</a>
+<a class="sourceLine" id="cb46-2" title="2">test <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">summarise</span>(<span class="dt">accuracy =</span> <span class="kw">mean</span>(pred_zero_one <span class="op">==</span><span class="st"> </span>target))</a></code></pre></div>
+<pre><code>## # A tibble: 1 x 1
+##   accuracy
+##      &lt;dbl&gt;
+## 1    0.734</code></pre>
+<p>95% for policies with claims and 10% for policies without claims.</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" title="1">test <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb48-2" title="2"><span class="st">  </span><span class="kw">filter</span>(target <span class="op">==</span><span class="st"> </span><span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb48-3" title="3"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">accuracy =</span> <span class="kw">mean</span>(pred_zero_one <span class="op">==</span><span class="st"> </span>target))</a></code></pre></div>
+<pre><code>## # A tibble: 1 x 1
+##   accuracy
+##      &lt;dbl&gt;
+## 1    0.409</code></pre>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" title="1">test <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb50-2" title="2"><span class="st">  </span><span class="kw">filter</span>(target <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb50-3" title="3"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">accuracy =</span> <span class="kw">mean</span>(pred_zero_one <span class="op">==</span><span class="st"> </span>target))</a></code></pre></div>
+<pre><code>## # A tibble: 1 x 1
+##   accuracy
+##      &lt;dbl&gt;
+## 1    0.852</code></pre>
+<p>The punchline is that the accuracy depends on the cutoff value, and changing the cutoff value changes whether the model is accuracy for the positive classes (policies with actual claims) vs. the negative classes (policies without claims).</p>
+<p>A <em>confusion matrix</em> shows is a table that summarises how the model classifies each group.</p>
+<ul>
+<li>767 policies which had no claims were predicted to not have claims - <strong>True Negatives (TN) = 767</strong></li>
+<li>330 policies which had claims were accurately predicted to have claims - <strong>True Positives (TP) = 330</strong></li>
+<li>42 policies which had no claims were predited to have claims - <strong>False Negatives (FN) = 42</strong></li>
+<li>920 policies which had claims but were predicted not to - <strong>False Positives (FP) = 920</strong></li>
+</ul>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" title="1"><span class="kw">confusionMatrix</span>(test<span class="op">$</span>pred_zero_one,<span class="kw">factor</span>(test<span class="op">$</span>target))<span class="op">$</span>table</a></code></pre></div>
+<pre><code>##           Reference
+## Prediction    0    1
+##          0 1288  324
+##          1  223  224</code></pre>
+<p>The easy way to remember this language is to ask two questions, A and B:</p>
+<p>A. Was the prediction correct? Yes -&gt; TRUE
+B. Was the class a 1? Yes -&gt; Positive</p>
+<p>Then just put A and B together.</p>
+<p>These definitions allow us to measure performance on the different groups.</p>
+<p><em>Precision</em> answers the question “out of all of the positive predictions, what percentage were correct?”</p>
+<p><span class="math display">\[\text{Precision} = \frac{\text{TP}}{\text{TP} + \text{FP}}\]</span></p>
+<p><em>Recall</em> answers the question “out of all of positive examples in the data set, what percentage were correct?”</p>
+<p><span class="math display">\[\text{Recall} = \frac{\text{TP}}{\text{TP} + \text{FN}}\]</span></p>
+<p>The choice of using precision or recall depends on the relative cost of making a FP or a FN error. If FP errors are expensive, then use precision; if FN errors are expensive, then use recall.</p>
+<p>Example A: the model trying to detect a deadly disease, which only 1 out of every 1000 patient’s survive without early detection. Then the goal should be to optimize <em>recall</em>, because we would want every patient that has the disease to get detected.</p>
+<p>Example B: the model is detecting which emails are spam or not. If an important email is flagged as spam incorrectly, the cost is 5 hours of lost productivity. In this case, <em>precision</em> is the main concern.</p>
+<p>In some cases we can compare this “cost” in actual values. For example, if a federal court is predicting if a criminal will recommit or not, they can agree that “1 out of every 20 guilty individuals going free” in exchange for “90% of those who are guilty being convicted”. When money is involed, this a dollar amount can be used: flagging non-spam as spam may cost $ 100 whereas missing a spam email may cost $ 2. Then the cost-weighted accuracy is</p>
+<p><span class="math display">\[\text{Cost} = (100)(\text{FN}) + (2)(\text{FP})\]</span></p>
+<p>Then the cutoff value can be tuned in order to find the minimum cost.</p>
+<p>Fortunately, all of this is handled in a single function called <code>confusionMatrix</code>.</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" title="1"><span class="kw">confusionMatrix</span>(test<span class="op">$</span>pred_zero_one,<span class="kw">factor</span>(test<span class="op">$</span>target))</a></code></pre></div>
+<pre><code>## Confusion Matrix and Statistics
+## 
+##           Reference
+## Prediction    0    1
+##          0 1288  324
+##          1  223  224
+##                                           
+##                Accuracy : 0.7343          
+##                  95% CI : (0.7147, 0.7533)
+##     No Information Rate : 0.7339          
+##     P-Value [Acc &gt; NIR] : 0.4916          
+##                                           
+##                   Kappa : 0.2775          
+##                                           
+##  Mcnemar&#39;s Test P-Value : 1.905e-05       
+##                                           
+##             Sensitivity : 0.8524          
+##             Specificity : 0.4088          
+##          Pos Pred Value : 0.7990          
+##          Neg Pred Value : 0.5011          
+##              Prevalence : 0.7339          
+##          Detection Rate : 0.6255          
+##    Detection Prevalence : 0.7829          
+##       Balanced Accuracy : 0.6306          
+##                                           
+##        &#39;Positive&#39; Class : 0               
+## </code></pre>
+</div>
+<div id="area-under-the-roc-curv-auc" class="section level3">
+<h3><span class="header-section-number">6.3.6</span> Area under the ROC Curv (AUC)</h3>
+<p>What if we look at both the true-positive rate (TPR) and false positive rate (FPR) simultaneously? That is, for each value of the cutoff, we can calculate the TPR and TNR.</p>
+<p>For example, say that we have 10 cutoff values, <span class="math inline">\(\{k_1, k_2, ..., k_{10}\}\)</span>. Then for each value of <span class="math inline">\(k\)</span> we calculate both the true positive rates</p>
+<p><span class="math display">\[\text{TPR} = \{\text{TPR}(k_1), \text{TPR}(k_2), .., \text{TPR}(k_{10})\} \]</span></p>
+<p>and the true negative rates</p>
+<p><span class="math display">\[\{\text{FNR} = \{\text{FNR}(k_1), \text{FNR}(k_2), .., \text{FNR}(k_{10})\}\]</span></p>
+<p>Then we set <code>x = TPR</code> and <code>y = FNR</code> and graph x against y. The plot below shows the ROC for the <code>auto_claims</code> data. The Area Under the Curv of 0.6795 is what we would get if we integrated under the curve.</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" title="1"><span class="kw">library</span>(pROC)</a>
+<a class="sourceLine" id="cb56-2" title="2"><span class="kw">roc</span>(test<span class="op">$</span>target, preds, <span class="dt">plot =</span> T)</a></code></pre></div>
+<div class="figure"><span id="fig:unnamed-chunk-37"></span>
+<img src="Exam-PA-Study-Manual_files/figure-html/unnamed-chunk-37-1.png" alt="AUC for auto_claim" width="672" />
+<p class="caption">
+Figure 6.9: AUC for auto_claim
+</p>
+</div>
+<pre><code>## 
+## Call:
+## roc.default(response = test$target, predictor = preds, plot = T)
+## 
+## Data: preds in 1511 controls (test$target 0) &lt; 548 cases (test$target 1).
+## Area under the curve: 0.7303</code></pre>
+<p>If we just randomly guess, the AUC would be 0.5, which is represented by the 45-degree line. A perfect model would maximize the curve to the upper-left corner.</p>
+</div>
+<div id="poisson-regression" class="section level3">
+<h3><span class="header-section-number">6.3.7</span> Poisson Regression</h3>
+<p>When the dependent variable is a count, such as the number of claims per month, Poisson regression is appropriate. This requires that each claim is independent in that one claim will not make another claim more or less likely. This means that the target variable is actually a rate, <span class="math inline">\(\frac{\text{claims}}{\text{months}}\)</span>. More generally, we call the months the <em>exposure</em>.</p>
+<p>Let <span class="math inline">\(m_i\)</span> by the units of exposure and <span class="math inline">\(y_i\)</span> the target. We use a log-link function to correct for skewness.</p>
+<p><span class="math display">\[ log(\frac{\hat{y_i}}{m_i}) = \beta_0 + \beta_1 x_1 + ... + \beta_p x_p\]</span></p>
+<p>By using the fact that <span class="math inline">\(log(\frac{a}{b}) = log(a) - log(b)\)</span> this turns into</p>
+<p><span class="math display">\[log(\hat{y_i}) = log(m_i) + \beta_0 + \beta_1 x_1 + ... + \beta_p x_p\]</span></p>
+<p>We call the <span class="math inline">\(log(m_i)\)</span> the <code>offset</code> term. Notice that there is no coefficient (beta) on this value, because we already know what the impact will be.</p>
+<p>In R, the code for this equation would be</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" title="1"><span class="kw">glm</span>(y <span class="op">~</span><span class="st"> </span><span class="kw">offset</span>(<span class="kw">log</span>(m)) <span class="op">+</span><span class="st"> </span>x, <span class="dt">family=</span><span class="kw">poisson</span>(<span class="dt">link=</span>log) )</a></code></pre></div>
+</div>
+<div id="tweedie-regression" class="section level3">
+<h3><span class="header-section-number">6.3.8</span> Tweedie regression</h3>
+<p>While this topic is briefly mentioned on the modules, the only R libraries which support Tweedie Regression (<code>statmod</code> and <code>tweedie</code>) are not on the syllabus.</p>
+</div>
+<div id="stepwise-subset-selection" class="section level3">
+<h3><span class="header-section-number">6.3.9</span> Stepwise subset selection</h3>
+<p>In theory, we could test any possible combination of variables and interaction terms. This includes all <span class="math inline">\(p\)</span> models with one predictor, all p-choose-2 models with two predictors, all p-choose-3 models with three predictors, and so forth. Then we take whichever model has the best performance as the final model.</p>
+<p>This “brute force” approach is statistically ineffective: the more variables which are searched, the higher the chance of finding models that overfit.</p>
+<p>A subtler method, known as <em>stepwise selection</em>, reduces the chances of overfitting by only looking at the most promising models.</p>
+<p><strong>Forward Stepwise Selection:</strong></p>
+<ol style="list-style-type: decimal">
+<li>Start with no predictors in the model;</li>
+<li>Evaluate all <span class="math inline">\(p\)</span> models which use only one predictor and choose the one with the best performance (highest <span class="math inline">\(R^2\)</span> or lowest <span class="math inline">\(\text{RSS}\)</span>);</li>
+<li>Repeat the process when adding one additional predictor, and continue until there is a model with one predictor, a model with two predictors, a model with three predictors, and so forth until there are <span class="math inline">\(p\)</span> models;</li>
+<li>Select the single best model which has the best <span class="math inline">\(\text{AIC}\)</span>,<span class="math inline">\(\text{BIC}\)</span>, or adjusted <span class="math inline">\(R^2\)</span>.</li>
+</ol>
+<p><strong>Backward Stepwise Selection:</strong></p>
+<ol style="list-style-type: decimal">
+<li>Start with a model that contains all predictors;</li>
+<li>Create a model which removes all predictors;</li>
+<li>Choose the best model which removes all-but-one predictor;</li>
+<li>Choose the best model which removes all-but-two predictors;</li>
+<li>Continue until there are <span class="math inline">\(p\)</span> models;</li>
+<li>Select the single best model which has the best <span class="math inline">\(\text{AIC}\)</span>,<span class="math inline">\(\text{BIC}\)</span>, or adjusted <span class="math inline">\(R^2\)</span>.</li>
+</ol>
+<p><strong>Both Forward &amp; Backward Selection:</strong></p>
+<p>ISLR does not mention this directly, however, a GLM using this method appeared on the 2019 June exam. The following is from a stackoverflow post.</p>
+<p><a href="https://stats.stackexchange.com/questions/97250/stepwise-regression-in-r-with-both-direction" class="uri">https://stats.stackexchange.com/questions/97250/stepwise-regression-in-r-with-both-direction</a></p>
+<p><code>MASS::step()</code> with the option <code>direction = 'both'</code> works by comparing the AIC improvements from
+dropping each candidate variable, and adding each candidate variable between the upper and lower bound regressor sets supplied,
+from the current model, and by dropping or adding the one variable that leads to the best AIC improvement (smallest AIC).</p>
+<p>For example, assume that you are fitting a linear regression model with the upper set of variables <span class="math inline">\(U = \{X_1, X_2, X_3, X_4, X_5, X_6, X_7\}\)</span>, and lower set <span class="math inline">\(L = \{X_1\}\)</span>, and the starting object <span class="math inline">\(S_0 = \{X_1, X_3\}\)</span>, then the potential sets of retained regressors might be something like</p>
+<p><span class="math display">\[
+\begin{align}
+S_1 &amp;= \{X_1, X_3, X_6\} &amp;\text{  (add $X_6$)  }\\
+S_2 &amp;= \{X_1, X_3, X_6, X_4\} &amp;\text{  (add $X_4$)  }\\
+S_3 &amp;= \{X_3, X_6, X_4\} &amp;\text{  (drop $X_1$)  }\\
+S_4 &amp;= \{X_3, X_6, X_4, X_7\} &amp;\text{  (add $X_7$)  }\\
+S_5 &amp;= \{X_3, X_4, X_7\} &amp;\text{  (drop $X_6$)  }
+\end{align}
+\]</span></p>
+<p>and so on, till no AIC improvements can be made.</p>
+<blockquote>
+<p><strong>Tip</strong>: Always load the <code>MASS</code> library before <code>dplyr</code> or <code>tidyverse</code>. Otherwise there will be conflicts as there are functions named <code>select()</code> and <code>filter()</code> in both. Alternatively, specify the library in the function call with <code>dplyr::select()</code>.</p>
+</blockquote>
+<table>
+<thead>
+<tr class="header">
+<th>Readings</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="https://contentpreview.s3.us-east-2.amazonaws.com/CAS+Monograph+5+-+Generalized+Linear+Models+for+Insurance+Ratemaking.pdf">CAS Monograph 5 Chapter 2</a></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>ISLR 2.2 Assessing model accuracy</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="advantages-and-disadvantages" class="section level3">
+<h3><span class="header-section-number">6.3.10</span> Advantages and disadvantages</h3>
+<p>There is usually at least one question on the PA exam which asks you to “list some of the advantages and disadvantages of using this particular model”, and so here is one such list.</p>
+<p><strong>GLM Advantages</strong></p>
+<ul>
+<li>Easy to interpret</li>
+<li>Handles skewed data through different response distributions</li>
+<li>Models the average response which leads to stable predictions on new data</li>
+<li>Handles continuous and categorical data</li>
+<li>Works well on small data sets</li>
+</ul>
+<p><strong>GLM Disadvantages</strong></p>
+<ul>
+<li>Does not select features</li>
+<li>Strict assumptions around distribution shape, randomness of error terms, and others</li>
+<li>Unable to detect non-linearity directly (although this can manually be addressed through feature engineering)</li>
+<li>Sensitive to outliers</li>
+<li>Low predictive power</li>
+</ul>
+</div>
+</div>
+<div id="penalized-linear-models" class="section level2">
+<h2><span class="header-section-number">6.4</span> Penalized Linear Models</h2>
+<p>One of the main weaknesses of the GLM is that the features need to be selected by hand. For large <span class="math inline">\(p\)</span>, this means that the modeler needs to test every combination of variables. This is time consuming.</p>
+<p>Earlier on we said that the linear model minimizes the sum of square terms, known as the residual sum of squares (RSS)</p>
+<p><span class="math display">\[
+\text{RSS} = \sum_i(y_i - \hat{y})^2 = \sum_i(y_i - \beta_0 - \sum_{j = 1}^p\beta_j x_{ij})^2
+\]</span></p>
+<p>This loss function can be modified so that models which include more (and larger) coefficients are considered as worse. In other words, when there are more <span class="math inline">\(\beta\)</span>’s, or <span class="math inline">\(\beta\)</span>’s which are larger, the RSS is higher.</p>
+<div id="ridge-regression" class="section level3">
+<h3><span class="header-section-number">6.4.1</span> Ridge Regression</h3>
+<p>Ridge regression adds a penalty term which is proportional to the square of the sum of the coefficients. This is known as the “L2” norm.</p>
+<p><span class="math display">\[
+\sum_i(y_i - \beta_0 - \sum_{j = 1}^p\beta_j x_{ij})^2 + \lambda \sum_{j = 1}^p\beta_j^2
+\]</span></p>
+<p>This <span class="math inline">\(\lambda\)</span> controls how much of a penalty is imposed on the size of the coefficients. When <span class="math inline">\(\lambda\)</span> is high, simpler models are treated more favorably because the <span class="math inline">\(\sum_{j = 1}^p\beta_j^2\)</span> carries more weight. Conversely, then <span class="math inline">\(\lambda\)</span> is low, complex models are more favored. When <span class="math inline">\(\lambda = 0\)</span>, we have an ordinary GLM.</p>
+</div>
+<div id="lasso" class="section level3">
+<h3><span class="header-section-number">6.4.2</span> Lasso</h3>
+<p>The official name is the Least Absolute Shrinkage and Selection Operator, but the common name is just “the lasso”. Just as with Ridge regression, we want to favor simpler models; however, we also want to <em>select</em> variables. This is the same as forcing some coefficients to be equal to 0.</p>
+<p>Instead of taking the square of the coefficients (L2 norm), we take the absolute value (L1 norm).</p>
+<p><span class="math display">\[
+\sum_i(y_i - \beta_0 - \sum_{j = 1}^p\beta_j x_{ij})^2 + \lambda \sum_{j = 1}^p|\beta_j|
+\]</span></p>
+<p>In ISLR, Hastie et al show that this results in coefficients being forced to be exactly 0. This is extremely useful because it means that by changing <span class="math inline">\(\lambda\)</span>, we can select how many variables to use in the model.</p>
+<p><strong>Note</strong>: While any response family is possible with penalized regression, in R, only the Gaussian family is possible in the library <code>glmnet</code>, and so this is the only type of question that the SOA can ask.</p>
+</div>
+<div id="elastic-net" class="section level3">
+<h3><span class="header-section-number">6.4.3</span> Elastic Net</h3>
+<p>The Elastic Net uses a penalty term which is between the L1 and L2 norms. The penalty term is a weighted average using the mixing parameter $ 0 1$. The loss fucntion is then</p>
+<p><span class="math display">\[\text{RSS} + (1 - \alpha)/2 \sum_{j = 1}^{p}\beta_j^2 + \alpha \sum_{j = 1}^p |\beta_j|\]</span>
+When <span class="math inline">\(\alph = 1\)</span> is turns into a Lasso; when <span class="math inline">\(\alpha = 1\)</span> this is the Ridge model.</p>
+<p>Luckily, none of this needs to be memorized. On the exam, read the documentation in R to refresh your memory. For the Elastic Net, the function is <code>glmnet</code>, and so running <code>?glmnet</code> will give you this info.</p>
+<blockquote>
+<p><strong>Tip</strong>: When using complicated functions on the exam, use <code>?function_name</code> to get the documentation.</p>
+</blockquote>
+</div>
+<div id="advantages-and-disadvantages-1" class="section level3">
+<h3><span class="header-section-number">6.4.4</span> Advantages and disadvantages</h3>
+<p><strong>Elastic Net/Lasso/Ridge Advantages</strong></p>
+<ul>
+<li>All benefits from GLMS</li>
+<li>Automatic variable selection for Lasso; smaller coefficients for Ridge</li>
+<li>Better predictive power than GLM</li>
+</ul>
+<p><strong>Elastic Net/Lasso/Ridge Disadvantages</strong></p>
+<ul>
+<li>All cons of GLMs</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th>Readings</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ISLR 6.1 Subset Selection</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>ISLR 6.2 Shrinkage Methods</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="visualization.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="tree-based-models.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/05-linear-models.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["Exam-PA-Study-Manual.pdf", "Exam-PA-Study-Manual.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

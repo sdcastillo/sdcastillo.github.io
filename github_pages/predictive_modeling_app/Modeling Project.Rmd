@@ -1,0 +1,916 @@
+---
+title: "Modeling Project"
+author: "Sam Castillo"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output:
+  html_document:
+    theme: cerulean
+    number_sections: true
+    toc: yes
+  bibliography: bibliography.bib
+csl: biomed-central.csl
+email: castillo.sam.d@gmail.com
+
+---
+
+```{r include = F, warning = F, message = F}
+knitr::opts_chunk$set( warning=FALSE, message=FALSE)
+library(tidyverse)
+packages <- c("gbm", "xgboost", "caret", "tidyr", "ggplot2", "lubridate", "corrplot", "caretEnsemble", "e1071", "ggridges", "forcats", "car", "fastDummies", "glmnet", "ggpubr", "xgboost", "broom", "caTools", "DiagrammeR", "DT", "GGally")
+purrr::walk(packages, library, character.only = TRUE, warn.conflicts = FALSE)
+```
+
+
+#Introduction
+
+This is a modeling exercise project similar to a kaggle competition.  The goal is to build a predictive model.
+
+##Objectives
+
+* 	Build a predictive model that predicts the `Amount` variable.  The model will be evaluated on the mean absolute error (MAE) between the predicted target and the actual target for the holdout dataset. 
+* Determine what variables are most important for making your model predictions.
+* Prepare a .csv or .txt file containing your prediction for each `ID` in the same format as the sample  provided in sample.txt. 
+
+I asked myself, what is the significance of using MAE instead of RMSE?  And then I looked on google.  When I do use a google source I try to keep track of the link.
+
+MAE the mean absolute value difference between the predictions, $\hat{y_i}$, and the target, $y_i$.  This means that positive errors are penalized in the same way as negative errors.
+
+$$\text{MAE} = \frac{1}{n}\sum{|y_i - \hat{y_i}|}$$
+
+Root mean squared error treats positive and negative errors equally, just like MAE, but imposes a harsher penalty outliers, observations where there is a large error.  This is because it takes the square of the error.
+
+$$\text{RMSE} = \sqrt{\frac{1}{n}\sum{(y_i - \hat{y_i})^2}}$$
+The takeaway is that outliers will be less of an issue in this analysis than in RMSE were used.
+
+##Data 
+
+The data is very ordinary.  There are two data files.  The `train` file has a target value, `amount`, which I am trying to predict.  The `test` file does not have this label and will be used for final evaluation.  
+
+*	train.txt -  training dataset
+*	test.txt  -holdout dataset 
+*	sample.txt - sample of the format for evaluation
+
+```{r}
+train_raw <- read_csv("train.txt")
+test_raw<- read_csv("test.txt")
+sample_submission <- read_csv("sample.txt")
+```
+
+
+There is a reasonably large sample size, with 205062 in 51264, which is great because all models perform better with a larger sample size.  A larger n generally reduces both the bias and the variance.
+
+There are 34 features, which are all numeric and unnamed.  We also see that there are no missing values, which makes life much easier!  
+
+```{r}
+head(train_raw , 10) 
+```
+
+#Exploratory Analysis
+
+For all data manipulations, I will combine the two data sets together in order to insure equal treatment.
+
+```{r}
+combined <- train_raw %>% 
+  mutate(source = "train") %>% 
+  rbind(test_raw %>% mutate(Amount = "None", source = "test")) %>% 
+  mutate(Amount = as.numeric(Amount))
+```
+
+The first item I look at is the distribution of the target, `Amount`.  This is highly right skewed, and so I take a log transform.  This helps to normalize the shape, which is useful for many modeling applications.  We also see that there are significant spikes.  I also looked at a box cox transform, which is a more general case of the log transform.  In fact, the box cox is the same as the log when `lambda` is 0.  When I tested his, lambda was fairly close to 0, so I just used the log.  This is for simplicity and consistency between the different data sets.
+
+This distribution has a very long tail.
+
+```{r}
+train_raw %>% 
+  sample_frac(0.2) %>% 
+  ggplot(aes(Amount)) + 
+  geom_histogram() + 
+  ggtitle("Distribution of Amount") + 
+  xlim(0, 100000)
+```
+
+A key assumption of many linear models is that the response be normally distributed.  Taking the log transform helps to make this closer to a normal distribution.
+
+```{r}
+combined <- combined %>% mutate(target = log(Amount + 1))
+
+combined %>% 
+  sample_frac(0.6) %>%
+  ggplot(aes(sample = target)) + 
+  stat_qq() + 
+  stat_qq_line() + 
+  ggtitle("Empirical Normal Quantiles vs Theoretical Quantiles after Power Transform")
+```
+
+
+This is better but still not perfect.  I notice there is a spike at Amount = 100.100.  There are a few other point masses as well.  This is very common in insurance data especially due to deductibles.  
+
+```{r}
+combined %>% 
+  group_by(Amount) %>% 
+  summarise(n = n()) %>% 
+  arrange(desc(n))
+```
+
+I create new categorical variables which capture these point masses. 
+
+```{r}
+combined <- combined %>% 
+  mutate(spike = as.factor(coalesce(case_when(
+           Amount %in% c(100.100, 198.198, 89.089, 999.999) ~ as.character(Amount),
+           Amount < 100.100 ~ "zero"
+         ), "none")))
+```
+
+After removing these, the distribution looks perfectly normal
+
+```{r}
+combined %>% 
+  sample_frac(0.8) %>% 
+  filter(spike == "none") %>% 
+  ggplot(aes(target)) + 
+  geom_histogram() + 
+  ggtitle("Distribution of Target After Removing 'Deductibles'")
+```
+
+As an extra precaution, I compared the two training and test_rawset distributions to see if they are taken from the same distributions.  My strategy was to compare the medians, 1st quantiles, and 3rd quantiles.
+
+They appear to be exactly the same.
+
+```{r}
+first_quantile <- function(x){quantile(x, 0.25)}
+third_quantile <- function(x){quantile(x, 0.25)}
+
+combined %>% 
+  group_by(source) %>% 
+  select(-Amount, -ID, -target, -spike) %>% 
+  summarise_all(funs(first_quantile, median, third_quantile
+    )) %>% 
+  gather(feature, stat, -source) %>% 
+  spread(source, stat) %>% 
+  mutate(percent_difference = abs((test - train)/train)) %>%
+  arrange(desc(percent_difference)) %>% 
+  datatable()
+```
+
+As seen in these graphs, many of these features have long positive and negative tails.  They are all centred at zero, and most are even symmetric.  This saves a lot of time because otherwise there would need to be transformations so that they look this way in order to use linear models.
+
+```{r}
+combined %>% 
+  select_if(is.numeric) %>% 
+  select(-ID) %>% 
+  sample_frac(0.2) %>% 
+  gather(column, value, 1:10) %>% 
+  ggplot(aes(value)) + 
+  geom_density() + 
+  facet_wrap(vars(column), scales = "free")
+```
+
+
+```{r}
+combined %>% 
+  select_if(is.numeric) %>% 
+  select(-ID) %>% 
+  sample_frac(0.2) %>% 
+  gather(column, value, 11:20) %>% 
+  ggplot(aes(value)) + 
+  geom_density() + 
+  facet_wrap(vars(column), scales = "free")
+```
+
+`V30` through `V33` are uniform.
+
+```{r}
+combined %>% 
+  select_if(is.numeric) %>% 
+  select(-ID) %>% 
+  sample_frac(0.2) %>% 
+  gather(column, value, 21:33) %>% 
+  ggplot(aes(value)) + 
+  geom_density() + 
+  facet_wrap(vars(column), scales = "free")
+```
+
+Coincidently, we see that the features are already ordered by their standard deviations!
+
+```{r}
+combined %>% 
+  select_if(is.numeric) %>% 
+  select(-ID) %>% 
+  summarise_all(sd) %>% 
+  gather(feature, value) %>% 
+  arrange(desc(value)) 
+```
+
+#Outlier Analysis
+
+The main difficulty with this data is the length of some of the tails.  I looked at univariate stats to see if there was a pattern.  Here I define an outlier as being above the 99.99th quantile or below the 0.0001st quantile.
+
+```{r}
+IQR_outlier <- function(input_column, alpha = 0.001){
+  x <- unlist(input_column)
+  #return 0 if within 3*IQR and 1 if outside
+  upper_bound <- quantile(x, 1 - alpha)
+  lower_bound <- quantile(x, alpha)
+  is_outlier <- (x < lower_bound | x > upper_bound)
+  percent_outlier = mean(is_outlier, na.rm = TRUE)
+  return(percent_outlier)
+}
+```
+
+When running this over all observations, we again coincidently see that all columns have the same number of outliers.   
+
+```{r}
+train_raw %>% 
+  select(-ID) %>% 
+  map_df(IQR_outlier, alpha = 0.001) %>% 
+  gather(column, percent_univariate_outlier) %>% 
+  arrange(desc(percent_univariate_outlier)) %>% 
+  datatable()
+```
+
+At this point I was beyond suspecting that the data was simulated.  If this was the case, maybe there was a pattern to the outliers.  Because these cause difficulty with linear models later on, I spent some time looking at them.
+
+As seen below, some of the points are outside the IQR range for many different dimensions.  Observation number 118164 for example is either above or below the 99.99st/0.001st quantile in 21 out of 33 dimensions.  
+
+```{r}
+outlier_summary <- train_raw %>% 
+  select(-ID) %>% 
+  map_df(function(input_column, alpha = 0.0001){
+  x <- unlist(input_column)
+  #return 0 if within 3*IQR and 1 if outside
+  upper_bound <- quantile(x, 1 - alpha)
+  lower_bound <- quantile(x, alpha)
+  is_outlier <- (x < lower_bound | x > upper_bound)
+  return(is_outlier)
+  }) %>% 
+  mutate(obs_number = row_number()) %>% 
+  gather(feature, outlier, -obs_number) %>% 
+  arrange(desc(obs_number)) %>% 
+  group_by(obs_number) %>% 
+  summarise(total_outliers = sum(outlier)) %>% 
+  arrange(desc(total_outliers)) %>% 
+  filter(total_outliers>0)
+head(outlier_summary)
+```
+
+I try looking at these outliers within the data to see if there is a visible pattern.  The sizes of the points represents the number of dimensions where it is outside the IQR.  Observation number 274772 is guilty in more than 20 dimensions.
+
+```{r}
+train_raw %>% 
+  mutate(obs_number = row_number()) %>% 
+  dplyr::slice(outlier_summary$obs_number) %>% 
+  left_join(outlier_summary, by = c("obs_number")) %>% 
+  mutate(total_outliers_label = ifelse(total_outliers > 10, ID, NA)) %>% 
+  ggplot(aes(V2, V6, size = total_outliers)) + 
+  geom_point(color='dodgerblue') + 
+  geom_text(aes(label = total_outliers_label, hjust=1, vjust=1)) + 
+  ggtitle("High Outlying Points Across Multiple Dimensions") 
+```
+
+Again, 274772 shows up, only this time in `V6` and `V7`.
+
+```{r}
+train_raw %>% 
+  mutate(obs_number = row_number()) %>% 
+  dplyr::slice(outlier_summary$obs_number) %>% 
+  left_join(outlier_summary, by = c("obs_number")) %>% 
+  mutate(total_outliers_label = ifelse(total_outliers > 10, ID, NA)) %>% 
+  ggplot(aes(V7, V21, size = total_outliers)) + 
+  geom_point(color='dodgerblue') + 
+  geom_text(aes(label = total_outliers_label, hjust=1, vjust=1)) + 
+  ggtitle("High Outlying Points Across Multiple Dimensions") 
+```
+
+
+```{r}
+train_raw %>% 
+  mutate(obs_number = row_number()) %>% 
+  dplyr::slice(outlier_summary$obs_number) %>% 
+  left_join(outlier_summary, by = c("obs_number")) %>% 
+  mutate(total_outliers_label = ifelse(total_outliers > 10, ID, NA)) %>% 
+  ggplot(aes(V11, V28, size = total_outliers)) + 
+  geom_point(color='dodgerblue') + 
+  geom_text(aes(label = total_outliers_label, hjust=1, vjust=1)) + 
+  ggtitle("Do you really expect to hide, 274772?") 
+```
+
+
+We can look at the assymetry of each feature from the skewness.  Let's look at the top 10 most skewed features in more detail.
+
+```{r}
+skewed_features <- combined %>% 
+  select_if(is.numeric) %>% 
+  select(-ID) %>% 
+  summarise_all(skewness) %>% 
+  gather(feature, skew) %>% 
+  mutate(abs_skew = abs(skew)) %>% 
+  arrange(desc(abs_skew)) %>% 
+  select(feature) %>% 
+  unlist() %>% 
+  as.character()
+
+combined %>% 
+  select(skewed_features[1:10]) %>% 
+  gather(column, value) %>% 
+  ggplot(aes(value)) + 
+  geom_density() + 
+  facet_wrap(vars(column), scales = "free")
+```
+```{r}
+train_raw %>% 
+  select(skewed_features[1:10]) %>% 
+  dplyr::slice(outlier_summary$obs_number) %>% 
+  gather(column, value) %>% 
+  ggplot(aes(value)) + 
+  geom_density() + 
+  facet_wrap(vars(column), scales = "free")
+```
+
+
+#Correlations
+
+These features appear to be independent with the exception of `V15` and `V29`.
+
+```{r}
+correlation <- combined %>% 
+  select_if(is.numeric) %>% 
+  select(-ID) %>% 
+  cor()
+
+corrplot(correlation,
+         type = "upper")
+```
+
+`V15` is a duplicate of `v29`.  After dropping `v29`, let's look again at the correlations.
+
+```{r}
+combined %>% 
+  sample_frac(0.2) %>% 
+  ggplot(aes(V15, V29)) +
+  geom_point() + 
+  ggtitle("Column 15 is a duplicate of v29")
+```
+
+
+```{r}
+correlation <- train_raw %>% 
+  select_if(is.numeric) %>% 
+  mutate(target = log(Amount + 1)) %>% 
+  select(-ID, -V29, -Amount) %>% 
+  cor()
+
+corrplot(correlation,
+         type = "upper")
+```
+
+Which features have the highest correlation with the target `Amount`?
+
+```{r}
+top_5_corr_with_amount <- data_frame(feature = paste0("V", 1:33), corr_with_target = as.numeric(correlation[, 'target'])) %>% 
+  filter(corr_with_target != 1) %>% 
+  mutate(abs_corr_with_amount = abs(corr_with_target)) %>% 
+  arrange(desc(abs_corr_with_amount)) %>% 
+  top_n(5) %>% 
+  select(feature) %>% 
+  unlist() %>% 
+  as.character()
+
+train_raw %>% 
+  sample_frac(0.1) %>% 
+  mutate(target = log(Amount + 1)) %>% 
+  select(top_5_corr_with_amount, target) %>% 
+  ggpairs()
+```
+
+
+#Principal Component Analysis
+
+PCA is a way of reducing the dimensions of a matrix by finding a linear subset of the features which explains most of the variance.
+
+As seen below, most of the variation can be explained by the first principal component.
+
+```{r}
+model_matrix <- train_raw %>% dplyr::select(-Amount)
+pca <- prcomp(model_matrix, scale = T, center = T)
+plot(pca, type = "l")
+```
+
+The first PC explains 6% of the total variance.  THe other features each explain about exactly 3%.  This suggests that the data was simulated.  These features are almost perfectly independent.  If they were perfectly independent, each variable would explain 1/33rd percent of the variance, which comes out to 0.0303....  
+
+```{r}
+summary(pca)
+```
+
+#Pairwise Dotplots
+
+```{r}
+train_raw %>% 
+  sample_frac(0.2) %>% 
+  mutate(target = log(Amount + 1)) %>% 
+  select(2:6, target) %>% 
+  ggpairs(mapping = aes(fill = target), progress = F)
+```
+
+
+```{r}
+train_raw %>% 
+  sample_frac(0.1) %>% 
+  mutate(target = log(Amount + 1)) %>% 
+  select(7:12, target) %>% 
+  ggpairs(mapping = aes(fill = target), progress = F)
+```
+
+
+These variables are useless.  Don't use these.
+
+```{r}
+train_raw %>% 
+  sample_frac(0.1) %>% 
+  mutate(target = log(Amount + 1)) %>% 
+  select(V13, V28, V29, V30, V31, target) %>% 
+  ggpairs(mapping = aes(fill = target), progress = F)
+```
+
+#Data Preprocessing for Modeling
+
+This file will be where I do the model building.
+
+##Training/Test Split
+
+We will split the `train` data into a smaller training set and a validation sets.  What is a good size to split at?  With less training data, there is more variance in the parameter estimates.  If the test set is too small, there will be high variance in the predictions.  If the training set is too small, there will be a lot of variance in the training parameters.  The goal is to divide the data such that there is a good balance the two.
+
+The process will be
+
+1. Split `train` into 80% training and 20% validation
+2. Use cross validation to fit models on the train set by tuning hyperparameters
+3. Use the 20% validation set to evaluate competing models
+4. Retrain the final model on the combined data after fixing hyperparameters
+5. Make final predictions based on `test.txt`.
+
+Prepare data for training and testing.
+
+```{r}
+#Remember to subtract 1 from predictions before submitting!!
+df <- combined %>% select( -V29, -ID, -spike)
+
+data_for_training <- df %>% filter(source == "train") %>% select(-source, -Amount)
+data_for_predictions <- df %>% filter(source == "test") %>% select(-source, -Amount)
+train_index <- createDataPartition(data_for_training$target, p = 0.8, list = FALSE) %>% as.numeric()
+
+train <- data_for_training %>% dplyr::slice(train_index) %>% select(target, everything())
+test <- data_for_training %>% dplyr::slice(-train_index) %>% select(target,everything())
+
+#some models need a matrix instead of a data frame
+train_x <- train %>% select(-target) %>% as.matrix()
+train_y <- train$target
+holdout_x <- data_for_predictions %>% dplyr::select(-target) %>% as.matrix()
+
+#some models need a matrix instead of a data frame
+test_x <- test %>% select(-target) %>% as.matrix()
+test_y <- test$target
+    
+saveRDS(train_x, "train_x.RDS")
+saveRDS(train_y, "train_y.RDS")
+```
+
+This is the data excluding the spikes.  I thought about fitting a model for the "deductibles" seperatley.  Using "Is_Spike" as a target, I built a model with 88% accurracy but never used it.  As you can imagein, this could have been stacked on top of a regression model.
+
+```{r}
+  df <- combined %>% filter(spike == "none") %>% select( -Amount, -V29, -ID)
+  data_for_training <- df %>% filter(source == "train") %>% select(-source, -spike)
+  data_for_predictions <- df %>% filter(source == "test") %>% select(-source, -spike)
+  train_index <- createDataPartition(data_for_training$target, p = 0.8, list = FALSE) %>% as.numeric()
+  train_no_spikes <- data_for_training %>% dplyr::slice(train_index) %>% select(target, everything())
+  test_no_spikes <- data_for_training %>% dplyr::slice(-train_index) %>% select(target, everything())
+```
+
+
+#Modeling
+
+I fit a baseline model before doing any transformations.  This allows me to assess if I'm making improvements reducing the "irreducible" error.  I tried not to look at the test error when tuning parameters to avoid human-based overfitting.
+
+```{r}
+eval_model <- function(input_model, input_data = "train") {
+  if(input_data == "train"){
+    model_prediction <- predict.train(input_model, train_x)
+    df <- postResample(pred = model_prediction, obs = train_y)}
+  else {
+    model_prediction <- predict.train(input_model, test_x)
+    df <- postResample(pred = model_prediction, obs = test_y)}
+  data_frame("Data" = input_data, 'RMSE' = df[1], 'Rsquared' = df[2], 'MAE' = df[3])
+  }
+```
+
+##Baseline Linear Model
+
+Fit a baseline model with the features which have the highest correlation with `Amount`.
+
+* This performs poorly on predicting high outliers of the target
+* Residuals are approximately normal
+* Residuals increase as predicted value increases
+
+```{r}
+regressControl  <- trainControl(method="repeatedcv",
+                    number = 5,
+                    repeats = 1, #set this to 1 for now
+                    returnResamp = "all"
+                    ) 
+
+
+baseline <- train(target ~ V2 + V7 + V5,
+           data = train[-94590,],
+           method  = "lm",
+           trControl = regressControl)
+
+plot(baseline$finalModel)
+eval_model(baseline)
+
+summary(baseline)
+```
+
+Drop the high-leverage outliers from the training data.
+
+```{r}
+train <- train %>% 
+  dplyr::slice(-c(14568, 172386, 200929))
+```
+
+
+##GLM with all predictors
+
+From fitting a model with all predictors first we see that `V28` through `V31` do not appear to be significant.
+
+```{r}
+regressControl  <- trainControl(method="repeatedcv",
+                    number = 10,
+                    repeats = 3, #set this to 1 for now
+                    returnResamp = "all"
+                    ) 
+
+
+GLM_all <- train(target ~ ., #these have the highest correlations with the Amount
+           data = train,
+           method  = "lm",
+           trControl = regressControl)
+
+plot(GLM_all$finalModel)
+eval_model(GLM_all)
+```
+
+Based on the p-values being greater than 0.05, I drop the predictors `V28` through `V31` from the model.
+
+```{r}
+regressControl  <- trainControl(method="repeatedcv",
+                    number = 10,
+                    repeats = 3, #set this to 1 for now
+                    returnResamp = "all"
+                    ) 
+
+
+GLM_best <- train(target ~ ., #these have the highest correlations with the Amount
+           data = train %>% select(-V28, -V30, -V31, -V33, -V13, -V32) ,
+           method  = "lm",
+           trControl = regressControl)
+
+plot(GLM_best$finalModel)
+eval_model(GLM_best)
+
+summary(GLM_best)
+```
+
+
+
+##GLM with all predictors excluding spikes
+
+```{r}
+regressControl  <- trainControl(method="repeatedcv",
+                    number = 10,
+                    repeats = 3, 
+                    returnResamp = "all"
+                    ) 
+
+GLM_all_no_spike <- train(target ~ ., 
+           data = train_no_spikes %>% select(-V28, -V30, -V31, -V33, -V13, -V32),
+           method  = "lm",
+           trControl = regressControl)
+
+summary(GLM_all_no_spike)
+eval_model(GLM_all_no_spike)
+```
+
+```{r}
+plot(GLM_all_no_spike$finalModel)
+```
+
+We look at the residuals vs fitted.
+
+```{r}
+test_no_spikes %>% 
+  mutate(predictions = predict.train(GLM_all_no_spike, test_no_spikes)) %>% 
+  ggplot(aes(target, predictions)) + 
+  geom_point() + 
+  ggtitle("Predictions vs Target for GLM excluding spikes")
+```
+
+
+##XGBoost Tuning Process
+
+To deal with non-linear relationships, we need a more flexible model.
+
+The tuning parameters are
+
+* nrounds: Number of trees, default: 100
+* max_depth: Maximum tree depth, default: 6
+* eta: Learning rate, default: 0.3
+* gamma: Used for tuning of Regularization, default: 0
+* colsample_bytree: Column sampling, default: 1
+* min_child_weight: Minimum leaf weight, default: 1
+* subsample: Row sampling, default: 1
+
+We'll break down the tuning of these into five sections:
+
+* Step 1. Fixing learning rate `eta` and number of iterations `nrounds`
+* Step 2. Maximum depth `max_depth` and child weight `min_child_weight`
+* Step 3. Setting column `colsample_bytree` and row sampling `subsample`
+* Step 4. Experimenting with different `gamma` values
+* Step 5. Reducing the learning rate `eta`
+
+I can create a diagram of what a tree looks like using the `DiagrammeR` package.
+
+```{r}
+dummy_xgb <- xgboost(data = train_x, label = train_y, max.depth = 2,
+               eta = 1, nthread = 2, nround = 2,objective = "reg:linear")
+xgb.plot.tree(colnames(train_x), model = dummy_xgb)
+```
+
+##XGBoost Tuning
+
+As a baseline to the xgboost, we'll first fit using the default parameters.
+
+```{r}
+grid_default <- expand.grid(
+  nrounds = 100,
+  max_depth = 3,
+  eta = 0.3,
+  gamma = 0,
+  colsample_bytree = 1,
+  min_child_weight = 1,
+  subsample = 1
+)
+
+train_control <- caret::trainControl(
+  method = "none",
+  verboseIter = TRUE, # no training log
+  allowParallel = TRUE # FALSE for reproducible results 
+)
+
+#avoid needing to refit model when knitting doc
+
+# xgb_base <- caret::train(
+#   x = train_x,
+#   y = train_y,
+#   trControl = train_control,
+#   tuneGrid = grid_default,
+#   method = "xgbTree",
+#   eval_metric = "mae"
+# )
+
+#saveRDS(xgb_base, "Models/xgb_base.RDS")
+xgb_base <- readRDS("Models/XGB_base.RDS")
+eval_model(xgb_base)
+```
+
+We'll start with the "bigger knobs" to tune and then use these settings to find the best of the "smaller knobs", and then come back and refine these more significant paramters.  We start by fixing the number of trees.  This controls the total number of regression trees to use.  This is selected in combination with the learning rate.  Using a lower learning rate updates the predictions more slowly and so requires a larger number of iterations, or `nrounds` in order to minimize the loss function.  Setting this too high eventually leads to instability.  Using more trees and a lower learning rate is almost always better, but has diminishing returns.  To start, in order to reduce compute time when choosing the other parameters, we set this to 1000.  After the other parameters have been chose, we will come back and turn this up.
+
+```{r}
+nrounds <- 500
+```
+
+Then we can fill in the other items, using suggestions from (here)[https://www.slideshare.net/OwenZhang2/tips-for-data-science-competitions/14].  
+
+```{r}
+t1 <-  Sys.time()
+
+tune_grid <- expand.grid(
+  nrounds = seq(from = 50, to = 500, by = 100),
+  eta = c(0.1, 0.2, 0.4),
+  max_depth = 3,
+  gamma = 0,
+  colsample_bytree = 1,
+  min_child_weight = 1,
+  subsample = 1
+)
+
+tune_control <- caret::trainControl(
+  method = "cv", # cross-validation
+  number = 3, # with n folds 
+  verboseIter = FALSE, # no training log
+  allowParallel = TRUE # FALSE for reproducible results 
+)
+
+# xgb_tune <- caret::train(
+#   x = train_x,
+#   y = train_y,
+#   trControl = tune_control,
+#   tuneGrid = tune_grid,
+#   method = "xgbTree",
+#   verbose = TRUE
+# )
+
+t2 <- Sys.time()
+
+timediff <- t2 - t1
+
+# saveRDS(xgb_tune, "Models/xgb_tune.RDS")
+xgb_tune <- readRDS("Models/XGB_tune.RDS")
+plot(xgb_tune)
+
+```
+
+From the plots above, we see that the best learning rate `eta` is at 0.4, which is a high value just to start.  GBMs generally perform better with a larger number of trees, but it takes longer for the model to train.  To make this faster, we'll set the number of trees to 250 while tuning the other parameters.
+
+Next, we move on to finding a good value for the max tree depth.  We start with 3 +/- 1.  The maximum depth controls the depth or "height" of each tree and helps to avoid overfitting.  A higher depth can capture interaction effects better, but setting too high will overfit to the training set.  We also try higher values of `min_child_weight`, which controls the minimum number of observations that are allowed in each end node.  Higher values prevent overfitting.
+
+The code below took 30 minutes to fit.
+
+```{r}
+t1 <-  Sys.time()
+
+tune_grid2 <- expand.grid(
+  nrounds = c(150, 300, 500),
+  eta = xgb_tune$bestTune$eta,
+  max_depth = c(2, 3, 4),
+  gamma = 0,
+  colsample_bytree = 1,
+  min_child_weight = c(1, 2, 3),
+  subsample = 1
+)
+
+# xgb_tune2 <- caret::train(
+#   x = train_x,
+#   y = train_y,
+#   trControl = tune_control,
+#   tuneGrid = tune_grid2,
+#   method = "xgbTree",
+#   verbose = TRUE
+# )
+
+timediff <-  Sys.time() - t1
+
+xgb_tune2 <- readRDS("Models/XGB_tune2.RDS")
+
+# saveRDS(xgb_tune2, "Models/xgb_tune2.RDS")
+
+eval_model(xgb_tune2)
+plot(xgb_tune2)
+```
+
+
+```{r}
+xgb_tune2$bestTune
+```
+
+We see that the best max depth is 4 with  `min_child_wight` of 2. 
+
+Finally, now that the tree parameters are turned, I go back and tune the final boosting parameters.
+
+Unfortunately, this was overfitting because although the train MAE is lower, the test MAE is higher.  In a perfect world, this could be rerun with a higher number of trees to further improve the performance.
+
+```{r}
+t1 <-  Sys.time()
+
+tune_grid3 <- expand.grid(
+  nrounds = c(600, 900, 1200),
+  eta = c(0.08, 0.1, 0.3),
+  max_depth = 4,
+  gamma = 0,
+  colsample_bytree = 1,
+  min_child_weight = 2,
+  subsample = c(1, 0.8)
+)
+
+# xgb_tune3 <- caret::train(
+#   x = train_x,
+#   y = train_y,
+#   trControl = tune_control,
+#   tuneGrid = tune_grid3,
+#   method = "xgbTree",
+#   verbose = TRUE
+# )
+
+timediff <-  Sys.time() - t1
+
+# saveRDS(xgb_tune3, "Models/xgb_tune3.RDS")
+xgb_tune3 <- readRDS("Models/XGB_tune3.RDS")
+
+plot(xgb_tune3)
+eval_model(xgb_tune3)
+```
+
+##Model Selection
+
+What does the error look like against each incremental tuning step?
+
+```{r}
+xgb_models <- list(xgb_base, xgb_tune, xgb_tune2, xgb_tune3)
+
+xgb_models %>% 
+  map_df(eval_model) %>%
+  mutate(GBM_tuning_step = 1:4) %>% 
+  rbind(
+    xgb_models %>% 
+    map_df(., .f = eval_model, "test") %>%
+    mutate(GBM_tuning_step = 1:4)
+    ) %>% datatable()
+```
+
+##Making Predictions
+
+Remember to reverse the log and subtract 1 from target before submitting predictions!
+
+```{r}
+#write the predictions to a csv file
+make_predictions <- function(model, write = F){
+  output_path <- paste0("Predictions/",as.character(model$method)," Predictions - ", format(Sys.time(), '%d %B %Y'), ".txt")
+  pred <- (exp(predict.train(model, holdout_x)) - 1)
+  
+  if(write == T){
+    data_frame(ID = test_raw$ID, Amount = pred) %>% 
+      write_tsv(., path = output_path)
+  } else{return(pred)}
+  
+}
+
+xgb_predictions <- make_predictions(xgb_tune2)#This was used as the final model
+glm_predictions <- make_predictions(GLM_best)
+
+#write predictions to file
+make_predictions(xgb_tune2, write = T)
+```
+
+##Variable Importance
+
+```{r}
+importance_df <- data_frame(Feature = rownames(varImp(xgb_tune2)$importance), Importance = varImp(xgb_tune2)$importance$Overall) %>% arrange(Importance)
+
+importance_order <- importance_df$Feature
+
+importance_df %>% 
+  mutate(Feature = fct_relevel(Feature, importance_order)) %>% 
+  ggplot(aes(Feature, Importance)) + 
+  geom_bar(stat = "identity", fill = "dodgerblue") + 
+  coord_flip()
+
+varImp(xgb_tune2)
+```
+
+```{r}
+top_5_corr_with_amount
+```
+
+
+We can look at the partial dependence plots.
+
+```{r}
+make_gg_partial <- function(input_feature){
+  sample_index <- base::sample(x = nrow(train_x), size = 50000)
+  partial_dep_data <- pdp::partial(xgb_tune2, pred.var = c(input_feature), train = train_x[sample_index,])
+  partial_dep_data %>% 
+  ggplot(aes_string(input_feature, "yhat")) + 
+  geom_line() + 
+  geom_point(colour = "dodgerblue")
+}
+
+V1_partial <- make_gg_partial("V1") + xlim(-4, 2.5)
+V2_partial <- make_gg_partial("V2") + xlim(-4, 5)
+V7_partial <- make_gg_partial("V7") + xlim(-4, 5)
+V20_partial <- make_gg_partial("V20") + xlim(-4, 5)
+V5_partial <- make_gg_partial("V5") + xlim(-4, 5)
+
+ggarrange(V1_partial, V2_partial, V7_partial, V20_partial, V5_partial)
+```
+
+
+#Sources
+
+**Reference Texts**
+
+* An Introduction to Statistical Learning 
+* The Elements of Statistical Learning
+
+**R Software Packages**
+
+* Everything by Hadley Wickham including but not limited to: ggplot2, dplyr, tidyr, purr (excellent package), broom, forcats
+* The caret library for model fitting
+* The XGBoost (Extreme Gradient Boosting) GBM implementation
+
+
+**Online Articles (More than can be listed)**
+
+*[Generalized Linear Models for Insurance Ratemaking](https://www.casact.org/pubs/monographs/papers/05-Goldburd-Khare-Tevet.pdf)
+*[A Gentle Introduction to XGBoost for Applied Machine Learning](https://machinelearningmastery.com/gentle-introduction-xgboost-applied-machine-learning/)
+*[An End-to-End Guide to Understandign XGBoost](https://www.analyticsvidhya.com/blog/2018/09/an-end-to-end-guide-to-understand-the-math-behind-xgboost/)
+
+**Various Kaggle repositories**
+

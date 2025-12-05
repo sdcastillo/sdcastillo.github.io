@@ -1,0 +1,941 @@
+---
+title: Every picture tells a story ... don't it?
+author: "Sam Castillo and Brian A. Fannin"
+date: September 19, 2019
+output: 
+  revealjs::revealjs_presentation:
+    center: false
+    transition: none
+    css: css/custom.css
+    self_contained: yes
+    reveal_options:
+      slideNumber: true
+---
+
+```{r setup, include=FALSE}
+#git test
+knitr::opts_chunk$set(
+    echo = FALSE
+  , warning = FALSE
+  , message = FALSE
+  , collapse = TRUE
+  , cache = TRUE
+)
+
+library(tidyverse)
+library(gridExtra)
+library(vroom)
+library(ggthemes)
+library(png)
+library(grid)
+library(lubridate)
+library(scales)
+library(kableExtra)
+library(gganimate)
+library(magick)
+library(colortools)
+library(ggpubr)
+
+source("theme_soa.R")
+```
+
+```{r}
+my_void <- theme_void() +
+  theme(
+    text = element_text(size = 20)
+    , legend.position = 'none'
+  )
+
+my_minimal <- theme_minimal() +
+  theme(
+    text = element_text(size = 20)
+  )
+
+my_classic <- theme_classic() + 
+  theme(
+    text = element_text(size = 20)
+  )
+
+my_percent <- function(x) {
+  scales::percent(x, accuracy = 0.1)
+}
+
+my_args <- list(big.mark = ',', digits = 0, scientific = FALSE)
+```
+
+## Where to find this
+
+This presentation may be found at: https://pirategrunt.com/soa_symposium_2019/
+
+Code to produce the examples and slides: https://github.com/PirateGrunt/soa_symposium_2019
+
+## What we'll talk about
+
+* Communication efficiency
+* Practical advice for data visualization
+
+# Communication efficiency
+
+## {data-background=white}
+
+## {.gigantic-text}
+
+9 
+
+## {.center}
+
+Which of these two numbers is larger? 
+
+##
+
+<div class = 'left very-large-text'>
+11
+</div>
+
+<div class = 'right very-large-text'>
+9
+</div>
+
+## {.center}
+
+How about these two?
+
+##
+
+<div class = 'left large-text'>
+1011
+</div>
+
+<div class = 'right large-text'>
+1001
+</div>
+
+## {.center}
+
+These?
+
+##
+
+<div class = 'left very-large-text'>
+IX
+</div>
+
+<div class = 'right very-large-text'>
+XI
+</div>
+
+## {.center}
+
+And these?
+
+##
+
+<div class = 'left very-large-text'>
+9
+</div>
+
+<div class = 'right very-large-text'>
+B
+</div>
+
+## {.center}
+
+These?
+
+##
+
+<div class = 'left large-text'>
+十一
+</div>
+
+<div class = 'right large-text'>
+九
+</div>
+
+## {.center}
+
+These?
+
+##
+
+<div class = 'left small-text'>
+11
+</div>
+
+<div class = 'right very-large-text'>
+9
+</div>
+
+## {.center}
+
+How about these?
+
+##
+
+```{r}
+tibble(
+    val = c('left', 'right')
+  , size = c(11, 9)
+) %>% 
+  ggplot(
+    aes(val, size)
+  ) + 
+  geom_bar(position = 'dodge', stat = 'identity') + 
+  my_void
+```
+
+## {.center}
+
+For statisticians there always have to be comparisons; numbers on their own are not enough. 
+
+- Gelman and Unwin
+
+## {.center}
+
+These two?
+
+##
+
+<div class = 'left'>
+999999999
+</div>
+
+<div class = 'right'>
+99999999999
+</div>
+
+## {.center}
+
+These two?
+
+##
+
+<div class = 'left'>
+999,999,999
+</div>
+
+<div class = 'right'>
+99,999,999,999
+</div>
+
+##
+
+```{r}
+tibble(
+    val = c('left', 'right')
+  , size = c(99999999999, 999999999)
+) %>% 
+  ggplot(
+    aes(val, size)
+  ) + 
+  geom_bar(position = 'dodge', stat = 'identity') + 
+  my_void
+```
+
+## {.center}
+
+nine
+
+9
+
+neun
+
+1001
+
+九
+
+IX
+
+nueve
+
+##  {.center}
+
+<div class = 'left'>
+Arabic or sanskrit are no more legitimate than any other representation of numbers.
+</div>
+
+<div class = 'right'>
+
+Be prepared to accept the idea that there are circumstances when geometric primitives may be understood _faster_.
+</div>
+
+## This is actually _too much_ information
+
+```{r}
+tibble(
+    val = c('left', 'right')
+  , size = c(11, 9)
+) %>% 
+  ggplot(
+    aes(val, size)
+  ) + 
+  geom_bar(position = 'dodge', stat = 'identity') + 
+  my_void
+```
+
+## This is better
+
+```{r fig.width=4}
+tibble(
+    val = c('left', 'right')
+  , size = c(11, 9)
+) %>% 
+  ggplot(
+    aes(val, size)
+  ) + 
+  geom_bar(position = 'dodge', stat = 'identity', width = 0.1) + 
+  my_void
+```
+
+##
+
+Statistics maps a set of many numbers into a set of fewer numbers.
+
+```{r}
+set.seed(1234)
+mean <- 10e3
+cv <- 0.3
+sigma <- sqrt(log(1 + cv^2))
+mu <- log(mean) - sigma^2/2
+
+tbl_obs <- tibble(
+  x = rlnorm(5e3, mu, sigma)
+  , y = rgamma(5e3, 1 / cv^2, scale = mean * cv ^ 2)
+)
+
+tbl_obs_long <- tbl_obs %>% 
+  tidyr::gather(sample, value)
+
+tbl_obs <- tbl_obs %>% 
+  mutate(
+    yen = x * 137
+  )
+
+summary_x <- tbl_obs$x %>% 
+  summary()
+
+summary_y <- tbl_obs$y %>% 
+  summary()
+
+summary_yen <- tbl_obs$yen %>% 
+  summary()
+
+tbl_summary <- data.frame(
+  metric = names(summary_x)
+  , x = summary_x %>% as.numeric()
+  , y = summary_y %>% as.numeric()
+  , yen = summary_yen %>% as.numeric()
+)
+```
+
+```{r}
+mean_sample <- tbl_obs$x %>% mean()
+sd_sample <- tbl_obs$x %>% sd()
+```
+
+```{r }
+tbl_obs$x %>% 
+  summary()
+```
+
+## {.center}
+
+```{r }
+tbl_summary %>%
+  select(metric, x) %>% 
+  knitr::kable(
+    format.args = my_args
+  )
+```
+
+## 
+
+```{r}
+plt_base <- tbl_obs %>% 
+  ggplot(aes(x))
+
+plt_hist <- plt_base + 
+  geom_histogram(
+      aes(y = stat(density))
+    , fill = 'grey'
+    , color = 'black')
+
+plt_density <- plt_base + 
+  geom_density(fill = 'grey')
+
+grid.arrange(
+    nrow = 1
+  , plt_hist
+  , plt_density
+)
+```
+
+## 
+
+```{r}
+mean_x <- tbl_obs$x %>% mean()
+
+grid.arrange(
+    nrow = 1
+  , plt_hist + geom_vline(xintercept = mean_x, color = 'red')
+  , plt_density + geom_vline(xintercept = mean_x, color = 'red')
+)
+```
+
+##
+
+```{r}
+conf_95 <- quantile(tbl_obs$x, c(.05, .95))
+
+grid.arrange(
+    nrow = 1
+  , plt_hist + 
+      geom_vline(xintercept = mean_x, color = 'red') + 
+      geom_vline(xintercept = conf_95, color = 'black', alpha = 0.6)
+  , plt_density + geom_vline(xintercept = mean_x, color = 'red')  + 
+      geom_vline(xintercept = conf_95, color = 'black', alpha = 0.6)
+)
+```
+
+##
+
+<div class = 'left'>
+
+```{r }
+tbl_summary %>% 
+  select(metric, x) %>% 
+  knitr::kable(
+    format.args = my_args
+  )
+```
+
+</div>
+
+<div class = 'right'>
+
+```{r fig.height = 8}
+plt_hist + 
+  geom_vline(xintercept = mean_x, color = 'red') + 
+  geom_vline(xintercept = conf_95, color = 'black', alpha = 0.6)
+```
+
+</div>
+
+## {.center}
+
+Summary statistics are _always_ a reduction of information.
+
+Visualization presents (almost) _all_ of the data. The reductions are made with our eyes.
+
+## Potential complaint 
+
+<div class = 'center'>
+Focus on visual design places undue emphasis on superfluous characteristics like color, font, etc.
+</div>
+
+## {.center}
+
+What's the most important word in the text which follows?
+
+##
+
+The rate for territory X must be **<u>increased</u>** by 10.4%.
+
+## {.center}
+
+And this one?
+
+##
+
+The rate for **<u>territory</u>** X must be increased by 10.4%.
+
+## {.center}
+
+"Inessential" matters. Emphasis is an element of communication and therefore comprehension.
+
+## {.center}
+
+Are you ready to buy stock in this company?
+
+## {.center .unprofessional}
+
+This year we plan top build on last year's renewed profitability.
+
+# Practical Advice for Data Visualization
+
+## A real life example: improving my diet
+
+<center>
+
+```{r fig.align= "center"}
+image_read('images/nutrition_facts.PNG') %>% image_trim() %>% image_scale("1000")
+```
+
+</center>
+
+## Speed test: which is healthier, left or right?
+
+
+<div class = 'left'>
+
+```{r fig.align= "center"}
+image_read('images/wheaties.PNG') %>% image_trim() %>% image_scale("800")
+```
+
+</div>
+
+<div class = 'right'>
+
+```{r fig.width=4, fig.height=7}
+image_read('images/frosted_flakes.PNG') %>% image_trim() %>% image_scale("800")
+```
+
+</div>
+
+
+## Limations of the nutrition label
+
+- Serving sizes are inconsistent
+- Converting units requires a calculator
+- Each food has it's own label
+- Data collection is slow
+
+## Instacart orders
+
+```{r fig.align="center"}
+image_read('images/orders.PNG') %>% image_trim() %>% image_scale("1200")
+```
+
+## My daily calories for the last four months
+
+```{r}
+orders <- read_csv("data/orders.csv")
+orders_nutrition <- read_csv("data/orders_nutrition.csv")
+
+p <- orders_nutrition %>% 
+  mutate(week = week(date)) %>% 
+  filter(month(date) < 8, month(date) > 2) %>% 
+  group_by(week) %>% 
+  summarise(calories = sum(calories)/7) %>% 
+  ggplot(aes(week, calories)) + 
+  geom_line() + 
+  geom_point() + 
+  theme_minimal() +
+  scale_x_continuous(labels = seq(ymd("2019-03-01"), ymd("2019-07-31"), by = "month")) + 
+  xlab("Date") + 
+  ylab("Calories Per Day") + 
+  ggtitle("Daily Calories") + 
+  ylim(1000, 5000) + 
+  transition_reveal(week) 
+
+animate(p,
+        duration = 60, # 32 weeks * 4 sec/week = 120 seconds
+        fps = 15
+        )
+```
+
+## Setting a daily benchmark
+
+| Measure           | Value|
+|-------------------|------|
+| Calories          | 3000 | 
+| Protein (g)       | 125  |   
+| Total Fat (g)     | 150  |  
+| Saturated Fat (g) | 0    |   
+| Trans Fat (g)     | 0    |   
+| Cholesterol (mg)  | 600  |   
+| Sodium (mg)       | 200  |   
+| Carbs (g)         | 600  |  
+| Dietary Fiber (g) | 25   |  
+| Sugars (g)        | 40   | 
+
+
+## Percent of daily benchmark
+
+```{r}
+measure_columns <- c("calories", "total_fat_g", "sat_fat_g", "trans_fat_g", "cholesterol_mg", "sodium_mg", "total_carbs_g", "dietary_fiber_g", "sugars_g", "protein_g")
+
+nutrition_benchmarks <- tibble(
+  stat = measure_columns,
+  benchmark = c(3000, #calories
+                150,#total fat
+                0,#sat fat
+                0,#trans fat
+                600,#cholesterol
+                2000,#sodium (centi-grams)
+                600,#carbs
+                25,#dietary fiber
+                40,#sugars
+                125 #protein... 175 - 50 from protein shake
+                )
+)
+```
+
+```{r fig.width=10}
+p <- orders_nutrition %>% 
+  select(date, measure_columns) %>% 
+  mutate(month = month(date)) %>% 
+  filter(month < 8, month > 2) %>% 
+  group_by(month) %>% 
+  mutate_at(measure_columns, ~sum(.x, na.rm = T)/unique(days_in_month(date))) %>% 
+  gather(stat, value, -month, -date) %>% 
+  filter(month >2, stat != "sat_fat_g", stat != "trans_fat_g", stat != "total_carbs_g") %>% 
+  left_join(nutrition_benchmarks, by = "stat") %>% 
+  mutate(percent = ifelse(value/benchmark<2.4, value/benchmark, 2.4),
+         stat = case_when(
+    stat == "calories" ~ "Calories",
+    stat == "cholesterol_mg" ~ "Cholesterol",
+    stat == "dietary_fiber_g" ~ "Dietar Fiber",
+    stat == "protein_g" ~ "Protein",
+    stat == "sat_fat_g" ~ "Saturated Fat",
+    stat == "sodium_mg" ~ "Sodium",
+    stat == "sugars_g" ~ "Sugars",
+    stat == "total_carbs_g" ~ "Total Carbs",
+    stat == "total_fat_g" ~ "Total Fat",
+    stat == "trans_fat_g" ~ "Trans Fat",
+    T ~ "NA"
+  ) %>% 
+    fct_relevel(c(
+      "Calories","Protein (g)","Sugars (g)","Total Carbs (g)","Cholesterol (mg)","Dietar Fiber (g)","Saturated Fat (g)","Sodium (mg)","Total Fat (g)","Trans Fat (g)", "NA"))
+  ) %>% 
+  mutate(stat = fct_rev(stat)) %>% 
+  ggplot(aes(date, percent, color = stat)) + 
+  geom_line() + 
+  geom_point() + 
+  scale_y_continuous(labels = percent, limits = c(0, 2.5)) +
+  theme_minimal() + 
+  theme(legend.position="top") +
+  geom_hline(yintercept = 1.00, color = "black", size = 1.3, alpha = 0.5) +
+  transition_reveal(date) + 
+  ylab("% of Daily Value") + 
+  xlab("Date")
+
+animate(p,
+        duration = 100,
+        fps = 5
+        )
+```
+
+## Percent of daily benchmark
+
+```{r}
+orders_nutrition %>% 
+  select(date, measure_columns) %>% 
+  mutate(month = month(date)) %>% 
+  filter(month < 8, month > 2) %>% 
+  group_by(month) %>% 
+  mutate_at(measure_columns, ~sum(.x, na.rm = T)/unique(days_in_month(date))) %>% 
+  gather(stat, value, -month, -date) %>% 
+  filter(month >2, stat != "sat_fat_g", stat != "trans_fat_g", stat != "total_carbs_g") %>% 
+  left_join(nutrition_benchmarks, by = "stat") %>% 
+  mutate(percent = ifelse(value/benchmark<2.4, value/benchmark, 2.4),
+         stat = case_when(
+    stat == "calories" ~ "Calories",
+    stat == "cholesterol_mg" ~ "Cholesterol",
+    stat == "dietary_fiber_g" ~ "Dietar Fiber",
+    stat == "protein_g" ~ "Protein",
+    stat == "sat_fat_g" ~ "Saturated Fat",
+    stat == "sodium_mg" ~ "Sodium",
+    stat == "sugars_g" ~ "Sugars",
+    stat == "total_carbs_g" ~ "Total Carbs",
+    stat == "total_fat_g" ~ "Total Fat",
+    stat == "trans_fat_g" ~ "Trans Fat",
+    T ~ "NA"
+  ) %>% 
+    fct_relevel(c(
+      "Calories","Protein (g)","Sugars (g)","Total Carbs (g)","Cholesterol (mg)","Dietar Fiber (g)","Saturated Fat (g)","Sodium (mg)","Total Fat (g)","Trans Fat (g)", "NA"))
+  ) %>% 
+  mutate(stat = fct_rev(stat)) %>% 
+  ggplot(aes(date, percent, color = stat)) + 
+  geom_smooth(se = F, span = 0.4) + 
+  scale_y_continuous(labels = percent, limits = c(0, 2.5)) +
+  theme_minimal() + 
+  theme(legend.position="top") +
+  geom_hline(yintercept = 1.00, color = "black", size = 1.3, alpha = 0.5) +
+  ylab("% of Daily Value") + 
+  xlab("Date")
+```
+
+
+## 
+
+<div class = 'left'>
+
+<font size="12" color="#B8F7FF" face="bold">Exploration</font>
+
+* Speed
+* Iteration
+* Agility
+* Many dimensions
+* Tidy data
+* R and Python
+
+</div>
+
+<div class = 'right'>
+
+<font size="12" color="FFBCB9"face="bold">Communication</font>
+
+* Simplicity
+* Professionalism 
+* Consistency
+* PowerPoint, Tableau, PowerBI, D3.js
+
+</div>
+
+## Visualization is a process
+
+```{r}
+image_read('images/hadley_data_lifecycle.png') %>% image_trim() %>% image_scale("1400")
+```
+
+<font size="2">*R for Data Science*, Hadley Wickham: https://r4ds.had.co.nz/</font>
+
+## Default template
+
+```{r fig.width= 5, fig.height=5}
+iris %>% 
+  ggplot(aes(Sepal.Width, Sepal.Length, color = Species)) + 
+  geom_point() +
+  ggtitle("Default MS Excel Graphics") + 
+  theme_excel_new() + 
+  theme(text=element_text(size=16,  family="Calibri"))
+```
+
+## With a custom template
+
+```{r }
+img <- readPNG("images/soa_logo.png")
+logo <- rasterGrob(img, interpolate = T)
+
+qplot(1:10, 1:10, geom = "blank") + 
+  annotation_custom(logo) 
+
+gg <- iris %>% 
+  ggplot(aes(Sepal.Width, Sepal.Length, color = Species)) + 
+  geom_point(size = 2, shape = 15) +
+  labs("") + 
+  theme(legend.position = "top") + 
+  xlab("Width") + 
+  ylab("Length") +
+  theme_excel_new() + 
+  ggtitle("Branded Graphics") + 
+  labs( subtitle = "Based on the Economist's theme \nfrom the 'ggthemes' package",
+        caption = "Copyright 2019 YourBrandName \nUsed without Permission") + 
+   annotation_custom(logo, ymin = 8, ymax = 8.5, xmin = 4, xmax = 4.5) +
+  scale_color_tableau() + 
+    theme(plot.title = element_text(family = "Verdana",
+                     colour = "#023852", 
+                     size = 18,
+                     face = "bold",
+                     hjust = 0.5),
+        plot.caption = element_text(family = "Verdana",
+                     colour = "#023852", 
+                     size = 12, 
+                     hjust = 0),
+        plot.subtitle = element_text(family = "Verdana",
+                     colour = "#023852", 
+                     size = 12, 
+                     hjust = 0.5),
+        axis.line.x = element_line(color="#023852"),
+        axis.line.y = element_line(color="#023852"))
+
+gt <- ggplot_gtable(ggplot_build(gg))
+gt$layout$clip[gt$layout$name == "panel"] <- "off"
+grid.draw(gt)
+```
+
+## Do Not Repeat Yourself (DRY)
+
+Import *then* transform *then* visualize *then* add a custom theme
+
+```{r fig.align="center"}
+image_read('images/code.PNG') %>% image_trim() %>% image_scale("1200")
+```
+
+
+## The best graphs are easy to read
+
+```{r fig.height=4}
+readmissions <- read_csv("data/hospital_readmission_rates.csv", na = "Not Available")
+
+readmissions %>% 
+  ggplot(aes(`Number of Readmissions`)) + 
+  geom_density(fill = "lightBlue") +
+  ggtitle("Hospital Readmissions") + 
+  theme_excel() + 
+  theme(text = element_text(size = 8))
+```
+
+* What are the y-axis "density" units?  
+* How can this be translated into english?
+
+## The best graphs are easy to read
+
+```{r fig.height=4}
+readmissions %>% 
+  ggplot(aes(`Number of Readmissions`)) + 
+  geom_histogram(binwidth = 20, color = "Light Grey", size = 1.2) + 
+  xlim(0, 300) + 
+  theme_soa() + 
+  ggtitle("Distribution of Hospital Readmissions") + 
+  xlab("Number of Readmissions") + 
+  ylab("Number of Hospitals") + 
+  labs( subtitle = "Based on Five Thirty Eight's Theme \nfrom the 'ggthemes' package",
+        caption = "Copyright 2019 YourBrandName \nData Source: HealthData.gov") + 
+  scale_x_continuous(breaks = seq(10, 300, 20),minor_breaks = seq(0, 300, 10), limits = c(0, 300)) + 
+  scale_y_continuous(labels = scales::comma) +
+  theme(plot.title = element_text(family = "Verdana",
+                     colour = "black", 
+                     size = 14, 
+                     hjust = 0.5),
+        plot.caption = element_text(family = "Verdana",
+                     colour = "darkGrey", 
+                     size = 14, 
+                     hjust = 0),
+        plot.subtitle = element_text(family = "Verdana",
+                     colour = "black", 
+                     size = 14, 
+                     hjust = 0.5))
+```
+
+* In english: "There are just over 2,000 hospitals with between 30 and 50 readmissions"
+
+## Graphs should be unambiguous
+
+
+```{r  fig.align="center"}
+image_read('images/excel_pivot_1.PNG') %>% image_trim() %>% image_scale("1400")
+```
+
+## A step in the right direction
+
+```{r}
+readmissions %>% 
+  filter(State %in% c("IL", "MA", "NC", "NY", "PA")) %>%
+  group_by(State) %>% 
+  summarise(
+    mean_predicted = mean(`Predicted Readmission Rate`, na.rm = TRUE)
+    , mean_expected = mean(`Expected Readmission Rate`, na.rm = TRUE)
+  ) %>% 
+  ggplot(aes(mean_expected, mean_predicted)) + 
+  geom_label(aes(label = State)) +
+  geom_abline(slope = 1, intercept=0, alpha = 0.5, color = "red") + 
+  theme_bw() + 
+  xlab("Actual Readmissions") + 
+  ylab("Expected Readmissions") + 
+  scale_x_continuous(labels = seq(15, 16.5, 0.5), breaks = seq(15, 16.5, 0.5), limits = c(15, 16.5)) + 
+  scale_y_continuous(labels = seq(15, 16.5, 0.5), breaks = seq(15, 16.5, 0.5), limits = c(15, 16.5))
+```
+
+## Showing uncertainty
+
+```{r}
+readmissions %>% 
+  filter(State %in% c("IL", "MA", "NC", "NY", "PA")) %>% 
+  mutate(ave = `Expected Readmission Rate`/`Predicted Readmission Rate`) %>% 
+  ggplot(aes(State, ave)) + 
+  geom_boxplot(outlier.alpha = 0.2, alpha = 0.7) + 
+  coord_flip() + 
+  theme_soa() + 
+  ggtitle("Actual vs Expected Readmission Ratio") + 
+  ylab("Actual/Predicted") +
+  labs( subtitle = "Based on Five Thirty Eight's Theme \nfrom the 'ggthemes' package",
+        caption = "Copyright 2019 YourBrandName \nData Source: HealthData.gov") + 
+    theme(plot.title = element_text(family = "Verdana",
+                     colour = "black", 
+                     size = 12, 
+                     hjust = 0),
+        plot.caption = element_text(family = "Verdana",
+                     colour = "black", 
+                     size = 10, 
+                     hjust = 1),
+        plot.subtitle = element_text(family = "Verdana",
+                     colour = "black", 
+                     size = 10, 
+                     hjust = 0))
+```
+
+## Color wheels are helpful
+
+```{r}
+wheel("blue", num = 12)
+```
+
+## Complimentary colors are opposites on the color wheel
+
+```{r}
+complementary("steelblue")
+```
+
+## Use the colors specific to your brand
+
+```{r}
+ggplot(mpg, aes(class)) + geom_bar(aes(fill = drv)) + scale_fill_manual(values = c("#ff80c3", "#7affb6", "#695d49"))
+```
+
+## Company website
+
+```{r}
+image_read('images/intelliscript.PNG') %>% image_trim() %>% image_scale("1400")
+```
+
+## R colors
+
+```{r}
+intelliscript_theme <- function (base_size = 9, base_family = "", base_line_size = base_size/24, 
+    base_rect_size = base_size/24) 
+{
+    theme_bw(base_size = base_size, base_family = base_family, 
+        base_line_size = base_line_size, base_rect_size = base_rect_size) %+replace% 
+        theme(plot.title = element_text(size = 18, face = "bold", 
+            color = "#08315C" , hjust = 0), 
+            plot.subtitle = element_text(size = 12, color = "#455f72", 
+                hjust = 0), plot.caption = element_text(size = 12, 
+                color = "#455f72", hjust = 1), 
+            legend.position = "top", legend.text = element_text(size = 9, 
+                color = "#08315C" ), legend.title = element_text(size = 9, 
+                color = "#08315C" ), axis.text.x = element_text(size = 9, 
+                color = "#08315C" ), axis.text.y = element_text(size = 9, 
+                color = "#08315C" ), axis.title = element_text(size = 9, 
+                color = "#08315C" ), axis.ticks = element_blank(), 
+            legend.background = element_blank(), legend.key = element_blank(), 
+            panel.background = element_blank(), panel.border = element_blank(), 
+            strip.background = element_blank(), plot.background = element_blank(), 
+            complete = TRUE, validate = TRUE)
+}
+theme_set(intelliscript_theme())
+p1 <- ggplot(mpg, aes(class)) + geom_bar(aes(fill = drv)) + scale_fill_manual(values = c("#88ddfc", "#08315C", "#D22E2E")) + coord_flip()
+
+p2 <- ggplot(diamonds, aes(price, fill = cut)) +
+  geom_histogram(binwidth = 500) + scale_fill_manual(values = c("#08315C","#0465f7", "#0281E4","#88ddfc","#20C375","#6cdd98")) 
+
+ggarrange(p1,p2)
+```
+
+## Emotional intelligence matters
+
+*How to Win Friends and Influence People - Dale Carnegie*
+
+1. Realize that you can't 'win' an arguement
+2. Let the other person see the pattern and come to the conclusion themselves
+3. Put yourself in the other person's shoes
+4. Use familiar language
+5. Be friendly
+6. Get the other person saying "yes, yes" immediately
+
+## Three-point summary
+
+1.  For exploration, focus on speed, iteration, and flexibility
+2.  For communication, focus on professionalism, simplicity, and consistency
+3.  Realize that data viz is just like any other mode of communication such as speech, text, and body language
+
+## {.center}
+
+Thank you!
+
+## Where to find this
+
+This presentation may be found at: https://pirategrunt.com/soa_symposium_2019/
+
+Code to produce the examples and slides: https://github.com/PirateGrunt/soa_symposium_2019
