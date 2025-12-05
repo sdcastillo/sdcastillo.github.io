@@ -1,4 +1,3 @@
-#openaikey = "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"
 
 from openai import OpenAI
 
@@ -18,4 +17,5 @@ print(response.output_text)
 # Write the result to a text file called "query_logs.txt"
 with open("query_logs.txt", "a", encoding="utf-8") as f:
     f.write(response.output_text + "\n")
+
 
