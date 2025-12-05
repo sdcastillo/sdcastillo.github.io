@@ -84,9 +84,8 @@ Since the December sitting, the [SOA released two updates](https://www.soa.org/e
 
 # Prometric Demo
 
-The following video from Prometric shows what the computer setup will look like. You will have 9 minutes to complete the tutorial before starting the 5-hours and 15-minute timer and then 5 minutes at the end of the exam to upload your files.
+The test is conducted on Prometric computers, and its unclear what the setup will look like. You will have 9 minutes to complete the tutorial before starting the 5-hours and 15-minute timer and then 5 minutes at the end of the exam to upload your files.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/TBATFFsHa7E" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 In the past, candidates have been given out a printed Project Statement, which they were allowed to read during the 15-minute tutorial before the timer started; however, as of [Fall 2020](https://www.soa.org/globalassets/assets/files/edu/2020/fall/soa-exams-additional-details.pdf), this may no longer be the case, and all files will be given to you on the computer. This announcement by the SOA may be referring to only those exams which used to be on paper but are transferring to computer-based testing, in which case PA candidates would still get the printed statement. It may be best to practice assuming that you will need to work on a single monitor. We will update this once we confirm with the SOA.
 
