@@ -1,0 +1,14 @@
+name: glms_practice
+title:
+username:
+account: paexam
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 4010052
+bundleId: 5242067
+url: https://paexam.shinyapps.io/glms_practice/
+when: 1636666523.97564
+lastSyncTime: 1636666523.97566
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: Answers.xlsx|base_R_practice.html|base_R_practice.Rmd|cor.csv|decision_trees_practice.html|glms_practice_files/figure-html/unnamed-chunk-1-1.png|glms_practice_files/figure-html/unnamed-chunk-2-1.png|glms_practice_files/figure-html/unnamed-chunk-3-1.png|glms_practice.html|glms_practice.Rmd|random_forest_practice.html|random_forest_practice.Rmd|README.md|Student success - Solution.rmd|unsupervised_learning_practice.Rmd|unsupervised-learning/exam-srm-sample-questions.pdf|1 GLMs|2 Decision Trees|3 Random Forests|4 Feature Engineering

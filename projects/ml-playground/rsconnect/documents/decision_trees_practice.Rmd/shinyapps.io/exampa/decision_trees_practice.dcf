@@ -1,0 +1,12 @@
+name: decision_trees_practice
+title: decision_trees_practice
+username:
+account: exampa
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 2767103
+bundleId: 3641439
+url: https://exampa.shinyapps.io/decision_trees_practice/
+when: 1600376756.19218
+asMultiple: FALSE
+asStatic: FALSE

@@ -1,0 +1,316 @@
+---
+title: "Exercises"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, echo = F, message = F, warning = F}
+library(learnr)
+library(shiny)
+library(caret)
+library(stats)
+library(gbm)
+library(glmnet)
+library(rpart)
+library(rpart.plot)
+library(pROC)
+library(randomForest)
+library(tidyverse)
+library(dplyr)
+library(e1071)
+library(ISLR)
+library(ExamPAData)
+
+knitr::opts_chunk$set(echo = FALSE)
+tutorial_options(exercise.cap = "Sandbox")
+
+set.seed(42)
+
+#create a train/test split
+index <- 1:as.integer(nrow(traffic_safety)*0.8)
+traffic_safety_train <-  traffic_safety %>% slice(index)
+traffic_safety_test <- traffic_safety %>% slice(-index)
+
+#set factor levels to those with the most observations
+health_insurance <- health_insurance %>% 
+  mutate(sex = fct_infreq(sex),
+         smoker = fct_infreq(smoker),
+         region = fct_infreq(region),
+         age_bucket = case_when(
+    age < 24 ~ "<24",
+    age <= 36 ~ "24-36",
+    age <= 50 ~ "36-50",
+    age > 50 ~ ">50"
+  ) %>% as.character() %>% fct_infreq()
+         )
+
+#customer_value
+customer_value <- customer_value %>%
+  filter(age>=25) %>% 
+  mutate(value_flag = ifelse(value_flag=="High",1,0),
+         marital_status = ifelse(marital_status == "Married-AF-spouse", 
+                                            yes = "Married-civ-spouse",
+                                            no = marital_status)) 
+
+#create a train/test split
+index <- 1:as.integer(nrow(health_insurance)*0.8)
+health_insurance_train <-  health_insurance %>% slice(index)
+health_insurance_test <- health_insurance %>% slice(-index) %>% 
+  mutate_if(is.character, fct_infreq)
+
+
+#Student Success
+student_success <- student_success %>% 
+  mutate(parent_edu = Medu + Fedu,
+               health_alcohol = (Walc + Dalc)/health)
+
+## SOA Mortality
+
+set.seed(42)
+#For the sake of this example, only take 20% of the records
+soa_mortality <- soa_mortality %>% 
+  sample_frac(0.05) %>% 
+  mutate(target = as.factor(ifelse(actual_cnt == 0, 1, 0))) %>% 
+  select(target, prodcat, distchan, smoker, sex, issage, uwkey) %>% 
+  mutate_if(is.character, ~as.factor(.x))
+
+index <- 1:as.integer(nrow(soa_mortality)*0.8)
+soa_mortality_train <- soa_mortality %>% slice(index)
+soa_mortality_test <- soa_mortality %>% slice(-index)
+
+#Boston housing
+
+index <- 1:as.integer(nrow(boston)*0.8)
+train <-  boston %>% slice(index)
+test <- boston %>% slice(-index)
+
+x_boston_train <-  train %>% select(-medv) %>% as.matrix()
+x_boston_test <- test %>% select(-medv) %>% as.matrix()
+
+y_boston_train <- train$medv
+y_boston_test <- test$medv
+
+#use the mae as the evaluation metric
+mae_summary <- function (data,
+                        lev = NULL,
+                        model = NULL) {
+      out <- mae(data$obs, data$pred)  
+      names(out) <- "mae"
+      out
+}
+
+#your assistant has provided you with these functions
+#no changes need to be made
+mae <- function(y, y_hat){
+  mean(abs(y - y_hat))
+}
+```
+
+## Q1 - Fix the model
+
+You are an actuary at ABC Life Insurance Company and are building a model to predict mortality.  You are using policy data such as the product category `prodcat`, distribution channel `distchan`, smoker status `smoker`, `sex`, age of the issuer `issage`, and underwriting key `uwkey`.  The target variable is whether or not that policy files a claim in the next 12 months (1 = no claim, 0 = claim was filed).
+
+The below code is set up to fit a random forest to predict the target.
+
+There is a problem: None of the policies are predicted to file claims.  Find out why this is happening and fix it.  
+
+```{r rf-1-hint-1}
+#Look at the parameters in the documentation with ?randomForest
+```
+
+```{r rf-1, exercise = T, exercise.lines = 30}
+k = 0.5
+cutoff=c(k,1-k) 
+
+model <- randomForest(
+  formula = target ~ ., 
+  data = soa_mortality_train,
+  ntree = 100,
+  cutoff = cutoff
+  )
+
+pred <- predict(model, soa_mortality_test)
+confusionMatrix(pred, soa_mortality_test$target)
+```
+
+
+```{r quiz-rf-1}
+quiz(
+  question("Which change(s) to the model's parameters will fix the problem?  Make as few changes as necessary.",
+    answer("Increase number of variables randomly sampled as candidates at each split to be higher [6,10]", message = "This is the `mtry` parameter.  It isn't the reason why all of the predictions are zero."),
+    answer("Increase number of trees to grow to be higher [200,1000]", message = "This the `ntree` parameter.  It isn't the reason why all of the predictions are zero.  Setting ntree to even 1,000 still results in only about 5 predicted deaths."),
+    answer("Set the cutoff to be lower [0.01, 0.1] by setting `cutoff = c(0.1, 0.9)`", correct = T),
+    answer("Make the changes from answers A and B", message = "Neither increasing `mtry` or `ntree` fixes the problem."),
+    answer("Make the changes from answers A, B, and C.", message = "Only increasing the cutoff is needed.  Increasing `mtry` and `ntree` are not needed to fix the problem of most policies being predicted to be 0.")
+  )
+)
+```
+
+
+## Q2 - Sampling methods
+
+You are an actuary at ABC Life Insurance Company and are building a model to predict mortality.  You are using policy data such as the product category `prodcat`, distribution channel `distchan`, smoker status `smoker`, `sex`, age of the issuer `issage`, and underwriting key `uwkey`.  The target variable is whether or not that policy files a claim in the next 12 months (1 = no claim, 0 = claim was filed).  
+
+You just fit a random forest to predict mortality.  The classes are imbalanced because the mortality rate is only 1.8%, and so you are testing out over and under sampling strategies.
+Determine which sampling method, downsampling, upsampling, or not using sampling works best based on the sensitivity and specificity on the test set.  Do not make any other changes to the model parameters.
+
+```{r rf-2,  exercise = T, exercise.lines = 30}
+soa_mortality_train %>% count(target)
+
+k = 0.5 #Do not change
+cutoff=c(k,1-k) #Do not change
+
+model <- randomForest(
+  formula = target ~ ., 
+  data = soa_mortality_train,
+  ntree = 100,
+  cutoff = cutoff
+  )
+
+pred <- predict(model, soa_mortality_test)
+confusionMatrix(pred, soa_mortality_test$target)
+
+#downsample
+down_train <- downSample(x = soa_mortality_train %>% select(-target),
+                         y = soa_mortality_train$target)
+
+down_test <- downSample(x = soa_mortality_test %>% select(-target),
+                         y = soa_mortality_test$target)
+
+#Check that the sampling worked
+#down_train %>% count(Class)
+
+model <- randomForest(
+  formula = Class ~ ., 
+  data = down_train,
+  ntree = 500,
+  cutoff = c(0.1, 0.9)
+  )
+
+down_pred <- predict(model, down_test)
+confusionMatrix(down_pred, down_test$Class)
+
+#upsample
+up_train <- upSample(x = soa_mortality_train %>% select(-target),
+                         y = soa_mortality_train$target)
+
+up_test <- upSample(x = soa_mortality_test %>% select(-target),
+                         y = soa_mortality_test$target)
+
+#Your code here
+
+```
+
+```{r quiz-rf-2}
+quiz(
+  question("Which change to the model's parameters will fix the problem?",
+    answer("The model based on the downsampled data is best based on the sensitivity and specificity."),
+    answer("The model based on the upsampled data is best."),
+    answer("There is no clear best choice because the downsampled data has higher sensitivity but the upsampled has better specificity.", correct = T, 
+    message = "The original data has no predicted deaths (all values in confusion matrix are 1 = no claim) which means that the sensitivity is 0 and the specificity is 1.  
+    The downsampled data has sensitivity of 0.97 and specificity of 0.20.  
+    The upsampled data has sensitivity 0.93 and specificity 0.41.  
+    Downsampling means that we take fewer records from those policies which don't file claims (because most policies do not file a death claim as the mortality rate is only 1.7%) so that there are the same number of 0's and 1's in the target variable.  Upsampling is similar except that instead of taking fewer policies with claims we resample policies with claims.  
+    Note that we are evaluating the model performance based on the upsampled or downsampled data rather than on the original data set.  An alternative approach would be to compare the performance based the original, non-sampled test data.  The way to do this would be to first train a model on the original data.  Then downsample the minotiry class.  Then we train a model on this data and evaluate the performance on the original test data.  We do the same for the upsampling."),
+    answer("There is no clear best choice because the upsampled data has higher sensitivity but the downsampled has better specificity."),
+    answer("The model based on the original data is best.")
+  )
+)
+```
+
+## Q3 - Recommend a tree model
+
+There are two candidate tree models, a random forest and a decision tree.  The single tree was built and had an AUC against the test set of 0.8443.  The random forest had an AUC of 0.8785.  The ROC curves are below, with the single tree first.
+
+Your client favors model performance over interpretability.
+
+The paremters are
+
+**Decision Tree:**
+
+- `max.depth`: 5
+- `minbucket`: 50
+- `cp`: 0.01
+
+**Random Forest:**
+
+- `mtry`: 15
+- `ntree`: 500
+- `nodesize`: 3
+
+```{r}
+knitr::include_graphics("images/choosing1.PNG")
+```
+
+**Which model should be chosen?**
+
+```{r quiz-rf-3}
+quiz(
+  question("Choose the best answer",
+    answer("Decision Tree.  The max.depth indicates that the decision tree is easy to interpret because only up to 5 variables will be used and these can be interpreted as yes/no questions.  The minbucket of 50 means that a minimum of 50 observations will ever be in a terminal leaf node.  The mtry of 15 means that 15 predictor variables will be considered at each split point.  For these reasons, I recommend the decision tree."),
+    answer("Decision Tree.  The single tree has the advantage of being easy to interpret.  When making predictions for future applicants, a series of if/then statements will lead directly to a recommendation.  It is also clear how the predictor variables relate to the outcome.  The random forest is opaque because the predictor variables are put in and a prediction comes out."),
+    answer("Random Forest.  Because our goal is to make good predictions, interpretation is less important.  As a result, I recommend choosing the model with the better predictive ability, which is the random forest because it has a higher AUC.  The max.depth of the tree is 5, meaning that the single tree is easier to interpret than the random forest.", correct = T),
+    answer("Random Forest.  Because our goal is to make good predictions, interpretation is less important.  As a result, I recommend choosing the model with the better predictive ability, which is the random forest because it has a higher AUC.  The max.depth of the tree is 5, meaning that the random forest is easier to interpret than the single tree.")
+  )
+)
+
+```
+
+
+## Q4 - Model validation
+
+An actuary has trained a predictive model and chosen the best hyperparameters, cleaned the data, and performed feature engineering.  They have one problem, however: the error on the training data is far lower than on new, unseen test data.  Read the code below and determine their problem.  Find a way to lower the error on the test data *without changing the model or the data.*  Explain the rational behind your method.
+
+```{r rf-4-hint-1}
+#read the documentation for ?trainControl
+```
+
+
+```{r rf-4-hint-2}
+#A bootstrap sample is when samples are taken of the observations with replacement.  The default code was using `method = boot`, which is using a bootstrap.  It is strange that this only repeated twice, and each time the data is only train on `p = 0.2` percent (twenty percent!) of the training data.
+```
+
+
+```{r rf-4-hint-3}
+#Try cross validation instead of the bootstrap
+```
+
+A bootstrap sample is when samples are taken of the observations with replacement.  The default code was using `method = boot`, which is using a bootstrap.  It is strange that this only repeated twice, and each time the data is only train on `p = 0.2` percent (twenty percent!) of the training data.  Because the training data is small, `n` is effectively smaller, which makes the model worse.  Additionally, because there are only two bootstrap replications, there is high variance in this estimate.
+
+```{r rf-4, exercise = T, exercise.lines = 30}
+control <- trainControl(
+  method='boot', #make changes if appropriate
+  number=2, 
+  p = 0.2)
+
+tunegrid <- expand.grid(.mtry=c(1,3,5))
+rf <- train(charges ~ .,
+            data = health_insurance_train,
+            method='rf', 
+            tuneGrid=tunegrid, 
+            trControl=control)
+
+pred_train <- predict(rf, health_insurance_train)
+pred_test <- predict(rf, health_insurance_test)
+
+get_rmse <- function(y, y_hat){
+  sqrt(mean((y - y_hat)^2))
+}
+
+get_rmse(pred_train, health_insurance_train$charges)
+get_rmse(pred_test, health_insurance_test$charges)
+```
+
+```{r quiz-rf-4}
+quiz(
+  question("Explain why the training error is so much lower than the test error for the above model, and, if possible, make changes reduce this difference",
+    answer("A bootstrap is when observations are taken with replacement from the data and used to train a model.  The error on the training set is lower than on the test set because the model has already 'seen' these records and learned their patterns.  The RMSE on the test set is higher because it has not yet 'seen' these observations.  There are no changes needed.", message = "These statements are correct, however, there is a better answer which reduces the overfitting."),
+    answer("A bootstrap is when observations are taken without replacement from the data and used to train a model.  The error on the training set is lower than on the test set because the model has already 'seen' these records and learned their patterns.  We can reduce this difference by sampling different observations each time, known as cross-validation, as well as by using a higher sampling percentage by setting `p = 0.90`.  Using `number = 3` will ensure that the bootstrap gets repeated twice, further reducing the overfitting.", message = "While using cross-validation will reduce overfitting, using a larger sample percentage would increase the likelihood of overfitting.  In addition, using only 3-folds is rather low.  Using 5-fold or 10-fold CV is a better option."),
+    answer("A bootstrap is when observations are taken without replacement from the data and used to train a model.  The error on the training set is lower than on the test set because the model has already 'seen' these records and learned their patterns.  We can reduce this difference by repeating the the bootstrap several times.  The default value of `number = 2` is too low and so increasing this to 5 leads to improvement.", message = "These statements are correct, however, there is a better answer which reduces the overfitting."),
+    answer("A bootstrap is when observations are taken without replacement from the data and used to train a model.  The error on the training set is lower than on the test set because the model has already 'seen' these records and learned their patterns.  We can reduce this difference by taking a smaller sample percentage at each bootstrap and repeating this process multiple times.  We adjust for this by setting `number = 5` and `p = 0.75`."),
+    answer("A bootstrap is when observations are taken without replacement from the data and used to train a model.  The error on the training set is lower than on the test set because the model has already 'seen' these records and learned their patterns.  We can reduce this difference by sampling different observations each time, known as cross-validation, as well as by repeating the process 10 times.", correct = T, message = "This combination leads to the smallest amount of overfitting.  The difference in RMSE in the training and test sets when `method = cv`, `number = 10`, and `p = 0.8` is (TRAIN: 2,768, TEST: 4,066).  
+           For comparison, the default is (TRAIN: 2,774, TEST: 4,088) and using `method = boot` and `number = 10` with `p = 0.75` leads to (TRAIN: 2,766, TEST: 4,065)")
+  )
+)
+
+```

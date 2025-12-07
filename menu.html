@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* Basic styling for the header and dropdown */
+    header {
+      background-color: #1a1a1a;
+      padding: 1rem 0;
+      font-family: Arial, sans-serif;
+    }
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    .dropbtn {
+      background-color: #007bff;
+      color: white;
+      padding: 12px 20px;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    .dropbtn:hover { background-color: #0056b3; }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 320px;
+      box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+      z-index: 1000;
+      border-radius: 4px;
+      left: 0;
+    }
+    .dropdown-content a {
+      color: #333;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      white-space: nowrap;
+    }
+    .dropdown-content a:hover {
+      background-color: #007bff;
+      color: white;
+    }
+    .dropdown:hover .dropdown-content { display: block; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="nav-container">
+    <!-- You can add your logo or site name here on the left if you want -->
+    
+    <div class="dropdown" style="float:right;">
+      <button class="dropbtn">Projects & Articles ↓</button>
+      <div class="dropdown-content">
+        <a href="/github_pages_central_limit_theorem.html">Central Limit Theorem</a>
+        <a href="/github_pages_from_algorithms_to_actuarial_science.html">From Algorithms to Actuarial Science</a>
+        <a href="/github_pages_identifying_actionable_treatment_variation.html">Identifying Actionable Treatment Variation</a>
+        <a href="/github_pages_linear_algebra.html">Linear Algebra Notes</a>
+        <a href="/github_pages_loss_development_triangles.html">Loss Development Triangles</a>
+        <a href="/github_pages_grocery_stores.html">Grocery Store Supply Modeling</a>
+        <a href="/github_pages_predictive_modeling_app.html">Predictive Modeling App</a>
+        <a href="/github_pages_prompt_engineering.html">Prompt Engineering Guide</a>
+        <a href="/github_pages_real_estate_house_prices.html">Real Estate House Price Modeling</a>
+        <a href="/github_pages_sas_for_statistics_healthcare.html">SAS for Healthcare Statistics</a>
+        <a href="/github_pages_soa_predictive_modeling_research.html">SOA Predictive Modeling Research</a>
+        <a href="/github_pages_value_investing_time_series.html">Value Investing & Time-Series Analysis</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+</body>
+</html>

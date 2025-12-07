@@ -1,0 +1,442 @@
+---
+title: "Practice Questions - Unsupervised Learning"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+
+```{r setup, include=FALSE}
+library(learnr)
+tutorial_options(exercise.cap = "Sandbox")
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Q1: PCA 1 
+**SRM Practice Question 5**: Consider the following statements:
+
+I) Principal Component Analysis (PCA) provide low-dimensional linear surfaces that are closest to the observations.
+
+II) The first principal component is the line in p-dimensional space that is closest to the observations.
+
+III) PCA finds a low dimension representation of a dataset that contains as much variation as possible.
+
+IV) PCA serves as a tool for data visualization. 
+
+```{r quiz-Q1}
+quiz(
+  question("Determine which of the statements are correct.",
+    answer("(A) Statements I, II, and III only"),
+    answer("(B) Statements I, II, and IV only"),
+    answer("(C) Statements I, III, and IV only"),
+    answer("(D) Statements II, III, and IV only"),
+    answer("(E) Statements I, II, III, and IV are all correct", correct = TRUE,
+           message = "Statement I is correct – Principal components provide low-dimensional linear surfaces that are closest to the observations.
+           
+Statement II is correct – The first principal component is the line in p-dimensional space that is closest to the observations.
+
+Statement III is correct – PCA finds a low dimension representation of a dataset that contains as much variation as possible.
+
+Statement IV is correct – PCA serves as a tool for data visualization."),
+    allow_retry = TRUE
+  )
+)
+```
+
+
+## Q2: PCA 2
+**SRM Practice Question 6**: Consider the following statements:
+
+I) The proportion of variance explained by an additional principal
+component increases as more principal components are added.
+II) The cumulative proportion of variance explained increases as more
+principal components are added.
+III) Using all possible principal components provides the best understanding
+of the data.
+IV) A scree plot provides a method for determining the number of principal
+components to use.
+
+```{r quiz-Q2}
+quiz(
+  question("Determine which of the statements are correct.",
+    answer("(A) Statements I and II only"),
+    answer("(B) Statements I and III only"),
+    answer("(C) Statements I and IV only"),
+    answer("(D) Statements II and III only"),
+    answer("(E) Statements II and IV only", correct = TRUE,
+           message = 'Statement I is incorrect – The proportion of variance explained by an additional principal component decreases as more principal components are added.
+           
+Statement II is correct – The cumulative proportion of variance explained increases as more principal components are added.
+
+Statement III is incorrect – We want to use the least number of principal components required to get the best understanding of the data.
+
+Statement IV is correct – Typically, the number of principal components are chosen based on a scree plot.'),
+    allow_retry = TRUE
+  )
+)
+```
+
+
+
+
+## Q3: PCA 3 
+**SRM Practice Question 37**: Analysts W, X, Y, and Z are each performing Principal Components Analysis on the same data set with three variables. They use different programs with their default settings and discover that they have different factor loadings for the first principal component. Their loadings are:
+
+Analyst  | Variable 1 | Variable 2 | Variable 3 
+:--:| :--------: | :--------: | :--------:
+ W  | –0.549     | –0.594     | 0.587 
+ X  | –0.549     | 0.594      | 0.587
+ Y  | 0.549      | –0.594     | –0.587
+ Z  | 0.140      | –0.570     | –0.809
+
+Determine which of the following is/are plausible explanations for the different loadings.
+
+I) Loadings are unique up to a sign flip and hence X’s and Y’s programs could make different arbitrary sign choices.
+
+II) Z’s program defaults to not scaling the variables while Y’s program defaults to scaling them.
+
+III) Loadings are unique up to a sign flip and hence W’s and X’s programs could make different arbitrary sign choices.
+
+
+```{r quiz-Q3}
+quiz(
+  question("Select the correct answer.",
+    answer("(A) None"),
+    answer("(B) I and II only", correct = TRUE, message = 'I is true. Uniqueness up to a sign flip means all three signs must be flipped. This is true for X and Y.
+    
+II is true. The presence of absence of scaling can change the loadings.
+
+III is false. Uniqueness up to a sign flip means all three signs must be flipped. For W and X only the second loading is flipped.'),
+    answer("(C) I and III only"),
+    answer("(D) II and III only"),
+    answer("(E) The correct answer is not given by (A), (B), (C), or (D)."),
+    allow_retry = TRUE
+  )
+)
+```
+
+
+
+
+
+## Q4: Clustering 1 
+**SRM Practice Question 1**: You are given the following four pairs of observations:
+
+$$x_1 = (−1, 0), x_2 = (1, 1), x_3 = (2, −1), \mbox{and } x_4 = (5, 10)$$.
+
+A hierarchical clustering algorithm is used with complete linkage and Euclidean distance.
+
+Calculate the intercluster dissimilarity between $\{x_1, x_2\}$ and $\{x_4\}$.
+
+```{r Q4, exercise=TRUE}
+x1 <- c(-1, 0)
+x2 <- c(1, 1)
+x3 <- c(2, -1)
+x4 <- c(5, 10)
+
+# calculate dissimilarity below
+
+```
+
+
+```{r Q4-solution}
+# distance between x1 and x4
+d14 <- sqrt(sum((x1 - x4)^2))
+
+# distance between x2 and x4
+d24 <- sqrt(sum((x2 - x4)^2))
+
+# the dissimilarity is 
+max(d14, d24)
+```
+
+
+
+```{r quiz-Q4}
+quiz(
+  question("Select the correct answer.",
+    answer("(A) 2.2"),
+    answer("(B) 3.2"),
+    answer("(C) 9.9"),
+    answer("(D) 10.8"),
+    answer("(E) 11.7", correct = TRUE,
+           message = "First, calculate the distance between pairs of elements in each set. There are two pairs here:
+$$x_1, x_4 : \\sqrt{( −1 − 5)^2 + (0 − 10)^2} = \\sqrt{136} = 11.66$$
+$$x_2, x_4 : \\sqrt{(1 - 5)^2 + (1 - 10)^2} = \\sqrt{97} = 9.85$$.
+For complete linkage, the dissimilarity measure used is the maximum, which is 11.66."),
+    allow_retry = TRUE
+  )
+)
+```
+
+
+
+## Q5: Clustering 2 
+**SRM Practice Question 2**: Determine which of the following statements is/are true.
+
+I) The number of clusters must be pre-specified for both K-means and hierarchical clustering.
+
+II) The K-means clustering algorithm is less sensitive to the presence of outliers than the hierarchical clustering algorithm.
+
+III) The K-means clustering algorithm requires random assignments while the hierarchical clustering algorithm does not.
+
+```{r quiz-Q5}
+quiz(
+  question("Which is correct?",
+    answer("(A) I only"),
+    answer("(B) II only"),
+    answer("(C) III only", correct = TRUE,
+           message = "I is false because the number of clusters is pre-specified in the K-means algorithm but not for the hierarchical algorithm. II is also false because both algorithms force each observation to a cluster so that both may be heavily distorted by the presence of outliers. III is true"),
+    answer("(D) I, II and III"),
+    answer("(E) The correct answer is not given by (A), (B), (C), or (D)"),
+    allow_retry = TRUE
+  )
+)
+```
+
+
+
+## Q6: Clustering 3 
+**SRM Practice Question 15**: You are performing a K-means clustering algorithm on a set of data. The data has
+been initialized randomly with 3 clusters as follows:
+
+| Cluster | Data Point |
+|:-------:| :--------: |
+| A       | (2, –1)    |
+| A       | (–1, 2)    |
+| A       | (–2, 1)    |
+| A       | (1, 2)     |
+| B       | (4, 0)     |
+| B       | (4, –1)    |
+| B       | (0, –2)    |
+| B       | (0, –5)    |
+| C       | (–1, 0)    |
+| C       | (3, 8)     |
+| C       | (–2, 0)    |
+| C       | (0, 0)     |
+
+
+```{r eval=TRUE, echo=FALSE}
+df <- data.frame(
+  cluster = rep(c("A", "B", "C"), each = 4),
+  x = c(2, -1, -2, 1, 4, 4, 0, 0, -1, 3, -2, 0),
+  y = c(-1, 2, 1, 2, 0, -1, -2, -5, 0, 8, 0, 0)
+)
+
+library(ggplot2)
+ggplot(df, aes(x, y, color = cluster)) +
+  geom_point(size = 6, shape = 1, stroke = 3) +
+  scale_x_continuous(breaks = seq(-4, 8, 2), limits = c(-5, 8)) +
+  scale_y_continuous(breaks = seq(-4, 8, 2), limits = c(-5, 8)) +
+  coord_fixed() +
+  theme_bw()
+```
+
+
+```{r eval=FALSE, echo=FALSE}
+# this code chunk just to create a figure to show in the solution. It is
+# not shown or evaluated  
+
+# center of initial clusters
+library(dplyr)
+centers <- df %>%
+  group_by(cluster) %>%
+  summarise(x = mean(x), y = mean(y))
+
+df <- data.frame(
+  cluster = rep(c("A", "B", "C"), each = 4),
+  x = c(2, -1, -2, 1, 4, 4, 0, 0, -1, 3, -2, 0),
+  y = c(-1, 2, 1, 2, 0, -1, -2, -5, 0, 8, 0, 0),
+  new_cluster = c("B", "C", "A", "C", "B", "B", "B", "B", "A", "C", "A", "A")
+)
+
+library(ggplot2)
+ggplot(df, aes(x, y, color = cluster)) +
+  geom_point(size = 6, shape = 1, stroke = 3, alpha = 0.5) +
+  geom_point(data = centers, aes(x, y, color = cluster),
+             shape = 3, size = 4, stroke = 2) +
+  geom_point(data = df, aes(x, y, fill = new_cluster), 
+             shape = 23, size = 5, stroke = 0) +
+  scale_x_continuous(breaks = seq(-4, 8, 2), limits = c(-5, 8)) +
+  scale_y_continuous(breaks = seq(-4, 8, 2), limits = c(-5, 8)) +
+  labs(color = "Initial clusters and\ntheir centers",
+       fill = "New clusters after\none iteration") +
+  coord_fixed() +
+  theme_bw()
+
+ggsave(filename = "images/q6_center.png", width = 6.5, height = 5)
+```
+
+
+
+A single iteration of the algorithm is performed using the Euclidian distance between
+points and the cluster containing the fewest number of data points is identified.
+
+Calculate the number of data points in this cluster.
+
+```{r Q6, exercise=TRUE}
+# initial clusters
+df <- data.frame(
+  cluster = rep(c("A", "B", "C"), each = 4),
+  x = c(2, -1, -2, 1, 4, 4, 0, 0, -1, 3, -2, 0),
+  y = c(-1, 2, 1, 2, 0, -1, -2, -5, 0, 8, 0, 0)
+)
+
+# your code below
+```
+
+```{r Q6-solution}
+# center of cluster A
+x_center_A <- mean(df[df$cluster == "A", "x"])
+y_center_A <- mean(df[df$cluster == "A", "y"])
+
+# center of cluster B
+x_center_B <- mean(df[df$cluster == "B", "x"])
+y_center_B <- mean(df[df$cluster == "B", "y"])
+
+# center of cluster C
+x_center_C <- mean(df[df$cluster == "C", "x"])
+y_center_C <- mean(df[df$cluster == "C", "y"])
+```
+
+
+
+```{r quiz-Q6}
+quiz(
+  question("Select the correct answer.",
+    answer("(A) 0"),
+    answer("(B) 1"),
+    answer("(C) 2"),
+    answer("(D) 3", correct = TRUE,
+           message = 'The cluster centers are A: (0, 1), B: (2, –2), and C: (0, 2). The new assignments are:
+    
+&nbsp; Cluster &nbsp;|&nbsp; Data Point &nbsp;|&nbsp; New Cluster &nbsp;
+:-------:            | :--------:             | :---------:
+ A                   | (2, –1)                | B
+ A                   | (–1, 2)                | C
+ A                   | (–2, 1)                | A
+ A                   | (1, 2)                 | C
+ B                   | (4, 0)                 | B
+ B                   | (4, –1)                | B
+ B                   | (0, –2)                | B
+ B                   | (0, –5)                | B
+ C                   | (–1, 0)                | A
+ C                   | (3, 8)                 | C
+ C                   | (–2, 0)                | A
+ C                   | (0, 0)                 | A        
+           
+ Cluster C has the fewest points with three.
+
+<img src="images/q6_center.png" width="600">'),
+    answer("(E) 4"),
+    allow_retry = TRUE
+  )
+)
+```
+
+
+
+## Q7: Clustering 4 
+**SRM Practice Question 16**: 
+
+```{r quiz-Q7}
+quiz(
+  question("Determine which of the following statements is applicable to K-means clustering and is not applicable to hierarchical clustering.",
+    answer("(A) If two different people are given the same data and perform one iteration of the algorithm, their results at that point will be the same."),
+    answer("(B) At each iteration of the algorithm, the number of clusters will be greater than the number of clusters in the previous iteration of the algorithm."),
+    answer("(C) The algorithm needs to be run only once, regardless of how many clusters are ultimately decided to use."),
+    answer("(D) The algorithm must be initialized with an assignment of the data points to a cluster.", correct = TRUE,
+           message = '(A) For K-means the initial cluster assignments are random. Thus different people can have different clusters, so the statement is not true for K-means clustering. It is true for
+hierarchical clustering.
+
+(B) For K-means the number of clusters is set in advance and does not change as the algorithm is run. For hierarchical clustering the number of clusters is determined after the algorithm is completed.
+
+(C) For K-means the algorithm needs to be re-run if the number of clusters is changed. This is not the case for hierarchical clustering.
+
+(D) This is true for K-means clustering. Agglomerative hierarchical clustering starts with each data point being its own cluster.'),
+    answer("(E) None of (A), (B), (C), or (D) meet the meet the stated criterion."),
+    allow_retry = TRUE
+  )
+)
+```
+
+
+
+## Q8: Clustering 5 
+**SRM Practice Question 34**: Determine which of the following statements is/are true about clustering methods:
+
+I) If K is held constant, K-means clustering will always produce the same cluster assignments.
+II) Given a linkage and a dissimilarity measure, hierarchical clustering will always produce the same cluster assignments for a specific number of clusters.
+III) Given identical data sets, cutting a dendrogram to obtain five clusters produces the same cluster assignments as K-means clustering with K = 5.
+
+```{r quiz-Q8}
+quiz(
+  question("Select the correct answer.",
+    answer("(A) I only"),
+    answer("(B) II only", correct = TRUE, message = 'I is false. K-means clustering is subject to the random initial assignment of clusters.
+    
+II is true. Hierarchical clustering is deterministic, not requiring a random initial assignment.
+
+III is false. The two methods differ in their approaches and hence may not yield the same clusters.'),
+    answer("(C) III only"),
+    answer("(D) I, II, and III"),
+    answer("(E) The correct answer is not given by (A), (B), (C), or (D)."),
+    allow_retry = TRUE
+  )
+)
+```
+
+
+## Q9: Clustering 6 
+
+**SRM Practice Question 36**: Determine which of the following statements about hierarchical clustering is/are true.
+
+I) The method may not assign extreme outliers to any cluster.
+II) The resulting dendrogram can be used to obtain different numbers of clusters.
+III. The method is not robust to small changes in the data.
+
+```{r quiz-Q9}
+quiz(
+  question("Select the correct answer.",
+    answer("(A) None"),
+    answer("(B) I and II only"),
+    answer("(C) I and III only"),
+    answer("(D) II and III only", correct = TRUE, message = 'I is false. All observations are assigned to a cluster.
+    
+II is true. By cutting the dendrogram at different heights, any number of clusters can be obtained.
+
+III is true. Clustering methods have high variance, that is, having a different random sample from the population can lead to different clustering.'),
+    answer("(E) The correct answer is not given by (A), (B), (C), or (D)."),
+    allow_retry = TRUE
+  )
+)
+```
+
+
+
+## Q10: Clustering 7 
+**SRM Practice Question 40**: Determine which of the following statements about clustering is/are true.
+
+I) Cutting a dendrogram at a lower height will not decrease the number of clusters.
+
+II) K-means clustering requires plotting the data before determining the number of clusters.
+
+III) For a given number of clusters, hierarchical clustering can sometimes yield less accurate results than K-means clustering.
+
+```{r quiz-Q10}
+quiz(
+  question("Select the correct answer.",
+    answer("(A) None"),
+    answer("(B) I and II only"),
+    answer("(C) I and III only", correct = TRUE, message = 'I is true. At the lowest height, each observation is its own cluster. The number of clusters decreases as the height increases.
+    
+II is false. There is no need to plot the data to perform K-means clustering. 
+
+III is true. K-means does a fresh analysis for each value of K while for hierarchical clustering, reduction in the number of clusters is tied to clusters already made. This can miss cases where the clusters are not nested.'),
+    answer("(D) II and III only"),
+    answer("(E) The correct answer is not given by (A), (B), (C), or (D)."),
+    allow_retry = TRUE
+  )
+)
+```
+
+
