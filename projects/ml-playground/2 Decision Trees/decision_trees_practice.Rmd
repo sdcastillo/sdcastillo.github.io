@@ -1,0 +1,444 @@
+---
+title: "Exercises"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, echo = F, message = F, warning = F}
+library(learnr)
+library(shiny)
+library(caret)
+library(stats)
+library(gbm)
+library(glmnet)
+library(rpart)
+library(rpart.plot)
+library(pROC)
+library(randomForest)
+library(tidyverse)
+library(dplyr)
+library(e1071)
+library(ISLR)
+library(ExamPAData)
+
+knitr::opts_chunk$set(echo = FALSE)
+tutorial_options(exercise.cap = "Sandbox")
+
+set.seed(42)
+
+#GLMS
+customer_value <- customer_value %>% 
+  mutate(value_flag = ifelse(value_flag=="High",1,0))
+
+#create a train/test split
+index <- 1:as.integer(nrow(customer_value)*0.8)
+customer_value_train <-  customer_value %>% slice(index)
+customer_value_test <- customer_value %>% slice(-index)
+
+sim_norm <- function(x) {
+  rnorm(1, mean = x, sd = 1)
+}
+
+glmdata1 <- tibble(x = runif(10000)) %>% 
+  mutate(y = x %>% map_dbl(sim_norm))
+
+sim_norm <- function(x) {
+  rnorm(1, mean = 1/x, sd = 1)
+}
+
+glmdata2 <- tibble(x = runif(10000)) %>% 
+  mutate(y = x %>% map_dbl(sim_norm))
+
+gammas <- rgamma(500, shape=2, scale = 0.5)
+
+#random component
+x <- runif(1000, min=0, max=100)
+
+#relate Y to X with a log link function
+y <- gammas*exp(x)
+
+glmdata3 <- tibble(x = x, y  = y)
+
+#Interactions
+traffic_safety <- june_pa %>% select(-Light, -Weather, -Rd_Conditions) %>% 
+  mutate(Time_of_Day = case_when(Time_of_Day %in% c(1,2) ~ "Morning",
+                                 Time_of_Day %in% c(3,4) ~ "Day",
+                                 Time_of_Day %in% c(5,6) ~ "Night"),
+         Rd_Configuration = ifelse(Rd_Configuration %in% c("ONE-WAY", "UNKNOWN"), "OTHER", "TWO-WAY"),
+         Traffic_Control = case_when(Traffic_Control %in% c("NONE", "OTHER")~ "OTHER",T~ "STOP-SIGNAL"),
+         Rd_Feature = ifelse(Rd_Feature == "INTERSECTION", "INTERSECTION", "OTHER"))
+
+#create a train/test split
+index <- 1:as.integer(nrow(traffic_safety)*0.8)
+traffic_safety_train <-  traffic_safety %>% slice(index)
+traffic_safety_test <- traffic_safety %>% slice(-index)
+
+#set factor levels to those with the most observations
+health_insurance <- health_insurance %>% 
+  mutate(sex = fct_infreq(sex),
+         smoker = fct_infreq(smoker),
+         region = fct_infreq(region),
+         age_bucket = case_when(
+    age < 24 ~ "<24",
+    age <= 36 ~ "24-36",
+    age <= 50 ~ "36-50",
+    age > 50 ~ ">50"
+  ) %>% as.character() %>% fct_infreq()
+         )
+
+#customer_value
+customer_value <- customer_value %>%
+  filter(age>=25) %>% 
+  mutate(value_flag = ifelse(value_flag=="High",1,0),
+         marital_status = ifelse(marital_status == "Married-AF-spouse", 
+                                            yes = "Married-civ-spouse",
+                                            no = marital_status)) 
+
+#create a train/test split
+index <- 1:as.integer(nrow(health_insurance)*0.8)
+health_insurance_train <-  health_insurance %>% slice(index)
+health_insurance_test <- health_insurance %>% slice(-index) %>% 
+  mutate_if(is.character, fct_infreq)
+
+
+#Student Success
+student_success <- student_success %>% 
+  mutate(parent_edu = Medu + Fedu,
+               health_alcohol = (Walc + Dalc)/health)
+
+## SOA Mortality
+
+set.seed(42)
+#For the sake of this example, only take 20% of the records
+soa_mortality <- soa_mortality %>% 
+  sample_frac(0.2) %>% 
+  mutate(target = as.factor(ifelse(actual_cnt == 0, 1, 0))) %>% 
+  select(target, prodcat, distchan, smoker, sex, issage, uwkey) %>% 
+  mutate_if(is.character, ~as.factor(.x))
+
+index <- 1:as.integer(nrow(soa_mortality)*0.8)
+soa_mortality_train <- soa_mortality %>% slice(index)
+soa_mortality_test <- soa_mortality %>% slice(-index)
+
+#Boston housing
+
+index <- 1:as.integer(nrow(boston)*0.8)
+train <-  boston %>% slice(index)
+test <- boston %>% slice(-index)
+
+x_boston_train <-  train %>% select(-medv) %>% as.matrix()
+x_boston_test <- test %>% select(-medv) %>% as.matrix()
+
+y_boston_train <- train$medv
+y_boston_test <- test$medv
+
+#use the mae as the evaluation metric
+mae_summary <- function (data,
+                        lev = NULL,
+                        model = NULL) {
+      out <- mae(data$obs, data$pred)  
+      names(out) <- "mae"
+      out
+}
+
+#your assistant has provided you with these functions
+#no changes need to be made
+mae <- function(y, y_hat){
+  mean(abs(y - y_hat))
+}
+```
+
+## Q1 - Find the interaction
+
+**SOA Exam PA June 13, 2019, Task 4**.
+
+You are building a model to predict `Crash_Score`.  The features describe the type of road, time, traffic signs, and other info.
+
+```{r}
+head(traffic_safety,5)
+```
+
+
+Select one pair of features that should be included as an interaction variable in a generalized
+linear model (GLM). Do this by using the supplied boxplot function to confirm the existence of an interaction. Continue until a promising interaction has been identified. 
+
+The code below looks for an interaction between `Time_of_Day` and `Rd_Configuration`.  Change these variables to the ones which you would like to test.
+
+
+```{r interaction-1-hint-1}
+#Here's how you can inspect the interaction between Rd_Configuration and Rd_Feature
+ggplot(traffic_safety,aes(x=Rd_Configuration,y=Crash_Score,fill=Rd_Feature))+
+  geom_boxplot()+
+  facet_wrap(~Rd_Feature,scale="free") + 
+  theme(legend.position = "top")
+```
+
+```{r interaction-1-hint-2}
+#Take the log of the y-variable so that the graphs are easier to read
+ggplot(traffic_safety,aes(x=Rd_Configuration,y=log(Crash_Score),fill=Rd_Feature))+
+  geom_boxplot()+
+  facet_wrap(~Rd_Feature,scale="free") + 
+  theme(legend.position = "top")
+```
+
+
+
+```{r interaction-1, exercise=TRUE}
+# Visual exploration of interaction. Try pairs that seem intuitively likely to have an interaction. This example uses Rd_Feature and Rd_Class, but they were selected at random.
+
+ggplot(traffic_safety,aes(x=Rd_Configuration,y=Crash_Score,fill=Time_of_Day))+
+  geom_boxplot()+
+  facet_wrap(~Time_of_Day,scale="free") + 
+  theme(legend.position = "top")
+```
+
+
+```{r quiz-interaction-1}
+quiz(
+  question("Which pair of features have the strongest interaction?",
+    answer("Traffic_Control and Rd_Feature", correct = TRUE, message = "Perhaps signals and stop signs take away the 
+relative impact of intersections. As seen below, when traffic is controlled, intersection and other then 
+have very similar effects, while, when traffic is not controlled, intersections have higher Crash Score.  This is the same answer on the official SOA solution to June 13, 2019 Exam PA, Task 4."),
+    answer("Time_of_Day and Rd_Configuration", message = "It is reasonable to assume that highways could be riskier during the night hours rather than during the day.  The box plots show accidents during the day, morning, and night.  All of the six plots show about the same distribution.  The median crash score is flat at about 7, which means that no interaction is present"),
+    answer("Crash_Score and Month", message = "This doesn't make sense because Crash_Score is the target"),
+    answer("Year and Month"),
+    answer("Rd_Character and Rd_Class", message = "This seems reasonable as changing Rd_Character from STRAIGHT to CURVE may 
+have a different effect depending on the Rd_Class. US highways may have gentler curves than state 
+highways and hence a different effect. But as the plot below shows, there is no interaction here. Whether 
+STRAIGHT or CURVE the effect of Rd_Class is the same.")
+  )
+)
+```
+
+## Q2 - Find the interaction
+
+You are building a model to predict a person's annual medical claims, `charges`.  The features describe the persons's characteristics such as `age`, `gender`, number of `children`, whether or not they are a `smoker`, and their body-mass index (`bmi`) as well as their geographic region, `region.`
+
+```{r}
+head(health_insurance,3)
+```
+
+Select one pair of features that should be included as an interaction variable in a generalized
+linear model (GLM). Do this by using the supplied boxplot function to confirm the existence of an interaction. Continue until a promising interaction has been identified. 
+
+The code below uses boxplots to look for interactions between pairs of categorical features, such as between `age_bucket` and `sex`.  For interactions between categoriacl and continuous variables, such as `sex` and `bmi` the xyplot should be used.
+
+The y-axis shows the log of the charges to make the graphes easier to read. 
+
+```{r interaction-2, exercise=TRUE}
+# Visual exploration of interaction. Try pairs that seem intuitively likely to have an interaction. This example uses Rd_Feature and Rd_Class, but they were selected at random.
+
+#use for categorical-categorical features
+ggplot(health_insurance,aes(x=age_bucket,y=log(charges),fill=sex))+
+  geom_boxplot()+
+  facet_wrap(~sex, scales = "free") + 
+  theme(legend.position = "top")
+
+#use for categorical-continuous features
+ggplot(health_insurance, aes(x=bmi, y = log(charges), color = sex)) +
+  geom_point()
+```
+
+```{r quiz-interaction-2}
+quiz(
+  question("Which pair of features have the strongest interaction?",
+    answer("age_bucket and sex", message = "An interaction effect is when a feature (a.k.a predictor variable) impacts the charges differently depending on the value of another feature.  Age and sex are independent of one another as can be seen from the height of the boxes - the median the log of charges are between 9 and 8 for all age buckets for men and women."),
+    answer("bmi and sex", message = "An interaction effect is when a feature (a.k.a predictor variable) impacts the charges differently depending on the value of another feature.  There is no clear pattern in the box plots."),
+    answer("smoker and sex", message = "An interaction effect is when a feature (a.k.a predictor variable) impacts the charges differently depending on the value of another feature.  Both men and women have the same smoking patterns as seen in the box plots."),
+    answer("smoker and bmi",correct = TRUE, message = "An interaction effect is when a feature (a.k.a predictor variable) impacts the charges differently depending on the value of another feature.  The scatterplot shows that the slope of the line between bmi and log(charges) is different for smokers than for non-smokers which indicates an interaction.  This makes sense because smoking leads to other health problems which can change a person's bmi."),
+    answer("children and age_bucket", message = 'An interaction effect is when a feature (a.k.a predictor variable) impacts the charges differently depending on the value of another feature.  There may be some interaction here but the question is asking for the "strongest" and there is a better answer.')
+  )
+)
+```
+
+## Q3 - Inspect the correlations
+
+
+Use the results from correlation analaysis to select a pair of features which are likely to interact.  Then, fit a GLM using an identity link and the gaussian response family to test out two candidate interactions.
+
+You are using automotive data.  The predictor variables are gas mileage, horsepower, and other information for 392 vehicles.  The response variable is `mpg`.
+
+Compute the matrix of correlations between the variables using the function cor(). You will need to exclude the name variable, cor() which is qualitative.
+
+```{r}
+cor(subset(Auto, select=-name))
+```
+
+```{r interaction-3, exercise=TRUE}
+glm_fit <- glm(formula=mpg~ . - name + acceleration*cylinders + year*cylinders, family = gaussian(link = "identity"), data = Auto)
+summary(glm_fit)
+```
+
+```{r quiz-interaction-3}
+#ISLR, Ex 9 (b)
+quiz(
+  question("Based on the correlation matrix and p-values of the fitted glm, which variables have the strongest interaction?",
+           answer("`mpg` and `weight`", message = "There are variables that have a stronger interaction.  The question is asking for correlations between predictors but mpg is the response"),
+           answer("`acceleration` and `horsepower`", message = "There are variables that have a stronger interaction"),
+           answer("`cylinders` and `horsepower`", message = "There are variables that have a stronger interaction"),
+           answer(correct = T, "`cylinders` and `displacement`", message = "From the correlation matrix, the two highest correlated pairs are `displacement` and `weight` and `cylinders` and `displacement.` From the p-values, we can see that the interaction between `displacement` and `weight` is statistically signifcant, while the interactiion between `cylinders` and `displacement` is not."),
+           answer("`weight` and `displacement`", message = "There are variables that have a stronger interaction")
+))
+```
+
+## Q4 - Pruning
+
+**SOA Exam PA December 12, 2019, Task 2**.
+
+Employ cost-complexity pruning to construct the best possible single tree.  Use an ROC and a confusion matrix on the test set to evaluate the tree.   Determine the best tree, based on the ROC on the test set, by varying the parameters `minbucket`, `cp`, and `maxdepth` that are set in the code.  Leave the other settings at their default values.
+
+After finding the best tree, do the following:
+
+* List the variables that are actually used in making splits.
+* Choose the hyper parameters which are closest to the optimal values.
+
+**Keep maxdepth at 6 or less to make the tree easy to interpret.** The other parameters can be changed as desired to produce the final tree.
+
+```{r tree-1, exercise = T}
+tree1 <- rpart(as.factor(value_flag) ~ .,
+  data = customer_value_train,
+  method = "class",
+  control = rpart.control(minbucket = 4, cp = 0.001, maxdepth = 6),
+  parms = list(split = "gini")
+)
+
+#tree1
+rpart.plot(tree1)
+
+# See how well it fits the data used to train the model.
+pred <- predict(tree1, type = "class", data = customer_value_train)
+confusionMatrix(pred, factor(customer_value_train$value_flag))
+
+# See how well the model performs on the test data.
+pred.test <- predict(tree1, type = "class", newdata = customer_value_test)
+confusionMatrix(pred.test, factor(customer_value_test$value_flag))
+
+# Construct ROC and calculate AUC for the training data.
+preds.prob <- predict(tree1, type = "prob", data = customer_value_train)
+roc <- roc(customer_value_train$value_flag, preds.prob[, 2])
+par(pty = "s") # This improves the roc plot
+
+plot(roc)
+pROC::auc(roc) # The addition of pROC:: to the code ensures that the auc function from that package is used. Other packages also have this function.
+
+# Construct ROC and calculate AUC for the test data.
+preds.prob.test <- predict(tree1, type = "prob", newdata = customer_value_test)
+roc <- roc(customer_value_test$value_flag, preds.prob.test[, 2])
+plot(roc)
+pROC::auc(roc)
+```
+
+```{r tree-1-hint-1}
+#You may wish to use Excel to record the tree parameters and the AUC for each
+```
+
+```{r tree-1-hint-2}
+#The AUC on the training set is not needed for this problem
+```
+
+
+```{r quiz-tree-1}
+quiz(
+  question("Which set of parameters is best?",
+    answer("**Parameters**: minbucket: [5,10], cp: [0.001,0.05], maxdepth: [2,3]
+           **Variables in splits**: marital_status, occupation, hours_per_week, age, score"),
+    answer("**Parameters**: minbucket: [5,8], cp: [0.05,0.1], maxdepth: [4,6]
+           **Variables in splits**: marital_status, education_num, cap_gain, occupation, hours_per_week, age, score"),
+    answer("**Parameters**: minbucket: [3,4], cp: [0.0001,0.01], maxdepth: [5,6]
+           **Variables in splits**: marital_status, cap_gain, education_num, occupation, hours_per_week, age, score"  , correct = TRUE, message = "minbucket = 5, cp = 0.05, maxdepth = 6 produces an AUC of 0.8416.  All variables are used as splits in the tree."),
+    answer("**Parameters**: minbucket: [3,4], cp: [0.0001,0.01], maxdepth: [3,4]
+            **Variables in splits**: marital_status, cap_gain, occupation, hours_per_week, score"),
+    answer("**Parameters**: minbucket: [3,4], cp: [0.0001,0.01], maxdepth: [5,6]
+           **Variables in splits**: marital_status, cap_gain, occupation, hours_per_week, age, score")
+  )
+)
+```
+
+
+## Q5 - Interpret the Tree
+
+**SOA Exam PA Student Success Sample Project, Task 3**
+
+You have just trained a decision tree to predict a student's end-of-semester grade.  You used the student's demographic information below:
+
+* `parent_edu`: Total level of education completed by either parent (numeric from 0 to 4) 0 – none, 1 – primary education (4th grade), 2 – 5
+th to 9th grade, 3 – secondary education (high
+school) or 4 – higher education (college).  For example, if the mother has secondary education (3) and the father has higher education (4) then `parent_edu` = 3 + 4 = 7
+* `Mjob`: Mother's job: teacher, health (health care related), services (civil services, administrative or police),
+at_home, or other
+* `goout`: Going out with friends (numeric: 1 – very low to 5 – very high)
+* `health_alcohol`: Unhealthy levels of alcohol consumption (1 = most healthy, 10 = least healthy)
+
+The model is shown below.
+
+```{r}
+knitr::include_graphics("images/tree_interpretation.PNG")
+```
+
+Using this, order the following students in terms of their predicted end-of-semester grade.
+
+- **Joe**: Father has a PhD and mother has Bachelor's, Mother works in health, goes out very frequently (score of 8), health_alcohol score of 5
+- **Steve**: Mother and Father have high school education, Mother works in civil services, goes out infrequently (score of 2), health_alcohol score of 5
+- **Kim**: Father has an Associate's and mother has a Bachelor's, Mother works as an administrative assistant, goes out casually (score of 3), health_alcohol score of 4
+
+```{r tree-2-hint-1}
+#Start from the top branch and working downwards.  A yes moves left and a no moves right
+```
+
+
+```{r tree-2-hint-2}
+#For Joe, `parent_edu` = 4 + 4 = 8 >= 5.  This means that we start from the top node and move right.
+```
+
+
+```{r quiz-tree-2}
+quiz(
+  question("Choose the correct order from lowest predicted grade to highest.  The predicted probability of passing is Y.",
+    answer("Joe < Steve < Kim"),
+    answer("Steve < Joe < Kim"),
+    answer("Kim < Joe < Steve"),
+    answer("Steve < Kim < Joe", correct = T, message = "We start from the top branch and working downwards.  A yes moves left and a no moves right.  
+    Joe: `parent_edu` >= 5 (right), `goout` > 4 (right), Y = 0.83.  
+    Steve: `parent_edu` < 5 (left), `Mjob` = other (left), Y = 0.36.  
+    Kim: `parent_edu` >= 5 (right), `health_alcohol` >= 1.7 (right), Y = 0.74.  
+    This implies that the order is Steve < Kim < Joe.
+           "),
+    answer("The correct answer is not given.")
+  )
+)
+```
+
+
+## Q5 - Consider a decision tree
+
+**SOA Exam PA June 13, 2019, Task 10**
+
+You have just built a GLM.
+
+An alternative model is a regression tree.  Do not create such a tree.  Comment on the pros and cons of using a regression tree for this problem verses the GLM which has already been constructed.
+
+Determine which statements below are false.
+
+i)	The tree automatically detects interactions.  Interactions need to be manually added to the GLM.
+
+ii)	The GLM handles missing values by assigning a target value of zero to these observations in the design matrix.
+
+iii) The tree detects non-linearities automatically.
+
+iv) For the tree, because each prediction is the average of training samples, the predicted crash score would be stepwise and could dramatically increase or decrease with small changes to the inputs.
+
+v)	The tree is biased towards selecting high cardinality features because more split points are possible.
+
+vi)	In general, GLMs tend to have higher variance than decision trees which leads to results that change after training on new data.  
+
+```{r quiz-vtree-3}
+quiz(
+  question("Choose the best answer",
+    answer("ii, vi"),
+answer("ii, iv, vi"),
+answer("i, v"),
+answer("ii, iii"),
+answer("i, ii, vi, vi"),
+answer("ii, v", correct = T, message = "ii) GLMs handle missing values by omitting them.  vi) A model has high variance if it is very sensitive to (small) changes in the training data.  This is another way of saying that it is 'flexible'.  Decision trees tend to be more flexible than GLMs because they can change their predictions drastically with small changes to the input data whereas a GLM can only change the predictions as the inputs change continuously.  Another way of saying this is that GLMs tend to have higher bias than decision trees.")
+))
+```

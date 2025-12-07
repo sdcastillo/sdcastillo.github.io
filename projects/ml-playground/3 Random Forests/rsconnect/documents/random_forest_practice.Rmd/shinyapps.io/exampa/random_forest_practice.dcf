@@ -1,0 +1,12 @@
+name: random_forest_practice
+title: random_forest_practice
+username:
+account: exampa
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 2772910
+bundleId: 3667508
+url: https://exampa.shinyapps.io/random_forest_practice/
+when: 1600976739.57528
+asMultiple: FALSE
+asStatic: FALSE

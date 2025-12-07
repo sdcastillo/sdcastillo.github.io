@@ -1,0 +1,626 @@
+---
+title: "Exercises"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, echo = F, message = F, warning = F}
+library(learnr)
+library(shiny)
+library(caret)
+library(stats)
+library(gbm)
+library(glmnet)
+library(rpart)
+library(rpart.plot)
+library(pROC)
+library(randomForest)
+library(tidyverse)
+library(dplyr)
+library(e1071)
+library(ISLR)
+library(ExamPAData)
+
+knitr::opts_chunk$set(echo = FALSE)
+tutorial_options(exercise.cap = "Sandbox")
+
+set.seed(42)
+
+#GLMS
+customer_value <- customer_value %>% 
+  mutate(value_flag = ifelse(value_flag=="High",1,0))
+
+#create a train/test split
+index <- 1:as.integer(nrow(customer_value)*0.8)
+customer_value_train <-  customer_value %>% slice(index)
+customer_value_test <- customer_value %>% slice(-index)
+
+sim_norm <- function(x) {
+  rnorm(1, mean = x, sd = 1)
+}
+
+glmdata1 <- tibble(x = runif(10000)) %>% 
+  mutate(y = x %>% map_dbl(sim_norm))
+
+sim_norm <- function(x) {
+  rnorm(1, mean = 1/x, sd = 1)
+}
+
+glmdata2 <- tibble(x = runif(10000)) %>% 
+  mutate(y = x %>% map_dbl(sim_norm))
+
+gammas <- rgamma(500, shape=2, scale = 0.5)
+
+#random component
+x <- runif(1000, min=0, max=100)
+
+#relate Y to X with a log link function
+y <- gammas*exp(x)
+
+glmdata3 <- tibble(x = x, y  = y)
+
+#Interactions
+traffic_safety <- june_pa %>% select(-Light, -Weather, -Rd_Conditions) %>% 
+  mutate(Time_of_Day = case_when(Time_of_Day %in% c(1,2) ~ "Morning",
+                                 Time_of_Day %in% c(3,4) ~ "Day",
+                                 Time_of_Day %in% c(5,6) ~ "Night"),
+         Rd_Configuration = ifelse(Rd_Configuration %in% c("ONE-WAY", "UNKNOWN"), "OTHER", "TWO-WAY"),
+         Traffic_Control = case_when(Traffic_Control %in% c("NONE", "OTHER")~ "OTHER",T~ "STOP-SIGNAL"),
+         Rd_Feature = ifelse(Rd_Feature == "INTERSECTION", "INTERSECTION", "OTHER"))
+
+#create a train/test split
+index <- 1:as.integer(nrow(traffic_safety)*0.8)
+traffic_safety_train <-  traffic_safety %>% slice(index)
+traffic_safety_test <- traffic_safety %>% slice(-index)
+
+#set factor levels to those with the most observations
+health_insurance <- health_insurance %>% 
+  mutate(sex = fct_infreq(sex),
+         smoker = fct_infreq(smoker),
+         region = fct_infreq(region),
+         age_bucket = case_when(
+    age < 24 ~ "<24",
+    age <= 36 ~ "24-36",
+    age <= 50 ~ "36-50",
+    age > 50 ~ ">50"
+  ) %>% as.character() %>% fct_infreq()
+         )
+
+#customer_value
+customer_value <- customer_value %>%
+  filter(age>=25) %>% 
+  mutate(value_flag = ifelse(value_flag=="High",1,0),
+         marital_status = ifelse(marital_status == "Married-AF-spouse", 
+                                            yes = "Married-civ-spouse",
+                                            no = marital_status)) 
+
+#create a train/test split
+index <- 1:as.integer(nrow(health_insurance)*0.8)
+health_insurance_train <-  health_insurance %>% slice(index)
+health_insurance_test <- health_insurance %>% slice(-index) %>% 
+  mutate_if(is.character, fct_infreq)
+
+
+#Student Success
+student_success <- student_success %>% 
+  mutate(parent_edu = Medu + Fedu,
+               health_alcohol = (Walc + Dalc)/health)
+
+## SOA Mortality
+
+set.seed(42)
+# #For the sake of this example, only take 20% of the records
+# soa_mortality <- soa_mortality %>% 
+#   sample_frac(0.2) %>% 
+#   mutate(target = as.factor(ifelse(actual_cnt == 0, 1, 0))) %>% 
+#   select(target, prodcat, distchan, smoker, sex, issage, uwkey) %>% 
+#   mutate_if(is.character, ~as.factor(.x))
+# 
+# index <- 1:as.integer(nrow(soa_mortality)*0.8)
+# soa_mortality_train <- soa_mortality %>% slice(index)
+# soa_mortality_test <- soa_mortality %>% slice(-index)
+
+#Boston housing
+
+index <- 1:as.integer(nrow(boston)*0.8)
+train <-  boston %>% slice(index)
+test <- boston %>% slice(-index)
+
+x_boston_train <-  train %>% select(-medv) %>% as.matrix()
+x_boston_test <- test %>% select(-medv) %>% as.matrix()
+
+y_boston_train <- train$medv
+y_boston_test <- test$medv
+
+#use the mae as the evaluation metric
+mae_summary <- function (data,
+                        lev = NULL,
+                        model = NULL) {
+      out <- mae(data$obs, data$pred)  
+      names(out) <- "mae"
+      out
+}
+
+#your assistant has provided you with these functions
+#no changes need to be made
+mae <- function(y, y_hat){
+  mean(abs(y - y_hat))
+}
+
+# source("Student success - Solution.Rmd")
+```
+
+## Q1 - Distribution and link function.
+
+<iframe src="https://player.vimeo.com/video/643153429?h=a61646c223" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+
+Determine the best distribution and link function to use.  Justify your choice of distribution based on the business problem and data and use only that combination for all further work.  Test several combinations and select the one with the best AIC, QQ-plot, and graphs of residuals vs. fitted.
+
+The distribution of the target variable $Y$ is shown below, for $n = 10,000$ observations. 
+
+```{r fig.height=3, fig.width=4, warning = F, message = F}
+glmdata1 %>% ggplot(aes(y)) + geom_histogram() + ggtitle("Distribution of target variable")
+summary(glmdata1$y)
+```
+
+```{r glm1, exercise=TRUE, exercise.lines = 10, fig.height=6}
+glm <- glm(formula=y ~ x, family = gaussian(link = "log"), data = glmdata1)
+summary(glm)
+par(mfrow = c(2,2))
+plot(glm, cex= 0.1)
+```
+
+Note: if you return an "invalid formula" error it means that the algorithm failed to converge.
+
+```{r glm1-hint-1}
+#possible families are binomial, guassian, Gamma, inverse.gaussian, poisson, quasi, quasibinomial, quasipoisson
+```
+
+```{r glm1-hint-2}
+#possible link functions are logit, probit, cauchit, cloglog, log, sqrt, 1/mu^2, inverse
+```
+
+```{r quiz-glm-1}
+quiz(
+  question("Which combination of link function and response family is best?",
+    answer("Log/Gamma"),
+    answer("Identity/Gamma"),
+    answer("Identity/Guassian",correct = TRUE, message = "This is the best choice since the QQ-plot shows a straight line and there is no pattern in the residualts vs. fitted scatterplots.  Notice that the gaussian and inverse link has residual plots which look similar but the AIC is higher (worse)."),
+    answer("Log/Gaussian"),
+    answer("Inverse/Gaussian"),
+    allow_retry = TRUE
+  )
+)
+```
+
+## Q2 - Distribution and link function.
+
+Determine the best distribution and link function to use.  Justify your choice of distribution based on the business problem and data and use only that combination for all further work.  Test several combinations and select the one with the best AIC, QQ-plot, and graphs of residuals vs. fitted.
+
+The distribution of the target variable $Y$ is shown below, for $n = 10,000$ observation.
+
+```{r fig.height=3, fig.width=4, warning = F, message = F}
+glmdata2 %>% ggplot(aes(y)) + geom_histogram() + ggtitle("Distribution of target variable") + xlim(-10, 12)
+summary(glmdata2$y)
+```
+
+```{r glm2, exercise=TRUE, exercise.lines = 10, fig.height=6}
+glm <- glm(formula=y~x, family = inverse.gaussian(link = "log"), data = glmdata2)
+summary(glm)
+par(mfrow = c(2,2))
+plot(glm,cex= 0.1)
+```
+
+Note: if you return an "invalid formula" error it means that the algorithm failed to converge.
+
+```{r quiz-glm-2}
+quiz(
+  question("Which combination of link function and response family is best?",
+    answer("Inverse/Inverse Guassian"),
+    answer("Identity/Gamma"),
+    answer("Identity/Guassian"),
+    answer("Log/Gaussian"),
+    answer("Inverse/Gaussian", correct = TRUE,message = "This is the best choice since the QQ-plot shows a straight line and there is no pattern in the residualts vs. fitted scatterplots"),
+    allow_retry = TRUE
+  )
+)
+```
+
+## Q3 - Distribution and link function.
+
+Determine the best distribution and link function to use.  Justify your choice of distribution based on the business problem and data and use only that combination for all further work.  Test several combinations and select the one with the best AIC, QQ-plot, and graphs of residuals vs. fitted.
+
+The distribution of the target variable $Y$ is shown below, for $n = 1,000$ observation.
+
+```{r fig.height=3, fig.width=4, warning = F, message = F}
+glmdata3 %>% ggplot(aes(y)) + geom_histogram(bins=20) + ggtitle("Distribution of target variable") + xlim(0,10)
+summary(glmdata3$y)
+```
+
+```{r glm3, exercise=TRUE, exercise.lines = 10, fig.height=6}
+glm <- glm(y ~ x, family = Gamma(link = "log"), data = glmdata3)
+summary(glm)
+par(mfrow = c(2,2))
+plot(glm,cex= 0.1)
+```
+
+Note: if you return an "invalid formula" error it means that the algorithm failed to converge.
+
+```{r glm3-hint-1}
+#There are only 1,000 observations instead of 10,000 in the previous questions.  This causes gaps to appear in the histogram but does not change the shape of the distribution.
+```
+
+```{r quiz-glm-3}
+quiz(
+  question("Which combination of link function and response family is best?",
+    answer("Log/Inverse Guassian"),
+    answer("Log/Gamma",correct = T, message = "The histogram showed that Y is right skewed and so only the Gamma or Inverse Gaussian are possible response families.  The log link is appropriate because it forces the linear predictor to always be positive, and the mean of the Gamma must be positive.  The Gamma is better than the Inverse Guassian because the QQ-plot shows a straight line and there is no pattern in the residualts vs. fitted scatterplots.  The AIC is also lowest for this combination."),
+    answer("Identity/Guassian"),
+    answer("Log/Gaussian"),
+    answer("Inverse/Gaussian"),
+    allow_retry = TRUE
+  )
+)
+```
+
+## Q4 - GLM Concepts.
+
+Generalized Linear Models (GLMs) are a flexible framework for linear models.  There are two assumptions which characterize the GLM depending on the shape of the target variable (also known as the response distribution) and the way that the linear predictor is related to the mean of the response.  
+
+These are:
+
+1. A random component: $Y|X \sim \text{some exponential family distribution}$
+
+2. A link: between the random component and covariates: 
+
+$$g(\mu(X)) = X\beta$$
+where $g$ is called the *link function* and $\mu = E[Y|X]$.
+
+Which of the below statements are **false**?
+
+i) The canonical link function always ensures that the linear predictor will match the domain of the mean of the response distribution.
+
+ii) If the target distribution is binary, then the logit is a common choice.
+
+iii) Becuase the logit link is not monotonic, interpreting the signs of the coefficients (i.e., whether they increase or decrease the probability of the target being 1 instead of 0), is not done in the same way as for a log link.
+
+iv) The canonical link functions are only useful for simplifying the math and making convergence more likely and the final choice of link function should always depend on the results on the holdout set as well as the requirements of the business problem.
+
+v)  If the target distribution is strictly positive, then a log link is a good candidate because it forces the predictions of the GLM (i.e., the linear predictor) to always be positive.
+
+
+```{r quiz-glm-4}
+quiz(
+  question("Select the correct answer",
+    answer("iii", message = "iii) This is not the best answer because there are other statement(s) which are as well.  The logit link is monotonic, meaning that an increase in x leads to an increase in the link function g(x).  This means that a positive coefficient implies that the probability increases as that variable increases. "),
+    answer("i, iii", correct = T, message = "i) is FALSE.  Consider the counterexample of the Gamma, which has the Negative Inverse canonical link function.  The mean of a Gamma distribution needs to be positive but the negative inverse allows for negative values. iii) This is FALSE also.  The logit link is monotonic, meaning that an increase in x leads to an increase in the link function g(x).  This means that a positive coefficient implies that the probability increases as that variable increases."),
+    answer("iii, iv", message = "iii) is FALSE but iv is TRUE.  The logit link is monotonic, meaning that an increase in x leads to an increase in the link function g(x).  This means that a positive coefficient implies that the probability increases as that variable increases.  iv) is TRUE because certain business cases require (i.e., when the predictions need to be positive or be expressible as a multiplicative model)"),
+    answer("i, v", message = "i) is FALSE but v) is TRUE because if the inverse of the log link is the expontential function, and the exponential (e^x) function is always positive."),
+    answer("v", message = "v) TRUE because if the inverse of the log link is the expontential function, and the exponential (e^x) function is always positive."),
+    answer("None of the above"),
+    allow_retry = TRUE
+  )
+)
+```
+
+## Q5 - P-values
+![](images/p-values.png)
+
+You have just trained a linear model to predict the annual `sales` of an auto insurance policy based on the advertising channel of either `TV`, `radio`, or `newspaper`.  These predictor variables `TV`, `radio`, and `newspaper` are 1 when an add is run and 0 when no ad is run.  Their reference level (base level) is 0.
+
+Describe the null hypotheses to which the p-values above table corresponds. Explain what conclusions you can draw based on these p-values. Your explanation should be phrased in terms of `sales`, `TV`,
+`radio`, and `newspaper`, rather than in terms of the coefficients of the linear model.
+
+Which statements below are **true**?
+
+i) The null hypothesis for TV is that when no radio or newspaper ads are run, the TV ads have no effect on sales. 
+
+ii) The null hypothesis for TV is that in the presence of radio ads and newspaper ads, TV ads have no effect on sales. 
+
+iii) The null hypothesis for radio is that in the presence of TV and newspaper ads, radio ads have no effect on sales. 
+
+iv) The null hypothesis for radio is that when no radio or newspaper ads are run, radio ads have no effect on sales. 
+
+v) The high p-value of newspaper suggests that the null hypothesis is true for newspaper.
+
+vi) The high p-value of newspaper suggests that the null hypothesis is false for newspaper.
+
+
+```{r quiz-glm-5}
+#ISLR Ex 3.7
+quiz(
+  question("Complete the above sentence:",
+    answer("i, ii, v"),
+    answer(correct = T, "ii, iii, v", message = "
+The null hypothesis for `TV` is that in the presence of radio
+ads and newspaper ads, TV ads have no effect on sales. Similarly, the null
+hypothesis for `radio` is that in the presence of TV and newspaper ads, radio
+ads have no effect on sales. (And there is a similar null hypothesis for
+`newspaper.`) The low p-values of `TV` and `radio` suggest that the null hypotheses
+are false for TV and radio. The high p-value of `newspaper` suggests that the null
+hypothesis is true for newspaper."),
+    answer("ii, iii, vi"),
+    answer("ii, v"),
+    answer("iii, v"),
+    allow_retry = TRUE
+  
+))
+```
+
+
+## Q6 - Logistic Regression
+
+This contains weekly stock data for the S&P 500.  There are 1,089 weekly returns for 21 years, from the beginning of 1990 to the end of 2010.  The target variable is `Direction`, which is whether the market had a positive or negative return on a given week.  The "lag" predictor variables are the returns for prior weeks.
+
+Use the full data set to perform a logistic regression with `Direction` as the response and the five lag variables plus `Volume` as predictors. 
+
+```{r}
+summary(Weekly)
+
+#Year and Volume appear to have a relationship. No other patterns are discernible.
+cor(Weekly[, -9])
+```
+
+```{r glm-6, exercise = T}
+glm_fit = glm(Direction ~ Lag1 + Lag2 + Lag3 + Lag4 + Lag5 + Volume, data = Weekly, family = binomial)
+summary(glm_fit)
+
+glm_probs = predict(glm_fit, type = "response")
+glm_pred <- as.factor(ifelse(glm_probs > 0.5, "Up", "Down"))
+confusionMatrix(glm_pred,Weekly$Direction)$table
+```
+
+Use the confusion matrix to calculate the percentage of the time that the logistic regression accurately predicts the market direction and interpret the result.
+
+```{r quiz-glm-6}
+#ISLR Ex 4.10
+quiz(
+  question("Choose the correct answer",
+    answer("The logit is right most of the time when the market goes down (89%) and wrong most of the time when the market goes up (11%)."),
+    answer("The logit is right most of the time when the market goes up (91%) and wrong most of the time when the market goes down (9%)."),
+    answer("The logit is right most of the time when the market goes down (92%) and wrong most of the time when the market goes up (11%)."),
+    answer("The logit is right most of the time when the market goes up (91%) and wrong most of the time when the market goes down (12%)."),
+    answer(correct = T, "The logit is right most of the time when the market goes up (92%) and wrong most of the time when the market goes down (11%).",
+           message = "On Weeks when the market goes up, the logistic regression is right most of the time, 557/(557+48) = 92.1%. On Weeks the market goes down the logistic regression is wrong most of the time 54/(430+54) = 11.2%."),
+    allow_retry = TRUE
+))
+```
+
+
+## Q7 - Investigate Ridge and Lasso regressions
+
+**SOA Exam PA, June 13, 2019 (Traffic Safety), Task 9**.
+
+Your actuarial consulting firm has been hired by the North Carolina Department of Transportation to
+help them understand the factors that contribute to the severity of vehicle crashes. 
+
+Code is provided to fit an elastic net.  Adjust the parameters to fit both ridge and elastic net models.  Compare the RMSE results on the test set. Use all of the features. No other changes in parameters need be done. 
+
+The code provided predicts the target variable using a Gaussian distribution and the identity
+link. There is no need to try other combinations.
+
+Provide an explanation of the difference in the two approaches (ridge or LASSO). Which of the these would you recommend for this analysis? Do not
+base your recommendation solely on the mean squared errors from each model.
+
+```{r glm7, exercise=TRUE, exercise.lines = 20, fig.height=4}
+set.seed(42)
+X <- model.matrix(Crash_Score ~ . + Work_Area*Rd_Class, traffic_safety_train)
+m <- cv.glmnet(x = X, 
+            y = traffic_safety_train$Crash_Score,
+            family = "gaussian",
+            alpha = 1)#make your selection
+plot(m)
+
+#This code fits the model to the full training set using the value of lambda that produced the smallest cross-validation error, obtains predicted values for the test set, and then determines the mean squared error.
+
+m.best <- glmnet(x = X, 
+            y = traffic_safety_train$Crash_Score,
+            family = "gaussian", lambda = m$lambda.min,
+            alpha = 1) #make your selection
+
+X.test <- model.matrix(Crash_Score ~ . + Work_Area*Rd_Class,traffic_safety_test)
+m.best$beta
+m.best.predict <- predict(m.best, newx=X.test)
+rmse <- sqrt(sum((m.best.predict - traffic_safety_test$Crash_Score)^2)/nrow(traffic_safety_test))
+rmse
+```
+
+```{r quiz-glm7}
+quiz(
+  question("Choose the best answer.",
+  answer(text = "The LASSO should be chosen if simplicity is the priority and the Ridge if interpretability is the priority.  The RMSE of the Ridge is lower than the RMSE of the LASSO which means that it also has better performance.  The LASSO is easier to interpret because it has only 21 variables as compared to the Ridge that has 29.  The best value of lambda for the LASSO is about 0.01 and 0.39 for the Ridge."),
+answer(correct = T, text = "The LASSO is a better model.  The RMSE of the LASSO is lower than the RMSE of the Ridge which means that it also has better performance.  The LASSO is easier to interpret because it has only 21 variables as compared to the Ridge that has 29.  The best value of lambda for the LASSO is about 0.01 and 0.39 for the Ridge."),
+answer(text = "The Ridge is a better model.  The RMSE of the Ridge is lower than the Lasso of the LASSO which means that it also has better performance.  The LASSO is easier to interpret because it has only 21 variables as compared to the Ridge that has 29."),
+answer(text = "The LASSO is a better model.  The RMSE of the LASSO is lower than the RMSE of the Ridge which means that it also has better performance.  The LASSO is easier to interpret because it has only 21 variables as compared to the Ridge that has 29.  The best value of lambda for the LASSO is about 0.39 and 0.01 for the Ridge."),
+    allow_retry = TRUE
+  )
+)
+```
+
+
+## Q8 -  Distribution and link function
+**SRM Practice Question 7**: Determine which of the following pairs of distribution and link function is the most appropriate to model if a person is hospitalized or not.
+
+```{r quiz-Q1}
+quiz(
+  question("Select the correct answer.",
+    answer("(A) Normal distribution, identity link function"),
+    answer("(B) Normal distribution, logit link function"),
+    answer("(C) Binomial distribution, linear link function"),
+    answer("(D) Binomial distribution, logit link function", correct = TRUE,
+           message = 'The intent is to model a binary outcome, thus a classification model is desired. In GLM, this is equivalent to binomial distribution. The link function should be one that restricts values to the range zero to one. Of linear and logit, only logit has this property.'),
+    answer("(E) It cannot be determined from the information given."),
+    allow_retry = TRUE
+  )
+)
+```
+
+
+
+## Q9 - Alternative fitting procedure
+**SRM Practice Question 8**: Determine which of the following statements describe the advantages of using an alternative fitting procedure, such as subset selection and shrinkage, instead of least squares.
+
+I) Doing so will likely result in a simpler model
+II) Doing so will likely improve prediction accuracy
+III) The results are likely to be easier to interpret
+
+```{r quiz-Q2}
+quiz(
+  question("Select the correct answer.",
+    answer("(A) I only"),
+    answer("(B) II only"),
+    answer("(C) III only"),
+    answer("(D) I, II, and III", correct = TRUE, 
+           message = 'Alternative fitting procedures will tend to remove the irrelevant variables from the predictors, thus resulting in a simpler and easier to interpret model. Accuracy will likely be improved due to reduction in variance.'),
+    answer("(E) The correct answer is not given by (A), (B), (C), or (D)"),
+    allow_retry = TRUE
+  )
+)
+```
+
+
+
+
+## Q10 - SSE
+**SRM Practice Question 11**: You are given the following results from a regression model.
+
+Observation number (i) | $y_i$ | $\hat{f}(x_i)$ | 
+:---:                  | :---: | :----:         |
+1                      | 2     | 4              |
+2                      | 5     | 3              |
+3                      | 6     | 9              |
+4                      | 8     | 3              |
+5                      | 4     | 6              |
+
+
+```{r Q3, exercise=TRUE}
+# calculate SSE 
+```
+
+```{r quiz-Q3}
+quiz(
+  question("Calculate the sum of squared errors (SSE).",
+    answer("(A) -35"),
+    answer("(B) -5"),
+    answer("(C) 5"),
+    answer("(D) 35"),
+    answer("(E) 46", correct = TRUE,
+           message = 'Solution: SSE is sum of the squared differences between the observed and predicted values. That is, $[(2 − 4)^2 + (5 − 3)^2 + (6 − 9)^2 + (8 − 3)^2 + (4 − 6)^2] = 46$'),
+    allow_retry = TRUE
+  )
+)
+```
+
+
+
+## Q11 - Flexibility
+**SRM Practice Question 12**: 
+
+
+```{r quiz-Q4}
+quiz(
+  question("Determine which of the following statements is true.",
+    answer("(A) Linear regression is a flexible approach."),
+    answer("(B) Lasso is more flexible than a linear regression approach."),
+    answer("(C) Bagging is a low flexibility approach."),
+    answer("(D) There are methods that have high flexibility and are also easy to interpret."),
+    answer("(E) None of (A), (B), (C), or (D) are true", correct = TRUE,
+           message = "A is false, linear regression is considered inflexible because the number of possible models is restricted to a certain form.
+           
+B is false, the lasso determines the subset of variables to use while linear regression allows the analyst discretion regarding adding or moving variables.
+
+C is false, bagging provides additional flexibility.
+
+D is false, there is a tradeoff between being flexible and easy to interpret."),
+    allow_retry = TRUE
+  )
+)
+```
+
+
+
+## Q12 - Simple linear relationship
+**SRM Practice Question 13**: Determine which of the following statements is/are true for a simple linear relationship, $y = \beta_0 + \beta_1x +\epsilon$.
+
+I) If $\epsilon = 0$, the 95% confidence interval is equal to the 95% prediction interval.
+II) The prediction interval is always at least as wide as the confidence interval.
+III) The prediction interval quantifies the possible range for $E(y|x)$.
+
+```{r quiz-Q5}
+quiz(
+  question("Which is correct?",
+    answer("(A) I only"),
+    answer("(B) II only"),
+    answer("(C) III only"),
+    answer("(D) I, II and III"),
+    answer("(E) The correct answer is not given by (A), (B), (C), or (D)",
+           correct = TRUE, message = 'I is true. The prediction interval includes the irreducible error, but in this case it is zero.
+           
+II is true. Because it includes the irreducible error, the prediction interval is at least as wide as the confidence interval.
+
+III. is false. It is the confidence interval that quantifies this range.'),
+    allow_retry = TRUE
+  )
+)
+```
+
+
+
+## Q13 - Transformation
+**SRM Practice Question 14**: From an investigation of the residuals of fitting a linear regression by ordinary least squares it is clear that the spread of the residuals increases as the predicted values increase. Observed values of the dependent variable range from 0 to 100.
+
+Determine which of the following statements is/are true with regard to transforming the dependent variable to make the variance of the residuals more constant.
+
+I) Taking the logarithm of one plus the value of the dependent variable may make the variance of the residuals more constant.
+II) A square root transformation may make the variance of the residuals more constant.
+III) A logit transformation may make the variance of the residuals more constant.
+
+
+
+```{r quiz-Q6}
+quiz(
+  question("Select the correct answer.",
+    answer("(A) None"),
+    answer("(B) I and II only", correct = TRUE,
+           message = 'Adding a constant to the dependent variable avoids the problem of the logarithm of zero being negative infinity. In general, a log transformation may make the variance constant. Hence I is true. Power transformations with the power less than one, such as the square root transformation, may make the variance constant. Hence II is true. A logit transformation requires that the variable take on values between 0 and 1 and hence cannot be used here.'),
+    answer("(C) I and III only"),
+    answer("(D) II and III only"),
+    answer("(E) The correct answer is not given by (A), (B), (C), or (D)."),
+    allow_retry = TRUE
+  )
+)
+```
+
+
+
+## Q14 - Hypothesis testing
+**SRM Practice Question 19**: The regression model $Y = \beta_0 + \beta_1X_1 + \beta_2X_2 + \beta_3X_1X_2 + \epsilon$ is being investigated. 
+
+The following maximized log-likelihoods are obtained:
+
+- Using only the intercept term: –1126.91
+- Using only the intercept term, $X_1$, and $X_2$: –1122.41
+- Using all four terms: –1121.91
+
+The null hypothesis $H_0$ : $\beta_1 = \beta_2 = \beta_3 = 0$ is being tested at the 5% significance level
+using the likelihood ratio test.
+
+```{r quiz-Q7}
+quiz(
+  question("Determine which of the following is true.",
+    answer("(A) The test statistic is equal to 1 and the hypothesis cannot be rejected."),
+    answer("(B) the test statistic is equal to 9 and the hypothesis cannot be rejected."),
+    answer("(C) The test statistic is equal to 10 and the hypothesis cannot be rejected."),
+    answer("(D) The test statistic is equal to 9 and the hypothesis should be rejected."),
+    answer("(E) The test statistic is equal to 10 and the hypothesis should be rejected.", correct = TRUE,
+           message = 'The only two models that need to be considered are the full model with all four coefficients and the null model with only the intercept term. The test statistic is twice the difference of the log-likelihoods, which is 10.
+           
+The number of degrees of freedom is the difference in the number of coefficients in the two models, which is three.
+
+At 5% significance with three degrees of freedom, the test statistic of 10 exceeds the 7.81
+threshold, so the null hypothesis should be rejected.'),
+    allow_retry = TRUE
+  )
+)
+```
+

@@ -13,40 +13,662 @@
     gtag('js', new Date());
     gtag('config', 'G-ECY33592SW');
   </script>
+    <style>
+    /* Collapsible periodic table styles (home page only) */
+    details.element-group {
+      margin: 0.75rem 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 0.5rem 0.75rem;
+      background: #fafafa;
+    }
+    details.element-group > summary {
+      cursor: pointer;
+      font-weight: 600;
+      list-style: none;
+    }
+    details.element-group[open] {
+      background: #f0f4ff;
+    }
+    .periodic-table-wrapper {
+      margin-top: 1rem;
+      max-height: 70vh;
+      overflow-y: auto;
+      border-top: 1px solid #ddd;
+      padding-top: 0.5rem;
+    }
+    .element-atomic {
+      white-space: nowrap;
+    }
+    .element-atomic small {
+      color: #555;
+      font-size: 0.75em;
+      margin-left: 0.25rem;
+    }
+    /* Cybersecurity trends section styling */
+    .cyber-section {
+      margin: 2rem 0 2.5rem;
+      padding: 1.5rem 1.75rem;
+      border-radius: 8px;
+      background: #060b1a;
+      color: #f5f7ff;
+      box-shadow: 0 0 0 1px rgba(255,255,255,0.06), 0 18px 45px rgba(0,0,0,0.5);
+    }
+    .cyber-section h2 {
+      margin-top: 0;
+      margin-bottom: 0.75rem;
+      font-size: 1.6rem;
+    }
+    .cyber-section h3 {
+      margin-top: 1.5rem;
+      margin-bottom: 0.4rem;
+      font-size: 1.2rem;
+    }
+    .cyber-section p {
+      margin: 0.45rem 0;
+    }
+    .cyber-section ul {
+      margin: 0.35rem 0 0.75rem 1.4rem;
+      padding-left: 0;
+    }
+    .cyber-section li {
+      margin-bottom: 0.25rem;
+    }
+    .cyber-section strong {
+      color: #ffd166;
+    }
+    .cyber-section .cyber-meta {
+      font-size: 0.85rem;
+      opacity: 0.85;
+      margin-top: 0.75rem;
+    }
+    .cyber-section .cyber-refs {
+      margin-top: 1rem;
+      font-size: 0.8rem;
+      line-height: 1.4;
+      word-break: break-all;
+    }
+    .cyber-section .cyber-refs a {
+      color: #8ab4ff;
+      text-decoration: none;
+    }
+    .cyber-section .cyber-refs a:hover {
+      text-decoration: underline;
+    }
+    /* Simple hero CTA styling (home page) */
+    .hero-intro {
+      max-width: 720px;
+      margin-bottom: 1.25rem;
+    }
+    .hero-intro p {
+      margin: 0.25rem 0;
+    }
+    .hero-cta {
+      display: inline-block;
+      margin-top: 0.75rem;
+      padding: 0.6rem 1.3rem;
+      border-radius: 999px;
+      background: #0b5ed7;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+    .hero-cta:hover {
+      background: #0948a6;
+    }
+    /* Home-page summaries for long essays */
+    .home-summaries {
+      margin: 2.5rem 0 2rem;
+      padding: 1.5rem 1.75rem;
+      border-radius: 8px;
+      background: #f5f7ff;
+      border: 1px solid #d3ddff;
+    }
+    .home-summaries h2 {
+      margin-top: 0;
+      margin-bottom: 0.75rem;
+    }
+    .summary-card {
+      margin-bottom: 1rem;
+      padding: 0.75rem 0.8rem;
+      border-radius: 6px;
+      background: #ffffff;
+      border: 1px solid #e0e6ff;
+    }
+    .summary-card h3 {
+      margin: 0 0 0.4rem;
+      font-size: 1.05rem;
+    }
+    .summary-card p {
+      margin: 0.25rem 0 0.4rem;
+      font-size: 0.95rem;
+    }
+    .summary-meta {
+      font-size: 0.8rem;
+      color: #555;
+      margin-bottom: 0.25rem;
+    }
+    .read-more-inline {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #0b5ed7;
+      text-decoration: none;
+    }
+    .read-more-inline:hover {
+      text-decoration: underline;
+    }
+    /* Consulting section styling */
+    .consulting-intro {
+      margin: 1.75rem 0 2rem;
+      padding: 1.4rem 1.6rem;
+      border-radius: 8px;
+      background: #050816;
+      color: #f9fbff;
+      box-shadow: 0 0 0 1px rgba(11,94,215,0.4), 0 16px 40px rgba(0,0,0,0.55);
+      max-width: 860px;
+    }
+    .consulting-intro h2 {
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+      font-size: 1.4rem;
+    }
+    .consulting-intro p {
+      margin: 0.3rem 0 0.6rem;
+      font-size: 0.96rem;
+    }
+    .consulting-columns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-top: 0.75rem;
+    }
+    .consulting-col {
+      flex: 1 1 260px;
+      min-width: 0;
+    }
+    .consulting-col h3 {
+      margin: 0 0 0.35rem;
+      font-size: 1.05rem;
+    }
+    .consulting-col ul {
+      margin: 0.15rem 0 0.4rem 1.1rem;
+      padding-left: 0;
+      font-size: 0.92rem;
+    }
+    .consulting-col li {
+      margin-bottom: 0.25rem;
+    }
+    .consulting-note {
+      font-size: 0.82rem;
+      opacity: 0.85;
+      margin-top: 0.35rem;
+    }
+    .consulting-cta-row {
+      margin-top: 0.75rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+    .consulting-cta-primary,
+    .consulting-cta-secondary {
+      display: inline-block;
+      padding: 0.55rem 1.15rem;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .consulting-cta-primary {
+      background: #0b5ed7;
+      color: #fff;
+    }
+    .consulting-cta-primary:hover {
+      background: #0948a6;
+    }
+    .consulting-cta-secondary {
+      background: transparent;
+      color: #c3d3ff;
+      border: 1px solid rgba(195,211,255,0.7);
+    }
+    .consulting-cta-secondary:hover {
+      background: rgba(195,211,255,0.08);
+    }
+    @media (max-width: 640px) {
+      .consulting-intro {
+        padding: 1.1rem 1.2rem;
+      }
+    }
+    /* Simple collapsible deep-dive blocks for quantum content */
+    details.qc-deepdive {
+      margin: 0.6rem 0 0.9rem;
+      border-radius: 6px;
+      border: 1px solid #d0d7ff;
+      background: #f7f8ff;
+      padding: 0.4rem 0.7rem 0.6rem;
+    }
+    details.qc-deepdive > summary {
+      cursor: pointer;
+      font-weight: 600;
+      list-style: none;
+      font-size: 0.95rem;
+    }
+    details.qc-deepdive[open] {
+      background: #edf0ff;
+    }
+    .qc-quick-facts {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 0.75rem;
+      margin: 0.75rem 0 0.5rem;
+    }
+    .qc-fact-card {
+      border-radius: 6px;
+      border: 1px solid #e1e5ff;
+      padding: 0.55rem 0.6rem;
+      background: #ffffff;
+      font-size: 0.9rem;
+    }
+    .main-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    background: #fff;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .nav-left, .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .main-nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  .main-nav a:hover { color: #0066cc; }
+
+  .brand {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #0066cc !important;
+  }
+
+  .buy-cta {
+    background: #0066cc;
+    color: white !important;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    font-weight: 600;
+  }
+
+  .buy-cta:hover { background: #0055aa; }
+
+  /* Dropdown Styles */
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+
+  .dropbtn {
+    background: none;
+    border: none;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #333;
+    cursor: pointer;
+    padding: 0.5rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    min-width: 280px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    border-radius: 8px;
+    z-index: 1000;
+    top: 100%;
+    right: 0;
+    padding: 0.8rem 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.25s ease;
+  }
+
+  .dropdown:hover .dropdown-content {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .dropdown-content a {
+    color: #333;
+    padding: 0.7rem 1.2rem;
+    display: block;
+    text-align: left;
+    white-space: nowrap;
+  }
+
+  .dropdown-content a:hover {
+    background-color: #f8f9fa;
+    color: #0066cc;
+  }
+
+  /* Mobile responsiveness */
+  @media (max-width: 900px) {
+    .main-nav { flex-direction: column; text-align: center; }
+    .nav-left, .nav-right { gap: 1.5rem; justify-content: center; }
+    .dropdown-content { right: auto; left: 50%; transform: translateX(-50%); }
+  }
+  </style>
 </head>
 <body>
   <header>
-  <nav class="main-nav">
-    <!-- Left side – Personal site -->
-    <div class="nav-left">
-      <a href="index.html" class="brand">Samuel Castillo</a>
-      <a href="about.html">About</a>
-      <a href="privacy.html">Privacy</a>
+ <nav class="main-nav">
+  <!-- Left side – Personal site -->
+  <div class="nav-left">
+    <a href="index.html" class="brand">Samuel Castillo</a>
+    <a href="about.html">About</a>
+    <a href="privacy.html">Privacy</a>
+  </div>
+
+  <!-- Right side – Main links + Dropdown + CTA -->
+  <div class="nav-right">
+    <a href="index.html">Futuro Insights</a>
+    <a href="code.html">Code</a>
+    <a href="/PA-R-Study-Manual">PA-R Study Manual</a>
+
+    <!-- Dropdown Menu Integrated Here -->
+    <div class="dropdown">
+      <button class="dropbtn">
+        Projects & Articles 
+        <span class="arrow">↓</span>
+      </button>
+      <div class="dropdown-content">
+        <a href="/github_pages_central_limit_theorem.html">Central Limit Theorem</a>
+        <a href="/github_pages_from_algorithms_to_actuarial_science.html">From Algorithms to Actuarial Science</a>
+        <a href="/github_pages_identifying_actionable_treatment_variation.html">Identifying Actionable Treatment Variation</a>
+        <a href="/github_pages_linear_algebra.html">Linear Algebra Notes</a>
+        <a href="/github_pages_loss_development_triangles.html">Loss Development Triangles</a>
+        <a href="/github_pages_grocery_stores.html">Grocery Store Supply Modeling</a>
+        <a href="/github_pages_predictive_modeling_app.html">Predictive Modeling App</a>
+        <a href="/github_pages_prompt_engineering.html">Prompt Engineering Guide</a>
+        <a href="/github_pages_real_estate_house_prices.html">Real Estate House Price Modeling</a>
+        <a href="/github_pages_sas_for_statistics_healthcare.html">SAS for Healthcare Statistics</a>
+        <a href="/github_pages_soa_predictive_modeling_research.html">SOA Predictive Modeling Research</a>
+        <a href="/github_pages_value_investing_time_series.html">Value Investing & Time-Series Analysis</a>
+      </div>
     </div>
 
-    <!-- Right side – Futuro Insights / Products -->
-    <div class="nav-right">
-      <a href="index.html">Futuro Home</a>
-      <a href="code.html">Code</a>
-      <a href="/studymanual.html">PA-R Study Manual</a>
-      <a href="buy.html" class="buy-cta">BUY</a>
-      <a href="contact.html">Contact</a>
-      <a href="returns.html">Returns</a>
-    </div>
-
-    <!-- Mobile menu button -->
-    <button class="nav-toggle" aria-label="Menu">Menu</button>
-  </nav>
+    <a href="buy.html" class="buy-cta">BUY</a>
+    <a href="contact.html">Contact</a>
+    <a href="returns.html">Returns</a>
+  </div>
+</nav>
 </header>
 
   <main>
-    <blockquote>“That's one small step for man, one quantum leap for humanity" - Niel Armstrong {My Edit}</blockquote>
+
         
 <div class="container">
     <iframe width="760px" height="500px" src="https://sway.cloud.microsoft/s/ZgeokYGafM3Kc8tO/embed" frameborder="0" marginheight="0" marginwidth="0" max-width="100%" sandbox="allow-forms allow-modals allow-orientation-lock allow-popups allow-same-origin allow-scripts" scrolling="no" style="border: none; max-width: 100%; max-height: 100vh" allowfullscreen mozallowfullscreen msallowfullscreen webkitallowfullscreen></iframe>
 
-</div>
 
+    <h3>Agreement between User and This Website</h3>
+
+   <p>
+    The website (the "Site") is comprised of various
+web pages operated by Predictive Insights is offered to you conditioned on your
+acceptance without modification of the terms, conditions, and notices contained herein
+(the "Terms"). Your use of futuroinsight.com constitutes your agreement to all such
+Terms. Please read these terms carefully, and keep a copy of them for your reference.
+
+PredictiveInsightsAI.com is an E-Commerce Site.
+
+Teaching predictive analytics, and artificial intelligence
+   </p>
+
+   <h3>Privacy</h3>
+   <p>Your use of this site follows Predictive Insight AI's Privacy Policy. Please review our
+Privacy Policy, which also governs the Site and informs users of our data collection
+practices.</p>
+
+<h3>ACCEPTABLE USE & ACCESS RESTRICTIONS</h3>
+
+<h4> Human-Only Access & Prohibition of Automation</h4>
+You expressly agree that your access to and use of this Website and its services is limited to individual human interaction through a standard web browser. Any form of automated access, data extraction, or non-human interaction is strictly and explicitly prohibited.
+
+<h4>Explicitly Prohibited Activities</h4>
+You covenant NOT to, under any circumstances, use or attempt to use:
+
+*   **Web Scrapers, Crawlers, or Spiders:** Any automated software designed to extract data, content, or information from this Website.
+*   **AI/LLM Tools:** Any artificial intelligence, large language model (LLM), or machine learning system for the purpose of aggregating, training on, or analyzing content from this Website.
+*   **Browser Automation Frameworks:** Including, but not limited to, Selenium, Puppeteer, Playwright, or any similar tools that simulate user interaction.
+*   **Headless Browsers or Bots:** Any method of accessing the Website without a graphical user interface intended for a human user.
+*   **Scripts or Macros:** Any automated script, macro, or bot that interacts with the Website's interface or APIs in a manner that simulates or replaces human navigation.
+*   **Reverse Engineering or Circumvention:** Any attempt to decipher, decompile, reverse engineer, or otherwise circumvent any technological measures designed to protect the Website or enforce these access restrictions.
+
+<h4>Content Protection & Embedded Tracking</h4>
+You acknowledge and agree that all content presented on this Website, including text, images, code, and data structures, is the exclusive property of the Website and its licensors. To protect this property and enforce these Terms, the Website employs technological protection measures.
+
+**You are hereby notified that all content may contain embedded, imperceptible digital watermarks and tracking signatures.** These measures are designed to identify the origin, user session, and dissemination path of content. Any unauthorized access, scraping, copying, or distribution of content may be tracked, and the source of the violation may be identified through these measures.
+
+<h4>Consequences of Violation</h4>
+Violation of this section constitutes a material breach of these Terms of Service. In addition to any other legal or equitable remedies available, we reserve the right to, without notice:
+*   Immediately and permanently terminate or suspend your access to the Website.
+*   Block your IP address(es) and employ any technical measures to prevent future access.
+*   Pursue all available legal actions, including but not limited to claims for injunctive relief and damages resulting from the unauthorized access and misappropriation of content.
+
+By accessing or using this Website, you affirm that you are a human individual and agree to comply fully with these prohibitions.
+
+<h3>Electronic Communications</h3>
+<p>Visiting this site or sending emails to Predictive Insights constitutes electronic
+communications. You consent to receive electronic communications and you agree that
+all agreements, notices, disclosures and other communications that we provide to you
+electronically, via email and on the Site, satisfy any legal requirement that such
+communications be in writing.</p>
+
+<h3>Accounts</h3>
+<p>If you use this site, you are responsible for maintaining the confidentiality of your
+account and password and for restricting access to your computer, and you agree to
+accept responsibility for all activities that occur under your account or password. You
+may not assign or otherwise transfer your account to any other person or entity. You
+acknowledge that PassMyExam is not responsible for third party access to your account
+that results from theft or misappropriation of your account. PassMyExam and its
+associates reserve the right to refuse or cancel service, terminate accounts, or remove
+or edit content in our sole discretion.</p>
+
+<h3>Children under Thirteen</h3>
+<p>Predictive Insights does not knowingly collect, either online or offline, personal
+information from persons under the age of thirteen. If you are under 18, you may use
+this site only with permission of a parent or guardian.</p>
+<h3>Cancellation/Refund Policy</h3>
+<p>
+  The book for sale on this site follows Amazon Kindle standard E-book policy for returns.
+  This policy is in effect from the time of purchase.  All coupons or discounts will be applied to the refund.  The refund requires that the user followed the terms and conditions with respect to the materials,files,videos,media,consulting services, that they purcahsed.  All rights to use downloaded materials are redacted.
+
+</p>
+
+<h3>Links to Third Party Sites</h3>
+<p>This site may contain links to other websites ("Linked Sites"). The Linked Sites are not
+under the control of Predictive Insights and our organization is not responsible for the
+contents of any Linked Site, including without limitation any link contained in a Linked
+Site, or any changes or updates to a Linked Site. Predictive Insights is providing these
+links to you only as a convenience, and the inclusion of any link does not imply
+endorsement by Predictive Insights of the site or any association with its operators.
+
+Certain services made available via futuroinsight.com are delivered by third party sites
+and organizations. By using any product, service or functionality originating from the
+futuroinsight.com domain, you hereby acknowledge and consent that Predictive
+Insights may share such information and data with any third party with whom Predictive
+Insights has a contractual relationship to provide the requested product, service or
+functionality on behalf of futuroinsight.com users and customers</p>
+</div>
+<h3>No Unlawful or Prohibited Use of Intellectual Property</h3>
+<p>You are granted a non-exclusive, non-transferable, revocable license to access and use
+futuroinsight.com strictly in accordance with these terms of use. As a condition of your
+use of the Site, you warrant to Predictive Insights that you will not use the Site for any
+purpose that is unlawful or prohibited by these Terms. You may not use the Site in any
+manner which could damage, disable, overburden, or impair the Site or interfere with
+any other party's use and enjoyment of the Site. You may not obtain or attempt to
+obtain any materials or information through any means not intentionally made available
+or provided for through the Site.
+
+All content included as part of the Service, such as text, graphics, logos, images, as well
+as the compilation thereof, and any software used on the Site, is the property of
+Predictive Insights or its suppliers and protected by copyright and other laws that
+protect intellectual property and proprietary rights. You agree to observe and abide by
+all copyright and other proprietary notices, legends or other restrictions contained in
+any such content and will not make any changes thereto.</p>
+
+<h1>PREDICTIVE INSIGHTS AI CONTENT IS NOT FOR RESALE.</h1>
+<p>You will not modify, publish, transmit, reverse engineer, participate in the transfer or
+sale, create derivative works, or in any way exploit any of the content, in whole or in
+part, found on the Site. Predictive Insights content is not for resale. Your use of the Site
+does not entitle you to make any unauthorized use of any protected content, and in
+particular you will not delete or alter any proprietary rights or attribution notices in any
+content. You will use protected content solely for your personal use, and will make no
+other use of the content without the express written permission of PassMyExam and the
+copyright owner. You agree that you do not acquire any ownership rights in any
+protected content. We do not grant you any licenses, express or implied, to the
+intellectual property of PassMyExam or our licensors except as expressly authorized by
+these Terms.
+
+For certain Open-Source materials, which are on Sam's Github Repository, these are under the LICENSE that is in the repository.
+The materials in this website are designed for a specific purpose, as outlined within the SOW (Scope of Work), that is customized for each individual case-by-base basis.  Royalties or monetization of direct copies, clones, 1:1 transcriptions, are protected and will be prosecuted.
+</p>
+
+<h3>International Users</h3>
+<p>The Service is controlled, operated and administered by our organization from our
+offices within the USA. If you access the Service from a location outside the USA, you
+are responsible for compliance with all local laws. You agree that you will not use the
+this Content accessed through our site in any country or in any manner prohibited by
+any applicable laws, restrictions or regulations.  Datacenters are also in the USA.</p>
+
+<h3>Indemnification</h3>
+<p>You agree to indemnify, defend and hold harmless Predictive Insights, its officers,
+directors, employees, agents and third parties, for any losses, costs, liabilities and
+expenses (including reasonable attorney's fees) relating to or arising out of your use of
+or inability to use the Site or services, any user postings made by you, your violation of
+any terms of this Agreement or your violation of any rights of a third party, or your
+violation of any applicable laws, rules or regulations. We reserve the right, at its own
+cost, to assume the exclusive defense and control of any matter otherwise subject to
+indemnification by you, in which event you will fully cooperate with PassMyExam in
+asserting any available defenses.</p>
+<h3>Arbitrition</h3>
+<p>In the event the parties are not able to resolve any dispute between them arising out of
+or concerning these Terms and Conditions, or any provisions hereof, whether in
+contract, tort, or otherwise at law or in equity for damages or any other relief, then such
+dispute shall be resolved only by final and binding arbitration pursuant to the Federal
+Arbitration Act, conducted by a single neutral arbitrator and administered by the
+American Arbitration Association, or a similar arbitration service selected by the parties,
+in a location mutually agreed upon by the parties. The arbitrator's award shall be final,
+and judgment may be entered upon it in any court having jurisdiction. In the event that
+any legal or equitable action, proceeding or arbitration arises out of or concerns these
+Terms and Conditions, the prevailing party shall be entitled to recover its costs and
+reasonable attorney's fees. The parties agree to arbitrate all disputes and claims in
+regards to these Terms and Conditions or any disputes arising as a result of these Terms
+and Conditions, whether directly or indirectly, including Tort claims that are a result of
+these Terms and Conditions. The parties agree that the Federal Arbitration Act governs
+the interpretation and enforcement of this provision. The entire dispute, including the
+scope and enforceability of this arbitration provision shall be determined by the
+Arbitrator. This arbitration provision shall survive the termination of these Terms and
+Conditions.</p>
+
+<h3>Liability Disclaimer</h3>
+<p>THE INFORMATION, SOFTWARE, PRODUCTS, AND SERVICES INCLUDED IN OR
+AVAILABLE THROUGH THE SITE MAY INCLUDE INACCURACIES OR TYPOGRAPHICAL
+ERRORS. CHANGES ARE PERIODICALLY ADDED TO THE INFORMATION HEREIN. OUR COMPANY, PASS
+MY EXAM AND/OR ITS SUPPLIERS MAY MAKE IMPROVEMENTS AND/OR CHANGES IN
+THE SITE AT ANY TIME.
+
+PASS MY EXAM AND/OR ITS SUPPLIERS MAKE NO REPRESENTATIONS ABOUT THE
+SUITABILITY, RELIABILITY, AVAILABILITY, TIMELINESS, AND ACCURACY OF THE
+INFORMATION, SOFTWARE, PRODUCTS, SERVICES AND RELATED GRAPHICS
+CONTAINED ON THE SITE FOR ANY PURPOSE. TO THE MAXIMUM EXTENT PERMITTED
+BY APPLICABLE LAW, ALL SUCH INFORMATION, SOFTWARE, PRODUCTS, SERVICES AND
+RELATED GRAPHICS ARE PROVIDED "AS IS" WITHOUT WARRANTY OR CONDITION OF
+ANY KIND. PASS MY EXAM AND/OR ITS SUPPLIERS HEREBY DISCLAIM ALL
+WARRANTIES AND CONDITIONS WITH REGARD TO THIS INFORMATION, SOFTWARE,
+PRODUCTS, SERVICES AND RELATED GRAPHICS, INCLUDING ALL IMPLIED WARRANTIES
+OR CONDITIONS OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE
+AND NON-INFRINGEMENT.</p>
+
+<H3>Changes are periodically added to the information herein</H3>
+<P>TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL
+PREDICTIVE INSIGHTS AI AND/OR ITS SUPPLIERS BE LIABLE FOR ANY DIRECT,
+INDIRECT, PUNITIVE, INCIDENTAL, SPECIAL, CONSEQUENTIAL DAMAGES OR ANY
+DAMAGES WHATSOEVER INCLUDING, WITHOUT LIMITATION, DAMAGES FOR LOSS OF
+USE, DATA OR PROFITS, ARISING OUT OF OR IN ANY WAY CONNECTED WITH THE USE
+OR PERFORMANCE OF THE SITE, WITH THE DELAY OR INABILITY TO USE THE SITE OR
+RELATED SERVICES, THE PROVISION OF OR FAILURE TO PROVIDE SERVICES, OR FOR
+ANY INFORMATION, SOFTWARE, PRODUCTS, SERVICES AND RELATED GRAPHICS
+OBTAINED THROUGH THE SITE, OR OTHERWISE ARISING OUT OF THE USE OF THE SITE,
+WHETHER BASED ON CONTRACT, TORT, NEGLIGENCE, STRICT LIABILITY OR
+OTHERWISE, EVEN IF PASS MY EXAM OR ANY OF ITS SUPPLIERS HAS BEEN ADVISED OF
+THE POSSIBILITY OF DAMAGES. BECAUSE SOME STATES/JURISDICTIONS DO NOT
+ALLOW THE EXCLUSION OR LIMITATION OF LIABILITY FOR CONSEQUENTIAL OR
+INCIDENTAL DAMAGES, THE ABOVE LIMITATION MAY NOT APPLY TO YOU. IF YOU ARE
+DISSATISFIED WITH ANY PORTION OF THE SITE, OR WITH ANY OF THESE TERMS OF
+USE, YOUR SOLE AND EXCLUSIVE REMEDY IS TO DISCONTINUE USING THE SITE.</P>
+
+<h3>Access Restriction, Shadowbanning, Blacklisting</h3>
+<p>Predictive Insights AI reserves the right, in its sole discretion, to terminate your access
+to the Site and the related services or any portion thereof at any time, without notice.
+To the maximum extent permitted by law, this agreement is governed by the laws of the
+Commonwealth of Massachusetts and you hereby consent to the exclusive jurisdiction
+and venue of courts in Massachusetts in all disputes arising out of or relating to the use
+of the Site. Use of the Site is unauthorized in any jurisdiction that does not give effect to
+all provisions of these Terms, including, without limitation, this section.
+
+You agree that no joint venture, partnership, employment, or agency relationship exists
+between you and PassMyExam as a result of this agreement or use of the Site.
+PassMyExam's performance of this agreement is subject to existing laws and legal
+process, and nothing contained in this agreement is in derogation of PassMyExam's
+right to comply with governmental, court and law enforcement requests or
+requirements relating to your use of the Site or information provided to or gathered by
+PassMyExam with respect to such use. If any part of this agreement is determined to be
+invalid or unenforceable pursuant to applicable law including, but not limited to, the
+warranty disclaimers and liability limitations set forth above, then the invalid or
+unenforceable provision will be deemed superseded by a valid, enforceable provision
+that most closely matches the intent of the original provision and the remainder of the
+agreement shall continue in effect.</p>
+
+<hr>
+
+<p>Unless otherwise specified herein, this agreement constitutes the entire agreement
+between the user and PassMyExam with respect to the Site and it supersedes all prior or
+contemporaneous communications and proposals, whether electronic, oral or written,
+between the user and PassMyExam with respect to the Site. A printed version of this
+agreement and of any notice given in electronic form shall be admissible in judicial or
+administrative proceedings based upon or relating to this agreement to the same
+extent and subject to the same conditions as other business documents and records
+originally generated and maintained in printed form. It is the express wish to the parties
+that this agreement and all related documents be written in English.</p>
+
+<h3>Changes to Terms</h3>
+
+<p>Predictive Insights AI reserves the right, in its sole discretion, to change the Terms under
+which futuroinsight.com is offered. The most current version of the Terms will supersede
+all previous versions. PassMyExam encourages you to periodically review the Terms to
+stay informed of our updates.</p>
+
+<h3>Contact Us</h3>
+<p>Predictive Insights welcomes yoru questions or comments regarding the Terms.  Email: ArtificialActuary@gmail.com.  Effective as of December 7, 2025</p>
   </main>
   <script>
   // Auto-highlight the current page

@@ -1,0 +1,175 @@
+---
+title: "Zillow Gradient Boosted Machine"
+output: html_notebook
+---
+
+##Data Preprocessing
+```{r}
+
+library(readr) # CSV file I/O, e.g. the read_csv function
+
+## Read packages (some of the packages are not required, but did not bother to find out which ones )
+packages <- c("gbm", "xgboost", "dplyr", "data.table", "caret", "rattle", "tidyr", "ggplot2", "lubridate", 
+              "corrplot", "leaflet", "caretEnsemble", "e1071", "rpart.plot", "VGAM", "Metrics", "Matrix")
+purrr::walk(packages, library, character.only = TRUE, warn.conflicts = FALSE)
+
+#Only those which were sold
+train_temp = read.csv("train_2016_v2.csv", header = T, sep =  ",")
+
+#All properties listed
+property = read.csv(file = "properties_2016.csv", header = T, sep = ",")
+
+#Join Y and X to fit a model
+train = merge(train_temp, property, by.x = "parcelid", by.y = "parcelid", all.x = TRUE)
+
+# Remove temporary data set to save space
+rm(train_temp)
+```
+#Change Variable Types
+
+```{r}
+### Some variables are seen as numerical values, but they should be categorical, hence transformation 
+change_numerical_to_factor = function(data, variable_names) {
+  for (i in 1:length(variable_names)) {
+    index = which(names(data) == cate_var[i])
+    if (length(index) > 0) {
+      data[,index] = as.factor(data[,index])
+    }
+  }
+  return(data)
+}
+
+cate_var = c( "buildingqualitytypeid", "fips", "heatingorsystemtypeid", "propertylandusetypeid", 'censustractandblock', 
+              'regionidcity', 'regionidcounty', 'regionidcity', "unitcnt")
+
+train = change_numerical_to_factor(train, cate_var)
+property = change_numerical_to_factor(property, cate_var)
+```
+
+#Feature Engineering
+```{r}
+#### month of the year shows predicative power, so, use month column 
+#Take in data and create features.  Use this for the train and total properties files
+
+#This is EXCLUDING the month features which need to be added later
+make_features = function(data) {
+  data %>% 
+    mutate(#transactiondate = as.Date(as.character(transactiondate)),
+           #month = as.factor(month(transactiondate)),
+           N_value_ratio = taxvaluedollarcnt/taxamount,
+           N_living_area_prop = calculatedfinishedsquarefeet/lotsizesquarefeet) %>%
+    
+    # group_by(regionidcity) %>%
+    # 
+    # mutate( N_Avg_structuretaxvalue = mean(structuretaxvaluedollarcnt),
+    #         N_city_count = n()) %>%
+    # ungroup() %>%
+    
+    mutate( N_Dev_structuretaxvaluedolarcnt = abs(structuretaxvaluedollarcnt - N_Avg_structuretaxvalue)/N_Avg_structuretaxvalue,
+            N_tax_score = taxvaluedollarcnt*taxamount)  %>%
+    
+    group_by(regionidzip) %>%
+    
+    mutate(N_zip_count = n()) %>%
+    ungroup() %>%
+    
+    dplyr::select(- rawcensustractandblock,
+           - propertyzoningdesc,
+           - censustractandblock,
+           - assessmentyear) ### Remove transactiondate column 
+  
+  #data$N_month = as.factor(data$N_month)
+}
+
+train = train %>%
+  mutate(transactiondate = as.Date(as.character(transactiondate))) %>% 
+    mutate(month = as.factor(month(transactiondate)))  %>% 
+    select(-one_of("transactiondate"))
+
+train2 = make_features(train)
+prop = make_features(property)
+
+```
+
+#Remove NA values
+```{r}
+##### Investigate the columns with many NAs, remove columns with more than 80% NA (this needs more investigations though)
+#### Remove columns with NA more than NA_percentage_threshold 
+remove_variable_with_NA = function(data, NA_percentage_threshold) {
+  vectordrop = data[, lapply(data, function(x) sum(is.na(x)) / length(x) ) >= NA_percentage_threshold ]
+  data[, which(names(data) %in% names(vectordrop))] = NULL
+  
+  result = list(data = data, drop.column = names(vectordrop))
+  return(result)
+}
+
+NA_percentage_threshold = 0.8
+
+result = remove_variable_with_NA(train, NA_percentage_threshold)
+train = result$data
+drop.column =  result$drop.column
+prop = prop %>% dplyr::select(-one_of(drop.column))   
+```
+
+
+#Remove outliers observations
+```{r}
+### Remove outliers (this also needs more investigation)
+train = train %>% filter(logerror <= 0.4 & logerror >= -0.39)
+```
+
+##Model
+
+```{r}
+
+number_trees = 600
+
+gbmModel <- gbm(logerror ~ ., 
+                distribution="gaussian", 
+                # var.monotone=c(0,0,0,0,0,0),  # -1: monotone decrease,
+                # +1: monotone increase,
+                #  0: no monotone restrictions
+                interaction.depth = 5,          ### 1 means additive model, 2 is two-way interaction 
+                # n.minobsinnode = 10,         ### minimum number of observations in the trees terminal nodes.
+                n.cores=detectCores()/2,      ### Number of cores for parallasation
+                bag.fraction = 0.8,          ### Every time only x% of the sample are selected to make the tree
+                n.trees = number_trees,              ### Number of trees 
+                shrinkage = 0.0033,           ### There is a shrinkage parameter to avoid over-fitting 
+                data = train)
+
+
+```
+
+#Predictions
+```{r}
+#Create "month" proxy so that the Xdata in the prediction matches that in the training set
+prop$month = factor("10", levels = levels(train$month))
+
+submission <- prop %>%
+  mutate("201610" = predict.gbm(object = gbmModel, 
+                                newdata = prop, #prop needs to have the same features as my train data
+                                n.trees = number_trees, 
+                                type = "response"),
+         
+         #manually sets the month to november to be used in the predict X data prop
+         month = factor("11", levels = levels(train$month)),
+         
+         "201611" = predict.gbm(object = gbmModel, newdata = prop, n.trees = number_trees, type = "response"), 
+         #manually sets the month to december
+         month=factor("12", levels = levels(train$month)),
+         
+         "201612"=predict.gbm(object=gbmModel, newdata=prop, n.trees=number_trees, type="response"), 
+         #month=factor("10", levels = levels(train$month)),
+         "201710"=0, 
+         #month=factor("11", levels = levels(train$month)),
+         "201711"=0, 
+         #month=factor("12", levels = levels(train$month)),
+         "201712"=0) %>%
+  
+  select(parcelid, `201610`, `201611`, `201612`, `201710`, `201711`, `201712`)
+
+options(scipen = 999) ## DO not use scientific notation 
+write.csv(submission, "submission_with_new_features.csv", row.names = FALSE)
+
+```
+

@@ -1,0 +1,12 @@
+name: template
+title: template
+username:
+account: exampa
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 2492858
+bundleId: 3400911
+url: https://exampa.shinyapps.io/template/
+when: 1594923411.74938
+asMultiple: FALSE
+asStatic: FALSE

@@ -1,0 +1,12 @@
+name: glms_practice
+title: glms_practice
+username:
+account: exampa
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 2766953
+bundleId: 3649109
+url: https://exampa.shinyapps.io/glms_practice/
+when: 1600616345.85423
+asMultiple: FALSE
+asStatic: FALSE

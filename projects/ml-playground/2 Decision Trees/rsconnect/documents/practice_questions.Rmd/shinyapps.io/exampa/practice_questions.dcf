@@ -1,0 +1,12 @@
+name: practice_questions
+title: practice_questions
+username:
+account: exampa
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 2630491
+bundleId: 3493246
+url: https://exampa.shinyapps.io/practice_questions/
+when: 1596978005.7797
+asMultiple: FALSE
+asStatic: FALSE
