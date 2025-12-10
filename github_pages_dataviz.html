@@ -5,117 +5,66 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>About – Samuel Castillo</title>
 
-  <!-- MathJax for beautiful equations -->
+  <!-- MathJax -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
-  <!-- Shared site-wide stylesheet (missing before, so page CSS "wasn't working") -->
+  <!-- Your global stylesheet -->
   <link rel="stylesheet" href="style.css">
 
-  <meta name="description" content="Learn about Samuel Castillo, an entrepreneur, data scientist, AI and LLM engineer with actuarial science background, startup experience, and a focus on quantum computing and predictive analytics.">
-  <meta name="keywords" content="Samuel Castillo, about Samuel, data scientist, AI engineer, LLM engineering, actuarial science, predictive analytics, startup founder, Capital Factory, quantum computing, machine learning, portfolio optimization">
-
-  <!-- Minimal local styles to keep custom sections readable even without global CSS -->
   <style>
     body {
       margin: 0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      line-height: 1.5;
+      line-height: 1.6;
+      background: #fff;
+      color: #333;
     }
-    .main-nav {
+    main { max-width: 960px; margin: 2rem auto; padding: 0 1rem; }
+    blockquote { margin: 2rem 0; padding-left: 1rem; border-left: 4px solid #e74c3c; color: #555; font-style: italic; font-size: 1.1em; }
+
+    /* Centered video – ~half screen on desktop, full-width on mobile */
+    .video-container {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0.75rem 1.25rem;
-      border-bottom: 1px solid #ddd;
+      justify-content: center;
+      margin: 3rem 0;
     }
-    .nav-left a,
-    .nav-right a {
-      margin-right: 0.75rem;
-      text-decoration: none;
+    .video-container iframe {
+      width: 800px;
+      max-width: 95vw;        /* never wider than screen */
+      height: 450px;
+      border: none;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
     }
-    .brand {
-      font-weight: 600;
+
+    .video-info {
+      margin-top: 1.5rem;
+      text-align: center;
     }
-    main {
-      max-width: 960px;
-      margin: 1.5rem auto;
-      padding: 0 1rem 3rem;
+    .video-info h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
     }
-    blockquote {
-      margin: 1rem 0 2rem;
-      padding-left: 1rem;
-      border-left: 3px solid #ccc;
-      color: #555;
-      font-style: italic;
-    }
-    .section-title,
-    .h2.article-title,
-    .h3,
-    h3 {
-      margin-top: 2rem;
-      margin-bottom: 0.75rem;
-    }
-    .experience-list {
-      list-style: none;
-      padding: 0;
-      margin: 0 0 2rem;
-    }
-    .experience-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
-      padding: 1rem 0;
-      border-bottom: 1px solid #ddd;
-    }
-    .experience-banner img {
-      width: 64px;
-      height: 64px;
-      object-fit: contain;
-      border-radius: 4px;
-    }
-    .experience-content h4 {
-      margin: 0 0 0.25rem;
-    }
-    .experience-content .title {
-      margin: 0;
-      font-weight: 600;
-      font-size: 0.95rem;
-    }
-    .experience-content .dates {
-      margin: 0.25rem 0 0.5rem;
+    .tags span {
+      display: inline-block;
+      background: #f0f0f0;
+      padding: 0.3rem 0.7rem;
+      margin: 0.3rem;
+      border-radius: 20px;
       font-size: 0.85rem;
-      color: #555;
     }
-    .experience-content ul {
-      margin: 0.25rem 0 0.25rem 1.2rem;
+
+    /* Simple responsive adjustment */
+    @media (max-width: 860px) {
+      .video-container iframe { height: 360px; }
     }
-    .education-item {
-      margin-top: 1rem;
-      border-top: 1px solid #ddd;
-      padding-top: 1rem;
-    }
-    .education-item .experience-banner img {
-      width: 64px;
-      height: 64px;
-    }
-    .terminal-cursor {
-      margin-top: 2rem;
-      font-family: monospace;
-      animation: blink 1s step-end infinite;
-    }
-    @keyframes blink {
-      50% { opacity: 0; }
-    }
-    /* Ensure the long embedded article block is visually separated */
-    article.about {
-      margin-top: 2rem;
-      padding-top: 1rem;
-      border-top: 1px dashed #ccc;
+    @media (max-width: 640px) {
+      .video-container iframe { height: 300px; }
     }
   </style>
 </head>
-
 <body>
+
   <header>
     <nav class="main-nav">
       <div class="nav-left">
@@ -137,39 +86,57 @@
   <main>
     <blockquote>“A Picture Speaks a Thousand Words.”</blockquote>
 
-    <!-- Your entire original content goes here unchanged -->
-    <!-- (I'm keeping it short for the example, but paste everything from <section> to the last </section>) -->
+    <!-- Centered YouTube Video (half-screen size) -->
+    <div class="video-container">
+      <iframe 
+        src="https://www.youtube-nocookie.com/embed/C1VpR-7u5e4?rel=0&modestbranding=1" 
+        title="Mastering Data Visualization, EDA, and ETL" 
+        allowfullscreen>
+      </iframe>
+    </div>
 
-    <!-- Keep pasting the rest of your original <section>s here -->
+     <div class="video-container">
+      <iframe 
+        src="https://www.youtube-nocookie.com/embed/_dU8kDPYMik?rel=0&modestbranding=1" 
+        title="Mastering Data Visualization, EDA, and ETL" 
+        allowfullscreen>
+      </iframe>
+    </div>
 
-    <!-- Blinking cursor at the very end for that retro terminal vibe -->
-    <div class="terminal-cursor">_</div>
+     
 
-    
+    <div class="video-info">
+      <h2>Mastering Data Visualization, EDA, and ETL: A Complete Guide for Data Science Professionals</h2>
+      <ul style="text-align:left; max-width:700px; margin:0 auto;">
+        <li>Data Visualization: Transform complex data into clear insights with Tableau & Power BI</li>
+        <li>Exploratory Data Analysis (EDA): Uncover hidden patterns and relationships</li>
+        <li>Extract, Transform, Load (ETL): Clean and prepare real-world data efficiently</li>
+        <li>Hands-on dashboards and visual storytelling techniques</li>
+      </ul>
+      <div class="tags">
+        <span>#dataviz</span>
+        <span>#charts</span>
+        <span>#tableau</span>
+        <span>#powerbi</span>
+      </div>
+    </div>
+
+    <!-- Your slideshow (optional) -->
+    <div style="text-align:center; margin-top:4rem;">
+      <p>Use the Arrow Keys to Switch Slides (Down and Right)</p>
+      <iframe src="/projects/dataviz/index.html" allowfullscreen width="100%" height="800px" style="border:none;"></iframe>
+    </div>
+
   </main>
 
-
-
-
-<div class="container">
-<p>Use the Arrow Keys to Switch Slides (Down and Right)</p>
-<iframe src="/projects/dataviz/index.html" allowfullscreen width="100%" height =1200px></iframe>
-
-
-</div>
-
-
-</section>
-
-
   <script>
-    // Highlight current page
+    // Highlight current page in nav
     const current = location.pathname.split('/').pop() || 'index.html';
     document.querySelectorAll('.main-nav a').forEach(link => {
-      const href = link.getAttribute('href').split('/').pop();
-      if (href === current) link.classList.add('active');
+      if (link.getAttribute('href').split('/').pop() === current) link.classList.add('active');
     });
   </script>
+
   <script src="//code.tidio.co/wzjrimf18zj7d7ek3qrqlipusccughus.js" async></script>
 </body>
 </html>

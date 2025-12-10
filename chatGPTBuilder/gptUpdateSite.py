@@ -199,7 +199,10 @@ def run_step(instruction: str):
 
 if __name__ == "__main__":
     instruction = """
-    Add the Tidio chat widget script to the end of index.html, just before the closing </body> tag.
-    <script src="//code.tidio.co/wzjrimf18zj7d7ek3qrqlipusccughus.js" async></script>
+    The top nav is currently a run-on line: “Samuel Castillo”, “About”, “Privacy”, “Futuro Insights”, “Code”, “PA-R Study Manual”, “Projects & Articles”, “↓Menu”, with no visual grouping.​
+
+Add spacing and hierarchy: e.g., left-align name/logo; group “About/Privacy” under a small “About” dropdown; keep “Study Manual”, “Projects & Articles”, “Consulting” as primary items.​
+
+Ensure the “↓Menu” becomes a proper hamburger / mobile nav on narrow screens; right now it reads like stray text
     """
     run_step(instruction)
