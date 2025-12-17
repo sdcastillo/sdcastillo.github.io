@@ -1,0 +1,116 @@
+////////////////////////////////////////////////////////////////////////////////
+// XOR NEURAL NETWORK EXAMPLE in SCI LAB (1 Hidden Layer)
+// Using MSE for demonstration
+////////////////////////////////////////////////////////////////////////////////
+
+// 1) Data Setup (XOR)
+X = [0 0 1 1;  // x1 row
+     0 1 0 1]; // x2 row
+Y = [0 1 1 0]; // 1 row, matching 4 samples
+
+m          = size(X, 2);       // number of samples = 4
+input_dim  = 2;
+hidden_dim = 2;
+output_dim = 1;
+
+// 2) Initialize Network Parameters
+rand("seed", 12345);  // fix seed for reproducible results
+
+// SciLab's 'grand' for normal distribution requires 5 args: (m, n, "nor", mean, std)
+W1 = 0.01 * grand(hidden_dim, input_dim, "nor", 0, 1);  // (2 x 2)
+b1 = zeros(hidden_dim, 1);                              // (2 x 1)
+
+W2 = 0.01 * grand(output_dim, hidden_dim, "nor", 0, 1); // (1 x 2)
+b2 = zeros(output_dim, 1);                              // (1 x 1)
+
+// Sigmoid activation
+function s = sigmoid(Z)
+    s = 1.0 ./ (1.0 + exp(-Z));
+endfunction
+
+////////////////////////////////////////////////////////////////////////////////
+// Forward Pass
+////////////////////////////////////////////////////////////////////////////////
+function [A1, A2] = forward_pass(X, W1, b1, W2, b2)
+    // X is (input_dim x m)
+    // W1 is (hidden_dim x input_dim)
+    // b1 is (hidden_dim x 1)
+    // W2 is (output_dim x hidden_dim)
+    // b2 is (output_dim x 1)
+
+    // hidden layer
+    Z1 = W1*X + repmat(b1, 1, size(X,2));    // shape: (hidden_dim x m)
+    A1 = sigmoid(Z1);
+
+    // output layer
+    Z2 = W2*A1 + repmat(b2, 1, size(A1,2));  // shape: (output_dim x m)
+    A2 = sigmoid(Z2);
+endfunction
+
+
+////////////////////////////////////////////////////////////////////////////////
+// Backward Pass
+////////////////////////////////////////////////////////////////////////////////
+function [dW1, db1, dW2, db2] = backward_pass(X, Y, A1, A2, W2)
+    m = size(Y, 2);
+
+    // dA2 = 2*(A2 - Y)/m for MSE
+    dA2 = 2*(A2 - Y) / m;           // (1 x m)
+
+    // dZ2 = dA2 .* A2.*(1 - A2)
+    dZ2 = dA2 .* (A2 .* (1 - A2));  // (1 x m)
+
+    // Grad of W2, b2
+    dW2 = dZ2 * A1';           // (1 x 2)
+    db2 = sum(dZ2, 2);         // (1 x 1)
+
+    // Propagate back to hidden
+    dZ1_part = W2' * dZ2;      // W2' is (2 x 1), dZ2 is (1 x m) => (2 x m)
+    dZ1 = dZ1_part .* (A1 .* (1 - A1));  // (2 x m)
+
+    // Grad of W1, b1
+    dW1 = dZ1 * X';
+    db1 = sum(dZ1, 2);  // (2 x 1)
+endfunction
+
+////////////////////////////////////////////////////////////////////////////////
+// Training Loop: Gradient Descent
+////////////////////////////////////////////////////////////////////////////////
+epochs = 10000;
+learning_rate = 0.1;
+
+for i = 1:epochs
+    // forward
+    [A1, A2] = forward_pass(X, W1, b1, W2, b2);
+
+    // compute cost
+    cost = mse_loss(A2, Y);
+
+    // backward
+    [dW1, db1_, dW2, db2_] = backward_pass(X, Y, A1, A2, W2);
+
+    // update
+    W1 = W1 - learning_rate*dW1;
+    b1 = b1 - learning_rate*db1_;
+    W2 = W2 - learning_rate*dW2;
+    b2 = b2 - learning_rate*db2_;
+
+    // Print progress sometimes
+    if (modulo(i,1000)==0) then
+        mprintf("Epoch %d: MSE=%.5f\n", i, cost);
+    end
+end
+
+////////////////////////////////////////////////////////////////////////////////
+// Evaluate
+////////////////////////////////////////////////////////////////////////////////
+[A1, A2] = forward_pass(X, W1, b1, W2, b2);
+
+disp("== Final output (A2) after training ==");
+disp(A2);
+
+disp("== Rounded predictions ==");
+disp(round(A2));
+
+disp("== True Y ==");
+disp(Y);

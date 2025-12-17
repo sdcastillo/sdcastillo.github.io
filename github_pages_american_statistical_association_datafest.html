@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Five College DataFest 2025</title>
+
+  <!-- MathJax -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <!-- Your global stylesheet -->
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+      background: #fff;
+      color: #333;
+    }
+    main { max-width: 960px; margin: 2rem auto; padding: 0 1rem; }
+    blockquote { margin: 2rem 0; padding-left: 1rem; border-left: 4px solid #e74c3c; color: #555; font-style: italic; font-size: 1.1em; }
+
+    /* Centered video – ~half screen on desktop, full-width on mobile */
+    .video-container {
+      display: flex;
+      justify-content: center;
+      margin: 3rem 0;
+    }
+    .video-container iframe {
+      width: 800px;
+      max-width: 95vw;        /* never wider than screen */
+      height: 450px;
+      border: none;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    .video-info {
+      margin-top: 1.5rem;
+      text-align: center;
+    }
+    .video-info h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .tags span {
+      display: inline-block;
+      background: #f0f0f0;
+      padding: 0.3rem 0.7rem;
+      margin: 0.3rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+    }
+
+    /* Simple responsive adjustment */
+    @media (max-width: 860px) {
+      .video-container iframe { height: 360px; }
+    }
+    @media (max-width: 640px) {
+      .video-container iframe { height: 300px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav class="main-nav">
+      <div class="nav-left">
+        <a href="index.html" class="brand">Samuel Castillo</a>
+        <a href="about.html">About</a>
+        <a href="privacy.html">Privacy</a>
+      </div>
+      <div class="nav-right">
+        <a href="index.html">Futuro Insights</a>
+        <a href="code.html">Code</a>
+        <a href="/PA-R-Study-Manual">PA-R Study Manual</a>
+        <a href="buy.html" class="buy-cta">BUY</a>
+        <a href="contact.html">Contact</a>
+        <a href="book.html">Book</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- Centered YouTube Video (half-screen size) -->
+    <div class="video-container">
+      <iframe 
+        src="https://www.youtube-nocookie.com/embed/3yqPQEefUHI?rel=0&modestbranding=1" 
+        
+        title="Inside DataFest: The Ultimate College Coding Challenge" 
+        allowfullscreen>
+      </iframe>
+    </div>
+
+    <p>Imagine this.... a massive coding competition meets Shark Tank.  Now add AI, Business Intelligence, and a room full of students cracking it wide open. Yeah, welcome to DataFest. This isn't just about code, it's about real problems, real data, and real solutions that slap.  The energy?  Electric.  
+
+The mission of DataFest is to provide undergraduate students with business questions with immediate real-world significance that can be addressed through data analysis. By working in teams, students with varying skill sets will combine their efforts and expand their collective data analysis horizons. Interaction among students, as well as with outside consultants, will promote the sense that data analysis is a dynamic, engaging, and vibrant part of our society, as well as a realistic, practical, and fun career path.
+
+</p>
+
+
+<section>
+  <h2>Presented Materials</h2>
+  <p>Below are the slide decks and code files for the panel of judges.  There was a limit of 3 slides per team..  I helped to evaluate the presentations and work of groups of the participants and also created my own work as well.</p>
+
+  
+  <!-- DataFest Final Slides -->
+<div class="file-embed">
+  <p>Slides: <code>DataFest Sam C Final.pdf</code></p>
+
+  <embed
+    src="github_pages/american_statistical_association_datafest_2025/DataFest%20Sam%20C%20Final.pdf"
+    type="application/pdf"
+    width="100%"
+    height="800px"
+  />
+</div>
+
+
+<h3>Exploratory Data Analysis (Python)</h3>
+<iframe src="/github_pages/american_statistical_association_datafest_2025/dataviz.html" allowfullscreen width="100%" height =1200px></iframe>
+
+
+<h3>Exploratory Data Analysis (R)</h3>
+<iframe src="/github_pages/american_statistical_association_datafest_2025/eda.nb.html" allowfullscreen width="100%" height =1200px></iframe>
+
+
+
+</section>
+
+
+  </main>
+
+  <script>
+    // Highlight current page in nav
+    const current = location.pathname.split('/').pop() || 'index.html';
+    document.querySelectorAll('.main-nav a').forEach(link => {
+      if (link.getAttribute('href').split('/').pop() === current) link.classList.add('active');
+    });
+  </script>
+
+  <script src="//code.tidio.co/wzjrimf18zj7d7ek3qrqlipusccughus.js" async></script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+
+```{r}
+# Set working directory (optional; update the path as needed)
+setwd("C:/Users/casti/Downloads/MASTER BRANCH/SamuelCastillo.com/github_pages/american_statistical_association_datafest_2025")
+
+# Load the tidyverse (includes readr, dplyr, etc.)
+library(tidyverse)
+
+# 1. Load the data (similar to pd.read_csv)
+data   <- read_csv("Major Market Occupancy Data-revised.csv")
+leases <- read_csv("Leases.csv")
+price  <- read_csv("Price and Availability Data.csv")
+
+# 2. Examine the price dataset:
+colnames(price)               # Similar to price.columns
+summary(price$overall_rent)   # Similar to price['overall_rent'].describe()
+
+# 3. View the head of the main data
+head(data)                    # Similar to data.head()
+
+# 4. Basic info about the data (similar to data.info())
+glimpse(data)                 # Shows structure, types, etc.
+
+# 5. Inspect columns and unique values
+colnames(data)                # Similar to data.columns
+unique(data$market)           # Similar to data['market'].unique()
+
+# 6. Count how many times each market appears (similar to .value_counts())
+data %>%
+  count(market, sort = TRUE)
+
+# 7. Calculate mean of avg_occupancy_proportion by market (similar to groupby, mean, sort)
+data %>%
+  group_by(market) %>%
+  summarise(mean_avg_occupancy = mean(avg_occupancy_proportion, na.rm = TRUE)) %>%
+  arrange(desc(mean_avg_occupancy))
+
+# 8. Summary statistics (similar to data.describe())
+summary(data)
+
+# 9. Summary of avg_occupancy_proportion only (similar to data['avg_occupancy_proportion'].describe())
+summary(data$avg_occupancy_proportion)
+
+# 10. Check missing values across all columns (similar to isnull().sum())
+missing_values <- data %>%
+  summarise(across(everything(), ~ sum(is.na(.))))
+missing_values
+
+# 11. Unique values of quarter (similar to data['quarter'].unique())
+unique_quarters <- unique(data$quarter)
+unique_quarters
+
+# 12. Mean of starting_occupancy_proportion (similar to data['starting_occupancy_proportion'].mean())
+mean_starting_occupancy <- mean(data$starting_occupancy_proportion, na.rm = TRUE)
+mean_starting_occupancy
+
+```
+
+
+```{r}
+
+
+# Merge datasets based on common columns (e.g., year, quarter, market)
+# Ensure the column names match or rename them accordingly before merging
+
+# Convert Python dataframes to R dataframes if needed
+leases <- as.data.frame(leases)
+price <- as.data.frame(price)
+
+# Perform the merge
+merged_data <- data %>%
+    left_join(leases, by = c("year", "quarter", "market")) %>%
+    left_join(price, by = c("year", "quarter", "market"))
+
+
+head(leases)
+glimpse(price)
+
+glimpse(merged_data)
+```
+
+```{r}
+library(ggplot2)
+merged_data %>% 
+  ggplot(aes(direct_available_space.x)) + 
+  geom_histogram()
+```
+
