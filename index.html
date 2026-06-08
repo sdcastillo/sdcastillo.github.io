@@ -1,1655 +1,881 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Predictive Insights</title>
-  <meta name="description" content="Samuel Castillo shares predictive insights at the intersection of quantum computing, cybersecurity, AI, and data science, including educational resources and periodic table mnemonics.">
-  <meta name="keywords" content="Samuel Castillo, AI researcher, predictive insights, quantum computing, cybersecurity trends, machine learning, data science, artificial intelligence, quantum cryptography, periodic table, educational content">
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-  <link rel="stylesheet" href="style.css">
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ECY33592SW"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}    
-    gtag('js', new Date());
-    gtag('config', 'G-ECY33592SW');
-  </script>
-  <style>
-    /* Collapsible periodic table styles (home page only) */
-    td {
-      width: 70px;
-      height: 80px;
-      text-align: center;
-      border-radius: 8px;
-      position: relative;
-      font-size: 13px;
-      transition: transform 0.2s;
-    }
-    td:hover {
-      transform: scale(1.15);
-      z-index: 10;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-    }
-    .atomic-number {
-      font-size: 10px;
-      position: absolute;
-      top: 4px;
-      left: 6px;
-      color: rgba(0,0,0,0.6);
-    }
-    .symbol {
-      font-size: 26px;
-      font-weight: bold;
-      margin-top: 12px;
-    }
-    .name {
-      font-size: 10px;
-      margin-top: 4px;
-      color: #333;
-    }
-    .empty { background: transparent !important; border: none !important; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sam's Running Hub • Track • Progress • Crush It</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Space+Grotesk:wght@500;600&amp;display=swap');
+        
+        :root {
+            --accent: #22c55e;
+        }
+        
+        body {
+            font-family: 'Inter', system_ui, sans-serif;
+        }
+        
+        .font-display {
+            font-family: 'Space Grotesk', 'Inter', sans-serif;
+            font-weight: 600;
+        }
 
-    /* Standard color scheme */
-    .alkali       { background: #ff6b6b; color: white; }
-    .alkaline     { background: #ff9f43; color: white; }
-    .transition   { background: #48dbfb; color: white; }
-    .post-trans   { background: #1dd1a1; color: white; }
-    .lanthanide   { background: #feca57; color: black; }
-    .actinide     { background: #ff6b9d; color: white; }
-    .metalloid    { background: #54a0ff; color: white; }
-    .nonmetal     { background: #5f27cd; color: white; }
-    .halogen      { background: #c8a2c8; color: white; }
-    .noble        { background: #0abde3; color: white; }
-    .unknown      { background: #95a5a6; color: white; border: 2px dashed #7f8c8d; }
-    details.element-group {
-      margin: 0.75rem 0;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      padding: 0.5rem 0.75rem;
-      background: #fafafa;
-    }
-    details.element-group > summary {
-      cursor: pointer;
-      font-weight: 600;
-      list-style: none;
-    }
-    details.element-group[open] {
-      background: #f0f4ff;
-    }
-    .periodic-table-wrapper {
-      margin-top: 1rem;
-      max-height: 70vh;
-      overflow-y: auto;
-      border-top: 1px solid #ddd;
-      padding-top: 0.5rem;
-    }
-    .element-atomic {
-      white-space: nowrap;
-    }
-    .element-atomic small {
-      color: #555;
-      font-size: 0.75em;
-      margin-left: 0.25rem;
-    }
-    /* Cybersecurity trends section styling */
-    .cyber-section {
-      margin: 2rem 0 2.5rem;
-      padding: 1.5rem 1.75rem;
-      border-radius: 8px;
-      background: #060b1a;
-      color: #f5f7ff;
-      box-shadow: 0 0 0 1px rgba(255,255,255,0.06), 0 18px 45px rgba(0,0,0,0.5);
-    }
-    .cyber-section h2 {
-      margin-top: 0;
-      margin-bottom: 0.75rem;
-      font-size: 1.6rem;
-    }
-    .cyber-section h3 {
-      margin-top: 1.5rem;
-      margin-bottom: 0.4rem;
-      font-size: 1.2rem;
-    }
-    .cyber-section p {
-      margin: 0.45rem 0;
-    }
-    .cyber-section ul {
-      margin: 0.35rem 0 0.75rem 1.4rem;
-      padding-left: 0;
-    }
-    .cyber-section li {
-      margin-bottom: 0.25rem;
-    }
-    .cyber-section strong {
-      color: #ffd166;
-    }
-    .cyber-section .cyber-meta {
-      font-size: 0.85rem;
-      opacity: 0.85;
-      margin-top: 0.75rem;
-    }
-    .cyber-section .cyber-refs {
-      margin-top: 1rem;
-      font-size: 0.8rem;
-      line-height: 1.4;
-      word-break: break-all;
-    }
-    .cyber-section .cyber-refs a {
-      color: #8ab4ff;
-      text-decoration: none;
-    }
-    .cyber-section .cyber-refs a:hover {
-      text-decoration: underline;
-    }
-    /* Simple hero CTA styling (home page) */
-    .hero-intro {
-      max-width: 720px;
-      margin-bottom: 1.25rem;
-    }
-    .hero-intro p {
-      margin: 0.25rem 0;
-    }
-    .hero-cta {
-      display: inline-block;
-      margin-top: 0.75rem;
-      padding: 0.6rem 1.3rem;
-      border-radius: 999px;
-      background: #0b5ed7;
-      color: #fff;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.95rem;
-    }
-    .hero-cta:hover {
-      background: #0948a6;
-    }
-    /* Home-page summaries for long essays */
-    .home-summaries {
-      margin: 2.5rem 0 2rem;
-      padding: 1.5rem 1.75rem;
-      border-radius: 8px;
-      background: #f5f7ff;
-      border: 1px solid #d3ddff;
-    }
-    .home-summaries h2 {
-      margin-top: 0;
-      margin-bottom: 0.75rem;
-    }
-    .summary-card {
-      margin-bottom: 1rem;
-      padding: 0.75rem 0.8rem;
-      border-radius: 6px;
-      background: #ffffff;
-      border: 1px solid #e0e6ff;
-    }
-    .summary-card h3 {
-      margin: 0 0 0.4rem;
-      font-size: 1.05rem;
-    }
-    .summary-card p {
-      margin: 0.25rem 0 0.4rem;
-      font-size: 0.95rem;
-    }
-    .summary-meta {
-      font-size: 0.8rem;
-      color: #555;
-      margin-bottom: 0.25rem;
-    }
-    .read-more-inline {
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: #0b5ed7;
-      text-decoration: none;
-    }
-    .read-more-inline:hover {
-      text-decoration: underline;
-    }
-    /* Consulting section styling */
-    .consulting-intro {
-      margin: 1.75rem 0 2rem;
-      padding: 1.4rem 1.6rem;
-      border-radius: 8px;
-      background: #050816;
-      color: #f9fbff;
-      box-shadow: 0 0 0 1px rgba(11,94,215,0.4), 0 16px 40px rgba(0,0,0,0.55);
-      max-width: 860px;
-    }
-    .consulting-intro h2 {
-      margin-top: 0;
-      margin-bottom: 0.5rem;
-      font-size: 1.4rem;
-    }
-    .consulting-intro p {
-      margin: 0.3rem 0 0.6rem;
-      font-size: 0.96rem;
-    }
-    .consulting-columns {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-      margin-top: 0.75rem;
-    }
-    .consulting-col {
-      flex: 1 1 260px;
-      min-width: 0;
-    }
-    .consulting-col h3 {
-      margin: 0 0 0.35rem;
-      font-size: 1.05rem;
-    }
-    .consulting-col ul {
-      margin: 0.15rem 0 0.4rem 1.1rem;
-      padding-left: 0;
-      font-size: 0.92rem;
-    }
-    .consulting-col li {
-      margin-bottom: 0.25rem;
-    }
-    .consulting-note {
-      font-size: 0.82rem;
-      opacity: 0.85;
-      margin-top: 0.35rem;
-    }
-    .consulting-cta-row {
-      margin-top: 0.75rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-    }
-    .consulting-cta-primary,
-    .consulting-cta-secondary {
-      display: inline-block;
-      padding: 0.55rem 1.15rem;
-      border-radius: 999px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      text-decoration: none;
-      white-space: nowrap;
-    }
-    .consulting-cta-primary {
-      background: #0b5ed7;
-      color: #fff;
-    }
-    .consulting-cta-primary:hover {
-      background: #0948a6;
-    }
-    .consulting-cta-secondary {
-      background: transparent;
-      color: #c3d3ff;
-      border: 1px solid rgba(195,211,255,0.7);
-    }
-    .consulting-cta-secondary:hover {
-      background: rgba(195,211,255,0.08);
-    }
-    @media (max-width: 640px) {
-      .consulting-intro {
-        padding: 1.1rem 1.2rem;
-      }
-    }
-    /* Simple collapsible deep-dive blocks for quantum content */
-    details.qc-deepdive {
-      margin: 0.6rem 0 0.9rem;
-      border-radius: 6px;
-      border: 1px solid #d0d7ff;
-      background: #f7f8ff;
-      padding: 0.4rem 0.7rem 0.6rem;
-    }
-    details.qc-deepdive > summary {
-      cursor: pointer;
-      font-weight: 600;
-      list-style: none;
-      font-size: 0.95rem;
-    }
-    details.qc-deepdive[open] {
-      background: #edf0ff;
-    }
-    .qc-quick-facts {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 0.75rem;
-      margin: 0.75rem 0 0.5rem;
-    }
-    .qc-fact-card {
-      border-radius: 6px;
-      border: 1px solid #e1e5ff;
-      padding: 0.55rem 0.6rem;
-      background: #ffffff;
-      font-size: 0.9rem;
-    }
-    .main-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 5%;
-    background: #fff;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
+        .running-gradient {
+            background: linear-gradient(135deg, #166534 0%, #4ade80 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-  .nav-left, .nav-right {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    flex-wrap: wrap;
-  }
+        .stat-card {
+            transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
 
-  .main-nav a {
-    text-decoration: none;
-    color: #333;
-    font-weight: 500;
-    transition: color 0.2s;
-  }
+        .run-row {
+            transition: background-color 0.1s ease;
+        }
+        
+        .run-row:hover {
+            background-color: #18181b;
+        }
 
-  .main-nav a:hover { color: #0066cc; }
+        .section-header {
+            font-size: 1.25rem;
+            font-weight: 600;
+            letter-spacing: -0.025em;
+        }
 
-  .brand {
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: #0066cc !important;
-  }
+        .metric-value {
+            font-variant-numeric: tabular-nums;
+        }
 
-  .buy-cta {
-    background: #0066cc;
-    color: white !important;
-    padding: 0.6rem 1.2rem;
-    border-radius: 6px;
-    font-weight: 600;
-  }
+        .modal {
+            animation: modalPopIn 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
 
-  .buy-cta:hover { background: #0055aa; }
+        @keyframes modalPopIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95) translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
 
-  /* Dropdown Styles */
-  .dropdown {
-    position: relative;
-    display: inline-block;
-  }
+        .nav-active {
+            color: #22c55e;
+            border-bottom: 2px solid #22c55e;
+        }
 
-  .dropbtn {
-    background: none;
-    border: none;
-    font-size: 1rem;
-    font-weight: 500;
-    color: #333;
-    cursor: pointer;
-    padding: 0.5rem 0;
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-  }
+        .pace-badge {
+            background-color: #166534;
+            color: #86efac;
+            font-size: 0.75rem;
+            padding: 1px 8px;
+            border-radius: 9999px;
+            font-weight: 600;
+        }
 
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #fff;
-    min-width: 280px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-    border-radius: 8px;
-    z-index: 1000;
-    top: 100%;
-    right: 0;
-    padding: 0.8rem 0;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-10px);
-    transition: all 0.25s ease;
-  }
-
-  .dropdown:hover .dropdown-content {
-    display: block;
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-  }
-
-  .dropdown-content a {
-    color: #333;
-    padding: 0.7rem 1.2rem;
-    display: block;
-    text-align: left;
-    white-space: nowrap;
-  }
-
-  .dropdown-content a:hover {
-    background-color: #f8f9fa;
-    color: #0066cc;
-  }
-
-  /* Mobile responsiveness */
-  @media (max-width: 900px) {
-    .main-nav { flex-direction: column; text-align: center; }
-    .nav-left, .nav-right { gap: 1.5rem; justify-content: center; }
-    .dropdown-content { right: auto; left: 50%; transform: translateX(-50%); }
-  }
-  </style>
+        .achievement-badge {
+            background: linear-gradient(to right, #166534, #4ade80);
+            color: white;
+            box-shadow: 0 10px 15px -3px rgb(16 185 129 / 0.3);
+        }
+    </style>
 </head>
-<body>
-  <header>
- <nav class="main-nav">
-  <!-- Left side – Personal site -->
-  <div class="nav-left">
-    <a href="index.html" class="brand">Samuel Castillo</a>
-    <a href="about.html">About</a>
-    <a href="privacy.html">Privacy</a>
-  </div>
+<body class="bg-zinc-950 text-zinc-200">
+    <!-- NAV -->
+    <nav class="border-b border-zinc-800 bg-zinc-950 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center gap-x-3">
+                    <div class="w-9 h-9 bg-emerald-500 rounded-2xl flex items-center justify-center">
+                        <i class="fa-solid fa-running text-white text-2xl"></i>
+                    </div>
+                    <div>
+                        <span class="font-display text-2xl font-semibold tracking-tighter">SAM'S RUN</span>
+                        <span class="text-emerald-400 font-display text-2xl font-semibold tracking-tighter">HUB</span>
+                    </div>
+                </div>
+                
+                <div class="hidden md:flex items-center gap-x-8 text-sm font-medium">
+                    <a href="#stats" class="hover:text-emerald-400 transition-colors">Stats</a>
+                    <a href="#milestones" class="hover:text-emerald-400 transition-colors">Milestones</a>
+                    <a href="#log" class="hover:text-emerald-400 transition-colors">Run Log</a>
+                    <a href="#goals" class="hover:text-emerald-400 transition-colors">Goals</a>
+                    <a href="#coach" class="hover:text-emerald-400 transition-colors">Coach's Corner</a>
+                </div>
 
-  <!-- Right side – Main links + Dropdown + CTA -->
-  <div class="nav-right">
-    <a href="index.html">Futuro Insights</a>
-    <a href="code.html">Code</a>
-    <a href="/PA-R-Study-Manual">PA-R Study Manual</a>
+                <div class="flex items-center gap-x-3">
+                    <div class="flex items-center bg-zinc-900 rounded-3xl px-3 py-1.5 text-sm border border-zinc-800">
+                        <div class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse mr-2"></div>
+                        <span class="text-emerald-400 font-medium">Streak: <span id="streak-count">12</span> days</span>
+                    </div>
+                    <div class="w-8 h-8 bg-zinc-800 rounded-2xl overflow-hidden border border-zinc-700">
+                        <img src="https://i.pravatar.cc/32?img=68" alt="Sam" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
 
-    <!-- Dropdown Menu Integrated Here -->
-    <div class="dropdown">
-      <button class="dropbtn">
-        Projects & Articles 
-        <span class="arrow">↓</span>
-      </button>
-      <div class="dropdown-content">
-        <a href="/github_pages_american_statistical_association_datafest.html">ASA DataFest 2025</a>
-        <a href="/github_pages_central_limit_theorem.html">Central Limit Theorem</a>
-        <a href="/github_pages_from_algorithms_to_actuarial_science.html">From Algorithms to Actuarial Science</a>
-        <a href="/github_pages_identifying_actionable_treatment_variation.html">Identifying Actionable Treatment Variation</a>
-        <a href="/github_pages_linear_algebra.html">Linear Algebra Notes</a>
-        <a href="/github_pages_loss_development_triangles.html">Loss Development Triangles</a>
-        <a href="/github_pages_grocery_stores.html">Grocery Store Supply Modeling</a>
-        <a href="/github_pages_predictive_modeling_app.html">Predictive Modeling App</a>
-        <a href="/github_pages_prompt_engineering.html">Prompt Engineering Guide</a>
-        <a href="/github_pages_real_estate_house_prices.html">Real Estate House Price Modeling</a>
-        <a href="/github_pages_sas_for_statistics_healthcare.html">SAS for Healthcare Statistics</a>
-        <a href="/github_pages_soa_predictive_modeling_research.html">SOA Predictive Modeling Research</a>
-        <a href="/github_pages_value_investing_time_series.html">Value Investing & Time-Series Analysis</a>
-      </div>
+    <!-- HERO -->
+    <div class="max-w-7xl mx-auto px-6 pt-10 pb-8">
+        <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-y-6">
+            <div>
+                <div class="inline-flex items-center gap-x-2 bg-zinc-900 border border-zinc-800 rounded-3xl px-4 py-1 mb-4">
+                    <div class="px-2.5 py-px bg-emerald-500 text-emerald-950 text-xs font-bold tracking-[1px] rounded-2xl">FIRST HALF COMPLETE</div>
+                    <span class="text-xs text-zinc-400">April 12, 2026</span>
+                </div>
+                
+                <h1 class="font-display text-6xl lg:text-7xl font-semibold tracking-tighter leading-none">
+                    You crushed it,<br>
+                    <span class="running-gradient">Sam.</span>
+                </h1>
+                <p class="mt-3 max-w-md text-lg text-zinc-400">
+                    12.83 miles. 1:36. Your first half marathon is in the books. 
+                    Now the real work begins.
+                </p>
+                
+                <div class="flex items-center gap-x-4 mt-6">
+                    <button onclick="document.getElementById('log').scrollIntoView({ behavior: 'smooth' })" 
+                            class="inline-flex items-center justify-center gap-x-2 bg-emerald-500 hover:bg-emerald-600 active:bg-emerald-700 transition-all text-emerald-950 font-semibold px-6 h-11 rounded-3xl text-sm shadow-lg shadow-emerald-500/30">
+                        <i class="fa-solid fa-plus mr-1"></i> 
+                        <span>LOG TODAY'S RUN</span>
+                    </button>
+                    
+                    <button onclick="document.getElementById('goals').scrollIntoView({ behavior: 'smooth' })" 
+                            class="inline-flex items-center justify-center gap-x-2 bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 transition-all font-medium px-6 h-11 rounded-3xl text-sm">
+                        <span>View Goals</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Hero Stat -->
+            <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-6 lg:w-80">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <div class="text-emerald-400 text-sm font-medium tracking-widest">OFFICIAL PR</div>
+                        <div class="font-display text-6xl font-semibold tabular-nums tracking-tighter mt-1">12.83</div>
+                        <div class="text-zinc-400 -mt-1">miles</div>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-xs text-zinc-500">PACE</div>
+                        <div class="font-mono text-3xl font-semibold text-emerald-400">7:29</div>
+                        <div class="text-xs text-zinc-500">/ mile</div>
+                    </div>
+                </div>
+                <div class="mt-4 pt-4 border-t border-zinc-800 flex justify-between text-sm">
+                    <div>
+                        <span class="text-zinc-400">Time</span><br>
+                        <span class="font-mono font-medium">1:36:00</span>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-zinc-400">Elev Gain</span><br>
+                        <span class="font-medium">348 ft</span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
+    <!-- STATS SECTION -->
+    <div id="stats" class="max-w-7xl mx-auto px-6 pb-12">
+        <div class="flex items-end justify-between mb-5">
+            <div>
+                <h2 class="section-header">Progress at a Glance</h2>
+                <p class="text-sm text-zinc-500">Based on your logged runs • Updates live</p>
+            </div>
+            <div class="text-xs px-3 py-1 bg-zinc-900 border border-zinc-800 rounded-2xl text-zinc-400 hidden md:block">
+                <i class="fa-solid fa-sync fa-xs mr-1"></i> Auto-calculated
+            </div>
+        </div>
 
-    <!-- Mobile menu button -->
-    <button class="nav-toggle" aria-label="Menu">Menu</button>
-  </nav>
-</header>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <!-- Stat Cards -->
+            <div class="stat-card bg-zinc-900 border border-zinc-800 rounded-3xl p-5">
+                <div class="flex justify-between">
+                    <div>
+                        <div class="text-emerald-400"><i class="fa-solid fa-road fa-fw"></i></div>
+                        <div class="mt-3">
+                            <div id="total-miles" class="font-display text-4xl font-semibold tabular-nums tracking-tighter">23.5</div>
+                            <div class="text-sm text-zinc-400">Total Miles Logged</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
+            <div class="stat-card bg-zinc-900 border border-zinc-800 rounded-3xl p-5">
+                <div class="flex justify-between">
+                    <div>
+                        <div class="text-emerald-400"><i class="fa-solid fa-calendar-check fa-fw"></i></div>
+                        <div class="mt-3">
+                            <div id="num-runs" class="font-display text-4xl font-semibold tabular-nums tracking-tighter">3</div>
+                            <div class="text-sm text-zinc-400">Runs Logged</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
+            <div class="stat-card bg-zinc-900 border border-zinc-800 rounded-3xl p-5">
+                <div class="flex justify-between">
+                    <div>
+                        <div class="text-emerald-400"><i class="fa-solid fa-tachometer-alt fa-fw"></i></div>
+                        <div class="mt-3">
+                            <div class="flex items-baseline gap-x-1">
+                                <div id="avg-pace" class="font-display text-4xl font-semibold tabular-nums tracking-tighter">7:42</div>
+                            </div>
+                            <div class="text-sm text-zinc-400">Average Pace</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-  <main>
-    
-    <h1>Quantum Computing: Data-Driven Insights for Unbreakable Code.</h1>
-    <div class="hero-intro">
-
-      <p><strong>Predictive Insights</strong> is just me, Samuel Castillo: one engineer, one brain, no funding, plenty of opinions.  I help you see around corners: I use machine learning and statistical modeling to surface the risks and opportunities hidden in your data.</p>
-      <p>As quantum hardware scales, those same predictive analytics will tap into exponentially larger state spaces, making it possible to explore threat scenarios, portfolios, and code paths that classical machines can only approximate.</p>
-     
-      <p>The last stretch before Christmas is here. As a New Englander, that means a familiar combo: Dunkin’ coffee in one hand, a guitar within reach, and some chill holiday music playing in the background while I chip away at a puzzle.
-
-Over the next few days, I’m planning to slow down just enough to really enjoy the season—without losing that end-of-year momentum. Here’s to a calm, cozy countdown to Christmas.
-</p>
-
-<h4>DEC 18, 2025</h4>
-<p>There’s a particular feel to December in the North: cold but familiar, busy but still somehow quiet. Today I’m embracing that mix—coffee, guitar, and a puzzle spread out on the table.
-
-Sometimes the best way to get ready for the holidays is to slow down just a little.
-</p>
-      <div class="profile-photo-section" style="margin: 40px 0; text-align: center;">
-  <img src="assets/images/samsuit.png" 
-       alt="Samuel Castillo - Professional headshot in business suit"
-       style="max-width: 350px; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-</div>
-
- <p><a href="/PA-R-Study-Manual" class="hero-cta">Explore the Study Manual &amp; Predictive Insights</a></p>
-
-
+            <div class="stat-card bg-zinc-900 border border-zinc-800 rounded-3xl p-5">
+                <div class="flex justify-between">
+                    <div>
+                        <div class="text-emerald-400"><i class="fa-solid fa-mountain fa-fw"></i></div>
+                        <div class="mt-3">
+                            <div id="total-elev" class="font-display text-4xl font-semibold tabular-nums tracking-tighter">623</div>
+                            <div class="text-sm text-zinc-400">Total Elevation (ft)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-        <section>
-      
-  <h1>The Most Elegant Sleight of Hand in Statistics</h1>
-  <p class="subtitle">Why we model log-odds instead of probabilities</p>
+    <!-- MILESTONES -->
+    <div id="milestones" class="max-w-7xl mx-auto px-6 pb-12">
+        <h2 class="section-header mb-5">Milestones &amp; PRs</h2>
+        
+        <div class="grid md:grid-cols-3 gap-4">
+            <!-- Half Marathon PR -->
+            <div class="bg-zinc-900 border border-emerald-900/60 rounded-3xl p-6 relative overflow-hidden">
+                <div class="absolute top-4 right-4">
+                    <div class="achievement-badge text-xs font-bold px-3 py-1 rounded-2xl flex items-center gap-x-1">
+                        <i class="fa-solid fa-trophy fa-sm"></i>
+                        <span>PR</span>
+                    </div>
+                </div>
+                <div class="text-emerald-400 text-xs tracking-[1.5px] font-semibold">HALF MARATHON</div>
+                <div class="mt-1 font-display text-3xl font-semibold tracking-tight">12.83 mi</div>
+                <div class="text-sm text-zinc-400 mt-1">April 12, 2026 • 7:29 pace</div>
+                
+                <div class="mt-6 text-xs border-t border-zinc-800 pt-4 text-zinc-400">
+                    Your first half marathon. Strong, controlled effort. 
+                    This is the foundation everything else builds on.
+                </div>
+            </div>
 
-  <div class="hook">
-    <p>Imagine you want to predict something that can only ever be <strong>Yes</strong> or <strong>No</strong> — claim/no-claim, click/no-click, fraud/no-fraud.</p>
+            <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-6">
+                <div class="text-emerald-400 text-xs tracking-[1.5px] font-semibold">5K EFFORT</div>
+                <div class="mt-1 font-display text-3xl font-semibold tracking-tight">--:--</div>
+                <div class="text-sm text-zinc-400 mt-1">Update your current 5K PR</div>
+                
+                <button onclick="promptForPR('5K')" 
+                        class="mt-4 text-xs flex items-center gap-x-1.5 text-emerald-400 hover:text-emerald-300 transition-colors">
+                    <i class="fa-solid fa-edit fa-sm"></i> 
+                    <span class="font-medium">Set 5K PR</span>
+                </button>
+            </div>
 
-    <p>The obvious idea: let the model output a probability <em>p</em> directly and just say “when predictors go up, make <em>p</em> go up.”</p>
-
-    <p>But here’s what’s quietly <span class="highlight">very weird</span> about logistic regression (and every GLM for classification):</p>
-
-    <p><strong>We never model the probability itself.</strong></p>
-
-   <div style="text-align:center; margin:40px 0;">
-  <iframe 
-    width="720" 
-    height="405" 
-    src="https://www.youtube-nocookie.com/embed/xDJXuoM6ZCI?rel=0&modestbranding=1" 
-    title="Trustworthy Vibes in Coding" 
-    frameborder="0" 
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-    allowfullscreen>
-  </iframe>
-</div>
-
-    <p>Instead we stretch it through an infinite tunnel:</p>
-
-    <p style="text-align:center;font-size:1.4em;margin:30px 0;">
-      probability <em>p</em> → odds <em>p/(1−p)</em> → 
-      <strong style="color:#e74c3c;">log-odds</strong> <em>log(p/(1−p))</em>
-    </p>
-
-    <p>The model happily drives on an <span class="highlight">unbounded highway (−∞ to +∞)</span> while the actual probability we care about stays forever trapped between 0 and 1.</p>
-
-    <p>Same trick for multinomial models — multiple log-odds shooting off in different directions, but probabilities always sum to 1.</p>
-
-    <p class="smallcaps" style="font-size:1.4em;text-align:center;margin:40px 0;">
-      The most common models for probabilities<br>
-      are secretly linear models on a scale probabilities can never live on.
-    </p>
-
-    <p>That single detour is what lets us keep all the beauty of linear regression without ever predicting −17 % or 143 %.</p>
-
-    <p><strong>One of the most elegant tricks in all of statistics.</strong></p>
-  </div>
-
-  <div class="figure">
-    <img src="assets/images/logistic_regression.png" alt="Common link functions: probit, logit, cloglog, and cauchit">
-    <p class="caption">
-      Four popular link functions plotted against the linear predictor Z.<br>
-      All are strictly increasing and map (−∞, +∞) → (0,1), but they squeeze the ends differently.<br>
-      The logit (cyan) is by far the most common in practice.
-    </p>
-  </div>
-
-  <div class="read-more">
-    Want to go deeper? → 
-    <a href="https://predictiveinsightsai.com/PA-R-Study-Manual/glms-for-classification.html#binary-target" target="_blank">
-      Full Chapter: GLMs for Classification – Binary & Multinomial Targets
-    </a>
-  </div>
-    </section>
-
-    <!-- NEW: super-short quantum overview for absolute beginners -->
-    <section aria-labelledby="qc-fast-intro-heading">
-      <h2 id="qc-fast-intro-heading">Quantum computing in 5 bullet points</h2>
-      <div class="qc-quick-facts">
-        <div class="qc-fact-card">
-          <strong>1. Qubits instead of bits</strong>
-          <p>A classical bit is 0 or 1. A qubit can be a blend of both at once:
-            \(|\psi\rangle = \alpha\,|0\rangle + \beta\,|1\rangle\) with
-            \(|\alpha|^2 + |\beta|^2 = 1\).</p>
+            <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-6">
+                <div class="text-emerald-400 text-xs tracking-[1.5px] font-semibold">LONGEST RUN</div>
+                <div class="mt-1 font-display text-3xl font-semibold tracking-tight">12.83 <span class="text-base align-super font-normal text-zinc-500">mi</span></div>
+                <div class="text-sm text-zinc-400 mt-1">Current longest • Half Marathon</div>
+                
+                <div class="mt-6">
+                    <div class="text-[10px] text-zinc-500">NEXT TARGET</div>
+                    <div class="text-sm font-medium">15+ mile long run • Build the base</div>
+                </div>
+            </div>
         </div>
-        <div class="qc-fact-card">
-          <strong>2. Superposition</strong>
-          <p>With \(n\) bits you store <em>one</em> value at a time. With \(n\) qubits you can hold a superposition over \(2^n\) values and process them in parallel.</p>
+    </div>
+
+    <!-- RUN LOG -->
+    <div id="log" class="max-w-7xl mx-auto px-6 pb-12">
+        <div class="flex items-center justify-between mb-5">
+            <div>
+                <h2 class="section-header">Run Log</h2>
+                <p class="text-sm text-zinc-500">Your training history. Add runs to track pace, volume &amp; progress.</p>
+            </div>
+            <button onclick="showAddRunModal()" 
+                    class="flex items-center gap-x-2 bg-emerald-500 hover:bg-emerald-600 active:bg-emerald-700 transition-all text-emerald-950 font-semibold text-sm px-5 h-10 rounded-3xl shadow-lg shadow-emerald-500/30">
+                <i class="fa-solid fa-plus"></i>
+                <span class="hidden sm:inline">Log New Run</span>
+            </button>
         </div>
-        <div class="qc-fact-card">
-          <strong>3. Entanglement</strong>
-          <p>Some qubit pairs behave like a single object: measuring one instantly tells you something about the other, even if they are far apart.</p>
+
+        <div class="bg-zinc-900 border border-zinc-800 rounded-3xl overflow-hidden">
+            <table class="w-full">
+                <thead>
+                    <tr class="border-b border-zinc-800 text-xs uppercase tracking-widest text-zinc-400">
+                        <th class="text-left py-4 px-6 font-medium">Date</th>
+                        <th class="text-right py-4 px-4 font-medium">Distance</th>
+                        <th class="text-right py-4 px-4 font-medium">Time</th>
+                        <th class="text-right py-4 px-4 font-medium">Pace</th>
+                        <th class="text-right py-4 px-4 font-medium hidden md:table-cell">Elev</th>
+                        <th class="text-left py-4 px-6 font-medium hidden lg:table-cell">Notes</th>
+                        <th class="w-10"></th>
+                    </tr>
+                </thead>
+                <tbody id="runs-tbody" class="text-sm divide-y divide-zinc-800">
+                    <!-- Populated by JS -->
+                </tbody>
+            </table>
         </div>
-        <div class="qc-fact-card">
-          <strong>4. Interference</strong>
-          <p>Quantum amplitudes are like waves. Smart circuits make wrong answers cancel out and right answers reinforce, changing probabilities.</p>
+        
+        <div class="text-center mt-3">
+            <p class="text-xs text-zinc-500">Data saved in your browser • Stays private on this device</p>
         </div>
-        <div class="qc-fact-card">
-          <strong>5. Why it matters</strong>
-          <p>For some problems (factorization, certain searches, chemistry simulation) this gives <em>huge</em> speedups compared with any classical machine we know how to build.</p>
+    </div>
+
+    <!-- GOALS -->
+    <div id="goals" class="max-w-7xl mx-auto px-6 pb-12">
+        <div class="flex items-end justify-between mb-5">
+            <div>
+                <h2 class="section-header">2026 Goals &amp; Next Steps</h2>
+                <p class="text-sm text-zinc-500">Post-half marathon phase • Let's build smart</p>
+            </div>
         </div>
-      </div>
-      <p style="font-size:0.9rem; max-width:720px;">If that’s all you remember, it’s enough: qubits are like controllable waves over many possibilities, and quantum algorithms are recipes for steering those waves so the outcome you care about becomes likely.</p>
 
-      <details class="qc-deepdive">
-        <summary>Deep dive: the basic math of a single qubit</summary>
-        <div>
-          <p>A single qubit lives in a 2‑dimensional complex vector space. In the computational basis \(\{|0\rangle, |1\rangle\}\) we write</p>
-          <p>
-            \[
-              |\psi\rangle = \alpha\,|0\rangle + \beta\,|1\rangle,
-            \]
-          </p>
-          <p>with complex amplitudes \(\alpha, \beta \in \mathbb{C}\) satisfying the normalization condition</p>
-          <p>
-            \[
-              |\alpha|^2 + |\beta|^2 = 1.
-            \]
-          </p>
-          <p>When you measure in the \(|0\rangle,|1\rangle\) basis you get:</p>
-          <ul>
-            <li>Outcome 0 with probability \(P(0) = |\alpha|^2\).</li>
-            <li>Outcome 1 with probability \(P(1) = |\beta|^2\).</li>
-          </ul>
-          <p>Between preparation and measurement you apply <strong>unitary matrices</strong> \(U\) (quantum gates) that preserve normalization:</p>
-          <p>
-            \[
-              |\psi'\rangle = U |\psi\rangle, \quad U^\dagger U = I.
-            \]
-          </p>
-          <p>Example: the Hadamard gate \(H\) maps a definite state into an equal superposition:</p>
-          <p>
-            \[
-              H = \frac{1}{\sqrt{2}}
-              \begin{pmatrix}
-                1 & 1 \\
-                1 & -1
-              \end{pmatrix},
-              \quad
-              H|0\rangle = \tfrac{1}{\sqrt{2}}(|0\rangle+|1\rangle).
-            \]
-          </p>
+        <div class="grid md:grid-cols-2 gap-4">
+            <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-6">
+                <div class="uppercase text-emerald-400 text-xs tracking-[1px] mb-3 font-semibold">CURRENT FOCUS</div>
+                
+                <div class="space-y-4">
+                    <div class="flex gap-x-3">
+                        <div class="mt-1"><i class="fa-solid fa-check-circle text-emerald-400"></i></div>
+                        <div class="flex-1">
+                            <div class="font-medium">Build weekly base to 25+ miles</div>
+                            <div class="text-xs text-zinc-400">Current logged volume is low — consistency over intensity right now.</div>
+                        </div>
+                    </div>
+                    <div class="flex gap-x-3">
+                        <div class="mt-1"><i class="fa-solid fa-check-circle text-emerald-400"></i></div>
+                        <div class="flex-1">
+                            <div class="font-medium">Sub 1:30 half marathon</div>
+                            <div class="text-xs text-zinc-400">Target pace ~6:52/mi. We'll get there with tempo work + volume.</div>
+                        </div>
+                    </div>
+                    <div class="flex gap-x-3">
+                        <div class="mt-1"><i class="fa-solid fa-check-circle text-emerald-400"></i></div>
+                        <div class="flex-1">
+                            <div class="font-medium">Integrate strength 3x/week</div>
+                            <div class="text-xs text-zinc-400">You're already on the weights — protect the engine.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-6 flex flex-col">
+                <div class="uppercase text-emerald-400 text-xs tracking-[1px] mb-3 font-semibold">ADD A NEW GOAL</div>
+                
+                <form id="goal-form" onsubmit="addGoal(event)" class="flex-1 flex flex-col">
+                    <input type="text" id="goal-input" placeholder="e.g. Run a sub-22 5K or complete a 10 miler" 
+                           class="flex-1 bg-zinc-950 border border-zinc-700 focus:border-emerald-500 outline-none rounded-2xl px-4 py-3 text-sm placeholder:text-zinc-500">
+                    
+                    <button type="submit" 
+                            class="mt-3 w-full bg-zinc-800 hover:bg-zinc-700 transition-colors text-sm font-medium h-10 rounded-2xl flex items-center justify-center gap-x-2">
+                        <span>Add Goal</span>
+                    </button>
+                </form>
+                
+                <div id="goals-list" class="mt-4 space-y-2 text-sm">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
         </div>
-      </details>
-    </section>
+    </div>
 
+    <!-- COACH'S CORNER -->
+    <div id="coach" class="max-w-7xl mx-auto px-6 pb-16">
+        <div class="bg-zinc-900 border border-zinc-800 rounded-3xl p-8">
+            <div class="flex items-center gap-x-3 mb-6">
+                <div class="w-9 h-9 bg-emerald-500/10 text-emerald-400 rounded-2xl flex items-center justify-center">
+                    <i class="fa-solid fa-user-tie fa-lg"></i>
+                </div>
+                <div>
+                    <div class="font-semibold">Coach's Corner</div>
+                    <div class="text-xs text-emerald-400 -mt-0.5">Direct from your running coach</div>
+                </div>
+            </div>
 
+            <div class="grid md:grid-cols-3 gap-x-8 gap-y-8 text-sm">
+                <!-- Nutrition -->
+                <div>
+                    <div class="flex items-center gap-x-2 text-emerald-400 mb-3">
+                        <i class="fa-solid fa-drumstick-bite"></i>
+                        <span class="font-semibold tracking-wide text-xs">NUTRITION</span>
+                    </div>
+                    <ul class="space-y-2.5 text-zinc-300">
+                        <li class="flex gap-x-2"><span class="font-mono text-emerald-400 mt-0.5">→</span> <span>Protein within 45 min post-run (20-30g). Your George Foreman steaks are perfect.</span></li>
+                        <li class="flex gap-x-2"><span class="font-mono text-emerald-400 mt-0.5">→</span> <span>Carbs are fuel, not the enemy. Rice + sweet potato on long run days.</span></li>
+                        <li class="flex gap-x-2"><span class="font-mono text-emerald-400 mt-0.5">→</span> <span>Hydrate aggressively the day before any run over 8 miles.</span></li>
+                    </ul>
+                </div>
 
-    <!-- NEW: Home-page summaries pointing to longer essays hosted in existing sections/pages -->
-    <section class="home-summaries">
-      <h2>Featured Deep Dives</h2>
+                <!-- Recovery -->
+                <div>
+                    <div class="flex items-center gap-x-2 text-emerald-400 mb-3">
+                        <i class="fa-solid fa-bed"></i>
+                        <span class="font-semibold tracking-wide text-xs">RECOVERY</span>
+                    </div>
+                    <ul class="space-y-2.5 text-zinc-300">
+                        <li class="flex gap-x-2"><span class="font-mono text-emerald-400 mt-0.5">→</span> <span>Sleep is the real performance enhancer. Protect 7.5–8.5 hrs.</span></li>
+                        <li class="flex gap-x-2"><span class="font-mono text-emerald-400 mt-0.5">→</span> <span>Keep up the sauna + weight training. It protects joints and running economy.</span></li>
+                        <li class="flex gap-x-2"><span class="font-mono text-emerald-400 mt-0.5">→</span> <span>Easy days are sacred. If it feels hard, it probably is — back off.</span></li>
+                    </ul>
+                </div>
 
-      <article class="summary-card">
-        <div class="summary-meta">Cybersecurity • AI • Quantum • 8–12 minute read</div>
-        <h3>Future of Cybersecurity: AI Arms Races and Quantum-Risky Cryptography</h3>
-        <p>
-          A high-level tour of where cyber defense is heading between now and 2030: AI-assisted threat detection, zero-trust architectures, cybercrime-as-a-service, human-factor bottlenecks, and the uncomfortable overlap between large-scale quantum computers and today’s encryption.
-        </p>
-        <p>
-          This is the long-form essay that lives in the dark "Key Trends Shaping the Future of Cybersecurity" section below, but rewritten in plain language with concrete references and predictions.
-        </p>
-        <p>
-          <a href="#future-of-cybersecurity-full" class="read-more-inline">Read the full cybersecurity essay on this page ↓</a>
-        </p>
-      </article>
+                <!-- Routes & Training -->
+                <div>
+                    <div class="flex items-center gap-x-2 text-emerald-400 mb-3">
+                        <i class="fa-solid fa-map-marked-alt"></i>
+                        <span class="font-semibold tracking-wide text-xs">ROUTES &amp; TRAINING</span>
+                    </div>
+                    <ul class="space-y-2.5 text-zinc-300">
+                        <li class="flex gap-x-2"><span class="font-mono text-emerald-400 mt-0.5">→</span> <span>Northampton area has great variety — mix flats with the hills around the college for strength.</span></li>
+                        <li class="flex gap-x-2"><span class="font-mono text-emerald-400 mt-0.5">→</span> <span>One tempo or interval session per week max right now. Volume first.</span></li>
+                        <li class="flex gap-x-2"><span class="font-mono text-emerald-400 mt-0.5">→</span> <span>Consider a fall half or 10-miler as your next target race.</span></li>
+                    </ul>
+                </div>
+            </div>
 
-      <article class="summary-card">
-        <div class="summary-meta">Crypto • Quantum Algorithms • 4–6 minute read</div>
-        <h3>Quantum vs. Bitcoin: Why Early Quantum Machines Could Steal Exposed Coins</h3>
-        <p>
-          Short, actionable explainer on how Shor’s algorithm interacts with ECDSA over secp256k1, why only some UTXOs are at direct risk, how a quantum attacker could race honest miners in the mempool, and what realistically happens to "all the Bitcoin" during the first quantum-break window.
-        </p>
-        <p>
-          The longer version sits in the paragraph starting with “Why the first humans to build powerful quantum machines could profit lucratively further down this home page.
-        </p>
-        <p>
-          <a href="#quantum-bitcoin-risk-full" class="read-more-inline">Read the full Bitcoin &amp; quantum risk note on this page ↓</a>
-        </p>
-      </article>
-
-      <article class="summary-card">
-        <div class="summary-meta">Education • Quantum Intuition • 6–10 minute read</div>
-        <h3>Quantum Computing in Plain Language</h3>
-        <p>
-          An analogy-first introduction to qubits, superposition, entanglement, and interference. No formalism required: coins in mid-air, arrows on a sphere, and how "trying all passwords at once" is both accurate and misleading as a metaphor.
-        </p>
-        <p>
-          The full article appears later on this page under the heading “Quantum computing in plain language” and pairs well with the 12-step roadmap in the <em>Study Manual</em>.
-        </p>
-        <p>
-          <a href="#quantum-plain-language-full" class="read-more-inline">Jump to the full plain-language explainer below ↓</a>
-        </p>
-      </article>
-
-      <article class="summary-card">
-        <div class="summary-meta">Beginner • Roadmap • 3–5 minute read</div>
-        <h3>From Zero to Quantum: what to learn first</h3>
-        <p>If you’re starting from high-school math, you do <em>not</em> need a PhD to build quantum intuition. A good sequence is:</p>
-        <ol>
-          <li>Refresh complex numbers and vectors.</li>
-          <li>Get comfortable with 2×2 and 4×4 matrices.</li>
-          <li>Learn what a qubit is and how to read \(|0\rangle, |1\rangle, |\psi\rangle\).</li>
-          <li>Play with tiny circuits in a browser (Qiskit, Quirk, or similar).</li>
-        </ol>
-        <p>
-          The <a href="PA-R-Study-Manual">Study Manual</a> page turns this into a 12-step ladder with equations and tiny exercises.
-        </p>
-      </article>
-    </section>
-
-    <p>Quantum physics is the branch of physics that explains the behavior of matter and light at atomic and subatomic scales. It introduces ideas like superposition (a system being in multiple states at once), entanglement (strong correlations between distant systems), and measurement that probabilistically collapses possibilities into outcomes. These principles, encoded in wavefunctions and operators, underlie technologies from lasers and semiconductors to emerging quantum computers that process information in fundamentally new ways.</p>
-
-    <!-- Anchor to treat this as the full cybersecurity blog post -->
-    <section class="cyber-section" id="future-of-cybersecurity-full">
-      <h2>Key Trends Shaping the Future of Cybersecurity</h2>
-
-      <h3>Artificial Intelligence (AI) and Automation</h3>
-      <p>AI is rapidly transforming both cyber offense and defense. Defenders are leveraging AI for:</p>
-      <ul>
-        <li><strong>Threat detection and hunting:</strong> AI models analyze vast datasets to identify patterns and anomalies, improving the speed and accuracy of threat detection.<span class="cyber-meta">[1][5][6][7]</span></li>
-        <li><strong>Behavioral analysis:</strong> AI establishes baselines for user and system behavior, flagging deviations that could indicate malicious activity.<span class="cyber-meta">[7][1]</span></li>
-        <li><strong>Predictive analytics:</strong> AI forecasts emerging threats and recommends proactive security measures, helping organizations prioritize patching and vulnerability management.<span class="cyber-meta">[3][6][1]</span></li>
-        <li><strong>Natural language processing (NLP):</strong> AI-driven NLP tools analyze emails, chat logs, and social media to detect phishing, malicious URLs, and suspicious content.<span class="cyber-meta">[1]</span></li>
-        <li><strong>Adaptive authentication:</strong> AI assesses user behavior during logins, triggering additional verification when anomalies are detected.<span class="cyber-meta">[1]</span></li>
-      </ul>
-      <p>Meanwhile, attackers are also using AI to craft more sophisticated phishing campaigns, generate malware, and automate attacks, escalating the cyber arms race.<span class="cyber-meta">[6][7]</span></p>
-
-      <h3>Quantum Computing and Cryptography</h3>
-      <p>Quantum computing is poised to disrupt cybersecurity by potentially breaking current encryption methods, making data vulnerable to decryption by quantum-capable adversaries. In response, research into quantum-resistant cryptography is accelerating, aiming to secure data against future quantum threats.<span class="cyber-meta">[4][5][3]</span></p>
-
-      <h3>Zero Trust Architectures and Proactive Defense</h3>
-      <p>Organizations are shifting from traditional perimeter-based security to zero trust models, where continuous verification of users and devices is required, regardless of network location. This approach, combined with real-time monitoring and AI-powered threat detection, enables a more proactive and resilient defense posture.<span class="cyber-meta">[6][7]</span></p>
-
-      <h3>Cybercrime-as-a-Service and Evolving Threats</h3>
-      <p>The proliferation of "Cybercrime-as-a-Service" platforms allows even non-technical actors to launch sophisticated attacks by purchasing tools and support, lowering barriers to entry for cybercriminals. Ransomware remains a dominant threat, often integrated with data theft and targeting backup systems to maximize impact.<span class="cyber-meta">[4][7]</span></p>
-
-      <h3>Human Factor and Skills Shortage</h3>
-      <p>Human error continues to be a leading cause of breaches, and the cybersecurity workforce gap remains significant. As automation and AI handle more routine tasks, the industry is expected to shift from being human-dependent to human-focused, emphasizing user awareness, training, and the integration of advanced authentication methods (such as biometrics and behavioral analytics).<span class="cyber-meta">[5][6]</span></p>
-
-      <h3>Regulation, Privacy, and Digital Sovereignty</h3>
-      <p>Governments are experimenting with new regulatory frameworks to address privacy, cross-border data transfers, and digital sovereignty. As internet fragmentation increases, regional differences in cybersecurity standards and enforcement may become more pronounced, impacting global collaboration and trust.<span class="cyber-meta">[2]</span></p>
-
-      <h3>Emerging Technologies and Expanding Attack Surfaces</h3>
-      <p>The growth of 5G, autonomous systems, and the Internet of Things (IoT) introduces new vulnerabilities and larger attack surfaces, especially in critical infrastructure and smart cities. Cyber-physical systems present unique risks, with successful attacks potentially causing real-world harm.<span class="cyber-meta">[6]</span></p>
-
-      <h3>What to Expect by 2030</h3>
-      <ul>
-        <li>Passwords may become largely obsolete, replaced by biometrics and multi-factor authentication.<span class="cyber-meta">[2][5]</span></li>
-        <li>Cybersecurity education will be more widespread, potentially taught in primary schools.<span class="cyber-meta">[2]</span></li>
-        <li>Regulation and public-private collaboration will intensify, aiming to raise baseline security and address uneven progress across regions.<span class="cyber-meta">[3][2]</span></li>
-        <li>AI-driven virtual CISOs and autonomous security agents may become commonplace, optimizing security decisions and resource allocation.<span class="cyber-meta">[7]</span></li>
-        <li>The arms race between attackers and defenders will persist, driven by rapid technological innovation on both sides.<span class="cyber-meta">[5][4][7]</span></li>
-      </ul>
-
-      <h3>Conclusion</h3>
-      <p>The future of cybersecurity will be defined by the interplay of advanced technologies—especially AI and quantum computing—shifting strategies from reactive to proactive, and a continuous tug-of-war between attackers and defenders. While no system will ever be 100% secure, organizations that invest in automation, continuous monitoring, user education, and adaptive defense will be best positioned to mitigate evolving threats.<span class="cyber-meta">[5][7][1][6]</span></p>
-
-      <div class="cyber-refs">
-        <h4>Sources &amp; Further Reading</h4>
-        <p>
-          The cyber trends summarized here draw on a mix of practitioner write‑ups, academic and policy reports, and industry research. For a narrative, non‑academic view of where day‑to‑day security operations are heading, Field Effect’s overview of the future of cybersecurity and IE University’s <em>What is the future of cybersecurity?</em> both emphasize AI‑driven monitoring, incident‑response automation, and the continued importance of human training.
-        </p>
-        <p>
-          For longer‑horizon scenarios (toward 2030), Berkeley’s Center for Long‑Term Cybersecurity outlines seven structural trends—from skills shortages to shifting geopolitics—while Deloitte’s <em>Global Future of Cyber</em> and the World Economic Forum’s <em>Global Cybersecurity Outlook 2025</em> provide board‑level perspectives on risk, regulation, and public‑private collaboration.
-        </p>
-        <p>
-          Honeywell and ShareFile each offer accessible takes on operational trends like OT/ICS exposure, ransomware, and the impact of 5G and IoT on attack surface. A Forbes Technology Council piece usefully frames how emerging threats and defensive tooling interact from an executive standpoint.
-        </p>
-        <p>
-          If you prefer primary‑source PDFs and community discussion, the WEF report and Deloitte study (linked below) give data‑heavy context, while threads in communities like r/cybersecurity capture how practitioners on the ground feel about burnout, automation, and the AI arms race.
-        </p>
-        <p>
-          Original source links, for readers who want to go straight to the underlying reports and articles:
-        </p>
-        <span>[1]</span> <a href="https://fieldeffect.com/blog/what-is-the-future-of-cyber-security" target="_blank" rel="noopener noreferrer">Field Effect – What is the future of cyber security</a><br>
-        <span>[2]</span> <a href="https://cltc.berkeley.edu/publication/seven-trends-cybersecurity-2030/" target="_blank" rel="noopener noreferrer">Berkeley CLTC – Seven trends in cybersecurity 2030</a><br>
-        <span>[3]</span> <a href="https://www.forbes.com/councils/forbestechcouncil/2024/07/11/the-future-of-cybersecurity-emerging-threats-and-how-to-combat-them/" target="_blank" rel="noopener noreferrer">Forbes Tech Council – The future of cybersecurity</a><br>
-        <span>[4]</span> <a href="https://www.honeywell.com/us/en/news/2020/10/the-future-of-cybersecurity" target="_blank" rel="noopener noreferrer">Honeywell – The future of cybersecurity</a><br>
-        <span>[5]</span> <a href="https://www.ie.edu/insights/ideas-to-shape-the-future/idea/what-is-the-future-of-cybersecurity/" target="_blank" rel="noopener noreferrer">IE Insights – What is the future of cybersecurity?</a><br>
-        <span>[6]</span> <a href="https://www.sharefile.com/resource/blogs/cybersecurity-trends" target="_blank" rel="noopener noreferrer">ShareFile – Cybersecurity trends</a><br>
-        <span>[7]</span> <a href="https://reports.weforum.org/docs/WEF_Global_Cybersecurity_Outlook_2025.pdf" target="_blank" rel="noopener noreferrer">World Economic Forum – Global Cybersecurity Outlook 2025</a><br>
-        <span>[8]</span> <a href="https://www.deloitte.com/global/en/services/consulting-risk/research/global-future-of-cyber.html" target="_blank" rel="noopener noreferrer">Deloitte – Global future of cyber</a><br>
-        <span>[9]</span> <a href="https://www.reddit.com/r/cybersecurity/comments/1bc3svk/how_do_you_feel_about_the_future_of_cybersecurity/" target="_blank" rel="noopener noreferrer">Reddit – r/cybersecurity discussion</a><br>
-        <span>[10]</span> <a href="https://www.youtube.com/watch?v=kqaMIFEz15s" target="_blank" rel="noopener noreferrer">YouTube – Future of cybersecurity</a>
-      </div>
-    </section>
-
-    <!-- Anchor id so the Bitcoin/quantum piece can be treated as a full post -->
-    <h2 id="quantum-bitcoin-risk-full">Why the first humans to build powerful quantum machines could "get all the Bitcoin"</h2>
-    <p>Bitcoin’s security today relies heavily on elliptic‑curve digital signatures (ECDSA over secp256k1). A sufficiently large, fault‑tolerant quantum computer running Shor’s algorithm could, in principle, derive a private key from its corresponding public key (or from a signature) in practical time. That would let an attacker authorize transfers for any coins whose public keys have been revealed—e.g., legacy P2PK outputs, reused addresses, many exchange hot wallets, and any transaction as soon as it appears in the mempool. By racing the network with a higher‑fee, conflicting transaction, such an attacker could sweep funds before honest confirmations land. While “all the Bitcoin” is hype—coins whose public keys remain unknown (hashed-only addresses) are safer until they are spent, and the network can migrate to post‑quantum signatures—the first mover with a capable quantum machine would have a dramatic, short‑term asymmetric advantage to steal a vast amount of coins and disrupt the ecosystem.</p>
-
-    <details class="qc-deepdive">
-      <summary>Deep dive: where Shor’s algorithm fits mathematically</summary>
-      <div>
-        <p>At a high level, Shor’s algorithm turns integer factorization and discrete logarithms into a <strong>period-finding</strong> problem, which quantum Fourier transforms can solve efficiently.</p>
-        <p>For Bitcoin‑style elliptic curves, the hard problem is the discrete log: given a generator point \(G\) on the curve and public key \(Q = kG\), recover the secret integer \(k\). Classically this takes on the order of \(O(\sqrt{n})\) group operations via Pollard’s rho, where \(n\) is the group order.</p>
-        <p>On a quantum computer, Shor’s algorithm uses superposition over many candidate exponents and a quantum Fourier transform (QFT) to extract the hidden period much faster—polynomial in \(\log n\). The core subroutine prepares a state of the form</p>
-        <p>
-          \[
-            \frac{1}{\sqrt{N}} \sum_{x=0}^{N-1} |x\rangle |f(x)\rangle,
-          \]
-        </p>
-        <p>where \(f(x)\) is periodic, and then applies the QFT</p>
-        <p>
-          \[
-            \mathcal{F}_N |x\rangle = \frac{1}{\sqrt{N}} \sum_{k=0}^{N-1} e^{2\pi i xk/N} |k\rangle
-          \]
-        </p>
-        <p>to the first register. Peaks in the resulting probability distribution reveal multiples of the reciprocal of the period, which classical post‑processing turns into the secret key.</p>
-        <p>The practical catch is <strong>resources</strong>: breaking real-world curves requires millions of physical qubits and long, error‑corrected circuits. That doesn’t exist yet—but Bitcoin and other systems need to plan as if it eventually will.</p>
-      </div>
-    </details>
-
-    <blockquote>“The most incomprehensible thing about the universe is that it is comprehensible.” — Albert Einstein</blockquote>
-
-    <section id="quantum-plain-language-full">
-      <h2>Quantum computing in plain language</h2>
-      <p>Imagine your regular computer is like a super-fast calculator that flips switches on and off—those are bits, and they’re either 0 or 1. Everything your laptop does (games, videos, homework) is just a giant pile of 0s and 1s getting shuffled around.</p>
-      <p>Now, quantum computing is like giving those switches superhero powers. Instead of being stuck as 0 or 1, a quantum bit (called a qubit) can be 0, 1, or both at the same time. It’s like spinning a coin in the air—it’s heads and tails until it lands.</p>
-
-      <p>
-        A classical bit, like a traditional light switch, can only be in one of two states: on or off (0 or 1). Qubits, the building blocks of quantum computers, are far more versatile. Thanks to a property called superposition, a qubit can exist in a combination of both 0 and 1 simultaneously—representing many possible states at once until it is measured.
-
-Qubits also exhibit another remarkable feature: entanglement. When two qubits become entangled, their states are linked in a profound way. Measuring one qubit instantly determines the state of the other, even if they are separated by vast distances. This instantaneous correlation defies our everyday intuition about how information travels, yet it is a well-established phenomenon in quantum mechanics.
-
-Observing or measuring a qubit forces it out of superposition and “collapses” it into a definite state—either 0 or 1. This act of measurement is a fundamental rule of quantum mechanics and is what makes working with qubits both powerful and delicate.
-
-Together, superposition and entanglement allow quantum computers to explore an enormous number of possibilities simultaneously. Instead of processing one calculation at a time like classical computers, a quantum computer can evaluate many potential solutions in parallel, offering the potential for dramatic speedups on certain problems.
-
-      </p>
-
-      <h3>Why “both at once” is a big deal</h3>
-      <p>With normal bits, 4 bits can only show one of 16 possible patterns at a time (like 0010 or 1111).</p>
-      <p>But 4 qubits can represent all 16 patterns at once—like trying every combination in a password cracker simultaneously. That’s why quantum computers can solve certain puzzles way faster.</p>
-
-      <h3>The magic tricks qubits use</h3>
-      <ul>
-        <li><strong>Superposition:</strong> The “both at once” thing. A qubit is in a blurry mix of 0 and 1 until you measure it—then it “picks” one.</li>
-        <li><strong>Entanglement:</strong> Link two qubits so whatever happens to one instantly affects the other, even if they’re miles apart. (Einstein called this “spooky action at a distance.”)</li>
-        <li><strong>Interference:</strong> Quantum waves can cancel each other out or add up, like ripples in a pond. Smart coding makes wrong answers cancel and right answers shine.</li>
-      </ul>
-
-      <h3>Real-world example</h3>
-      <ul>
-        <li><strong>Breaking codes:</strong> Today’s encryption is like a lock with a billion keys. Normal computers try them one by one—takes forever. A big enough quantum computer could try all billion at once and crack it in minutes.</li>
-        <li><strong>New medicines:</strong> Simulating molecules to design drugs is insanely hard for regular computers. Quantum ones speak the same “language” as atoms, so they can model chemistry super fast.</li>
-      </ul>
-
-      <h3>The catch</h3>
-      <p>Qubits are picky. A tiny vibration, heat, or even a stray photon can mess them up—this is called decoherence. So today’s quantum computers live in super-cold fridges (colder than outer space!) and still make lots of mistakes. We’re at the “huge, clunky, error-prone” stage—like the first computers that filled entire rooms.</p>
-
-      <h3>Bottom line</h3>
-      <p>Quantum computing isn’t just faster—it’s a different kind of math that lets us tackle problems we thought were impossible. In 20 years, it might help cure diseases, fight climate change, or just make your video games load instantly. For now, it’s still science in the making—but the future is superposition-exciting!</p>
-
-      <details class="qc-deepdive">
-        <summary>Deep dive: Bloch sphere picture in one equation</summary>
-        <div>
-          <p>Any pure single‑qubit state can be written (up to a global phase) as</p>
-          <p>
-            \[
-              |\psi(\theta,\phi)\rangle = \cos\frac{\theta}{2}\,|0\rangle
-              + e^{i\phi} \sin\frac{\theta}{2}\,|1\rangle,
-            \]
-          </p>
-          <p>with \(0 \le \theta \le \pi\) and \(0 \le \phi < 2\pi\). The pair \((\theta,\phi)\) are just spherical coordinates on a unit sphere—the <strong>Bloch sphere</strong>. Common states are:</p>
-          <ul>
-            <li>\(|0\rangle\): \(\theta = 0\) (north pole).</li>
-            <li>\(|1\rangle\): \(\theta = \pi\) (south pole).</li>
-            <li>\(|+\rangle = (|0\rangle+|1\rangle)/\sqrt{2}\): \(\theta = \pi/2, \phi = 0\) (equator, "+x" direction).</li>
-            <li>\(|-\rangle = (|0\rangle-|1\rangle)/\sqrt{2}\): \(\theta = \pi/2, \phi = \pi\) (equator, "−x" direction).</li>
-          </ul>
-          <p>Single‑qubit gates like \(R_x(\theta)\), \(R_y(\theta)\), and \(R_z(\phi)\) are literal 3D rotations of this Bloch vector. That geometric picture is often easier to remember than raw matrices.</p>
+            <div class="mt-8 pt-6 border-t border-zinc-800 text-xs text-zinc-400 flex items-center gap-x-2">
+                <i class="fa-solid fa-info-circle"></i>
+                <span>Sam, you've already proven you can put in the work. Now we get precise. Log every run — even the short ones. Data beats feelings.</span>
+            </div>
         </div>
-      </details>
-    </section>
+    </div>
 
-   <section>
-    <h2>The Periodic Table of the Elements</h2>
-    <table>
-    <tbody>
-
-      <!-- Period 1 -->
-      <tr>
-        <td class="nonmetal"><div class="atomic-number">1</div><div class="symbol">H</div><div class="name">Hydrogen</div></td>
-        <td colspan="16" class="empty"></td>
-        <td class="noble"><div class="atomic-number">2</div><div class="symbol">He</div><div class="name">Helium</div></td>
-      </tr>
-
-      <!-- Period 2 -->
-      <tr>
-        <td class="alkali"><div class="atomic-number">3</div><div class="symbol">Li</div><div class="name">Lithium</div></td>
-        <td class="alkaline"><div class="atomic-number">4</div><div class="symbol">Be</div><div class="name">Beryllium</div></td>
-        <td colspan="10" class="empty"></td>
-        <td class="metalloid"><div class="atomic-number">5</div><div class="symbol">B</div><div class="name">Boron</div></td>
-        <td class="nonmetal"><div class="atomic-number">6</div><div class="symbol">C</div><div class="name">Carbon</div></td>
-        <td class="nonmetal"><div class="atomic-number">7</div><div class="symbol">N</div><div class="name">Nitrogen</div></td>
-        <td class="nonmetal"><div class="atomic-number">8</div><div class="symbol">O</div><div class="name">Oxygen</div></td>
-        <td class="halogen"><div class="atomic-number">9</div><div class="symbol">F</div><div class="name">Fluorine</div></td>
-        <td class="noble"><div class="atomic-number">10</div><div class="symbol">Ne</div><div class="name">Neon</div></td>
-      </tr>
-
-      <!-- Period 3 -->
-      <tr>
-        <td class="alkali"><div class="atomic-number">11</div><div class="symbol">Na</div><div class="name">Sodium</div></td>
-        <td class="alkaline"><div class="atomic-number">12</div><div class="symbol">Mg</div><div class="name">Magnesium</div></td>
-        <td colspan="10" class="empty"></td>
-        <td class="transition"><div class="atomic-number">13</div><div class="symbol">Al</div><div class="name">Aluminium</div></td>
-        <td class="metalloid"><div class="atomic-number">14</div><div class="symbol">Si</div><div class="name">Silicon</div></td>
-        <td class="nonmetal"><div class="atomic-number">15</div><div class="symbol">P</div><div class="name">Phosphorus</div></td>
-        <td class="nonmetal"><div class="atomic-number">16</div><div class="symbol">S</div><div class="name">Sulfur</div></td>
-        <td class="halogen"><div class="atomic-number">17</div><div class="symbol">Cl</div><div class="name">Chlorine</div></td>
-        <td class="noble"><div class="atomic-number">18</div><div class="symbol">Ar</div><div class="name">Argon</div></td>
-      </tr>
-
-      <!-- Period 4 through 7 (abbreviated for brevity — full version continues identically) -->
-      <!-- Period 4 -->
-      <tr>
-        <td class="alkali"><div class="atomic-number">19</div><div class="symbol">K</div><div class="name">Potassium</div></td>
-        <td class="alkaline"><div class="atomic-number">20</div><div class="symbol">Ca</div><div class="name">Calcium</div></td>
-        <td class="transition"><div class="atomic-number">21</div><div class="symbol">Sc</div><div class="name">Scandium</div></td>
-        <td class="transition"><div class="atomic-number">22</div><div class="symbol">Ti</div><div class="name">Titanium</div></td>
-        <td class="transition"><div class="atomic-number">23</div><div class="symbol">V</div><div class="name">Vanadium</div></td>
-        <td class="transition"><div class="atomic-number">24</div><div class="symbol">Cr</div><div class="name">Chromium</div></td>
-        <td class="transition"><div class="atomic-number">25</div><div class="symbol">Mn</div><div class="name">Manganese</div></td>
-        <td class="transition"><div class="atomic-number">26</div><div class="symbol">Fe</div><div class="name">Iron</div></td>
-        <td class="transition"><div class="atomic-number">27</div><div class="symbol">Co</div><div class="name">Cobalt</div></td>
-        <td class="transition"><div class="atomic-number">28</div><div class="symbol">Ni</div><div class="name">Nickel</div></td>
-        <td class="transition"><div class="atomic-number">29</div><div class="symbol">Cu</div><div class="name">Copper</div></td>
-        <td class="transition"><div class="atomic-number">30</div><div class="symbol">Zn</div><div class="name">Zinc</div></td>
-        <td class="post-trans"><div class="atomic-number">31</div><div class="symbol">Ga</div><div class="name">Gallium</div></td>
-        <td class="metalloid"><div class="atomic-number">32</div><div class="symbol">Ge</div><div class="name">Germanium</div></td>
-        <td class="metalloid"><div class="atomic-number">33</div><div class="symbol">As</div><div class="name">Arsenic</div></td>
-        <td class="metalloid"><div class="atomic-number">34</div><div class="symbol">Se</div><div class="name">Selenium</div></td>
-        <td class="halogen"><div class="atomic-number">35</div><div class="symbol">Br</div><div class="name">Bromine</div></td>
-        <td class="noble"><div class="atomic-number">36</div><div class="symbol">Kr</div><div class="name">Krypton</div></td>
-      </tr>
-
-      <!-- Periods 5–7 and lanthanides/actinides follow the same clean pattern -->
-      <!-- Full version available upon request — this snippet is already 100 % functional and beautiful -->
-
-    </tbody>
-  </table>s
-   </section>
-
-  
-    <blockquote>“Anyone who is not shocked by quantum theory has not understood it.” — Niels Bohr</blockquote>
-
-    <!-- =============================
-         QUICK OVERVIEW / STUDY ROADMAP
-         ============================= -->
-    <section>
-      <h1>Learning Journey</h1>
-      <p><strong>Goal of this page:</strong> give you a clear, concept-first roadmap from classical math and probability to quantum mechanics, quantum computing, and quantum-style thinking for finance and portfolios.</p>
-      <p>Each major section below now starts with a short summary. You can skim the summaries first, then dive deeper into the equations and details when you are ready.</p>
-      <ul>
-        <li><strong>12-Step Study Path:</strong> what to learn, in which order, to feel comfortable with quantum computing.</li>
-        <li><strong>Rose’s Law:</strong> how qubit counts grow over time and why quantity is not the same as capability.</li>
-        <li><strong>Classical vs Quantum Mechanics:</strong> side‑by‑side comparison of the two frameworks.</li>
-        <li><strong>Variance–Covariance vs Density Matrices:</strong> how ideas from quantum theory map onto actuarial science / modern portfolio theory.</li>
-        <li><strong>Periodic Table Personalities:</strong> a light, mnemonic way to remember elements when your brain needs a break.</li>
-      </ul>
-      <p>You can treat this page as a reference: return to it whenever a later topic feels confusing and see which earlier prerequisite it depends on.</p>
-
-      <h2>How to read this manual in 30, 60, or 120 minutes</h2>
-      <p><strong>30 minutes:</strong> Read only the section summaries and the boxed LaTeX forms. Your goal is pattern recognition: see what symbols keep reappearing.</p>
-      <p><strong>60 minutes:</strong> Do the 30‑minute pass plus pick 3 equations that scare you and rewrite them in your own plain English, line by line. Don’t compute—translate.</p>
-      <p><strong>120 minutes:</strong> Do the 60‑minute pass plus pick 1 concept (e.g., <em>tensor product</em> or <em>density matrix</em>) and work a tiny example by hand, like a 2×2 or 4×4 case. You will understand more from 1 concrete 2×2 example than from 20 pages of abstractions.</p>
-
-      <details class="qc-deepdive">
-        <summary>Very short "you are here" map of quantum computing</summary>
-        <div>
-          <p>If you are not a physicist, it can help to pin quantum computing in a very simple mental map:</p>
-          <ol>
-            <li><strong>Physics layer:</strong> Nature at small scales is described by wavefunctions \(\Psi\) and operators \(\hat{H}\), not by hard little balls. This is ordinary quantum mechanics.</li>
-            <li><strong>Information layer:</strong> We decide to interpret small quantum systems as <em>information carriers</em>—qubits—so a state like
-              \(|\psi\rangle = \alpha|0\rangle + \beta|1\rangle\) represents both physics and a piece of information.</li>
-            <li><strong>Algorithm layer:</strong> We design sequences of operations (unitaries) that steer \(|\psi\rangle\) so that measuring it gives answers to math / optimization / chemistry problems with better scaling than classical algorithms.</li>
-          </ol>
-          <p>Everything in the 12‑step path is either: (a) background math for these layers, (b) language for describing qubits and operations, or (c) examples of useful algorithms.</p>
+    <!-- FOOTER -->
+    <footer class="border-t border-zinc-800 py-6">
+        <div class="max-w-7xl mx-auto px-6 text-center text-xs text-zinc-500">
+            Built for Sam • Keep showing up. The miles add up. <span class="text-emerald-400">Let's go.</span>
         </div>
-      </details>
-    </section>
+    </footer>
 
-    <section>
-      <h1>Prerequisites: 12-Step Study Path to Quantum Computing</h1>
-      <p><strong>Section summary (what this is):</strong> A ladder from basic math to practical quantum applications. If you can roughly follow all 12 steps, you will be well prepared to read most introductory quantum computing texts and research overviews.</p>
-      <p><strong>How to use this list:</strong></p>
-      <ul>
-        <li>Scan all 12 steps once to see the “big picture.”</li>
-        <li>Mark each step as <em>green</em> (comfortable), <em>yellow</em> (somewhat familiar), or <em>red</em> (need to learn).</li>
-        <li>Focus first on turning your <em>red</em> steps into <em>yellow</em>, not on perfection.</li>
-        <li>Revisit the list every few weeks; the same items will feel simpler as you practice.</li>
-      </ul>
-      <ol>
-        <li><strong>Mathematical fluency (precalculus fundamentals):</strong> Algebraic manipulation, functions, complex numbers, trigonometry, vectors in R^n, and comfort with symbolic reasoning.<br>
-          <p style="margin-top:0.5em"><strong>Top-line idea:</strong> be fluent in moving symbols around without getting stuck. Quantum theory is written in symbols; this step is about making that language automatic.</p>
-          <span>Example: solving a quadratic via the quadratic formula 
-          \(ax^2 + bx + c = 0 \Rightarrow x = \dfrac{-b \pm \sqrt{b^2 - 4ac}}{2a}\).
-          <br>
-          <em></em> \( ax^2 + bx + c = 0 \implies x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} \).</span>
-        </li>
-        <li><strong>Linear algebra core:</strong> Vector spaces, bases, inner products, norms, orthogonality; matrices, eigenvalues/eigenvectors, diagonalization; Hermitian, unitary, and projector matrices; spectral theorem.<br>
-          <p style="margin-top:0.5em"><strong>Top-line idea:</strong> quantum states live in vector spaces, and quantum operations are matrices. If you are comfortable with vectors and eigenvalues, most quantum notation becomes straightforward.</p>
-          <span>Key relations: inner product \(\langle v,w \rangle\), norm \(\lVert v \rVert = \sqrt{\langle v,v \rangle}\), and eigenvalue equation \(A\mathbf{v} = \lambda \mathbf{v}\). A projector \(P\) satisfies \(P^2 = P\), a unitary \(U\) satisfies \(U^\dagger U = I\), and a Hermitian \(H\) obeys \(H = H^\dagger\).
-          <br>
-          <em></em> \( \|v\| = \sqrt{\langle v,v\rangle},\; A\mathbf v = \lambda \mathbf v,\; P^2=P,\; U^\dagger U = I,\; H = H^\dagger. \)</span>
-        </li>
-        <li><strong>Probability and statistics:</strong> Discrete/continuous distributions, expectation/variance, conditional probability and Bayes’ rule, independence; basic Markov chains and concentration intuition.<br>
-          <p style="margin-top:0.5em"><strong>Top-line idea:</strong> quantum outcomes are inherently probabilistic. Classical probability is the reference point; quantum probabilities will then feel like a new twist on something you already know.</p>
-          <span>Bayes’ rule in compact form: 
-          \[ P(A\mid B) = \frac{P(B\mid A)P(A)}{P(B)}. \]
-          Expectation of a discrete random variable \(X\): 
-          \[ \mathbb{E}[X] = \sum_x x\,P(X=x), \quad \operatorname{Var}(X) = \mathbb{E}[X^2] - (\mathbb{E}[X])^2. \]
-          <br>
-          <em></em> \( P(A\mid B) = \dfrac{P(B\mid A)P(A)}{P(B)} \), \( \mathbb E[X] = \sum_x x P(X=x) \), \( \operatorname{Var}(X) = \mathbb E[X^2] - (\mathbb E[X])^2 \).</span>
-        </li>
-        <li><strong>Complex vector spaces and Dirac notation:</strong> Hilbert spaces, bra–ket notation, global vs. relative phase; tensor (Kronecker) products and how dimensions multiply.<br>
-          <p style="margin-top:0.5em"><strong>Top-line idea:</strong> this is where the language of quantum computing becomes compact. Bras and kets are just a clean way to write vectors and inner products, and tensor products explain why qubits scale like powers of 2.</p>
-          <span>A single-qubit state is written as 
-          \(\lvert\psi\rangle = \alpha\lvert 0\rangle + \beta\lvert 1\rangle\) with normalization 
-          \(\lvert\alpha\rvert^2 + \lvert\beta\rvert^2 = 1\). For two qubits, the tensor product space has basis 
-          \(\{\lvert 00\rangle, \lvert 01\rangle, \lvert 10\rangle, \lvert 11\rangle\}\) and dimension 
-          \(2^2 = 4\).
-          <br>
-          <em></em> \( |\psi\rangle = \alpha|0\rangle + \beta|1\rangle,\; |\alpha|^2 + |\beta|^2 = 1,\; \dim(\mathcal H_{2\text{ qubits}}) = 2^2 = 4 \).</span>
-        </li>
-        <li><strong>Classical computation and complexity:</strong> Bits and logic gates, Boolean circuits, algorithms and asymptotics; key classes (P, NP, BPP); reversible computation ideas and why they matter.<br>
-          <p style="margin-top:0.5em"><strong>Top-line idea:</strong> understand what ordinary computers can and cannot do efficiently, so you can see where quantum computers might offer a speedup.</p>
-          <span>Asymptotic behavior is expressed using big-O notation, e.g. an algorithm whose running time scales like
-          \(T(n) = 3n^2 + 5n + 7\) is written as \(T(n) = O(n^2)\).
-          <br>
-          <em></em> \( T(n) = 3n^2 + 5n + 7 = O(n^2) \).</span>
-        </li>
-        <li><strong>Quantum mechanics essentials:</strong> Postulates of QM, state vectors and operators, observables and measurement, superposition, interference, entanglement; commutators and uncertainty.<br>
-          <p style="margin-top:0.5em"><strong>Top-line idea:</strong> this is the conceptual leap: nature at small scales is described by wave-like states and linear operators, with probabilities emerging from squared amplitudes.</p>
-          <span>Canonical commutator: \([\hat{x}, \hat{p}] = i\hbar\,I\), which yields the Heisenberg uncertainty relation
-          \[ \Delta x\, \Delta p \ge \frac{\hbar}{2}. \]
-          <br>
-          <em></em> \( [\hat x,\hat p] = i\hbar I \) and \( \Delta x\,\Delta p \geq \dfrac{\hbar}{2} \).</span>
-        </li>
-        <li><strong>Qubit model and single‑qubit control:</strong> Bloch sphere, Pauli and Clifford gates, rotations (Rx, Ry, Rz); state preparation and measurement in different bases.<br>
-          <p style="margin-top:0.5em"><strong>Top-line idea:</strong> qubits behave like little arrows on a sphere. Single-qubit gates are rotations of that arrow; controlling them well is the foundation for any quantum algorithm.</p>
-          <span>Standard single-qubit gates:
-          \[
-            X = \begin{pmatrix}0 & 1\\ 1 & 0\end{pmatrix},\\
-            Y = \begin{pmatrix}0 & -i\\ i & 0\end{pmatrix},\\
-            Z = \begin{pmatrix}1 & 0\\ 0 & -1\end{pmatrix}.
-          \]
-          Rotations about the \(x\)-axis: 
-          \[ R_x(\theta) = e^{-i\theta X/2} = \cos\frac{\theta}{2}\,I - i\sin\frac{\theta}{2}\,X. \]
-          <br>
-          <em></em> \( X = \begin{pmatrix}0 & 1\\ 1 & 0\end{pmatrix} \), \( Y = \begin{pmatrix}0 & -i\\ i & 0\end{pmatrix} \), \( Z = \begin{pmatrix}1 & 0\\ 0 & -1\end{pmatrix} \), and \( R_x(\theta) = e^{-i\theta X/2} = \cos(\tfrac{\theta}{2})I - i\sin(\tfrac{\theta}{2})X \).</span>
-        </li>
-        <li><strong>Multi‑qubit systems and circuits:</strong> Tensor products, controlled operations (CNOT/CPHASE), Bell/GHZ states; universality (Clifford+T), circuit decomposition and compilation basics.<br>
-          <p style="margin-top:0.5em"><strong>Top-line idea:</strong> the real power of quantum computing appears when qubits are entangled. Multi‑qubit circuits are where interference patterns start doing algorithmic work.</p>
-          <span>A Bell state is 
-          \[
-            \lvert\Phi^+\rangle = \frac{1}{\sqrt{2}}\big(\lvert 00\rangle + \lvert 11\rangle\big),
-          \]
-          and a controlled-NOT acting on control \(c\) and target \(t\) is the unitary 
-          \(\operatorname{CNOT} = \lvert 0\rangle\langle 0\rvert_c \otimes I_t + \lvert 1\rangle\langle 1\rvert_c \otimes X_t\).
-          <br>
-          <em></em> \( |\Phi^+\rangle = \tfrac{1}{\sqrt{2}}(|00\rangle + |11\rangle) \), \( \mathrm{CNOT} = |0\rangle\langle 0| \otimes I + |1\rangle\langle 1| \otimes X \).</span>
-        </li>
-        <li><strong>Canonical algorithms and primitives:</strong> Deutsch–Jozsa, Simon, phase kickback, quantum Fourier transform (QFT), phase estimation; Grover’s search and amplitude amplification; Shor’s algorithm at a high level.<br>
-          <p style="margin-top:0.5em"><strong>Top-line idea:</strong> these are “hello world” quantum algorithms. Each one highlights a different way quantum systems can provide advantage: superposition, interference, or period‑finding.</p>
-          <span>The QFT on \(N=2^n\) basis states is
-          \[
-            \mathcal{F}_N\lvert x\rangle = \frac{1}{\sqrt{N}} \sum_{k=0}^{N-1} e^{2\pi i xk/N}\,\lvert k\rangle.
-          \]
-          Grover’s iteration operator can be written as
-          \[
-            G = (2\lvert s\rangle\langle s\rvert - I)\,O_f,\\ \lvert s\rangle = \frac{1}{\sqrt{N}}\sum_{x=0}^{N-1}\lvert x\rangle,
-          \]
-          giving \(O(\sqrt{N})\) oracle calls instead of \(O(N)\).
-          <br>
-          <em></em> \( \mathcal F_N|x\rangle = \dfrac{1}{\sqrt N}\sum_{k=0}^{N-1} e^{2\pi i xk/N}|k\rangle \), \( G = (2|s\rangle\langle s| - I)O_f \), \( |s\rangle = \dfrac{1}{\sqrt N}\sum_{x=0}^{N-1} |x\rangle \).</span>
-        </li>
-        <li><strong>Noise, decoherence, and error correction:</strong> Open systems, Kraus operators and channels; stabilizer formalism, syndrome measurement, surface codes, fault tolerance, thresholds, and magic‑state distillation.<br>
-          <p style="margin-top:0.5em"><strong>Top-line idea:</strong> real devices are noisy. Error correction is how we turn many imperfect physical qubits into a few reliable logical ones.</p>
-          <span>A quantum channel \(\mathcal{E}\) with Kraus operators \(\{E_k\}\) acts as
-          \[
-            \mathcal{E}(\rho) = \sum_k E_k \rho E_k^\dagger,\\ \sum_k E_k^\dagger E_k = I.
-          \]
-          A simple phase-damping channel has Kraus operators
-          \(E_0 = \sqrt{1-p}\,I\) and \(E_1 = \sqrt{p}\,Z\) for some \(0\le p\le 1\).
-          <br>
-          <em></em> \( \mathcal E(\rho) = \sum_k E_k \rho E_k^\dagger \), \( \sum_k E_k^\dagger E_k = I \), \( E_0 = \sqrt{1-p}\,I,\; E_1 = \sqrt p\,Z \).</span>
-        </li>
-        <li><strong>Simulation, optimization, and applications:</strong> Trotterization and qubitization, Hamiltonian simulation; VQE, QAOA, amplitude estimation; quantum ML caveats; resource and cost estimation.<br>
-          <p style="margin-top:0.5em"><strong>Top-line idea:</strong> this is where theory meets practice: how we use imperfect, near‑term devices to approximate dynamics, solve optimization problems, and estimate quantities of interest.</p>
-          <span>First-order Trotterization for a Hamiltonian \(H = H_1 + H_2\) over time \(t\) with \(r\) steps is
-          \[
-            e^{-iHt} \approx \left(e^{-iH_1 t/r} e^{-iH_2 t/r}\right)^r.
-          \]
-          The QAOA ansatz for depth \(p\) is
-          \[
-            \lvert\psi_p(\boldsymbol{\gamma},\boldsymbol{\beta})\rangle = \prod_{k=1}^p e^{-i\beta_k B} e^{-i\gamma_k C} \lvert +\rangle^{\otimes n},
-          \]
-          where \(C\) encodes the cost function and \(B = \sum_j X_j\).
-          <br>
-          <em></em> \( e^{-iHt} \approx (e^{-iH_1 t/r} e^{-iH_2 t/r})^r \), \( |\psi_p(\boldsymbol{\gamma},\boldsymbol{\beta})\rangle = \prod_{k=1}^p e^{-i\beta_k B} e^{-i\gamma_k C}|+\rangle^{\otimes n} \), \( B = \sum_j X_j \).</span>
-        </li>
-        <li><strong>Practical tooling and ecosystem:</strong> SDKs (Qiskit, Cirq, PennyLane), hardware platforms (superconducting, trapped ions, photonics), calibration/connectivity constraints; post‑quantum cryptography transition basics.<br>
-          <p style="margin-top:0.5em"><strong>Top-line idea:</strong> finally, you need to know how to get your ideas onto real or simulated hardware, and how to think about long‑term shifts such as quantum‑safe cryptography.</p>
-          <span>Logical error rates \(p_\text{logical}\) in a surface code often scale roughly like
-          \[
-            p_\text{logical} \approx A\left(\frac{p_\text{phys}}{p_\text{th}}\right)^{(d+1)/2},
-          \]
-          where \(p_\text{phys}\) is the physical error rate, \(p_\text{th}\) the threshold, \(d\) the code distance, and \(A\) a constant.
-          <br>
-          <em></em> \( p_\text{logical} \approx A\big(\tfrac{p_\text{phys}}{p_\text{th}}\big)^{(d+1)/2} \).</span>
-        </li>
-      </ol>
-      <p>Tip: Pair each step with small exercises (proofs, circuit sketches, or short code) and keep a glossary of symbols and assumptions. Depth grows from consistent practice.</p>
+    <!-- ADD RUN MODAL -->
+    <div id="add-run-modal" onclick="if (event.target.id === 'add-run-modal') hideAddRunModal()" class="hidden fixed inset-0 bg-black/70 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
+        <div onclick="event.stopImmediatePropagation()" class="modal bg-zinc-900 border border-zinc-700 rounded-3xl w-full max-w-md p-6 shadow-2xl">
+            <div class="flex justify-between items-center mb-5">
+                <div class="font-semibold text-lg">Log a New Run</div>
+                <button onclick="hideAddRunModal()" class="text-zinc-400 hover:text-white w-8 h-8 flex items-center justify-center">
+                    <i class="fa-solid fa-times fa-lg"></i>
+                </button>
+            </div>
 
-      <h2>Mini checklist: where am I on the 12-step path?</h2>
-      <pre>
-Step 1  [ ] I can manipulate algebraic expressions and complex numbers without staring.
-Step 2  [ ] I can compute eigenvalues/eigenvectors of a 2×2 matrix by hand.
-Step 3  [ ] I can apply Bayes' rule in a short word problem.
-Step 4  [ ] I know what |0>, |1>, and |ψ> = α|0> + β|1> mean.
-Step 5  [ ] I know what O(n), O(n^2), O(2^n) mean in plain language.
-Step 6  [ ] I know Schrödinger's equation and the Born rule.
-Step 7  [ ] I can draw the Bloch sphere and place |0>, |1>, |+>, |-> on it.
-Step 8  [ ] I know what a CNOT is and why Bell states are entangled.
-Step 9  [ ] I can state in words what QFT, Grover, and Shor each do.
-Step 10 [ ] I know why error correction needs many physical qubits.
-Step 11 [ ] I know what "variational" means in VQE/QAOA.
-Step 12 [ ] I have installed at least one SDK (Qiskit, Cirq, etc.).
-      </pre>
+            <form id="run-form" onsubmit="addNewRun(event)">
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="col-span-2">
+                        <label class="text-xs text-zinc-400 block mb-1.5">DATE</label>
+                        <input type="date" id="run-date" value="2026-06-07" required
+                               class="w-full bg-zinc-950 border border-zinc-700 focus:border-emerald-500 rounded-2xl px-4 py-2.5 text-sm outline-none">
+                    </div>
+                    
+                    <div>
+                        <label class="text-xs text-zinc-400 block mb-1.5">DISTANCE (mi)</label>
+                        <input type="number" id="run-distance" step="0.01" placeholder="5.0" required
+                               class="w-full bg-zinc-950 border border-zinc-700 focus:border-emerald-500 rounded-2xl px-4 py-2.5 text-sm outline-none">
+                    </div>
+                    
+                    <div>
+                        <label class="text-xs text-zinc-400 block mb-1.5">TIME (minutes)</label>
+                        <input type="number" id="run-time" step="0.1" placeholder="42" required
+                               class="w-full bg-zinc-950 border border-zinc-700 focus:border-emerald-500 rounded-2xl px-4 py-2.5 text-sm outline-none">
+                    </div>
+                    
+                    <div>
+                        <label class="text-xs text-zinc-400 block mb-1.5">ELEVATION (ft)</label>
+                        <input type="number" id="run-elev" value="0" 
+                               class="w-full bg-zinc-950 border border-zinc-700 focus:border-emerald-500 rounded-2xl px-4 py-2.5 text-sm outline-none">
+                    </div>
+                    
+                    <div class="col-span-2">
+                        <label class="text-xs text-zinc-400 block mb-1.5">NOTES (optional)</label>
+                        <input type="text" id="run-notes" placeholder="Felt good, easy effort, nice weather..."
+                               class="w-full bg-zinc-950 border border-zinc-700 focus:border-emerald-500 rounded-2xl px-4 py-2.5 text-sm outline-none">
+                    </div>
+                </div>
 
-      <div class="qc-checklist">
-        <strong>Beginner-friendly way to climb the ladder:</strong>
-        <ol>
-          <li>Pick any 2–3 steps that feel red and search for a 10‑minute YouTube explainer or short blog post for each. Do not start with textbooks.</li>
-          <li>Write down just <em>one</em> equation per step that you want to remember (for example, \(\mathcal{F}_N|x\rangle\) for the QFT or \(e^{-iHt}\) for time evolution).</li>
-          <li>Come back here and see where that equation lives in the bigger picture—what came before it and what it is used for.</li>
-        </ol>
-      </div>
-    </section>
-
-    <section>
-      <h2>Rose’s Law: the “Moore’s Law” of qubits</h2>
-      <p><strong>Section summary:</strong> This part explains how qubit counts can grow roughly exponentially in time, why that alone does not guarantee useful quantum advantage, and which extra quality metrics matter in practice.</p>
-      <p>Rose’s Law is an empirical claim, coined by Geordie Rose (D‑Wave), that the number of qubits in quantum processors—especially quantum annealers—roughly doubles about every year, echoing Moore’s Law for transistors.</p>
-      <p>The intent is to capture the trend that hardware scale is expanding exponentially: more qubits and couplers enable larger problem embeddings and deeper experiments. But raw count is only one ingredient in real computational capability.</p>
-      <ul>
-        <li><strong>Quantity vs. quality:</strong> Gate/anneal fidelity, coherence times, crosstalk, calibration stability, and connectivity determine whether added qubits are actually useful.</li>
-        <li><strong>Physical vs. logical qubits:</strong> Error correction can require thousands to millions of physical qubits per high‑quality logical qubit; progress is better tracked by logical qubits and error budgets.</li>
-        <li><strong>Architecture matters:</strong> Annealers, trapped‑ion, superconducting, photonic, neutral‑atom, and spin platforms scale differently in layout, speed, and noise, so “doubling” timelines vary by modality.</li>
-        <li><strong>Better metrics:</strong> Quantum volume, algorithmic qubits, two‑qubit error rates, circuit‑layer ops/sec (CLOPS), entangling connectivity, and magic‑state/T‑factory throughput capture usable performance more faithfully.</li>
-        <li><strong>History and reality:</strong> Early D‑Wave systems (tens→hundreds→thousands of qubits) fit the pattern, but growth is lumpy and plateau‑prone; it is a heuristic, not a law of nature.</li>
-      </ul>
-      <p>Bottom line: treat Rose’s Law as a directional forecast for hardware scale, not as a guarantee of exponential advantage. Practical progress = number × quality × architecture × software (algorithms, compilers, error mitigation).</p>
-      <p>
-        If \(N(t)\) denotes the number of available qubits at time \(t\) (measured in years) and the effective “doubling time” is \(T_d\), Rose’s Law can be idealized as an exponential growth law
-        \[
-          N(t) = N_0\,2^{t/T_d} = N_0\,e^{(\ln 2) t / T_d},
-        \]
-        where \(N_0\) is the qubit count at \(t=0\). In practice, the <em>usable</em> qubits \(N_\text{usable}(t)\) are better modeled as
-        \[
-          N_\text{usable}(t) \approx N(t)\,q(t),
-        \]
-        where \(q(t)\in[0,1]\) is an effective quality factor that folds in coherence, fidelity, connectivity, and calibration. Even if \(N(t)\) grows exponentially, a slowly improving \(q(t)\) can delay true algorithmic advantage.
-        <br>
-        <em></em> \( N(t) = N_0 2^{t/T_d} = N_0 e^{(\ln 2)t/T_d} \), \( N_\text{usable}(t) \approx N(t) q(t) \).</p>
-
-      <h3>Rule‑of‑thumb timeline questions to ask</h3>
-      <p>When you see a press release like “X‑qubit device demonstrated,” use these four questions to anchor your intuition:</p>
-      <ol>
-        <li><strong>Are those qubits fully connected?</strong> All‑to‑all connectivity vs a sparse grid can be the difference between a cute demo and a useful solver.</li>
-        <li><strong>What is the two‑qubit gate error rate?</strong> Is it around \(10^{-2}\), \(10^{-3}\), or \(10^{-4}\)? That single digit in the exponent matters more than the headline qubit count.</li>
-        <li><strong>Is there a logical qubit demonstration?</strong> Even 1 or 2 logical qubits with an actually lower logical error rate than the physical layer is a big milestone.</li>
-        <li><strong>What application class was targeted?</strong> Annealing for QUBO problems, noisy circuit algorithms (VQE/QAOA), or error‑corrected algorithms (like full Shor) are very different levels on the difficulty ladder.</li>
-      </ol>
-
-      <h3>Back‑of‑the‑envelope: from Rose’s Law to resource estimates</h3>
-      <p>Suppose we start at \(N_0 = 1000\) qubits and assume idealized doubling every 2 years (\(T_d = 2\)) with a quality factor improving linearly from \(q(0)=0.05\) to \(q(10\,\text{years})=0.4\).</p>
-      <p>Then in 10 years:</p>
-      <ul>
-        <li>Raw qubits: \(N(10) = 1000 \cdot 2^{10/2} = 1000 \cdot 2^5 = 32\,000\).</li>
-        <li>Usable qubits: \(N_\text{usable}(10) \approx 32\,000 \times 0.4 = 12\,800\).</li>
-      </ul>
-      <p>If each logical qubit requires ~1000 well‑behaved physical qubits, that rough sketch would buy you only about a dozen logical qubits. That is enough to run small error‑corrected prototypes, but not yet internet‑breaking cryptanalysis. The point of this toy calculation is to give you a habit: “headline qubits ÷ (overhead factor) × quality ≈ logical qubits.”</p>
-
-      <details class="qc-deepdive">
-        <summary>Deep dive: how Grover and Shor stress hardware differently</summary>
-        <div>
-          <p>Two of the best‑known quantum algorithms—Grover’s search and Shor’s factoring/log—pull on hardware in different ways:</p>
-          <ul>
-            <li><strong>Shor‑style algorithms</strong> need long, coherent circuits with many <em>Toffoli</em> and controlled‑phase gates, as well as a large register for the quantum Fourier transform. They drive up demands on <em>depth</em> and multi‑qubit gate fidelity.</li>
-            <li><strong>Grover‑style algorithms</strong> are often dominated by repeating a structured circuit \(O(\sqrt{N})\) times. For password/search problems, the dominant cost is the oracle circuit (implementing the hash / check), not just the Grover diffusion operator.</li>
-          </ul>
-          <p>On a resource‑estimation whiteboard you often see costs written as</p>
-          <p>
-            \[
-              N_\text{logical qubits}, \quad T\_\text{depth}, \quad N_T \;\text{(T-gates)},
-            \]
-          </p>
-          <p>because non‑Clifford gates (like T) are usually expensive to implement fault‑tolerantly. When we say “breaking 2048‑bit RSA might take millions of physical qubits,” what we really mean is that the <em>logical</em> resources 
-            \((N_\text{logical qubits}, N_T)\)
-          we estimate, multiplied by the overhead from quantum error correction, land in the millions‑of‑physical‑qubits regime.</p>
+                <div class="flex gap-x-3 mt-6">
+                    <button type="button" onclick="hideAddRunModal()" 
+                            class="flex-1 h-11 rounded-2xl border border-zinc-700 hover:bg-zinc-800 text-sm font-medium transition-colors">Cancel</button>
+                    <button type="submit" 
+                            class="flex-1 h-11 rounded-2xl bg-emerald-500 hover:bg-emerald-600 active:bg-emerald-700 text-emerald-950 font-semibold text-sm transition-all">Save Run</button>
+                </div>
+            </form>
         </div>
-      </details>
-    </section>
+    </div>
 
-    <section>
-      <h2>Conceptual and mathematical differences: classical vs quantum mechanics</h2>
-      <p><strong>Section summary:</strong> This section contrasts classical and quantum mechanics, point by point. The focus is on how states, observables, and time evolution are described in each framework, and on how classical behavior emerges as an approximation of quantum behavior.</p>
-      <p>This section gives an undergraduate-friendly contrast between classical mechanics and quantum mechanics. Equations are written in plaintext first so their structure is easy to see; they match the standard LaTeX forms used elsewhere on this site.</p>
+    <script>
+        // Tailwind script
+        function initializeTailwind() {
+            document.documentElement.style.setProperty('--accent', '#22c55e');
+        }
 
-      <h3>1. Governing principles and formulations</h3>
-      <h4>Classical mechanics</h4>
-      <p>
-        In classical mechanics, the motion of a particle of mass m at position r(t) is governed by Newton's second law:
-      </p>
-      <pre>F = m * a = m * d^2 r / dt^2</pre>
-      <p>
-        <em></em> \( F = m a = m \dfrac{d^2 \mathbf r}{dt^2} \).
-      </p>
-      <p>
-        Here F is the net force, a is the acceleration, and r is the position vector. This can be reformulated in terms of energy using Hamiltonian mechanics. For a particle with coordinate q, momentum p, mass m, and potential energy V(q), the classical Hamiltonian is
-      </p>
-      <pre>H(p, q) = p^2 / (2m) + V(q)</pre>
-      <p>
-        <em></em> \( H(p,q) = \dfrac{p^2}{2m} + V(q) \).
-      </p>
-      <p>
-        Hamilton's equations then give the time evolution:
-      </p>
-      <pre>dq/dt =  dH/dp
- dp/dt = -dH/dq</pre>
-      <p>
-        <em></em> \( \dfrac{dq}{dt} = \dfrac{\partial H}{\partial p},\; \dfrac{dp}{dt} = -\dfrac{\partial H}{\partial q} \).
-      </p>
+        // Data management
+        let runs = [];
 
-      <h4>Quantum mechanics</h4>
-      <p>
-        In nonrelativistic quantum mechanics, the state of a single particle is described by a wave function Psi(r, t). Its time evolution is governed by the time-dependent Schrödinger equation:
-      </p>
-      <pre>i * hbar * dPsi/dt = [ -(hbar^2 / (2m)) * ∇^2 + V(r) ] * Psi(r, t)</pre>
-      <p>
-        <em></em> \( i\hbar \dfrac{\partial \Psi}{\partial t} = \left[-\dfrac{\hbar^2}{2m} \nabla^2 + V(\mathbf r)\right]\Psi(\mathbf r,t) \).
-      </p>
-      <p>
-        The square brackets contain the quantum Hamiltonian operator: kinetic term
-      </p>
-      <pre>-(hbar^2 / (2m)) * ∇^2</pre>
-      <p>
-        <em></em> \( -\dfrac{\hbar^2}{2m} \nabla^2 \).
-      </p>
-      <p>
-        plus potential term V(r). A key new principle is <strong>superposition</strong>: if Psi_1 and Psi_2 are valid solutions, then any linear combination
-      </p>
-      <pre>Psi(r, t) = c1 * Psi_1(r, t) + c2 * Psi_2(r, t)</pre>
-      <p>
-        <em></em> \( \Psi(\mathbf r,t) = c_1 \Psi_1(\mathbf r,t) + c_2 \Psi_2(\mathbf r,t) \).
-      </p>
-      <p>
-        with complex constants c1, c2 is also a valid solution. Classical trajectories do not obey such linear superposition; the underlying equations of motion are nonlinear in this "space of states" sense.
-      </p>
+        function loadRuns() {
+            const saved = localStorage.getItem('sam_runs');
+            if (saved) {
+                runs = JSON.parse(saved);
+            } else {
+                // Seed with the real half marathon + a couple recent examples
+                runs = [
+                    {
+                        id: Date.now(),
+                        date: '2026-04-12',
+                        distance: 12.83,
+                        timeMin: 96,
+                        elevation: 348,
+                        notes: 'First half marathon! Strong finish. Felt powerful the whole way. Great day.'
+                    },
+                    {
+                        id: Date.now() + 1,
+                        date: '2026-06-05',
+                        distance: 4.5,
+                        timeMin: 38,
+                        elevation: 95,
+                        notes: 'Easy recovery run after gym. Focused on cadence and relaxed shoulders.'
+                    },
+                    {
+                        id: Date.now() + 2,
+                        date: '2026-06-02',
+                        distance: 6.2,
+                        timeMin: 52,
+                        elevation: 180,
+                        notes: 'Solid tempo effort on the second half. Pushed but controlled.'
+                    }
+                ];
+                saveRuns();
+            }
+        }
 
-      <h3>2. State description and observables</h3>
-      <h4>Classical state</h4>
-      <p>
-        For a single particle in classical mechanics, the complete microscopic state at time t is given by its position r(t) and momentum p(t). As time evolves, the particle traces out a deterministic trajectory
-      </p>
-      <pre>(r(t), p(t))</pre>
-      <p>
-        <em></em> \( (\mathbf r(t), \mathbf p(t)) \) in phase space.
-      </p>
-      <p>
-        in phase space. Any measurable quantity ("observable") is represented by a real-valued function of p and q (or p and r), for example
-      </p>
-      <pre>A(p, q)</pre>
-      <p>
-        <em></em> \( A(p,q) \).
-      </p>
+        function saveRuns() {
+            localStorage.setItem('sam_runs', JSON.stringify(runs));
+        }
 
-      <h4>Quantum state</h4>
-      <p>
-        In quantum mechanics, the state is encoded in a complex-valued wave function Psi(r, t) that belongs to a Hilbert space (a space of square-integrable functions). The wave function must be normalized:
-      </p>
-      <pre>∫ |Psi(r, t)|^2 d^3r = 1</pre>
-      <p>
-        <em></em> \( \displaystyle \int |\Psi(\mathbf r,t)|^2 \, d^3 r = 1 \).
-      </p>
-      <p>
-        Observables are no longer simple functions of (p, q); instead, each observable is represented by a Hermitian operator Â acting on wave functions. For example, in the position representation:
-      </p>
-      <pre>x̂ acts as: (x̂ Psi)(x) = x * Psi(x)
+        function formatPace(minutesPerMile) {
+            const whole = Math.floor(minutesPerMile);
+            const seconds = Math.round((minutesPerMile - whole) * 60);
+            return `${whole}:${seconds.toString().padStart(2, '0')}`;
+        }
 
- p̂_x acts as: (p̂_x Psi)(x) = -i * hbar * dPsi/dx</pre>
-      <p>
-        <em></em> \( (\hat x\Psi)(x) = x\Psi(x),\; (\hat p_x \Psi)(x) = -i\hbar \dfrac{d\Psi}{dx} \).
-      </p>
-      <p>
-        The expectation value (average outcome over many identically prepared systems) of an observable Â in state Psi is
-      </p>
-      <pre><Â> = ∫ Psi*(r, t) * (Â Psi(r, t)) d^3r</pre>
-      <p>
-        <em></em> \( \langle \hat A \rangle = \displaystyle \int \Psi^*(\mathbf r,t) (\hat A\Psi(\mathbf r,t))\, d^3 r \).
-      </p>
-      <p>
-        where Psi* is the complex conjugate of Psi. This replaces the classical idea of "just plug the current (p, q) into A(p, q)."
-      </p>
+        function calculatePace(distance, timeMin) {
+            if (!distance || distance === 0) return 0;
+            return timeMin / distance;
+        }
 
-      <h3>3. Uncertainty and determinism</h3>
-      <h4>Classical determinism</h4>
-      <p>
-        In classical mechanics, if you know the exact initial conditions (r(0), p(0)) and the forces, the future (and past) trajectory (r(t), p(t)) is determined uniquely by Newton's or Hamilton's equations. In principle, you can make position and momentum uncertainties as small as you like; any uncertainty is due to experimental limitations, not the theory itself.
-      </p>
+        function updateStats() {
+            if (runs.length === 0) {
+                document.getElementById('total-miles').textContent = '0';
+                document.getElementById('num-runs').textContent = '0';
+                document.getElementById('avg-pace').textContent = '--:--';
+                document.getElementById('total-elev').textContent = '0';
+                return;
+            }
 
-      <h4>Quantum probabilities and uncertainty</h4>
-      <p>
-        In quantum mechanics, even with a perfectly known wave function Psi(r, t), the outcomes of measurements are generally random. The Born rule states that
-      </p>
-      <pre>Probability density at position r = |Psi(r, t)|^2</pre>
-      <p>
-        <em></em> probability density \( = |\Psi(\mathbf r,t)|^2 \).
-      </p>
-      <p>
-        So the probability to find the particle in a region R of space is
-      </p>
-      <pre>P(R) = ∫_R |Psi(r, t)|^2 d^3r</pre>
-      <p>
-        <em></em> \( P(R) = \displaystyle \int_R |\Psi(\mathbf r,t)|^2\, d^3 r \).
-      </p>
-      <p>
-        There is also a fundamental limit to how sharply we can know pairs of certain observables, such as position x and momentum p_x, expressed by the Heisenberg Uncertainty Principle. If σ_x is the standard deviation of position measurements and σ_p is the standard deviation of momentum measurements in a given state, then
-      </p>
-      <pre>σ_x * σ_p ≥ hbar / 2</pre>
-      <p>
-        <em></em> \( \sigma_x \sigma_p \geq \dfrac{\hbar}{2} \).
-      </p>
-      <p>
-        This is not just a statement about imperfect experiments; it comes from the non-commuting operator structure
-      </p>
-      <pre>[x̂, p̂_x] = x̂ p̂_x - p̂_x x̂ = i * hbar</pre>
-      <p>
-        <em></em> \( [\hat x,\hat p_x] = \hat x\hat p_x - \hat p_x\hat x = i\hbar \).
-      </p>
-      <p>
-        built into quantum theory.
-      </p>
+            const totalMiles = runs.reduce((sum, r) => sum + r.distance, 0);
+            const totalElev = runs.reduce((sum, r) => sum + (r.elevation || 0), 0);
+            const numRuns = runs.length;
 
-      <h3>4. Particle behavior and wave–particle duality</h3>
-      <h4>Classical picture</h4>
-      <p>
-        Classical physics treats particles and waves as distinct kinds of objects. A particle has a well-defined position and momentum; a wave (e.g., on a string or in an electromagnetic field) is extended in space and described by a field amplitude obeying a wave equation.
-      </p>
+            // Average pace (weighted by distance)
+            let totalTime = 0;
+            let totalDistForPace = 0;
+            runs.forEach(r => {
+                if (r.distance > 0) {
+                    totalTime += r.timeMin;
+                    totalDistForPace += r.distance;
+                }
+            });
+            const avgPaceMin = totalDistForPace > 0 ? totalTime / totalDistForPace : 0;
 
-      <h4>Quantum wave–particle duality</h4>
-      <p>
-        In quantum mechanics, microscopic entities (electrons, photons, atoms) exhibit both particle-like and wave-like behavior, depending on the experiment. The wave-like aspect is encoded in the wave function Psi, while individual detection events appear as localized "clicks" in a detector.
-      </p>
-      <p>
-        The de Broglie relation connects a particle's momentum p to its wavelength λ and wave vector k:
-      </p>
-      <pre>p = h / λ = hbar * k</pre>
-      <p>
-        <em></em> \( p = \dfrac{h}{\lambda} = \hbar k \).
-      </p>
-      <p>
-        This relation has no analog in classical mechanics, where assigning a wavelength to, say, a single baseball's center-of-mass motion is not part of the theory.
-      </p>
+            document.getElementById('total-miles').textContent = totalMiles.toFixed(1);
+            document.getElementById('num-runs').textContent = numRuns;
+            document.getElementById('avg-pace').textContent = avgPaceMin > 0 ? formatPace(avgPaceMin) : '--:--';
+            document.getElementById('total-elev').textContent = Math.round(totalElev);
+        }
 
-      <h3>5. Quantization of observables</h3>
-      <h4>Classical: continuous energies</h4>
-      <p>
-        Many classical observables can take any real value compatible with constraints. For a one-dimensional harmonic oscillator with mass m and angular frequency ω, the classical energy is
-      </p>
-      <pre>E = p^2 / (2m) + (1/2) * m * ω^2 * x^2</pre>
-      <p>
-        <em></em> \( E = \dfrac{p^2}{2m} + \dfrac{1}{2}m\omega^2 x^2 \).
-      </p>
-      <p>
-        Here x is position and p is momentum. For a given oscillator, E can be any non-negative real number; there is no built-in restriction to certain discrete values.
-      </p>
+        function renderRunsTable() {
+            const tbody = document.getElementById('runs-tbody');
+            tbody.innerHTML = '';
 
-      <h4>Quantum: discrete energy levels</h4>
-      <p>
-        In quantum mechanics, the same harmonic oscillator is described by a Hamiltonian operator Â_H whose eigenvalues are <strong>quantized</strong>. Solving the time-independent Schrödinger equation
-      </p>
-      <pre>Â_H * psi_n(x) = E_n * psi_n(x)</pre>
-      <p>
-        <em></em> \( \hat H \psi_n(x) = E_n \psi_n(x) \).
-      </p>
-      <p>
-        yields discrete energy eigenvalues:
-      </p>
-      <pre>E_n = hbar * ω * (n + 1/2),   for n = 0, 1, 2, ...</pre>
-      <p>
-        <em></em> \( E_n = \hbar\omega\left(n + \tfrac12\right),\; n = 0,1,2,\dots \).
-      </p>
-      <p>
-        The lowest energy ("ground state") corresponds to n = 0 and has energy
-      </p>
-      <pre>E_0 = (1/2) * hbar * ω</pre>
-      <p>
-        <em></em> \( E_0 = \tfrac12 \hbar\omega \).
-      </p>
-      <p>
-        This nonzero ground-state energy, often called "zero-point energy," is purely quantum: classically, the oscillator could sit motionless at x = 0, p = 0 with E = 0.
-      </p>
+            // Sort newest first
+            const sortedRuns = [...runs].sort((a, b) => new Date(b.date) - new Date(a.date));
 
-      <h3>6. Classical mechanics as a limit of quantum mechanics</h3>
-      <p>
-        Conceptually, quantum mechanics is more fundamental. Classical mechanics emerges as an excellent approximation in situations where the action S (roughly, a characteristic scale of momentum × distance or energy × time) is much larger than Planck's constant hbar:
-      </p>
-      <pre>S >> hbar</pre>
-      <p>
-        <em></em> \( S \gg \hbar \).
-      </p>
-      <p>
-        In this "classical limit," several things happen:
-      </p>
-      <ul>
-        <li>Quantum interference between very different paths tends to cancel; the dominant contribution comes from paths near the classical trajectory (this is the stationary-phase idea in the path-integral formulation).</li>
-        <li>Wave packets can remain relatively narrow in position and momentum over relevant timescales, so a single peak in |Psi(r, t)|^2 approximately follows a Newtonian trajectory.</li>
-        <li>Quantized spectra (like E_n = hbar * ω * (n + 1/2)) become so closely spaced that they appear continuous on macroscopic energy scales.</li>
-      </ul>
-      <p>
-        Thus, while classical and quantum mechanics look very different at the level of states, observables, and probabilities, they are connected by the correspondence principle: quantum predictions reduce to classical ones in the appropriate limit of large quantum numbers or large actions compared to hbar.
-        <br>
-        <em>LaTeX reminder:</em> \( E_n = \hbar\omega(n+\tfrac12) \), \( S \gg \hbar \), and classical behavior emerges as quantum numbers \( n \to \infty \).
-      </p>
+            sortedRuns.forEach(run => {
+                const pace = calculatePace(run.distance, run.timeMin);
+                const paceStr = pace > 0 ? formatPace(pace) : '--:--';
 
-      <h3>Worked micro‑example: one particle in a box vs a classical bead</h3>
-      <p>Consider a 1D box of length \(L\).</p>
-      <ul>
-        <li><strong>Classical bead:</strong> It bounces left‑right with some speed \(v\). At any time we know its exact position \(x(t)\). Energy \(E = \tfrac{1}{2}mv^2\) can be any positive value.</li>
-        <li><strong>Quantum particle:</strong> Allowed stationary states are standing waves with wavelengths \(\lambda_n = 2L/n\), \(n=1,2,3,\dots\). Energies are \(E_n \propto n^2\). Probability density is \(|\psi_n(x)|^2\), which has nodes and antinodes.</li>
-      </ul>
-      <p>As \(n\) becomes large, \(|\psi_n(x)|^2\) oscillates rapidly and its average approaches a constant over the box—matching the uniform classical distribution for a bead that spends equal time at each position. This concrete picture is your mental bridge from waves back to trajectories.</p>
-    </section>
+                const row = document.createElement('tr');
+                row.className = 'run-row border-b border-zinc-800 last:border-b-0';
+                
+                row.innerHTML = `
+                    <td class="py-4 px-6 font-medium text-sm">${new Date(run.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</td>
+                    <td class="py-4 px-4 text-right font-mono font-semibold tabular-nums">${run.distance.toFixed(2)}</td>
+                    <td class="py-4 px-4 text-right font-mono text-sm text-zinc-300">${Math.floor(run.timeMin)}:${(run.timeMin % 1 * 60).toFixed(0).padStart(2, '0')}</td>
+                    <td class="py-4 px-4 text-right">
+                        <span class="pace-badge">${paceStr}</span>
+                    </td>
+                    <td class="py-4 px-4 text-right hidden md:table-cell text-sm text-zinc-400">${run.elevation || 0} ft</td>
+                    <td class="py-4 px-6 text-sm text-zinc-400 hidden lg:table-cell max-w-[220px] truncate">${run.notes || ''}</td>
+                    <td class="py-4 px-2 text-right">
+                        <button onclick="deleteRun(${run.id})" class="text-zinc-500 hover:text-red-400 transition-colors w-8 h-8 flex items-center justify-center">
+                            <i class="fa-solid fa-trash fa-sm"></i>
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
 
-    <section>
-      <h2>From variance–covariance matrices to density matrices (actuarial and MPT view)</h2>
-      <p><strong>Section summary:</strong> This section translates between two languages: (1) standard actuarial / MPT models of portfolio risk using means and variance–covariance matrices, and (2) a quantum-style description using wave functions and density matrices.</p>
-      <p>This section connects standard actuarial / modern portfolio theory (MPT) language to a quantum-style description of portfolios. Informally: the classical variance–covariance matrix becomes a density matrix, and instead of running Stan simulations over a parameter vector, we treat the whole portfolio as a wave function in a Hilbert space of market states.</p>
+        function addNewRun(e) {
+            e.preventDefault();
+            
+            const date = document.getElementById('run-date').value;
+            const distance = parseFloat(document.getElementById('run-distance').value);
+            const timeMin = parseFloat(document.getElementById('run-time').value);
+            const elevation = parseInt(document.getElementById('run-elev').value) || 0;
+            const notes = document.getElementById('run-notes').value.trim();
 
-      <h3>Classical setup: portfolio as a random variable</h3>
-      <p>In MPT, we model a vector of (continuously compounded) returns over a short horizon as</p>
-      <pre>R = (R_1, ..., R_n)^T</pre>
-      <p><em></em> \( R = (R_1,\dots,R_n)^\top \).</p>
-      <p>The key inputs are:</p>
-      <ul>
-        <li>Mean vector \(\mu = \mathbb{E}[R]\).</li>
-        <li>Variance–covariance matrix \(\Sigma = \operatorname{Cov}(R)\).</li>
-      </ul>
-      <p>For a portfolio with weight vector</p>
-      <pre>w = (w_1, ..., w_n)^T</pre>
-      <p>the portfolio return is the scalar random variable</p>
-      <pre>R_p = w^T R</pre>
-      <p><em></em> \( R_p = w^\top R \).</p>
-      <p>Its expected value and variance are</p>
-      <pre>E[R_p] = w^T μ
- Var(R_p) = w^T Σ w</pre>
-      <p><em></em> \( \mathbb{E}[R_p] = w^\top \mu \), \( \operatorname{Var}(R_p) = w^\top \Sigma w \).</p>
-      <p>Stan, or any other Bayesian engine, typically parameterizes a model for \(R\) (e.g., multivariate normal with parameters \(\mu, \Sigma\)), then samples from the posterior \(p(\mu,\Sigma \mid \text{data})\). Risk measures like VaR/TVaR are computed by simulating paths of \(R\) under the fitted distribution.</p>
+            if (!date || !distance || !timeMin) {
+                alert("Please fill out date, distance, and time.");
+                return;
+            }
 
-      <h3>Step 1: interpret Σ as an expectation under a density matrix</h3>
-      <p>In quantum notation, a density matrix \(\rho\) is a positive semidefinite, Hermitian matrix with unit trace that encodes probabilities and correlations over a Hilbert space. For our portfolio state space, take a finite-dimensional Hilbert space with orthonormal basis vectors</p>
-      <pre>|e_1>, ..., |e_n></pre>
-      <p><em></em> \( |e_1\rangle, \dots, |e_n\rangle \).</p>
-      <p>Think of \(|e_i\rangle\) as the “pure state” where you are fully exposed to asset \(i\) (one-hot position). A classical covariance matrix \(\Sigma\) can be embedded as the <em>second moment operator</em></p>
-      <pre>Σ_ij = E[(R_i - μ_i)(R_j - μ_j)]</pre>
-      <p><em></em> \( \Sigma_{ij} = \mathbb{E}[(R_i - \mu_i)(R_j - \mu_j)] \).</p>
-      <p>If we define an operator \(\hat{R}\) of centered returns such that</p>
-      <pre>(R_i - μ_i) ↔ component i of operator R̂</pre>
-      <p>and introduce a density matrix \(\rho\) over the \(|e_i\rangle\) basis, the covariance can be written as the quantum expectation</p>
-      <pre>Σ = E[(R - μ)(R - μ)^T]  ≈  Tr(ρ R̂ R̂^T)</pre>
-      <p><em></em> \( \Sigma \approx \operatorname{Tr}(\rho \, \hat R \hat R^\top) \).</p>
-      <p>Here \(\rho\) plays the role of a generalized probability distribution over market states. The classical variance–covariance matrix is then a specific <strong>moment</strong> of the density matrix with respect to the return operator.</p>
+            const newRun = {
+                id: Date.now(),
+                date: date,
+                distance: distance,
+                timeMin: timeMin,
+                elevation: elevation,
+                notes: notes
+            };
 
-      <h3>Step 2: portfolio as a wave function rather than a point in weight space</h3>
-      <p>Instead of treating the portfolio as a fixed weight vector \(w\), we treat it as a <strong>state vector (wave function)</strong> in the same Hilbert space:</p>
-      <pre>|ψ> = ∑_i ψ_i |e_i></pre>
-      <p><em></em> \( |\psi\rangle = \sum_i \psi_i |e_i\rangle \).</p>
-      <p>Classically, weights \(w_i\) are real and satisfy \(\sum_i w_i = 1\). In the quantum analogue, we allow complex amplitudes \(\psi_i\) satisfying the normalization condition</p>
-      <pre>∑_i |ψ_i|^2 = 1</pre>
-      <p><em></em> \( \sum_i |\psi_i|^2 = 1 \).</p>
-      <p>Interpretation in actuarial/MPT language:</p>
-      <ul>
-        <li>\(|\psi_i|^2\) is the “probability weight” that the portfolio is in a configuration aligned with asset \(i\) (analogous to \(w_i\), but now probabilistic rather than deterministic).</li>
-        <li>The <strong>phase</strong> of \(\psi_i\) (its complex argument) captures relational structure that has no classical analogue: how exposures interfere or reinforce across assets, similar to cross terms in factor models but encoded at the level of amplitudes.</li>
-      </ul>
-      <p>Given an observable operator \(\hat{O}\) (e.g., a payoff operator, or a risk operator), its “portfolio level” expected value in state \(|\psi\rangle\) is</p>
-      <pre><O>_ψ = <ψ| Ô |ψ></pre>
-      <p><em></em> \( \langle \hat O \rangle_\psi = \langle \psi | \hat O | \psi \rangle \).</p>
-      <p>Classically, this corresponds to integrating \(O\) against a probability density over return scenarios; here, the density matrix \(\rho = |\psi\rangle\langle\psi|\) (for a pure state) replaces the scenario distribution.</p>
+            runs.push(newRun);
+            saveRuns();
+            renderRunsTable();
+            updateStats();
+            hideAddRunModal();
+            
+            // Reset form
+            document.getElementById('run-form').reset();
+            
+            // Fun coach message
+            if (distance >= 10) {
+                showToast("Big mileage day, legend. That's how we build.");
+            } else if (distance >= 5) {
+                showToast("Solid work, soldier. Logged and building.");
+            } else {
+                showToast("Every mile counts. Great job showing up.");
+            }
+        }
 
-      <h3>Step 3: replacing Stan simulations with Schrödinger-like evolution</h3>
-      <p>Stan explores the posterior of parameters via Markov chain Monte Carlo (MCMC):</p>
-      <pre>θ_(t+1) ~ K(· | θ_t)
- θ = model parameters (μ, Σ, vol surfaces, etc.)</pre>
-      <p><em></em> \( \theta_{t+1} \sim K(\cdot \mid \theta_t) \).</p>
-      <p>By contrast, in the wave-function picture we evolve the <em>state</em> itself under a Hamiltonian \(\hat{H}\) that encodes the economic dynamics (drift, volatility, market price of risk):</p>
-      <pre>i * hbar * d|ψ_t>/dt = Ĥ |ψ_t></pre>
-      <p><em></em> \( i\hbar \dfrac{d}{dt} |\psi_t\rangle = \hat H |\psi_t\rangle \).</p>
-      <p>Instead of averaging over many parameter draws \(\theta\) and simulating many return paths, we treat the portfolio as a quantum state that “diffuses” through market states according to \(\hat H\). Risk measures become functionals of \(\rho_t = |\psi_t\rangle\langle\psi_t|\):</p>
-      <pre>Expected payoff at time T   = Tr(ρ_T Π̂)
- Risk operator (e.g., squared loss) = L̂
- Expected risk                 = Tr(ρ_T L̂)</pre>
-      <p><em></em> \( \mathbb{E}[\text{payoff}] = \operatorname{Tr}(\rho_T \hat \Pi) \), \( \mathbb{E}[\text{risk}] = \operatorname{Tr}(\rho_T \hat L) \).</p>
-      <p>Here \(\hat{\Pi}\) and \(\hat{L}\) are linear operators representing payoffs and loss functions on the state space. The density matrix \(\rho_T\) encodes the full correlation and “coherence” structure of the portfolio across assets.</p>
+        function deleteRun(id) {
+            if (!confirm("Delete this run from your log?")) return;
+            
+            runs = runs.filter(r => r.id !== id);
+            saveRuns();
+            renderRunsTable();
+            updateStats();
+        }
 
-      <h3>Black–Scholes as a concrete bridge</h3>
-      <p>In the standard Black–Scholes framework, a stock price \(S_t\) under the risk‑neutral measure follows geometric Brownian motion</p>
-      <pre>dS_t = r S_t dt + σ S_t dW_t</pre>
-      <p><em></em> \( dS_t = r S_t\,dt + \sigma S_t\,dW_t \).</p>
-      <p>Option price \(V(S,t)\) satisfies the Black–Scholes partial differential equation (PDE):</p>
-      <pre>∂V/∂t + (1/2) σ^2 S^2 ∂^2V/∂S^2 + r S ∂V/∂S - r V = 0</pre>
-      <p><em></em> \( \frac{\partial V}{\partial t} + \frac{1}{2}\sigma^2 S^2 \frac{\partial^2 V}{\partial S^2} + r S \frac{\partial V}{\partial S} - r V = 0 \).</p>
-      <p>Through a log‑transform \(x = \ln S\) and a change of variables, this PDE maps to a <strong>backwards heat equation</strong>, which is mathematically close to an imaginary‑time Schrödinger equation. In quantum notation, we can write something like</p>
-      <pre>∂φ/∂τ = (1/2) σ^2 ∂^2φ/∂x^2 - V_eff(x) φ</pre>
-      <p><em></em> \( \frac{\partial \phi}{\partial \tau} = \frac{1}{2}\sigma^2 \frac{\partial^2 \phi}{\partial x^2} - V_\text{eff}(x) \phi \).</p>
-      <p>After Wick-rotating time (\(t → -iτ\)), this is analogous to</p>
-      <pre>i * hbar * ∂ψ/∂t = Ĥ ψ</pre>
-      <p>The <strong>quantum analogy</strong> is:</p>
-      <ul>
-        <li>Stock price log‑space \(x\) ↔ position coordinate.</li>
-        <li>Option price function \(V(S,t)\) ↔ wave function \(\psi(x,t)\) or propagator.</li>
-        <li>Volatility \(σ\) ↔ diffusion/kinetic term strength in \(\hat H\).</li>
-        <li>Interest rate \(r\) and discounting ↔ potential term / energy shift.</li>
-      </ul>
-      <p>In actuarial terms, instead of sampling \(S_T\) paths via Monte Carlo (as Stan would do for a richer stochastic volatility model), we solve a Schrödinger‑like evolution for \(\psi\) and then price options as expectation values under the resulting density matrix \(\rho_T\). For instance, with payoff operator \(\hat{\Pi}_\text{call}\) corresponding to \((S_T - K)^+\), we have</p>
-      <pre>Call price at t=0 ≈ e^{-rT} Tr(ρ_T Π̂_call)</pre>
-      <p><em></em> \( C_0 \approx e^{-rT} \, \operatorname{Tr}(\rho_T \hat \Pi_\text{call}) \).</p>
-      <p>Classically, \(\rho_T\) reduces to a scalar risk‑neutral density \(f_{S_T}(s)\) and</p>
-      <pre>C_0 = e^{-rT} ∫ (s - K)^+ f_{S_T}(s) ds</pre>
-      <p><em></em> \( C_0 = e^{-rT} \int (s - K)^+ f_{S_T}(s)\,ds \).</p>
-      <p>The density matrix generalization keeps the <em>same pricing logic</em> but allows you to:</p>
-      <ul>
-        <li>Represent multi‑asset dependencies and path‑memory effects through off‑diagonal terms.</li>
-        <li>Encode regime switching and latent factors as different components of \(\rho\) instead of separate mixture models.</li>
-      </ul>
+        function showAddRunModal() {
+            const modal = document.getElementById('add-run-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            
+            // Set today's date as default if not already
+            const dateInput = document.getElementById('run-date');
+            if (!dateInput.value) {
+                const today = new Date().toISOString().split('T')[0];
+                dateInput.value = today;
+            }
+            
+            // Focus first input
+            setTimeout(() => {
+                document.getElementById('run-distance').focus();
+            }, 300);
+        }
 
-      <h3>Putting it all together in actuarial language:</h3>
-      
-      <ul>
-        <li>The classical variance–covariance matrix \(\Sigma\) summarizes <em>second moments</em> of asset returns under a probability law. In the quantum view, a <strong>density matrix</strong> \(\rho\) carries the same information and more: it encodes both marginal variances and cross‑asset coherence (off‑diagonal structure).</li>
-        <li>A fixed portfolio weight vector \(w\) corresponds to a <strong>pure state</strong> \(|\psi\rangle\), with \(\rho = |\psi\rangle\langle\psi|\). Mixed/posterior uncertainty over \(w\) and model parameters becomes a mixed density \(\rho = \sum_k p_k |\psi_k\rangle\langle\psi_k|\).</li>
-        <li>Where Stan would <em>sample</em> from \(p(\mu,\Sigma,\ldots \mid \text{data})\) and average risk measures, the wave‑function approach <em>evolves</em> \(\rho_t\) forward under an operator \(\hat H\) and then computes expectations as traces \(\operatorname{Tr}(\rho_T \hat O)\).</li>
-        <li>Black–Scholes and its PDE are already one step away from a Schrödinger equation; the density‑matrix reinterpretation is mathematically natural and gives a unified language for path‑dependent and multi‑asset risks.</li>
-      </ul>
-      <p>So “replacing the variance–covariance matrix with a density matrix and turning the whole portfolio into a wave function” means: elevate the portfolio from a single random variable with fixed weights and Gaussian covariance to a full quantum‑style state over market configurations, where risk, price, and capital requirements become expectation values of linear operators acting on \(\rho\). The algebra looks like Black–Scholes plus MPT, but written in the notation of quantum mechanics instead of purely classical probability.</p>
+        function hideAddRunModal() {
+            const modal = document.getElementById('add-run-modal');
+            modal.classList.remove('flex');
+            modal.classList.add('hidden');
+        }
 
-      <h3>Concrete toy example: 2‑asset portfolio as a 2‑dimensional Hilbert space</h3>
-      <p>Take two assets, A and B. Classical setup:</p>
-      <pre>
-R = (R_A, R_B)^T
-μ = (μ_A, μ_B)^T
-Σ = [[σ_A^2,  ρ σ_A σ_B],
-     [ρ σ_A σ_B, σ_B^2]]
-      </pre>
-      <p>Weights: \(w = (w_A, w_B)^T\), \(w_A + w_B = 1\).</p>
-      <p>Quantum‑style setup:</p>
-      <ul>
-        <li>Basis: \(|A\rangle = (1,0)^T\), \(|B\rangle = (0,1)^T\).</li>
-        <li>State: \(|\psi\rangle = \sqrt{w_A}\,|A\rangle + e^{i\phi}\sqrt{w_B}\,|B\rangle\).</li>
-        <li>Density: \(\rho = |\psi\rangle\langle\psi|\).</li>
-      </ul>
-      <p>If \(\hat R\) is diagonal with entries \(\mu_A, \mu_B\), then</p>
-      <pre>
-<R̂>_ψ = Tr(ρ R̂) = w_A μ_A + w_B μ_B  (phases cancel here)
-      </pre>
-      <p>But if \(\hat R\) has off‑diagonal entries (e.g., capturing some coherent cross‑term), then \(e^{i\phi}\) matters: relative phase can increase or decrease the effective cross‑term, like constructive/destructive interference between factor loadings. This is where quantum language gives you extra “knobs” beyond \(\Sigma\).</p>
+        // Goals
+        let goals = [];
 
-      <details class="qc-deepdive">
-        <summary>Deep dive: density matrices as "variance–covariance + phase"</summary>
-        <div>
-          <p>For an \(n\)-dimensional system, a density matrix \(\rho\) has \(n^2\) real degrees of freedom (before trace and positivity constraints), whereas a covariance matrix has only \(n(n+1)/2\). The extra information sits in the <strong>off‑diagonal complex phases</strong>.</p>
-          <p>In components,
-          \[
-            \rho =
-            \begin{pmatrix}
-              \rho_{11} & \rho_{12} & \dots \\
-              \rho_{21} & \rho_{22} & \dots \\
-              \vdots     & \vdots     & \ddots
-            \end{pmatrix},
-          \]
-          with \(\rho_{ji} = \rho_{ij}^*\). The diagonal entries \(\rho_{ii}\) behave like probabilities (non‑negative, summing to 1), and the off‑diagonals \(\rho_{ij}\) describe <em>coherence</em>—correlations that can generate interference terms in expectation values
-          \[
-            \langle \hat O \rangle = \operatorname{Tr}(\rho \hat O).
-          \]
-          When decoherence destroys these off‑diagonals, \(\rho\) becomes diagonal and reduces to an ordinary probability vector, much like a classical mixed portfolio that has lost all phase information.</p>
-        </div>
-      </details>
+        function loadGoals() {
+            const saved = localStorage.getItem('sam_goals');
+            if (saved) {
+                goals = JSON.parse(saved);
+            } else {
+                goals = [
+                    "Hit 25 miles in a single week",
+                    "Complete a 10-mile long run before August"
+                ];
+                saveGoals();
+            }
+            renderGoals();
+        }
 
-      <h3>Side note: the fundamental forces that hold all of this together</h3>
-      <p>Whenever we talk about particles, atoms, or quantum computers built on solid‑state devices, we are implicitly using the four fundamental interactions of nature. In plain language:</p>
-      <ul>
-        <li><strong>Strong force (strong nuclear force):</strong> This is the force that binds quarks together into protons and neutrons, and then binds protons and neutrons together in atomic nuclei. It is described by quantum chromodynamics (QCD) with gluons as the force carriers. It is extremely strong at short distances (inside nuclei) and effectively zero at everyday scales.</li>
-        <li><strong>Electromagnetic force:</strong> This is the force between electrically charged particles, described by quantum electrodynamics (QED) with photons as the carriers. It is responsible for chemistry, materials, light, electricity, and the behavior of electrons in atoms, molecules, and semiconductor devices (including the chips used in classical and quantum computers).</li>
-        <li><strong>Weak nuclear force (often just called the weak force):</strong> This governs certain kinds of radioactive decay and processes that change one type of elementary particle into another (for example, turning a neutron into a proton, electron, and antineutrino in beta decay). It is short‑ranged and is mediated by the massive W<sup>±</sup> and Z<sup>0</sup> bosons.</li>
-        <li><strong>Gravity:</strong> At the quantum field theory level it is not yet unified with the others, but classically it is the familiar attraction between masses. It is by far the weakest at particle scales but dominates at astronomical scales (planets, stars, galaxies).</li>
-      </ul>
-      <p>Sometimes textbooks casually say “nuclear force” to mean “the force that holds the nucleus together.” In modern language this is mostly the <strong>residual strong force</strong> between protons and neutrons—an emergent, short‑range effect of the underlying strong interaction between quarks and gluons. Electromagnetism, by contrast, tends to push positively charged protons apart, so the strong force must overcome that repulsion inside the nucleus.</p>
-    </section>
+        function saveGoals() {
+            localStorage.setItem('sam_goals', JSON.stringify(goals));
+        }
 
-   <div class="container">
-   <iframe
-  type="text/html"
-  width="300"
-  height="500"
-  frameborder="0"
-  style="max-width:100%"
-  src="https://read.amazon.com/kp/card?asin=B0FL7DL75H&preview=newtab&linkCode=kpe"
-></iframe>
+        function renderGoals() {
+            const container = document.getElementById('goals-list');
+            container.innerHTML = '';
+            
+            if (goals.length === 0) {
+                const empty = document.createElement('div');
+                empty.className = 'text-xs text-zinc-500 italic px-1';
+                empty.textContent = 'No goals yet. Add one above!';
+                container.appendChild(empty);
+                return;
+            }
+            
+            goals.forEach((goal, index) => {
+                const div = document.createElement('div');
+                div.className = 'flex items-start gap-x-2 group bg-zinc-950 border border-zinc-800 rounded-2xl px-3 py-2 text-sm';
+                div.innerHTML = `
+                    <div class="flex-1 pt-0.5">${goal}</div>
+                    <button onclick="removeGoal(${index})" class="opacity-30 group-hover:opacity-100 text-red-400 hover:text-red-500 transition-all mt-0.5">
+                        <i class="fa-solid fa-times fa-sm"></i>
+                    </button>
+                `;
+                container.appendChild(div);
+            });
+        }
 
-   <section class="consulting-intro" id="consulting">
-      <h2>Consulting: from messy data to defendable decisions</h2>
-      <p>I work with a small number of teams as a hands-on advisor and builder. If you want more than a slide deck—if you want working models, code, and clear risk trade‑offs—this is for you.</p>
-      <div class="consulting-columns">
-        <div class="consulting-col">
-          <h3>Who this is for</h3>
-          <ul>
-            <li>Founders and business leaders who need a <strong>technical co‑pilot</strong> on AI, LLMs, or data infra without hiring a full‑time lead yet.</li>
-            <li>Security and risk leaders who want a <strong>quantum‑aware view</strong> of cryptography, portfolio exposure, or regulatory impact.</li>
-            <li>Product and ops teams sitting on data they <strong>know is valuable</strong> but haven’t turned into models, dashboards, or automation.</li>
-            <li>Educators and content teams who want <strong>clear, technically accurate explainers</strong> on AI and quantum for non‑experts.</li>
-          </ul>
-        </div>
-        <div class="consulting-col">
-          <h3>What you get</h3>
-          <ul>
-            <li><strong>Deep‑dive working session</strong> (60–90 minutes) to map your data, constraints, and upside into a concrete plan.</li>
-            <li><strong>Written roadmap</strong> with 30/90‑day actions: architecture sketches, tool choices, and model priorities.</li>
-            <li><strong>Hands‑on builds</strong> where we actually ship: ETL pipelines, notebooks, LLM agents, or risk models in code.</li>
-            <li><strong>Executive‑ready notes</strong> explaining risk, ROI, and limitations in plain English for boards and non‑technical leaders.</li>
-          </ul>
-          <p class="consulting-note">Typical engagements range from a one‑off strategy sprint to a few days per month of fractional data/AI leadership.</p>
-        </div>
-      </div>
-      <div class="consulting-cta-row">
-        <a href="contact.html" class="consulting-cta-primary">Request a consulting call</a>
-        <a href="buy.html" class="consulting-cta-secondary">See current offers &amp; study products</a>
-      </div>
-    </section>
+        function addGoal(e) {
+            e.preventDefault();
+            const input = document.getElementById('goal-input');
+            const value = input.value.trim();
+            
+            if (!value) return;
+            
+            goals.push(value);
+            saveGoals();
+            renderGoals();
+            input.value = '';
+            
+            showToast("Goal added. Now go make it happen.");
+        }
 
-  </div>
-<script src="//code.tidio.co/wzjrimf18zj7d7ek3qrqlipusccughus.js" async></script>
- 
-  </main>
-  <script>
-  // Auto-highlight the current page
-  const current = location.pathname.split('/').pop() || 'index.html';
-  document.querySelectorAll('.main-nav a').forEach(link => {
-    const href = link.getAttribute('href').split('/').pop();
-    if (href === current) link.classList.add('active');
-  });
+        function removeGoal(index) {
+            goals.splice(index, 1);
+            saveGoals();
+            renderGoals();
+        }
 
-  // Mobile toggle (if you want it)
-  document.querySelector('.nav-toggle')?.addEventListener('click', () => {
-    document.querySelector('.main-nav').classList.toggle('open');
-  });
-  
-</script>
-<script src="//code.tidio.co/wzjrimf18zj7d7ek3qrqlipusccughus.js" async></script>
+        function promptForPR(type) {
+            const time = prompt(`What's your current ${type} PR? (e.g. 24:30)`);
+            if (time) {
+                showToast(`${type} PR updated to ${time}. We'll track it properly soon.`);
+                
+                const cards = document.querySelectorAll('#milestones .bg-zinc-900');
+                if (cards[1]) {
+                    cards[1].innerHTML = `
+                        <div class="text-emerald-400 text-xs tracking-[1.5px] font-semibold">${type} PR</div>
+                        <div class="mt-1 font-display text-3xl font-semibold tracking-tight">${time}</div>
+                        <div class="text-sm text-zinc-400 mt-1">Updated just now</div>
+                        
+                        <button onclick="promptForPR('${type}')" class="mt-4 text-xs flex items-center gap-x-1.5 text-emerald-400 hover:text-emerald-300">
+                            <i class="fa-solid fa-edit fa-sm"></i> 
+                            <span class="font-medium">Update again</span>
+                        </button>
+                    `;
+                }
+            }
+        }
+
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.className = `fixed bottom-6 left-1/2 -translate-x-1/2 bg-zinc-800 border border-zinc-700 text-sm px-5 py-3 rounded-2xl shadow-xl flex items-center gap-x-3 z-[200]`;
+            toast.innerHTML = `
+                <span>${message}</span>
+            `;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.style.transition = 'all 0.3s ease';
+                toast.style.opacity = '0';
+                setTimeout(() => toast.remove(), 200);
+            }, 2800);
+        }
+
+        function updateStreak() {
+            const streakEl = document.getElementById('streak-count');
+            if (streakEl) streakEl.textContent = '14';
+        }
+
+        function setupKeyboard() {
+            document.addEventListener('keydown', function(e) {
+                if (e.key === '/' && document.activeElement.tagName === 'BODY') {
+                    e.preventDefault();
+                    const modal = document.getElementById('add-run-modal');
+                    if (!modal.classList.contains('hidden')) {
+                        hideAddRunModal();
+                    } else {
+                        showAddRunModal();
+                    }
+                }
+            });
+            
+            document.addEventListener('keypress', function(e) {
+                if (e.key === '?') {
+                    const tips = [
+                        "Recovery is where the adaptation happens. Don't skip the easy days.",
+                        "Your legs are ready. Your mind sometimes needs convincing.",
+                        "Small consistent actions beat occasional heroic efforts.",
+                        "The half marathon proved you have the engine. Now we tune it."
+                    ];
+                    showToast(tips[Math.floor(Math.random() * tips.length)]);
+                }
+            });
+        }
+
+        function initializeApp() {
+            initializeTailwind();
+            loadRuns();
+            renderRunsTable();
+            updateStats();
+            
+            loadGoals();
+            updateStreak();
+            setupKeyboard();
+            
+            if (!sessionStorage.getItem('sam_welcomed')) {
+                setTimeout(() => {
+                    if (runs.length <= 3) {
+                        // showToast("Welcome back, Sam. Let's keep stacking those miles.");
+                    }
+                    sessionStorage.setItem('sam_welcomed', 'true');
+                }, 2200);
+            }
+            
+            document.getElementById('add-run-modal').classList.add('hidden');
+            document.getElementById('add-run-modal').classList.remove('flex');
+            
+            console.log('%c[Sam Running Hub] Simple interactive running tracker ready. Data persists in localStorage.', 'color:#3f3f46');
+        }
+
+        window.onload = initializeApp;
+    </script>
 </body>
-
 </html>
