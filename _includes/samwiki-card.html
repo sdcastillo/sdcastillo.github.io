@@ -1,0 +1,22 @@
+{% assign repo = include.repo %}
+<article class="sw-card" data-search="{{ repo.search | escape }}">
+  <div class="sw-card-top">
+    <h3 class="sw-name"><a href="{{ repo.html_url }}">{{ repo.name }}</a></h3>
+    {% if repo.language != "" %}
+      <span class="sw-lang">{{ repo.language }}</span>
+    {% endif %}
+  </div>
+  {% if repo.badge != "" %}
+    <p class="sw-badge">{{ repo.badge }}</p>
+  {% endif %}
+  <p class="sw-desc" title="{{ repo.description | escape }}">{{ repo.description }}</p>
+  {% if repo.updated != "" %}
+    <p class="sw-meta">Updated {{ repo.updated }}</p>
+  {% endif %}
+  <div class="sw-actions">
+    {% if repo.live_url != "" %}
+      <a class="sw-btn sw-btn-live" href="{{ repo.live_url }}">Live</a>
+    {% endif %}
+    <a class="sw-btn sw-btn-source" href="{{ repo.html_url }}">Source</a>
+  </div>
+</article>

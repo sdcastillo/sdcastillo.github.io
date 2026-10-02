@@ -1,0 +1,133 @@
+---
+layout: default
+title: SamWiki
+description: A public index of math, machine learning, and actuarial projects — demos, source, and notes.
+permalink: /samwiki/
+samwiki: true
+---
+
+<section class="sw-lede" aria-labelledby="sw-about-title">
+  <div class="sw-lede-copy">
+    <h2 id="sw-about-title">The public index</h2>
+    <p>SamWiki is the home index for Sam Castillo’s open-source work in mathematics, machine learning, and actuarial science. Start here when you want a demo, the source, or a write-up, instead of hunting through GitHub.</p>
+    <p>Much of it was built while Sam was a mathematics student at the University of Massachusetts Amherst, on his own time, without computer science department resources. The math is the part meant to stay solid. A lot of the interfaces were spare student pages, and those are the ones being brought up to a shared GitHub Pages look.</p>
+    <p>It is for students, actuaries, and anyone who wants to read the work in the open. A Live link opens a demo on github.io. Source opens the repository. Articles and notebooks stay next to the code they explain.</p>
+    <p>The sections below follow how each project is published today. Search by name, language, or topic. Only public repositories are listed. Also on this site: <a href="https://sdcastillo.github.io/">Home</a>, <a href="https://sdcastillo.github.io/about.html">About</a>, and <a href="https://sdcastillo.github.io/code.html">Code</a>.</p>
+  </div>
+  <aside class="sw-find" aria-labelledby="sw-find-title">
+    <h2 id="sw-find-title">What you’ll find</h2>
+    <ul>
+      <li><strong>Live demos</strong> Pages that are already on github.io.</li>
+      <li><strong>Source</strong> The public GitHub repository for every project listed here.</li>
+      <li><strong>Articles and notebooks</strong> Tutorials and notes that sit beside the code.</li>
+      <li><strong>Static sites</strong> Projects whose Pages interface is still waiting on an upgrade.</li>
+      <li><strong>Libraries and apps</strong> Packages, small tools, and experiments you can read from the repo.</li>
+    </ul>
+  </aside>
+</section>
+
+{% assign live_repos = site.data.public_repos | where: "group", "live" %}
+{% assign static_repos = site.data.public_repos | where: "group", "static" %}
+{% assign tutorial_repos = site.data.public_repos | where: "group", "tutorials" %}
+{% assign library_repos = site.data.public_repos | where: "group", "libraries" %}
+
+<div class="sw-catalog-bar">
+  <div class="sw-toolbar">
+    <label class="sw-search">
+      <span>Search projects</span>
+      <input id="sw-q" type="search" placeholder="Name, language, or topic" autocomplete="off">
+    </label>
+    <p class="sw-result" id="sw-count">{{ site.data.public_repos | size }} public projects</p>
+  </div>
+
+  <nav class="sw-jumps" aria-label="Catalog sections">
+    <a href="#already-live">Already live</a>
+    <a href="#static-sites">Static sites</a>
+    <a href="#tutorials">Tutorials</a>
+    <a href="#libraries">Libraries &amp; apps</a>
+  </nav>
+</div>
+
+<p class="sw-empty" id="sw-empty" hidden>No public projects match that search.</p>
+
+<section class="sw-section" id="already-live">
+  <div class="sw-section-head">
+    <h2>Already live <span class="sw-pill">{{ live_repos | size }}</span></h2>
+    <p>These demos are already on github.io. Open the page, or read the source beside it.</p>
+  </div>
+  <div class="sw-grid">
+    {% for repo in live_repos %}
+      {% include samwiki-card.html repo=repo %}
+    {% endfor %}
+  </div>
+</section>
+
+<section class="sw-section" id="static-sites">
+  <div class="sw-section-head">
+    <h2>Static sites (Pages next) <span class="sw-pill">{{ static_repos | size }}</span></h2>
+    <p>The work is public. The GitHub Pages interface is the part still waiting on an upgrade.</p>
+  </div>
+  <div class="sw-grid">
+    {% for repo in static_repos %}
+      {% include samwiki-card.html repo=repo %}
+    {% endfor %}
+  </div>
+</section>
+
+<section class="sw-section" id="tutorials">
+  <div class="sw-section-head">
+    <h2>Tutorials / notebooks <span class="sw-pill">{{ tutorial_repos | size }}</span></h2>
+    <p>Courses, notebooks, and notes you can read next to the code.</p>
+  </div>
+  <div class="sw-grid">
+    {% for repo in tutorial_repos %}
+      {% include samwiki-card.html repo=repo %}
+    {% endfor %}
+  </div>
+</section>
+
+<section class="sw-section" id="libraries">
+  <div class="sw-section-head">
+    <h2>Libraries &amp; apps <span class="sw-pill">{{ library_repos | size }}</span></h2>
+    <p>Packages, small apps, and experiments. Start from the repository.</p>
+  </div>
+  <div class="sw-grid">
+    {% for repo in library_repos %}
+      {% include samwiki-card.html repo=repo %}
+    {% endfor %}
+  </div>
+</section>
+
+<script>
+(function () {
+  var input = document.getElementById("sw-q");
+  var cards = Array.prototype.slice.call(document.querySelectorAll(".sw-card"));
+  var sections = Array.prototype.slice.call(document.querySelectorAll(".sw-section"));
+  var count = document.getElementById("sw-count");
+  var empty = document.getElementById("sw-empty");
+
+  function apply() {
+    var q = (input.value || "").trim().toLowerCase();
+    var shown = 0;
+    cards.forEach(function (card) {
+      var hay = card.getAttribute("data-search") || "";
+      var ok = !q || hay.indexOf(q) !== -1;
+      card.hidden = !ok;
+      if (ok) shown += 1;
+    });
+    sections.forEach(function (section) {
+      section.hidden = !section.querySelector(".sw-card:not([hidden])");
+    });
+    if (empty) empty.hidden = shown !== 0;
+    if (count) {
+      count.textContent = shown + (shown === 1 ? " public project" : " public projects");
+    }
+  }
+
+  if (!input) return;
+  var initial = new URLSearchParams(window.location.search).get("q");
+  if (initial) input.value = initial;
+  input.addEventListener("input", apply);
+  apply();
+})();
+</script>
