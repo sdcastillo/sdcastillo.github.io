@@ -46,11 +46,17 @@ body.samwiki {
 }
 
 body.samwiki .page-header {
+  text-align: left;
   background-color: var(--sw-navy);
   background-image:
     radial-gradient(900px 380px at 12% 0%, rgba(42, 255, 193, 0.2), transparent 60%),
     radial-gradient(720px 380px at 100% 100%, rgba(107, 83, 255, 0.4), transparent 55%),
     linear-gradient(120deg, #0c1330 0%, #123055 46%, #0f3d45 100%);
+}
+
+body.samwiki .sw-header-inner {
+  max-width: 76rem;
+  margin: 0 auto;
 }
 
 body.samwiki .project-name,
@@ -68,9 +74,10 @@ body.samwiki .project-tagline {
   opacity: 1;
   color: #e7f6f2;
   font-weight: 400;
-  max-width: 38rem;
-  margin-left: auto;
-  margin-right: auto;
+  max-width: 40rem;
+  margin-left: 0;
+  margin-right: 0;
+  line-height: 1.45;
 }
 
 body.samwiki .sw-kicker {
@@ -85,18 +92,27 @@ body.samwiki .sw-kicker {
 
 body.samwiki .sw-nav {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
   gap: 0.5rem;
-  margin: 0.25rem 0 0;
+  margin: 0.35rem 0 0;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+body.samwiki .sw-nav::-webkit-scrollbar {
+  display: none;
 }
 
 body.samwiki .page-header .sw-nav a {
+  flex: 0 0 auto;
   color: #f3fffb;
   text-decoration: none;
   border: 1px solid rgba(243, 255, 251, 0.35);
   border-radius: 999px;
-  padding: 0.45rem 0.95rem;
+  padding: 0.5rem 0.95rem;
   font-size: 0.95rem;
   font-weight: 700;
   line-height: 1.2;
@@ -112,22 +128,36 @@ body.samwiki .page-header .sw-nav a[aria-current="page"] {
 
 @media screen and (min-width: 64em) {
   body.samwiki .page-header {
-    padding: 3.25rem 2rem 2.4rem;
+    padding: 2.6rem 1.75rem 1.7rem;
   }
 
   body.samwiki .main-content {
     max-width: 76rem;
-    padding: 2.1rem 1.75rem 3rem;
+    padding: 1.75rem 1.75rem 3rem;
+  }
+
+  body.samwiki .sw-nav {
+    flex-wrap: wrap;
+    overflow: visible;
   }
 }
 
 @media screen and (max-width: 42em) {
   body.samwiki .page-header {
-    padding: 1.75rem 1rem 1.4rem;
+    padding: 1.35rem 1rem 1.05rem;
+  }
+
+  body.samwiki .main-content {
+    padding: 1.15rem 1rem 2.5rem;
+  }
+
+  body.samwiki .project-name {
+    font-size: 2rem;
   }
 
   body.samwiki .project-tagline {
-    margin-bottom: 1.1rem;
+    margin-bottom: 0.9rem;
+    font-size: 1rem;
   }
 }
 
@@ -141,20 +171,72 @@ body.samwiki .main-content h3 {
   color: #123055;
 }
 
-body.samwiki .sw-intro {
-  max-width: 44rem;
-  font-size: 1.12rem;
-  line-height: 1.55;
-  margin-bottom: 0.4rem;
+body.samwiki .sw-lede {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(15.5rem, 0.75fr);
+  gap: 1.25rem 1.5rem;
+  align-items: start;
 }
 
-body.samwiki .sw-links {
+body.samwiki .sw-lede-copy h2,
+body.samwiki .sw-find h2 {
   margin-top: 0;
-  color: var(--sw-muted);
+  margin-bottom: 0.7rem;
+  letter-spacing: -0.03em;
 }
 
-body.samwiki .sw-links a {
-  font-weight: 700;
+body.samwiki .sw-lede-copy p {
+  max-width: 68ch;
+  margin-bottom: 0.85rem;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #243447;
+}
+
+body.samwiki .sw-lede-copy p:last-child {
+  margin-bottom: 0;
+}
+
+body.samwiki .sw-find {
+  background: #fff;
+  border: 1px solid var(--sw-line);
+  border-radius: 18px;
+  padding: 1.05rem 1.1rem 0.4rem;
+  box-shadow: var(--sw-shadow);
+}
+
+body.samwiki .sw-find ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+body.samwiki .sw-find li {
+  margin: 0;
+  padding: 0.7rem 0;
+  border-top: 1px solid #e5f0ef;
+  color: #314657;
+  font-size: 0.98rem;
+  line-height: 1.4;
+}
+
+body.samwiki .sw-find strong {
+  display: block;
+  margin-bottom: 0.12rem;
+  font-family: Outfit, "Open Sans", sans-serif;
+  font-weight: 600;
+  color: #123055;
+}
+
+body.samwiki .sw-catalog-bar {
+  position: sticky;
+  top: 0;
+  z-index: 4;
+  margin: 1.35rem 0 0;
+  padding: 0.75rem 0 0.7rem;
+  background: rgba(243, 250, 248, 0.94);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(18, 48, 85, 0.08);
 }
 
 body.samwiki .sw-toolbar {
@@ -163,7 +245,7 @@ body.samwiki .sw-toolbar {
   align-items: flex-end;
   justify-content: space-between;
   gap: 0.75rem 1.25rem;
-  margin-top: 1.35rem;
+  margin-top: 0;
 }
 
 body.samwiki .sw-search {
@@ -203,9 +285,20 @@ body.samwiki .sw-result {
 
 body.samwiki .sw-jumps {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 0.45rem;
-  margin: 0.9rem 0 0;
+  margin: 0.75rem 0 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+body.samwiki .sw-jumps::-webkit-scrollbar {
+  display: none;
+}
+
+body.samwiki .sw-jumps a {
+  flex: 0 0 auto;
 }
 
 body.samwiki .sw-jumps a {
@@ -225,7 +318,8 @@ body.samwiki .sw-jumps a:hover {
 }
 
 body.samwiki .sw-section {
-  margin-top: 2.35rem;
+  margin-top: 2.15rem;
+  scroll-margin-top: 7.5rem;
 }
 
 body.samwiki .sw-section-head h2 {
@@ -427,12 +521,18 @@ body.samwiki .site-footer .sw-nav {
   margin-bottom: 0.85rem;
 }
 
+body.samwiki .site-footer .sw-nav {
+  justify-content: center;
+  flex-wrap: wrap;
+  overflow: visible;
+}
+
 body.samwiki .site-footer .sw-nav a {
   color: #123055;
-  background: #fff;
-  border: 1px solid #c5ddd9;
+  background: transparent;
+  border: 0;
   border-radius: 999px;
-  padding: 0.4rem 0.85rem;
+  padding: 0.4rem 0.7rem;
   font-weight: 700;
   text-decoration: none;
 }
@@ -450,9 +550,31 @@ body.samwiki :focus-visible {
   outline-offset: 2px;
 }
 
+@media (max-width: 52em) {
+  body.samwiki .sw-lede {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (max-width: 42em) {
   body.samwiki .sw-actions .sw-btn {
     flex: 1 1 7rem;
+  }
+
+  body.samwiki .sw-card-top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  body.samwiki .sw-lang {
+    max-width: none;
+  }
+
+  body.samwiki .sw-catalog-bar {
+    margin-left: -0.15rem;
+    margin-right: -0.15rem;
+    padding-left: 0.15rem;
+    padding-right: 0.15rem;
   }
 }
 
