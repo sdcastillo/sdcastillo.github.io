@@ -1,10 +1,52 @@
+<section class="sw-manifesto" aria-labelledby="sw-manifesto-title">
+  <p class="sw-manifesto-label">README</p>
+  <h2 id="sw-manifesto-title">We are a team</h2>
+  <p>There’s always someone smarter out there. I know that. My strength is being a people person.</p>
+  <p>When people gather, combine ideas, and form a <strong>team</strong> — and the team’s goals rise above any one person’s goals — that is success. This is <strong>mutually beneficial</strong>.</p>
+  <blockquote>
+    <p>We are not a zero-sum game. We are a cooperative one.</p>
+  </blockquote>
+  <p>Pick a level and test yourself. If a demo is confusing, a note skips a step, or you see a better way, fork the repo and open a pull request. That is you joining the team. The next person gets a clearer path, and so do you.</p>
+  <p class="sw-manifesto-sign">Sam</p>
+</section>
+
+<section class="sw-ladder" aria-labelledby="sw-ladder-title">
+  <div class="sw-ladder-copy">
+    <h2 id="sw-ladder-title">The challenge ladder</h2>
+    <p>Difficulty is a level, the same way a game asks you to pick one before you play. Choose a rank and test yourself. The line on each card says who the project is for.</p>
+    <p>Every card has <strong>Contribute / Open a PR</strong>. Fork the project, make the improvement, and send it back. You are joining the team.</p>
+  </div>
+  <div class="sw-ladder-grid" role="group" aria-label="Difficulty">
+    <button type="button" class="sw-ladder-card sw-set-beginner" data-set-level="beginner" aria-pressed="false">
+      <span class="sw-ladder-idx">Level 1</span>
+      <span class="sw-ladder-name">Beginner</span>
+      <span class="sw-ladder-blurb">Notes, sites, and first looks.</span>
+    </button>
+    <button type="button" class="sw-ladder-card sw-set-intermediate" data-set-level="intermediate" aria-pressed="false">
+      <span class="sw-ladder-idx">Level 2</span>
+      <span class="sw-ladder-name">Intermediate</span>
+      <span class="sw-ladder-blurb">Shiny apps and guided tutorials. The central limit theorem app is here.</span>
+    </button>
+    <button type="button" class="sw-ladder-card sw-set-advanced" data-set-level="advanced" aria-pressed="false">
+      <span class="sw-ladder-idx">Level 3</span>
+      <span class="sw-ladder-name">Advanced</span>
+      <span class="sw-ladder-blurb">Actuarial depth and models you finish yourself. Loss development triangles are here.</span>
+    </button>
+    <button type="button" class="sw-ladder-card sw-set-painfully-challenging" data-set-level="painfully-challenging" aria-pressed="false">
+      <span class="sw-ladder-idx">Level 4</span>
+      <span class="sw-ladder-name">Painfully challenging</span>
+      <span class="sw-ladder-blurb">Research math and machine learning. Bring a team.</span>
+    </button>
+  </div>
+</section>
+
 <section class="sw-lede" aria-labelledby="sw-about-title">
   <div class="sw-lede-copy">
     <h2 id="sw-about-title">The public index</h2>
     <p>SamWiki is the home index for Sam Castillo’s open-source work in mathematics, machine learning, and actuarial science. Start here when you want a demo, the source, or a write-up, instead of hunting through GitHub.</p>
     <p>Much of it was built while Sam was a mathematics student at the University of Massachusetts Amherst, on his own time, without computer science department resources. The math is the part meant to stay solid. A lot of the interfaces were spare student pages, and those are the ones being brought up to a shared GitHub Pages look.</p>
     <p>It is for students, actuaries, and anyone who wants to read the work in the open. A Live link opens a demo on github.io. Source opens the repository. Articles and notebooks stay next to the code they explain.</p>
-    <p>The sections below follow how each project is published today. Search by name, language, or topic. Only original public repositories are listed. Forks of other projects stay off this index, including Live and Static. Training notes from the previous homepage are on the <a href="/running/">Running</a> page. Also on this site: <a href="/">Home</a>, <a href="/about.html">About</a>, and <a href="/code.html">Code</a>.</p>
+    <p>The catalog is ranked by those four levels. Search by name, language, topic, or who a project is for. Only original public repositories are listed. Forks of other projects stay off this index. Training notes from the previous homepage are on the <a href="/running/">Running</a> page. Also on this site: <a href="/">Home</a>, <a href="/about.html">About</a>, and <a href="/code.html">Code</a>.</p>
     <p><a href="https://linktr.ee/sdcastillo" target="_blank" rel="noopener noreferrer">Linktree</a> is the hub for links that live off this site.</p>
   </div>
   <aside class="sw-find" aria-labelledby="sw-find-title">
@@ -13,7 +55,7 @@
       <li><strong>Live demos</strong> Pages that are already on github.io.</li>
       <li><strong>Source</strong> The public GitHub repository for every project listed here.</li>
       <li><strong>Articles and notebooks</strong> Tutorials and notes that sit beside the code.</li>
-      <li><strong>Static sites</strong> Projects whose Pages interface is still waiting on an upgrade.</li>
+      <li><strong>A team</strong> Fork a project and open a pull request. The next person gets a clearer path.</li>
       <li><strong>Libraries and apps</strong> Packages, small tools, and experiments you can read from the repo.</li>
     </ul>
   </aside>
@@ -21,76 +63,77 @@
 
 {% comment %}
   Original work only. Entries with fork: true stay in the data file and are
-  omitted from Live, Static, tutorials, and libraries.
+  omitted from every difficulty level.
 {% endcomment %}
 {% assign catalog_repos = site.data.public_repos | where: "fork", false %}
-{% assign live_repos = catalog_repos | where: "group", "live" %}
-{% assign static_repos = catalog_repos | where: "group", "static" %}
-{% assign tutorial_repos = catalog_repos | where: "group", "tutorials" %}
-{% assign library_repos = catalog_repos | where: "group", "libraries" %}
+{% assign beginner_repos = catalog_repos | where: "difficulty", "beginner" %}
+{% assign intermediate_repos = catalog_repos | where: "difficulty", "intermediate" %}
+{% assign advanced_repos = catalog_repos | where: "difficulty", "advanced" %}
+{% assign painful_repos = catalog_repos | where: "difficulty", "painfully-challenging" %}
 
 <div class="sw-catalog-bar">
   <div class="sw-toolbar">
     <label class="sw-search">
       <span>Search projects</span>
-      <input id="sw-q" type="search" placeholder="Name, language, or topic" autocomplete="off">
+      <input id="sw-q" type="search" placeholder="Name, language, topic, or who it’s for" autocomplete="off">
     </label>
     <p class="sw-result" id="sw-count">{{ catalog_repos | size }} public projects</p>
   </div>
 
-  <nav class="sw-jumps" aria-label="Catalog sections">
-    <a href="#already-live">Already live</a>
-    <a href="#static-sites">Static sites</a>
-    <a href="#tutorials">Tutorials</a>
-    <a href="#libraries">Libraries &amp; apps</a>
-  </nav>
+  <div class="sw-level-select" role="group" aria-label="Difficulty">
+    <button type="button" class="sw-set-all" data-set-level="all" aria-pressed="true">All levels</button>
+    <button type="button" class="sw-set-beginner" data-set-level="beginner" aria-pressed="false">Level 1 · Beginner</button>
+    <button type="button" class="sw-set-intermediate" data-set-level="intermediate" aria-pressed="false">Level 2 · Intermediate</button>
+    <button type="button" class="sw-set-advanced" data-set-level="advanced" aria-pressed="false">Level 3 · Advanced</button>
+    <button type="button" class="sw-set-painfully-challenging" data-set-level="painfully-challenging" aria-pressed="false">Level 4 · Painfully challenging</button>
+  </div>
 </div>
 
 <p class="sw-empty" id="sw-empty" hidden>No public projects match that search.</p>
 
-<section class="sw-section" id="already-live">
+<section class="sw-section" id="beginner">
   <div class="sw-section-head">
-    <h2>Already live <span class="sw-pill">{{ live_repos | size }}</span></h2>
-    <p>These demos are already on github.io. Open the page, or read the source beside it.</p>
+    <h2>Level 1 · Beginner <span class="sw-pill">{{ beginner_repos | size }}</span></h2>
+    <p>Notes, sites, and first looks. A place to start, then pass what you learn back to the team.</p>
   </div>
   <div class="sw-grid">
-    {% for repo in live_repos %}
+    {% for repo in beginner_repos %}
       {% include samwiki-card.html repo=repo %}
     {% endfor %}
   </div>
 </section>
 
-<section class="sw-section" id="static-sites">
+<section class="sw-section" id="intermediate">
   <div class="sw-section-head">
-    <h2>Static sites (Pages next) <span class="sw-pill">{{ static_repos | size }}</span></h2>
-    <p>The work is public. The GitHub Pages interface is the part still waiting on an upgrade.</p>
+    <h2>Level 2 · Intermediate <span class="sw-pill">{{ intermediate_repos | size }}</span></h2>
+    <p>Shiny apps and guided tutorials. The central limit theorem explorer is this level.</p>
   </div>
   <div class="sw-grid">
-    {% for repo in static_repos %}
+    {% for repo in intermediate_repos %}
       {% include samwiki-card.html repo=repo %}
     {% endfor %}
   </div>
 </section>
 
-<section class="sw-section" id="tutorials">
+<section class="sw-section" id="advanced">
   <div class="sw-section-head">
-    <h2>Tutorials / notebooks <span class="sw-pill">{{ tutorial_repos | size }}</span></h2>
-    <p>Courses, notebooks, and notes you can read next to the code.</p>
+    <h2>Level 3 · Advanced <span class="sw-pill">{{ advanced_repos | size }}</span></h2>
+    <p>Actuarial depth and models you finish yourself. Loss development triangles are this level.</p>
   </div>
   <div class="sw-grid">
-    {% for repo in tutorial_repos %}
+    {% for repo in advanced_repos %}
       {% include samwiki-card.html repo=repo %}
     {% endfor %}
   </div>
 </section>
 
-<section class="sw-section" id="libraries">
+<section class="sw-section" id="painfully-challenging">
   <div class="sw-section-head">
-    <h2>Libraries &amp; apps <span class="sw-pill">{{ library_repos | size }}</span></h2>
-    <p>Packages, small apps, and experiments. Start from the repository.</p>
+    <h2>Level 4 · Painfully challenging <span class="sw-pill">{{ painful_repos | size }}</span></h2>
+    <p>Research math and machine learning. Prior weights in XGBoost, the Riemann zeta function, and P vs NP live here.</p>
   </div>
   <div class="sw-grid">
-    {% for repo in library_repos %}
+    {% for repo in painful_repos %}
       {% include samwiki-card.html repo=repo %}
     {% endfor %}
   </div>
@@ -103,13 +146,30 @@
   var sections = Array.prototype.slice.call(document.querySelectorAll(".sw-section"));
   var count = document.getElementById("sw-count");
   var empty = document.getElementById("sw-empty");
+  var controls = Array.prototype.slice.call(document.querySelectorAll("[data-set-level]"));
+  var levels = {
+    "all": "All levels",
+    "beginner": "Beginner",
+    "intermediate": "Intermediate",
+    "advanced": "Advanced",
+    "painfully-challenging": "Painfully challenging"
+  };
+  var current = "all";
+
+  function paint() {
+    controls.forEach(function (el) {
+      el.setAttribute("aria-pressed", el.getAttribute("data-set-level") === current ? "true" : "false");
+    });
+  }
 
   function apply() {
-    var q = (input.value || "").trim().toLowerCase();
+    var q = (input && input.value ? input.value : "").trim().toLowerCase();
     var shown = 0;
     cards.forEach(function (card) {
-      var hay = card.getAttribute("data-search") || "";
-      var ok = !q || hay.indexOf(q) !== -1;
+      var hay = (card.getAttribute("data-search") || "").toLowerCase();
+      var cardLevel = card.getAttribute("data-difficulty") || "";
+      var levelOk = current === "all" || cardLevel === current;
+      var ok = levelOk && (!q || hay.indexOf(q) !== -1);
       card.hidden = !ok;
       if (ok) shown += 1;
     });
@@ -118,14 +178,45 @@
     });
     if (empty) empty.hidden = shown !== 0;
     if (count) {
-      count.textContent = shown + (shown === 1 ? " public project" : " public projects");
+      var noun = shown === 1 ? " public project" : " public projects";
+      count.textContent = current === "all" ? (shown + noun) : (shown + noun + " · " + levels[current]);
     }
   }
 
-  if (!input) return;
-  var initial = new URLSearchParams(window.location.search).get("q");
-  if (initial) input.value = initial;
-  input.addEventListener("input", apply);
+  function setLevel(level, scroll) {
+    current = levels[level] ? level : "all";
+    paint();
+    apply();
+    var url = new URL(window.location.href);
+    if (current === "all") url.searchParams.delete("level");
+    else url.searchParams.set("level", current);
+    history.replaceState(null, "", url);
+    if (scroll && current !== "all") {
+      var section = document.getElementById(current);
+      if (section) {
+        var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        section.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+      }
+    }
+  }
+
+  controls.forEach(function (el) {
+    el.addEventListener("click", function () {
+      setLevel(el.getAttribute("data-set-level"), true);
+    });
+  });
+
+  if (input) {
+    var params = new URLSearchParams(window.location.search);
+    var initialQuery = params.get("q");
+    if (initialQuery) input.value = initialQuery;
+    input.addEventListener("input", apply);
+    var fromQuery = params.get("level");
+    var fromHash = (window.location.hash || "").replace("#", "");
+    if (levels[fromQuery] && fromQuery !== "all") current = fromQuery;
+    else if (levels[fromHash] && fromHash !== "all") current = fromHash;
+  }
+  paint();
   apply();
 })();
 </script>

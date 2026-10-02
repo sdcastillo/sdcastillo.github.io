@@ -1,5 +1,27 @@
 {% assign repo = include.repo %}
-<article class="sw-card" data-search="{{ repo.search | escape }}">
+{% assign sw_level_num = "" %}
+{% assign sw_level_name = "" %}
+{% case repo.difficulty %}
+  {% when "beginner" %}
+    {% assign sw_level_num = "1" %}
+    {% assign sw_level_name = "Beginner" %}
+  {% when "intermediate" %}
+    {% assign sw_level_num = "2" %}
+    {% assign sw_level_name = "Intermediate" %}
+  {% when "advanced" %}
+    {% assign sw_level_num = "3" %}
+    {% assign sw_level_name = "Advanced" %}
+  {% when "painfully-challenging" %}
+    {% assign sw_level_num = "4" %}
+    {% assign sw_level_name = "Painfully challenging" %}
+{% endcase %}
+<article class="sw-card{% if repo.difficulty != "" %} sw-card-{{ repo.difficulty }}{% endif %}" data-difficulty="{{ repo.difficulty }}" data-search="{{ repo.search | downcase | escape }}">
+  {% if sw_level_name != "" %}
+    <p class="sw-level sw-level-{{ repo.difficulty }}">
+      <span class="sw-level-idx">Level {{ sw_level_num }}</span>
+      <span class="sw-level-name">{{ sw_level_name }}</span>
+    </p>
+  {% endif %}
   <div class="sw-card-top">
     <h3 class="sw-name"><a href="{{ repo.html_url }}">{{ repo.name }}</a></h3>
     {% if repo.language != "" %}
@@ -10,6 +32,9 @@
     <p class="sw-badge">{{ repo.badge }}</p>
   {% endif %}
   <p class="sw-desc" title="{{ repo.description | escape }}">{{ repo.description }}</p>
+  {% if repo.audience != "" %}
+    <p class="sw-who"><span class="sw-who-label">Who is this for?</span> {{ repo.audience }}</p>
+  {% endif %}
   {% if repo.updated != "" %}
     <p class="sw-meta">Updated {{ repo.updated }}</p>
   {% endif %}
@@ -18,5 +43,6 @@
       <a class="sw-btn sw-btn-live" href="{{ repo.live_url }}">Live</a>
     {% endif %}
     <a class="sw-btn sw-btn-source" href="{{ repo.html_url }}">Source</a>
+    <a class="sw-btn sw-btn-pr" href="{{ repo.html_url }}/compare" target="_blank" rel="noopener noreferrer">Contribute / Open a PR</a>
   </div>
 </article>
