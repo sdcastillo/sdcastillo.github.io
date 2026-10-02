@@ -858,21 +858,14 @@ body.samwiki .sw-card-painfully-challenging::before {
 }
 
 body.samwiki .sw-who {
-  margin: 0.15rem 0 0.35rem;
+  margin: 0.15rem 0 0.45rem;
   color: #123055;
   font-size: 0.95rem;
   line-height: 1.4;
 }
 
 body.samwiki .sw-who-label {
-  display: block;
-  margin-bottom: 0.08rem;
-  color: var(--sw-muted);
-  font-family: Outfit, "Open Sans", sans-serif;
-  font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
 }
 
 body.samwiki .sw-actions .sw-btn-pr {
