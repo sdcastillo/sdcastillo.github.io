@@ -40,9 +40,9 @@
   {% endif %}
   <div class="sw-actions">
     {% if repo.live_url != "" %}
-      <a class="sw-btn sw-btn-live" href="{{ repo.live_url }}">Live</a>
+      <a class="sw-btn sw-btn-live" href="{{ repo.live_url }}">Demo</a>
     {% endif %}
     <a class="sw-btn sw-btn-source" href="{{ repo.html_url }}">Source</a>
-    <a class="sw-btn sw-btn-pr" href="{{ repo.html_url }}/compare" target="_blank" rel="noopener noreferrer">Contribute / Open a PR</a>
+    <a class="sw-btn sw-btn-pr" href="{{ repo.html_url }}/compare" target="_blank" rel="noopener noreferrer" title="Open a pull request">Contribute</a>
   </div>
 </article>
