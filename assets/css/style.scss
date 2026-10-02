@@ -1,21 +1,6 @@
 ---
 ---
 
-// SamWiki skin for the supported Cayman theme.
-//
-// Copy this file with the theme contract:
-//   _config.yml                 theme: jekyll-theme-cayman
-//   _layouts/default.html       adds class="samwiki" when page.samwiki is true
-//   _includes/head-custom.html  Outfit + Source Sans 3
-//   _includes/samwiki-nav.html  Home (SamWiki), Running, About, Code, Hire, GitHub
-//
-// Setup follows GitHub's guide:
-// https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/adding-a-theme-to-your-github-pages-site-using-jekyll
-//
-// Cayman !default variables are set before the import so the theme header,
-// links, and headings pick up the SamWiki palette. Component styles below
-// apply on pages that set `samwiki: true`.
-
 $header-heading-color: #f3fffb;
 $header-bg-color: #0f3d45;
 $header-bg-color-secondary: #0c1330;
