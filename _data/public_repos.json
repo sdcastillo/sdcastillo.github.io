@@ -9,7 +9,9 @@
     "group": "live",
     "updated": "2025-12-14",
     "badge": "",
-    "search": "architecture html prompting perplexity to assist with architecture and construction runoffs pages-on"
+    "difficulty": "beginner",
+    "audience": "construction runoff notes",
+    "search": "architecture html prompting perplexity to assist with architecture and construction runoffs pages-on beginner level 1 construction runoff notes"
   },
   {
     "name": "Identifying-Actionable-Treatment-Variation-in-Episodes-of-Low-Back-Pain",
@@ -21,7 +23,9 @@
     "group": "live",
     "updated": "2025-12-03",
     "badge": "",
-    "search": "identifying-actionable-treatment-variation-in-episodes-of-low-back-pain html source code from a project from with bcbsma this summer pages-on"
+    "difficulty": "advanced",
+    "audience": "health analytics teams",
+    "search": "identifying-actionable-treatment-variation-in-episodes-of-low-back-pain html source code from a project from with bcbsma this summer pages-on advanced level 3 health analytics teams"
   },
   {
     "name": "integrity-care-solutions",
@@ -33,7 +37,9 @@
     "group": "live",
     "updated": "2026-10-01",
     "badge": "",
-    "search": "integrity-care-solutions html — pages-on"
+    "difficulty": "beginner",
+    "audience": "nonprofit site visitors",
+    "search": "integrity-care-solutions html — pages-on beginner level 1 nonprofit site visitors"
   },
   {
     "name": "ml-playground",
@@ -45,7 +51,9 @@
     "group": "live",
     "updated": "2025-12-03",
     "badge": "",
-    "search": "ml-playground html ml tutorials and shiny app pages-on"
+    "difficulty": "advanced",
+    "audience": "actuarial exam prep",
+    "search": "ml-playground html ml tutorials and shiny app pages-on advanced level 3 actuarial exam prep"
   },
   {
     "name": "PA-R-Study-Manual",
@@ -57,7 +65,9 @@
     "group": "live",
     "updated": "2026-01-31",
     "badge": "",
-    "search": "pa-r-study-manual html an online study guide for the soa's predictive analytics exam. pages-on"
+    "difficulty": "advanced",
+    "audience": "actuarial exam prep",
+    "search": "pa-r-study-manual html an online study guide for the soa's predictive analytics exam. pages-on advanced level 3 actuarial exam prep"
   },
   {
     "name": "Prior-Weights-with-XGboost",
@@ -69,7 +79,9 @@
     "group": "live",
     "updated": "2025-11-26",
     "badge": "",
-    "search": "prior-weights-with-xgboost html a method of adding prior weights to xgboost pages-on"
+    "difficulty": "painfully-challenging",
+    "audience": "ML practitioners",
+    "search": "prior-weights-with-xgboost html a method of adding prior weights to xgboost pages-on painfully-challenging painfully challenging level 4 ml practitioners"
   },
   {
     "name": "project-images",
@@ -81,7 +93,9 @@
     "group": "live",
     "updated": "2026-01-20",
     "badge": "",
-    "search": "project-images html images for website to conserve space pages-on"
+    "difficulty": "beginner",
+    "audience": "site asset browsing",
+    "search": "project-images html images for website to conserve space pages-on beginner level 1 site asset browsing"
   },
   {
     "name": "SamSoundsVibes",
@@ -93,7 +107,9 @@
     "group": "live",
     "updated": "2026-10-01",
     "badge": "",
-    "search": "samsoundsvibes python music pages-on"
+    "difficulty": "intermediate",
+    "audience": "musicians who code",
+    "search": "samsoundsvibes python music pages-on intermediate level 2 musicians who code"
   },
   {
     "name": "sdcastillo.github.io",
@@ -117,7 +133,9 @@
     "group": "live",
     "updated": "2025-12-03",
     "badge": "",
-    "search": "time-series-stock-anomaly-detection r a shiny app for detecting abnormal stock price fluctuations pages-on"
+    "difficulty": "advanced",
+    "audience": "time-series learners",
+    "search": "time-series-stock-anomaly-detection r a shiny app for detecting abnormal stock price fluctuations pages-on advanced level 3 time-series learners"
   },
   {
     "name": "Umass2017-S525-IE-Project",
@@ -129,7 +147,9 @@
     "group": "live",
     "updated": "2025-12-04",
     "badge": "",
-    "search": "umass2017-s525-ie-project html university of massachusetts amherst 2017, stats 525 pages-on"
+    "difficulty": "beginner",
+    "audience": "first stats projects",
+    "search": "umass2017-s525-ie-project html university of massachusetts amherst 2017, stats 525 pages-on beginner level 1 first stats projects"
   },
   {
     "name": "Actuarial-R-Tutorials",
@@ -141,7 +161,9 @@
     "group": "static",
     "updated": "2025-12-03",
     "badge": "",
-    "search": "actuarial-r-tutorials html useful r tutorials for actuaries static-enable"
+    "difficulty": "intermediate",
+    "audience": "actuaries moving GLMs to Excel",
+    "search": "actuarial-r-tutorials html useful r tutorials for actuaries static-enable intermediate level 2 actuaries moving glms to excel"
   },
   {
     "name": "Bitcoin-Anomaly-Detection",
@@ -153,7 +175,9 @@
     "group": "static",
     "updated": "2025-12-03",
     "badge": "",
-    "search": "bitcoin-anomaly-detection html bitcoin price anomaly detection using r and shiny static-enable"
+    "difficulty": "advanced",
+    "audience": "time-series learners",
+    "search": "bitcoin-anomaly-detection html bitcoin price anomaly detection using r and shiny static-enable advanced level 3 time-series learners"
   },
   {
     "name": "Clustering",
@@ -165,7 +189,9 @@
     "group": "static",
     "updated": "2018-05-06",
     "badge": "",
-    "search": "clustering html explanation, discussion, simulations, and comparisons of clustering methods static-enable"
+    "difficulty": "intermediate",
+    "audience": "first clustering notes",
+    "search": "clustering html explanation, discussion, simulations, and comparisons of clustering methods static-enable intermediate level 2 first clustering notes"
   },
   {
     "name": "data-stories-2016",
@@ -189,7 +215,9 @@
     "group": "static",
     "updated": "2025-12-03",
     "badge": "",
-    "search": "data-visualization html slides for my presentation at the 2019 soa predictive analytics and futurism symposium static-enable"
+    "difficulty": "intermediate",
+    "audience": "analysts learning stories",
+    "search": "data-visualization html slides for my presentation at the 2019 soa predictive analytics and futurism symposium static-enable intermediate level 2 analysts learning stories"
   },
   {
     "name": "dolphin_grok_hybrid",
@@ -201,7 +229,9 @@
     "group": "static",
     "updated": "2026-07-12",
     "badge": "",
-    "search": "dolphin_grok_hybrid html dolphin mistral fastapi hybrid app with grok integration, supabase, and more. static-enable"
+    "difficulty": "advanced",
+    "audience": "hybrid LLM app builders",
+    "search": "dolphin_grok_hybrid html dolphin mistral fastapi hybrid app with grok integration, supabase, and more. static-enable advanced level 3 hybrid llm app builders"
   },
   {
     "name": "Jupyter-Contest",
@@ -213,7 +243,9 @@
     "group": "static",
     "updated": "2023-12-16",
     "badge": "",
-    "search": "jupyter-contest html — static-enable"
+    "difficulty": "advanced",
+    "audience": "interval modelers",
+    "search": "jupyter-contest html — static-enable advanced level 3 interval modelers"
   },
   {
     "name": "Kaggle-Advanced-Regression",
@@ -225,7 +257,9 @@
     "group": "static",
     "updated": "2025-12-12",
     "badge": "",
-    "search": "kaggle-advanced-regression html a submission to a kaggle competition static-enable"
+    "difficulty": "advanced",
+    "audience": "regression competitors",
+    "search": "kaggle-advanced-regression html a submission to a kaggle competition static-enable advanced level 3 regression competitors"
   },
   {
     "name": "Kaggle-Zillow-Competition",
@@ -237,7 +271,9 @@
     "group": "static",
     "updated": "2025-12-03",
     "badge": "",
-    "search": "kaggle-zillow-competition html competition to predict home prices static-enable"
+    "difficulty": "intermediate",
+    "audience": "first GBM notebooks",
+    "search": "kaggle-zillow-competition html competition to predict home prices static-enable intermediate level 2 first gbm notebooks"
   },
   {
     "name": "MAS-I",
@@ -249,7 +285,9 @@
     "group": "static",
     "updated": "2025-12-04",
     "badge": "",
-    "search": "mas-i html study notes and code from modern actuarial statistics i static-enable"
+    "difficulty": "advanced",
+    "audience": "actuarial exam prep",
+    "search": "mas-i html study notes and code from modern actuarial statistics i static-enable advanced level 3 actuarial exam prep"
   },
   {
     "name": "rstudio-conf",
@@ -297,7 +335,9 @@
     "group": "static",
     "updated": "2025-04-04",
     "badge": "",
-    "search": "website html predictiveanalyst site static-enable"
+    "difficulty": "beginner",
+    "audience": "browsing an older site",
+    "search": "website html predictiveanalyst site static-enable beginner level 1 browsing an older site"
   },
   {
     "name": "Building-a-Vector-Space-Model-for-Movies-by-IMDB-Plot-Keywords",
@@ -309,7 +349,9 @@
     "group": "tutorials",
     "updated": "2017-07-09",
     "badge": "",
-    "search": "building-a-vector-space-model-for-movies-by-imdb-plot-keywords r movie and actor comparison by cosine similarity and euclidean distance measures docs-generate"
+    "difficulty": "intermediate",
+    "audience": "first vector models",
+    "search": "building-a-vector-space-model-for-movies-by-imdb-plot-keywords r movie and actor comparison by cosine similarity and euclidean distance measures docs-generate intermediate level 2 first vector models"
   },
   {
     "name": "Central_Limit_Theorem",
@@ -321,7 +363,9 @@
     "group": "tutorials",
     "updated": "2025-12-20",
     "badge": "",
-    "search": "central_limit_theorem r a shiny app of the clt docs-generate"
+    "difficulty": "intermediate",
+    "audience": "first Shiny apps",
+    "search": "central_limit_theorem r a shiny app of the clt docs-generate intermediate level 2 first shiny apps"
   },
   {
     "name": "leveling-up-jupyter",
@@ -357,7 +401,9 @@
     "group": "tutorials",
     "updated": "2026-10-01",
     "badge": "",
-    "search": "mathematics_p_vs_np tex — docs-generate"
+    "difficulty": "painfully-challenging",
+    "audience": "complexity theory readers",
+    "search": "mathematics_p_vs_np tex — docs-generate painfully-challenging painfully challenging level 4 complexity theory readers"
   },
   {
     "name": "ML_using_R",
@@ -393,7 +439,9 @@
     "group": "tutorials",
     "updated": "2026-04-10",
     "badge": "",
-    "search": "quantumdata r a container for data sets to help actuaries who are practicing predictive analytics docs-generate"
+    "difficulty": "intermediate",
+    "audience": "actuarial exam prep",
+    "search": "quantumdata r a container for data sets to help actuaries who are practicing predictive analytics docs-generate intermediate level 2 actuarial exam prep"
   },
   {
     "name": "Riemann",
@@ -405,7 +453,9 @@
     "group": "tutorials",
     "updated": "2026-06-05",
     "badge": "",
-    "search": "riemann tex — docs-generate"
+    "difficulty": "painfully-challenging",
+    "audience": "analytic number theory",
+    "search": "riemann tex — docs-generate painfully-challenging painfully challenging level 4 analytic number theory"
   },
   {
     "name": "SOA-PA-Exam",
@@ -417,7 +467,9 @@
     "group": "tutorials",
     "updated": "2025-12-03",
     "badge": "",
-    "search": "soa-pa-exam an open-source set of study notes using kaggle docs-generate"
+    "difficulty": "intermediate",
+    "audience": "actuarial exam prep",
+    "search": "soa-pa-exam an open-source set of study notes using kaggle docs-generate intermediate level 2 actuarial exam prep"
   },
   {
     "name": "SOA-Predictive-Modeling-Innovation-and-Industry-Contest-2019-First-Place",
@@ -453,7 +505,9 @@
     "group": "libraries",
     "updated": "2025-07-10",
     "badge": "",
-    "search": "ai-from-linear-algebra scilab linear algebra example of r code readme-pages"
+    "difficulty": "intermediate",
+    "audience": "linear algebra students",
+    "search": "ai-from-linear-algebra scilab linear algebra example of r code readme-pages intermediate level 2 linear algebra students"
   },
   {
     "name": "autonomous-access-control",
@@ -465,7 +519,9 @@
     "group": "libraries",
     "updated": "2026-06-05",
     "badge": "",
-    "search": "autonomous-access-control for security data and ai alarm access control systems readme-pages"
+    "difficulty": "beginner",
+    "audience": "security data sketches",
+    "search": "autonomous-access-control for security data and ai alarm access control systems readme-pages beginner level 1 security data sketches"
   },
   {
     "name": "bookdown",
@@ -501,7 +557,9 @@
     "group": "libraries",
     "updated": "2026-03-17",
     "badge": "",
-    "search": "calcconnect website for math, using ai to prove math theorems readme-pages"
+    "difficulty": "painfully-challenging",
+    "audience": "AI-assisted math",
+    "search": "calcconnect website for math, using ai to prove math theorems readme-pages painfully-challenging painfully challenging level 4 ai-assisted math"
   },
   {
     "name": "chatgptNobleProg",
@@ -525,7 +583,9 @@
     "group": "libraries",
     "updated": "2019-10-19",
     "badge": "",
-    "search": "consumer-health-cost-ideas ideas about helping people get treatment for less money readme-pages"
+    "difficulty": "beginner",
+    "audience": "health-cost idea sketches",
+    "search": "consumer-health-cost-ideas ideas about helping people get treatment for less money readme-pages beginner level 1 health-cost idea sketches"
   },
   {
     "name": "dev_guide",
@@ -549,7 +609,9 @@
     "group": "libraries",
     "updated": "2026-10-01",
     "badge": "",
-    "search": "ethical-self-hosted-llm field notes from a hetzner + tailscale + nginx + ollama build: how to run a local llm ethically and safely for nonprofit workforce training. readme-pages"
+    "difficulty": "advanced",
+    "audience": "self-hosted LLM operators",
+    "search": "ethical-self-hosted-llm field notes from a hetzner + tailscale + nginx + ollama build: how to run a local llm ethically and safely for nonprofit workforce training. readme-pages advanced level 3 self-hosted llm operators"
   },
   {
     "name": "ggplot2",
@@ -573,7 +635,9 @@
     "group": "libraries",
     "updated": "2026-09-18",
     "badge": "",
-    "search": "grok-dolphin-hybrid python grok bot + dolphin-mistral hybrid (imdb multi-level fastapi prompts) readme-pages"
+    "difficulty": "advanced",
+    "audience": "local LLM builders",
+    "search": "grok-dolphin-hybrid python grok bot + dolphin-mistral hybrid (imdb multi-level fastapi prompts) readme-pages advanced level 3 local llm builders"
   },
   {
     "name": "IMDB-Movie-Network-Analysis",
@@ -585,7 +649,9 @@
     "group": "libraries",
     "updated": "2025-06-13",
     "badge": "",
-    "search": "imdb-movie-network-analysis plotting a network of recommended movies from imdb.com. readme-pages"
+    "difficulty": "intermediate",
+    "audience": "first network graphs",
+    "search": "imdb-movie-network-analysis plotting a network of recommended movies from imdb.com. readme-pages intermediate level 2 first network graphs"
   },
   {
     "name": "ISLR",
@@ -597,7 +663,9 @@
     "group": "libraries",
     "updated": "2017-12-17",
     "badge": "",
-    "search": "islr companion to the text introduction to statistical learning readme-pages"
+    "difficulty": "beginner",
+    "audience": "ISL reading companions",
+    "search": "islr companion to the text introduction to statistical learning readme-pages beginner level 1 isl reading companions"
   },
   {
     "name": "learnr",
@@ -645,7 +713,9 @@
     "group": "libraries",
     "updated": "2026-06-05",
     "badge": "",
-    "search": "localtexttospeech local text to speech model readme-pages"
+    "difficulty": "intermediate",
+    "audience": "first local TTS scripts",
+    "search": "localtexttospeech local text to speech model readme-pages intermediate level 2 first local tts scripts"
   },
   {
     "name": "Loss-Development-Triangles",
@@ -657,7 +727,9 @@
     "group": "libraries",
     "updated": "2025-10-06",
     "badge": "",
-    "search": "loss-development-triangles code and data files for the article \"painlessly merge data into actuarial loss development triangles with r\" readme-pages"
+    "difficulty": "advanced",
+    "audience": "reserving analysts",
+    "search": "loss-development-triangles code and data files for the article \"painlessly merge data into actuarial loss development triangles with r\" readme-pages advanced level 3 reserving analysts"
   },
   {
     "name": "ModernDive_book",
@@ -717,7 +789,9 @@
     "group": "libraries",
     "updated": "2025-11-26",
     "badge": "",
-    "search": "predictive-modeling-app — readme-pages"
+    "difficulty": "advanced",
+    "audience": "exam-data modelers",
+    "search": "predictive-modeling-app — readme-pages advanced level 3 exam-data modelers"
   },
   {
     "name": "provider-data-tools",
@@ -741,7 +815,9 @@
     "group": "libraries",
     "updated": "2019-07-30",
     "badge": "",
-    "search": "research-texts a collection of textbooks, research papers, and tutorials readme-pages"
+    "difficulty": "intermediate",
+    "audience": "self-study readers",
+    "search": "research-texts a collection of textbooks, research papers, and tutorials readme-pages intermediate level 2 self-study readers"
   },
   {
     "name": "TempLandingPage",
@@ -753,7 +829,9 @@
     "group": "libraries",
     "updated": "2023-11-13",
     "badge": "",
-    "search": "templandingpage materials for website before launch readme-pages"
+    "difficulty": "beginner",
+    "audience": "old landing-page files",
+    "search": "templandingpage materials for website before launch readme-pages beginner level 1 old landing-page files"
   },
   {
     "name": "Texas_car_crashes",
@@ -765,6 +843,8 @@
     "group": "libraries",
     "updated": "2025-12-03",
     "badge": "",
-    "search": "texas_car_crashes — readme-pages"
+    "difficulty": "intermediate",
+    "audience": "crash-data explorers",
+    "search": "texas_car_crashes — readme-pages intermediate level 2 crash-data explorers"
   }
 ]
