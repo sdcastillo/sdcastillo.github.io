@@ -623,6 +623,23 @@ body.samwiki .sw-manifesto p {
   color: #243447;
 }
 
+body.samwiki .sw-manifesto ul {
+  max-width: 68ch;
+  margin: 0 0 1rem;
+  padding-left: 1.25rem;
+}
+
+body.samwiki .sw-manifesto li {
+  margin-bottom: 0.55rem;
+  font-size: 1.12rem;
+  line-height: 1.6;
+  color: #243447;
+}
+
+body.samwiki .sw-manifesto li strong {
+  color: #123055;
+}
+
 body.samwiki .sw-manifesto blockquote {
   margin: 0.35rem 0 1rem;
   padding: 0.15rem 0 0.15rem 1rem;
