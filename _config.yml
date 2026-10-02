@@ -19,3 +19,7 @@ description: Projects, articles, and source on github.io.
 theme: jekyll-theme-cayman
 show_downloads: false
 markdown: kramdown
+# GitHub Pages merges this with its default plugins.
+# Used so /about/ and /code/ redirect to the .html pages.
+plugins:
+  - jekyll-redirect-from
