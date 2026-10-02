@@ -4,7 +4,7 @@
     <p>SamWiki is the home index for Sam Castillo’s open-source work in mathematics, machine learning, and actuarial science. Start here when you want a demo, the source, or a write-up, instead of hunting through GitHub.</p>
     <p>Much of it was built while Sam was a mathematics student at the University of Massachusetts Amherst, on his own time, without computer science department resources. The math is the part meant to stay solid. A lot of the interfaces were spare student pages, and those are the ones being brought up to a shared GitHub Pages look.</p>
     <p>It is for students, actuaries, and anyone who wants to read the work in the open. A Live link opens a demo on github.io. Source opens the repository. Articles and notebooks stay next to the code they explain.</p>
-    <p>The sections below follow how each project is published today. Search by name, language, or topic. Only public repositories are listed. Training notes from the previous homepage are on the <a href="/running/">Running</a> page. Also on this site: <a href="/">Home</a>, <a href="/about.html">About</a>, and <a href="/code.html">Code</a>.</p>
+    <p>The sections below follow how each project is published today. Search by name, language, or topic. Only original public repositories are listed. Forks of other projects stay off this index, including Live and Static. Training notes from the previous homepage are on the <a href="/running/">Running</a> page. Also on this site: <a href="/">Home</a>, <a href="/about.html">About</a>, and <a href="/code.html">Code</a>.</p>
     <p><a href="https://linktr.ee/sdcastillo" target="_blank" rel="noopener noreferrer">Linktree</a> is the hub for links that live off this site.</p>
   </div>
   <aside class="sw-find" aria-labelledby="sw-find-title">
@@ -19,10 +19,15 @@
   </aside>
 </section>
 
-{% assign live_repos = site.data.public_repos | where: "group", "live" %}
-{% assign static_repos = site.data.public_repos | where: "group", "static" %}
-{% assign tutorial_repos = site.data.public_repos | where: "group", "tutorials" %}
-{% assign library_repos = site.data.public_repos | where: "group", "libraries" %}
+{% comment %}
+  Original work only. Entries with fork: true stay in the data file and are
+  omitted from Live, Static, tutorials, and libraries.
+{% endcomment %}
+{% assign catalog_repos = site.data.public_repos | where: "fork", false %}
+{% assign live_repos = catalog_repos | where: "group", "live" %}
+{% assign static_repos = catalog_repos | where: "group", "static" %}
+{% assign tutorial_repos = catalog_repos | where: "group", "tutorials" %}
+{% assign library_repos = catalog_repos | where: "group", "libraries" %}
 
 <div class="sw-catalog-bar">
   <div class="sw-toolbar">
@@ -30,7 +35,7 @@
       <span>Search projects</span>
       <input id="sw-q" type="search" placeholder="Name, language, or topic" autocomplete="off">
     </label>
-    <p class="sw-result" id="sw-count">{{ site.data.public_repos | size }} public projects</p>
+    <p class="sw-result" id="sw-count">{{ catalog_repos | size }} public projects</p>
   </div>
 
   <nav class="sw-jumps" aria-label="Catalog sections">

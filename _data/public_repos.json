@@ -1,6 +1,7 @@
 [
   {
     "name": "Architecture",
+    "fork": false,
     "description": "prompting perplexity to assist with architecture and construction runoffs",
     "language": "HTML",
     "html_url": "https://github.com/sdcastillo/Architecture",
@@ -12,6 +13,7 @@
   },
   {
     "name": "Identifying-Actionable-Treatment-Variation-in-Episodes-of-Low-Back-Pain",
+    "fork": false,
     "description": "Source code from a project from with BCBSMA this summer",
     "language": "HTML",
     "html_url": "https://github.com/sdcastillo/Identifying-Actionable-Treatment-Variation-in-Episodes-of-Low-Back-Pain",
@@ -23,6 +25,7 @@
   },
   {
     "name": "integrity-care-solutions",
+    "fork": false,
     "description": "—",
     "language": "HTML",
     "html_url": "https://github.com/sdcastillo/integrity-care-solutions",
@@ -34,6 +37,7 @@
   },
   {
     "name": "ml-playground",
+    "fork": false,
     "description": "ML tutorials and Shiny app",
     "language": "HTML",
     "html_url": "https://github.com/sdcastillo/ml-playground",
@@ -45,6 +49,7 @@
   },
   {
     "name": "PA-R-Study-Manual",
+    "fork": false,
     "description": "An online study guide for the SOA's predictive analytics exam.",
     "language": "HTML",
     "html_url": "https://github.com/sdcastillo/PA-R-Study-Manual",
@@ -56,6 +61,7 @@
   },
   {
     "name": "Prior-Weights-with-XGboost",
+    "fork": false,
     "description": "A method of adding prior weights to xgboost",
     "language": "HTML",
     "html_url": "https://github.com/sdcastillo/Prior-Weights-with-XGboost",
@@ -67,6 +73,7 @@
   },
   {
     "name": "project-images",
+    "fork": false,
     "description": "images for website to conserve space",
     "language": "HTML",
     "html_url": "https://github.com/sdcastillo/project-images",
@@ -78,6 +85,7 @@
   },
   {
     "name": "SamSoundsVibes",
+    "fork": false,
     "description": "MUSIC",
     "language": "Python",
     "html_url": "https://github.com/sdcastillo/SamSoundsVibes",
@@ -89,6 +97,7 @@
   },
   {
     "name": "sdcastillo.github.io",
+    "fork": true,
     "description": "A blog using a refreshed version of Hyde for Jekyll 3.x",
     "language": "HTML",
     "html_url": "https://github.com/sdcastillo/sdcastillo.github.io",
@@ -100,6 +109,7 @@
   },
   {
     "name": "Time-Series-Stock-Anomaly-Detection",
+    "fork": false,
     "description": "A Shiny App for detecting abnormal stock price fluctuations",
     "language": "R",
     "html_url": "https://github.com/sdcastillo/Time-Series-Stock-Anomaly-Detection",
@@ -111,6 +121,7 @@
   },
   {
     "name": "Umass2017-S525-IE-Project",
+    "fork": false,
     "description": "University of Massachusetts Amherst 2017, Stats 525",
     "language": "HTML",
     "html_url": "https://github.com/sdcastillo/Umass2017-S525-IE-Project",
@@ -122,6 +133,7 @@
   },
   {
     "name": "Actuarial-R-Tutorials",
+    "fork": false,
     "description": "Useful R tutorials for Actuaries",
     "language": "HTML",
     "html_url": "https://github.com/sdcastillo/Actuarial-R-Tutorials",
@@ -133,6 +145,7 @@
   },
   {
     "name": "Bitcoin-Anomaly-Detection",
+    "fork": false,
     "description": "Bitcoin price anomaly detection using R and Shiny",
     "language": "HTML",
     "html_url": "https://github.com/sdcastillo/Bitcoin-Anomaly-Detection",
@@ -144,6 +157,7 @@
   },
   {
     "name": "Clustering",
+    "fork": false,
     "description": "Explanation, discussion, simulations, and comparisons of clustering methods",
     "language": "HTML",
     "html_url": "https://github.com/sdcastillo/Clustering",
@@ -155,6 +169,7 @@
   },
   {
     "name": "data-stories-2016",
+    "fork": true,
     "description": "Course materials and website for Telling Stories with Data (PUBHLTH 490ST) in Spring 2016 at UMass-Amherst.",
     "language": "HTML",
     "html_url": "https://github.com/sdcastillo/data-stories-2016",
@@ -166,6 +181,7 @@
   },
   {
     "name": "Data-Visualization",
+    "fork": false,
     "description": "Slides for my presentation at the 2019 SOA Predictive Analytics and Futurism Symposium",
     "language": "HTML",
     "html_url": "https://github.com/sdcastillo/Data-Visualization",
@@ -177,6 +193,7 @@
   },
   {
     "name": "dolphin_grok_hybrid",
+    "fork": false,
     "description": "Dolphin Mistral FastAPI hybrid app with Grok integration, Supabase, and more.",
     "language": "HTML",
     "html_url": "https://github.com/sdcastillo/dolphin_grok_hybrid",
@@ -188,6 +205,7 @@
   },
   {
     "name": "Jupyter-Contest",
+    "fork": false,
     "description": "—",
     "language": "HTML",
     "html_url": "https://github.com/sdcastillo/Jupyter-Contest",
@@ -199,6 +217,7 @@
   },
   {
     "name": "Kaggle-Advanced-Regression",
+    "fork": false,
     "description": "A submission to a kaggle competition",
     "language": "HTML",
     "html_url": "https://github.com/sdcastillo/Kaggle-Advanced-Regression",
@@ -210,6 +229,7 @@
   },
   {
     "name": "Kaggle-Zillow-Competition",
+    "fork": false,
     "description": "Competition to predict home prices",
     "language": "HTML",
     "html_url": "https://github.com/sdcastillo/Kaggle-Zillow-Competition",
@@ -221,6 +241,7 @@
   },
   {
     "name": "MAS-I",
+    "fork": false,
     "description": "Study Notes and Code from Modern Actuarial Statistics I",
     "language": "HTML",
     "html_url": "https://github.com/sdcastillo/MAS-I",
@@ -232,6 +253,7 @@
   },
   {
     "name": "rstudio-conf",
+    "fork": true,
     "description": "Materials for rstudio::conf",
     "language": "HTML",
     "html_url": "https://github.com/sdcastillo/rstudio-conf",
@@ -243,6 +265,7 @@
   },
   {
     "name": "stat-learning",
+    "fork": true,
     "description": "Notes and exercise attempts for \"An Introduction to Statistical Learning\"",
     "language": "HTML",
     "html_url": "https://github.com/sdcastillo/stat-learning",
@@ -254,6 +277,7 @@
   },
   {
     "name": "webinars",
+    "fork": true,
     "description": "Code and slides for RStudio webinars",
     "language": "HTML",
     "html_url": "https://github.com/sdcastillo/webinars",
@@ -265,6 +289,7 @@
   },
   {
     "name": "website",
+    "fork": false,
     "description": "PredictiveAnalyst site",
     "language": "HTML",
     "html_url": "https://github.com/sdcastillo/website",
@@ -276,6 +301,7 @@
   },
   {
     "name": "Building-a-Vector-Space-Model-for-Movies-by-IMDB-Plot-Keywords",
+    "fork": false,
     "description": "Movie and actor comparison by cosine similarity and euclidean distance measures",
     "language": "R",
     "html_url": "https://github.com/sdcastillo/Building-a-Vector-Space-Model-for-Movies-by-IMDB-Plot-Keywords",
@@ -287,6 +313,7 @@
   },
   {
     "name": "Central_Limit_Theorem",
+    "fork": false,
     "description": "A Shiny App of the CLT",
     "language": "R",
     "html_url": "https://github.com/sdcastillo/Central_Limit_Theorem",
@@ -298,6 +325,7 @@
   },
   {
     "name": "leveling-up-jupyter",
+    "fork": true,
     "description": "Leveling up your Jupyter notebook skills",
     "language": "Jupyter Notebook",
     "html_url": "https://github.com/sdcastillo/leveling-up-jupyter",
@@ -309,6 +337,7 @@
   },
   {
     "name": "March-Madness-2017",
+    "fork": true,
     "description": "Kaggle Competition for Predicting NCAA Basketball Tourney Games",
     "language": "Jupyter Notebook",
     "html_url": "https://github.com/sdcastillo/March-Madness-2017",
@@ -320,6 +349,7 @@
   },
   {
     "name": "mathematics_p_vs_np",
+    "fork": false,
     "description": "—",
     "language": "TeX",
     "html_url": "https://github.com/sdcastillo/mathematics_p_vs_np",
@@ -331,6 +361,7 @@
   },
   {
     "name": "ML_using_R",
+    "fork": true,
     "description": "Introduction to Machine Learning Using R",
     "language": "R",
     "html_url": "https://github.com/sdcastillo/ML_using_R",
@@ -342,6 +373,7 @@
   },
   {
     "name": "predicting-march-madness",
+    "fork": true,
     "description": "Machine learning tutorial to create an entry for the Kaggle March Mania contest",
     "language": "R",
     "html_url": "https://github.com/sdcastillo/predicting-march-madness",
@@ -353,6 +385,7 @@
   },
   {
     "name": "QuantumData",
+    "fork": false,
     "description": "A container for data sets to help actuaries who are practicing predictive analytics",
     "language": "R",
     "html_url": "https://github.com/sdcastillo/QuantumData",
@@ -364,6 +397,7 @@
   },
   {
     "name": "Riemann",
+    "fork": false,
     "description": "—",
     "language": "TeX",
     "html_url": "https://github.com/sdcastillo/Riemann",
@@ -375,6 +409,7 @@
   },
   {
     "name": "SOA-PA-Exam",
+    "fork": false,
     "description": "An open-source set of study notes using Kaggle",
     "language": "",
     "html_url": "https://github.com/sdcastillo/SOA-PA-Exam",
@@ -386,6 +421,7 @@
   },
   {
     "name": "SOA-Predictive-Modeling-Innovation-and-Industry-Contest-2019-First-Place",
+    "fork": true,
     "description": "This submission earned first place in the \"2019 Predictive Modeling, Innovation and Industry Contest,\" created by the SOA Predictive Analytics and Futurism Section and Technology Section.",
     "language": "Jupyter Notebook",
     "html_url": "https://github.com/sdcastillo/SOA-Predictive-Modeling-Innovation-and-Industry-Contest-2019-First-Place",
@@ -397,6 +433,7 @@
   },
   {
     "name": "tidy-islr",
+    "fork": true,
     "description": "—",
     "language": "Jupyter Notebook",
     "html_url": "https://github.com/sdcastillo/tidy-islr",
@@ -408,6 +445,7 @@
   },
   {
     "name": "AI-from-Linear-Algebra",
+    "fork": false,
     "description": "Scilab linear algebra example of R code",
     "language": "",
     "html_url": "https://github.com/sdcastillo/AI-from-Linear-Algebra",
@@ -419,6 +457,7 @@
   },
   {
     "name": "autonomous-access-control",
+    "fork": false,
     "description": "for security data and AI alarm access control systems",
     "language": "",
     "html_url": "https://github.com/sdcastillo/autonomous-access-control",
@@ -430,6 +469,7 @@
   },
   {
     "name": "bookdown",
+    "fork": true,
     "description": "Authoring Books and Technical Documents with R Markdown",
     "language": "",
     "html_url": "https://github.com/sdcastillo/bookdown",
@@ -441,6 +481,7 @@
   },
   {
     "name": "bookdown-demo",
+    "fork": true,
     "description": "A minimal book example using bookdown",
     "language": "",
     "html_url": "https://github.com/sdcastillo/bookdown-demo",
@@ -452,6 +493,7 @@
   },
   {
     "name": "calcconnect",
+    "fork": false,
     "description": "Website for math, using AI to prove math theorems",
     "language": "",
     "html_url": "https://github.com/sdcastillo/calcconnect",
@@ -463,6 +505,7 @@
   },
   {
     "name": "chatgptNobleProg",
+    "fork": true,
     "description": "ChatGPT tutorial and exploration with Python and Jupyter",
     "language": "",
     "html_url": "https://github.com/sdcastillo/chatgptNobleProg",
@@ -474,6 +517,7 @@
   },
   {
     "name": "Consumer-Health-Cost-Ideas",
+    "fork": false,
     "description": "Ideas about helping people get treatment for less money",
     "language": "",
     "html_url": "https://github.com/sdcastillo/Consumer-Health-Cost-Ideas",
@@ -485,6 +529,7 @@
   },
   {
     "name": "dev_guide",
+    "fork": true,
     "description": "rOpenSci Packages: Development, Maintenance, and Peer Review",
     "language": "",
     "html_url": "https://github.com/sdcastillo/dev_guide",
@@ -496,6 +541,7 @@
   },
   {
     "name": "ethical-self-hosted-llm",
+    "fork": false,
     "description": "Field notes from a Hetzner + Tailscale + Nginx + Ollama build: how to run a local LLM ethically and safely for nonprofit workforce training.",
     "language": "",
     "html_url": "https://github.com/sdcastillo/ethical-self-hosted-llm",
@@ -507,6 +553,7 @@
   },
   {
     "name": "ggplot2",
+    "fork": true,
     "description": "An implementation of the Grammar of Graphics in R",
     "language": "",
     "html_url": "https://github.com/sdcastillo/ggplot2",
@@ -518,6 +565,7 @@
   },
   {
     "name": "grok-dolphin-hybrid",
+    "fork": false,
     "description": "Grok Bot + Dolphin-Mistral hybrid (IMDb multi-level FastAPI prompts)",
     "language": "Python",
     "html_url": "https://github.com/sdcastillo/grok-dolphin-hybrid",
@@ -529,6 +577,7 @@
   },
   {
     "name": "IMDB-Movie-Network-Analysis",
+    "fork": false,
     "description": "Plotting a network of recommended movies from imdb.com.",
     "language": "",
     "html_url": "https://github.com/sdcastillo/IMDB-Movie-Network-Analysis",
@@ -540,6 +589,7 @@
   },
   {
     "name": "ISLR",
+    "fork": false,
     "description": "Companion to the Text Introduction to Statistical Learning",
     "language": "",
     "html_url": "https://github.com/sdcastillo/ISLR",
@@ -551,6 +601,7 @@
   },
   {
     "name": "learnr",
+    "fork": true,
     "description": "Interactive Tutorials with R Markdown",
     "language": "",
     "html_url": "https://github.com/sdcastillo/learnr",
@@ -562,6 +613,7 @@
   },
   {
     "name": "leetcode",
+    "fork": true,
     "description": "LeetCode Problems' Solutions",
     "language": "",
     "html_url": "https://github.com/sdcastillo/leetcode",
@@ -573,6 +625,7 @@
   },
   {
     "name": "LightGBM",
+    "fork": true,
     "description": "A fast, distributed, high performance gradient boosting (GBDT, GBRT, GBM or MART) framework based on decision tree algorithms, used for ranking, classification and many other machine learning tasks. I",
     "language": "C++",
     "html_url": "https://github.com/sdcastillo/LightGBM",
@@ -584,6 +637,7 @@
   },
   {
     "name": "LocalTextToSpeech",
+    "fork": false,
     "description": "Local Text To Speech Model",
     "language": "",
     "html_url": "https://github.com/sdcastillo/LocalTextToSpeech",
@@ -595,6 +649,7 @@
   },
   {
     "name": "Loss-Development-Triangles",
+    "fork": false,
     "description": "Code and data files for the article \"Painlessly Merge Data into Actuarial Loss Development Triangles with R\"",
     "language": "",
     "html_url": "https://github.com/sdcastillo/Loss-Development-Triangles",
@@ -606,6 +661,7 @@
   },
   {
     "name": "ModernDive_book",
+    "fork": true,
     "description": "Statistical Inference via Data Science: A ModernDive into R and the tidyverse",
     "language": "",
     "html_url": "https://github.com/sdcastillo/ModernDive_book",
@@ -617,6 +673,7 @@
   },
   {
     "name": "odbc",
+    "fork": true,
     "description": "Connect to ODBC databases (using the DBI interface)",
     "language": "C++",
     "html_url": "https://github.com/sdcastillo/odbc",
@@ -628,6 +685,7 @@
   },
   {
     "name": "otl-bookdown",
+    "fork": true,
     "description": "On The Line: How Schooling, Housing, and Civil Rights Shaped Hartford and its Suburbs. Built with Bookdown+RStudio. Read open-access book-in-progress at:",
     "language": "",
     "html_url": "https://github.com/sdcastillo/otl-bookdown",
@@ -639,6 +697,7 @@
   },
   {
     "name": "pandas",
+    "fork": true,
     "description": "Data & Code for my video on the Pandas library of Python",
     "language": "",
     "html_url": "https://github.com/sdcastillo/pandas",
@@ -650,6 +709,7 @@
   },
   {
     "name": "Predictive-Modeling-App",
+    "fork": false,
     "description": "—",
     "language": "",
     "html_url": "https://github.com/sdcastillo/Predictive-Modeling-App",
@@ -661,6 +721,7 @@
   },
   {
     "name": "provider-data-tools",
+    "fork": true,
     "description": "Tools for working with CMS Health Provider Data",
     "language": "Python",
     "html_url": "https://github.com/sdcastillo/provider-data-tools",
@@ -672,6 +733,7 @@
   },
   {
     "name": "Research-Texts",
+    "fork": false,
     "description": "A collection of textbooks, research papers, and tutorials",
     "language": "",
     "html_url": "https://github.com/sdcastillo/Research-Texts",
@@ -683,6 +745,7 @@
   },
   {
     "name": "TempLandingPage",
+    "fork": false,
     "description": "Materials for website before launch",
     "language": "",
     "html_url": "https://github.com/sdcastillo/TempLandingPage",
@@ -694,6 +757,7 @@
   },
   {
     "name": "Texas_car_crashes",
+    "fork": false,
     "description": "—",
     "language": "",
     "html_url": "https://github.com/sdcastillo/Texas_car_crashes",
