@@ -1,0 +1,7 @@
+<nav class="sw-nav" aria-label="{{ include.label | default: 'Site' }}">
+  <a href="https://sdcastillo.github.io/">Home</a>
+  <a href="https://sdcastillo.github.io/about.html">About</a>
+  <a href="https://sdcastillo.github.io/code.html">Code</a>
+  <a href="https://sdcastillo.github.io/samwiki/" {% if page.url contains '/samwiki' %}aria-current="page"{% endif %}>SamWiki</a>
+  <a href="https://github.com/sdcastillo">GitHub</a>
+</nav>

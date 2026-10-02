@@ -1,0 +1,114 @@
+---
+layout: default
+title: SamWiki
+description: The central index of Sam Castillo's projects, articles, and source.
+permalink: /samwiki/
+samwiki: true
+---
+
+<p class="sw-intro">Public repositories are grouped by how they are published today. Live demos open on github.io, and every card links to the GitHub source.</p>
+<p class="sw-links">Also on this site: <a href="https://sdcastillo.github.io/">Home</a>, <a href="https://sdcastillo.github.io/about.html">About</a>, and <a href="https://sdcastillo.github.io/code.html">Code</a>. This index does not enable GitHub Pages on other repositories.</p>
+
+{% assign live_repos = site.data.public_repos | where: "group", "live" %}
+{% assign static_repos = site.data.public_repos | where: "group", "static" %}
+{% assign tutorial_repos = site.data.public_repos | where: "group", "tutorials" %}
+{% assign library_repos = site.data.public_repos | where: "group", "libraries" %}
+
+<div class="sw-toolbar">
+  <label class="sw-search">
+    <span>Search projects</span>
+    <input id="sw-q" type="search" placeholder="Name, language, or description" autocomplete="off">
+  </label>
+  <p class="sw-result" id="sw-count">{{ site.data.public_repos | size }} public projects</p>
+</div>
+
+<nav class="sw-jumps" aria-label="Catalog sections">
+  <a href="#already-live">Already live</a>
+  <a href="#static-sites">Static sites</a>
+  <a href="#tutorials">Tutorials</a>
+  <a href="#libraries">Libraries &amp; apps</a>
+</nav>
+
+<p class="sw-empty" id="sw-empty" hidden>No public projects match that search.</p>
+
+<section class="sw-section" id="already-live">
+  <div class="sw-section-head">
+    <h2>Already live <span class="sw-pill">{{ live_repos | size }}</span></h2>
+    <p>GitHub Pages is already on. Open the demo or the source.</p>
+  </div>
+  <div class="sw-grid">
+    {% for repo in live_repos %}
+      {% include samwiki-card.html repo=repo %}
+    {% endfor %}
+  </div>
+</section>
+
+<section class="sw-section" id="static-sites">
+  <div class="sw-section-head">
+    <h2>Static sites (Pages next) <span class="sw-pill">{{ static_repos | size }}</span></h2>
+    <p>Static sites that can move onto GitHub Pages later. Pages stays off in this change.</p>
+  </div>
+  <div class="sw-grid">
+    {% for repo in static_repos %}
+      {% include samwiki-card.html repo=repo %}
+    {% endfor %}
+  </div>
+</section>
+
+<section class="sw-section" id="tutorials">
+  <div class="sw-section-head">
+    <h2>Tutorials / notebooks <span class="sw-pill">{{ tutorial_repos | size }}</span></h2>
+    <p>Notes, courses, and notebooks.</p>
+  </div>
+  <div class="sw-grid">
+    {% for repo in tutorial_repos %}
+      {% include samwiki-card.html repo=repo %}
+    {% endfor %}
+  </div>
+</section>
+
+<section class="sw-section" id="libraries">
+  <div class="sw-section-head">
+    <h2>Libraries &amp; apps <span class="sw-pill">{{ library_repos | size }}</span></h2>
+    <p>Libraries, apps, and project source.</p>
+  </div>
+  <div class="sw-grid">
+    {% for repo in library_repos %}
+      {% include samwiki-card.html repo=repo %}
+    {% endfor %}
+  </div>
+</section>
+
+<script>
+(function () {
+  var input = document.getElementById("sw-q");
+  var cards = Array.prototype.slice.call(document.querySelectorAll(".sw-card"));
+  var sections = Array.prototype.slice.call(document.querySelectorAll(".sw-section"));
+  var count = document.getElementById("sw-count");
+  var empty = document.getElementById("sw-empty");
+
+  function apply() {
+    var q = (input.value || "").trim().toLowerCase();
+    var shown = 0;
+    cards.forEach(function (card) {
+      var hay = card.getAttribute("data-search") || "";
+      var ok = !q || hay.indexOf(q) !== -1;
+      card.hidden = !ok;
+      if (ok) shown += 1;
+    });
+    sections.forEach(function (section) {
+      section.hidden = !section.querySelector(".sw-card:not([hidden])");
+    });
+    if (empty) empty.hidden = shown !== 0;
+    if (count) {
+      count.textContent = shown + (shown === 1 ? " public project" : " public projects");
+    }
+  }
+
+  if (!input) return;
+  var initial = new URLSearchParams(window.location.search).get("q");
+  if (initial) input.value = initial;
+  input.addEventListener("input", apply);
+  apply();
+})();
+</script>
