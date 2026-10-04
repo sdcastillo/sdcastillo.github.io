@@ -157,13 +157,13 @@
     "description": "Useful R tutorials for Actuaries",
     "language": "HTML",
     "html_url": "https://github.com/sdcastillo/Actuarial-R-Tutorials",
-    "live_url": "",
-    "group": "static",
+    "live_url": "https://sdcastillo.github.io/Actuarial-R-Tutorials/",
+    "group": "live",
     "updated": "2025-12-03",
     "badge": "",
     "difficulty": "intermediate",
     "audience": "actuaries moving GLMs to Excel",
-    "search": "actuarial-r-tutorials html useful r tutorials for actuaries static-enable intermediate level 2 actuaries moving glms to excel"
+    "search": "actuarial-r-tutorials html useful r tutorials for actuaries pages-on intermediate level 2 actuaries moving glms to excel"
   },
   {
     "name": "Bitcoin-Anomaly-Detection",
@@ -171,13 +171,13 @@
     "description": "Bitcoin price anomaly detection using R and Shiny",
     "language": "HTML",
     "html_url": "https://github.com/sdcastillo/Bitcoin-Anomaly-Detection",
-    "live_url": "",
-    "group": "static",
+    "live_url": "https://sdcastillo.github.io/Bitcoin-Anomaly-Detection/",
+    "group": "live",
     "updated": "2025-12-03",
     "badge": "",
     "difficulty": "advanced",
     "audience": "time-series learners",
-    "search": "bitcoin-anomaly-detection html bitcoin price anomaly detection using r and shiny static-enable advanced level 3 time-series learners"
+    "search": "bitcoin-anomaly-detection html bitcoin price anomaly detection using r and shiny pages-on advanced level 3 time-series learners"
   },
   {
     "name": "Clustering",
@@ -185,13 +185,13 @@
     "description": "Explanation, discussion, simulations, and comparisons of clustering methods",
     "language": "HTML",
     "html_url": "https://github.com/sdcastillo/Clustering",
-    "live_url": "",
-    "group": "static",
+    "live_url": "https://sdcastillo.github.io/Clustering/",
+    "group": "live",
     "updated": "2018-05-06",
     "badge": "",
     "difficulty": "intermediate",
     "audience": "first clustering notes",
-    "search": "clustering html explanation, discussion, simulations, and comparisons of clustering methods static-enable intermediate level 2 first clustering notes"
+    "search": "clustering html explanation, discussion, simulations, and comparisons of clustering methods pages-on intermediate level 2 first clustering notes"
   },
   {
     "name": "data-stories-2016",
@@ -211,13 +211,13 @@
     "description": "Slides for my presentation at the 2019 SOA Predictive Analytics and Futurism Symposium",
     "language": "HTML",
     "html_url": "https://github.com/sdcastillo/Data-Visualization",
-    "live_url": "",
-    "group": "static",
+    "live_url": "https://sdcastillo.github.io/Data-Visualization/",
+    "group": "live",
     "updated": "2025-12-03",
     "badge": "",
     "difficulty": "intermediate",
     "audience": "analysts learning stories",
-    "search": "data-visualization html slides for my presentation at the 2019 soa predictive analytics and futurism symposium static-enable intermediate level 2 analysts learning stories"
+    "search": "data-visualization html slides for my presentation at the 2019 soa predictive analytics and futurism symposium pages-on intermediate level 2 analysts learning stories"
   },
   {
     "name": "dolphin_grok_hybrid",
@@ -225,13 +225,13 @@
     "description": "Dolphin Mistral FastAPI hybrid app with Grok integration, Supabase, and more.",
     "language": "HTML",
     "html_url": "https://github.com/sdcastillo/dolphin_grok_hybrid",
-    "live_url": "",
-    "group": "static",
+    "live_url": "https://sdcastillo.github.io/dolphin_grok_hybrid/",
+    "group": "live",
     "updated": "2026-07-12",
     "badge": "",
     "difficulty": "advanced",
     "audience": "hybrid LLM app builders",
-    "search": "dolphin_grok_hybrid html dolphin mistral fastapi hybrid app with grok integration, supabase, and more. static-enable advanced level 3 hybrid llm app builders"
+    "search": "dolphin_grok_hybrid html dolphin mistral fastapi hybrid app with grok integration, supabase, and more. pages-on advanced level 3 hybrid llm app builders"
   },
   {
     "name": "Jupyter-Contest",
@@ -239,13 +239,13 @@
     "description": "—",
     "language": "HTML",
     "html_url": "https://github.com/sdcastillo/Jupyter-Contest",
-    "live_url": "",
-    "group": "static",
+    "live_url": "https://sdcastillo.github.io/Jupyter-Contest/",
+    "group": "live",
     "updated": "2023-12-16",
     "badge": "",
     "difficulty": "advanced",
     "audience": "interval modelers",
-    "search": "jupyter-contest html — static-enable advanced level 3 interval modelers"
+    "search": "jupyter-contest html — pages-on advanced level 3 interval modelers"
   },
   {
     "name": "Kaggle-Advanced-Regression",
@@ -253,13 +253,13 @@
     "description": "A submission to a kaggle competition",
     "language": "HTML",
     "html_url": "https://github.com/sdcastillo/Kaggle-Advanced-Regression",
-    "live_url": "",
-    "group": "static",
+    "live_url": "https://sdcastillo.github.io/Kaggle-Advanced-Regression/",
+    "group": "live",
     "updated": "2025-12-12",
     "badge": "",
     "difficulty": "advanced",
     "audience": "regression competitors",
-    "search": "kaggle-advanced-regression html a submission to a kaggle competition static-enable advanced level 3 regression competitors"
+    "search": "kaggle-advanced-regression html a submission to a kaggle competition pages-on advanced level 3 regression competitors"
   },
   {
     "name": "Kaggle-Zillow-Competition",
@@ -267,13 +267,13 @@
     "description": "Competition to predict home prices",
     "language": "HTML",
     "html_url": "https://github.com/sdcastillo/Kaggle-Zillow-Competition",
-    "live_url": "",
-    "group": "static",
+    "live_url": "https://sdcastillo.github.io/Kaggle-Zillow-Competition/",
+    "group": "live",
     "updated": "2025-12-03",
     "badge": "",
     "difficulty": "intermediate",
     "audience": "first GBM notebooks",
-    "search": "kaggle-zillow-competition html competition to predict home prices static-enable intermediate level 2 first gbm notebooks"
+    "search": "kaggle-zillow-competition html competition to predict home prices pages-on intermediate level 2 first gbm notebooks"
   },
   {
     "name": "MAS-I",
@@ -281,13 +281,13 @@
     "description": "Study Notes and Code from Modern Actuarial Statistics I",
     "language": "HTML",
     "html_url": "https://github.com/sdcastillo/MAS-I",
-    "live_url": "",
-    "group": "static",
+    "live_url": "https://sdcastillo.github.io/MAS-I/",
+    "group": "live",
     "updated": "2025-12-04",
     "badge": "",
     "difficulty": "advanced",
     "audience": "actuarial exam prep",
-    "search": "mas-i html study notes and code from modern actuarial statistics i static-enable advanced level 3 actuarial exam prep"
+    "search": "mas-i html study notes and code from modern actuarial statistics i pages-on advanced level 3 actuarial exam prep"
   },
   {
     "name": "rstudio-conf",
@@ -331,13 +331,13 @@
     "description": "PredictiveAnalyst site",
     "language": "HTML",
     "html_url": "https://github.com/sdcastillo/website",
-    "live_url": "",
-    "group": "static",
+    "live_url": "https://sdcastillo.github.io/website/",
+    "group": "live",
     "updated": "2025-04-04",
     "badge": "",
     "difficulty": "beginner",
     "audience": "browsing an older site",
-    "search": "website html predictiveanalyst site static-enable beginner level 1 browsing an older site"
+    "search": "website html predictiveanalyst site pages-on beginner level 1 browsing an older site"
   },
   {
     "name": "Building-a-Vector-Space-Model-for-Movies-by-IMDB-Plot-Keywords",
@@ -345,13 +345,13 @@
     "description": "Movie and actor comparison by cosine similarity and euclidean distance measures",
     "language": "R",
     "html_url": "https://github.com/sdcastillo/Building-a-Vector-Space-Model-for-Movies-by-IMDB-Plot-Keywords",
-    "live_url": "",
-    "group": "tutorials",
+    "live_url": "https://sdcastillo.github.io/Building-a-Vector-Space-Model-for-Movies-by-IMDB-Plot-Keywords/",
+    "group": "live",
     "updated": "2017-07-09",
     "badge": "",
     "difficulty": "intermediate",
     "audience": "first vector models",
-    "search": "building-a-vector-space-model-for-movies-by-imdb-plot-keywords r movie and actor comparison by cosine similarity and euclidean distance measures docs-generate intermediate level 2 first vector models"
+    "search": "building-a-vector-space-model-for-movies-by-imdb-plot-keywords r movie and actor comparison by cosine similarity and euclidean distance measures pages-on intermediate level 2 first vector models"
   },
   {
     "name": "Central_Limit_Theorem",
@@ -359,13 +359,13 @@
     "description": "A Shiny App of the CLT",
     "language": "R",
     "html_url": "https://github.com/sdcastillo/Central_Limit_Theorem",
-    "live_url": "",
-    "group": "tutorials",
+    "live_url": "https://sdcastillo.github.io/Central_Limit_Theorem/",
+    "group": "live",
     "updated": "2025-12-20",
     "badge": "",
     "difficulty": "intermediate",
     "audience": "first Shiny apps",
-    "search": "central_limit_theorem r a shiny app of the clt docs-generate intermediate level 2 first shiny apps"
+    "search": "central_limit_theorem r a shiny app of the clt pages-on intermediate level 2 first shiny apps"
   },
   {
     "name": "leveling-up-jupyter",
@@ -397,13 +397,13 @@
     "description": "—",
     "language": "TeX",
     "html_url": "https://github.com/sdcastillo/mathematics_p_vs_np",
-    "live_url": "",
-    "group": "tutorials",
+    "live_url": "https://sdcastillo.github.io/mathematics_p_vs_np/",
+    "group": "live",
     "updated": "2026-10-01",
     "badge": "",
     "difficulty": "painfully-challenging",
     "audience": "complexity theory readers",
-    "search": "mathematics_p_vs_np tex — docs-generate painfully-challenging painfully challenging level 4 complexity theory readers"
+    "search": "mathematics_p_vs_np tex — pages-on painfully-challenging painfully challenging level 4 complexity theory readers"
   },
   {
     "name": "ML_using_R",
@@ -435,13 +435,13 @@
     "description": "A container for data sets to help actuaries who are practicing predictive analytics",
     "language": "R",
     "html_url": "https://github.com/sdcastillo/QuantumData",
-    "live_url": "",
-    "group": "tutorials",
+    "live_url": "https://sdcastillo.github.io/QuantumData/",
+    "group": "live",
     "updated": "2026-04-10",
     "badge": "",
     "difficulty": "intermediate",
     "audience": "actuarial exam prep",
-    "search": "quantumdata r a container for data sets to help actuaries who are practicing predictive analytics docs-generate intermediate level 2 actuarial exam prep"
+    "search": "quantumdata r a container for data sets to help actuaries who are practicing predictive analytics pages-on intermediate level 2 actuarial exam prep"
   },
   {
     "name": "Riemann",
@@ -463,13 +463,13 @@
     "description": "An open-source set of study notes using Kaggle",
     "language": "",
     "html_url": "https://github.com/sdcastillo/SOA-PA-Exam",
-    "live_url": "",
-    "group": "tutorials",
+    "live_url": "https://sdcastillo.github.io/SOA-PA-Exam/",
+    "group": "live",
     "updated": "2025-12-03",
     "badge": "",
     "difficulty": "intermediate",
     "audience": "actuarial exam prep",
-    "search": "soa-pa-exam an open-source set of study notes using kaggle docs-generate intermediate level 2 actuarial exam prep"
+    "search": "soa-pa-exam an open-source set of study notes using kaggle pages-on intermediate level 2 actuarial exam prep"
   },
   {
     "name": "SOA-Predictive-Modeling-Innovation-and-Industry-Contest-2019-First-Place",
@@ -501,13 +501,13 @@
     "description": "Scilab linear algebra example of R code",
     "language": "",
     "html_url": "https://github.com/sdcastillo/AI-from-Linear-Algebra",
-    "live_url": "",
-    "group": "libraries",
+    "live_url": "https://sdcastillo.github.io/AI-from-Linear-Algebra/",
+    "group": "live",
     "updated": "2025-07-10",
     "badge": "",
     "difficulty": "intermediate",
     "audience": "linear algebra students",
-    "search": "ai-from-linear-algebra scilab linear algebra example of r code readme-pages intermediate level 2 linear algebra students"
+    "search": "ai-from-linear-algebra scilab linear algebra example of r code pages-on intermediate level 2 linear algebra students"
   },
   {
     "name": "autonomous-access-control",
@@ -553,13 +553,13 @@
     "description": "Website for math, using AI to prove math theorems",
     "language": "",
     "html_url": "https://github.com/sdcastillo/calcconnect",
-    "live_url": "",
-    "group": "libraries",
+    "live_url": "https://sdcastillo.github.io/calcconnect/",
+    "group": "live",
     "updated": "2026-03-17",
     "badge": "",
     "difficulty": "painfully-challenging",
     "audience": "AI-assisted math",
-    "search": "calcconnect website for math, using ai to prove math theorems readme-pages painfully-challenging painfully challenging level 4 ai-assisted math"
+    "search": "calcconnect website for math, using ai to prove math theorems pages-on painfully-challenging painfully challenging level 4 ai-assisted math zeta"
   },
   {
     "name": "chatgptNobleProg",
@@ -605,13 +605,13 @@
     "description": "Field notes from a Hetzner + Tailscale + Nginx + Ollama build: how to run a local LLM ethically and safely for nonprofit workforce training.",
     "language": "",
     "html_url": "https://github.com/sdcastillo/ethical-self-hosted-llm",
-    "live_url": "",
-    "group": "libraries",
+    "live_url": "https://sdcastillo.github.io/ethical-self-hosted-llm/",
+    "group": "live",
     "updated": "2026-10-01",
     "badge": "",
     "difficulty": "advanced",
     "audience": "self-hosted LLM operators",
-    "search": "ethical-self-hosted-llm field notes from a hetzner + tailscale + nginx + ollama build: how to run a local llm ethically and safely for nonprofit workforce training. readme-pages advanced level 3 self-hosted llm operators"
+    "search": "ethical-self-hosted-llm field notes from a hetzner + tailscale + nginx + ollama build: how to run a local llm ethically and safely for nonprofit workforce training. pages-on advanced level 3 self-hosted llm operators"
   },
   {
     "name": "ggplot2",
@@ -645,13 +645,13 @@
     "description": "Plotting a network of recommended movies from imdb.com.",
     "language": "",
     "html_url": "https://github.com/sdcastillo/IMDB-Movie-Network-Analysis",
-    "live_url": "",
-    "group": "libraries",
+    "live_url": "https://sdcastillo.github.io/IMDB-Movie-Network-Analysis/",
+    "group": "live",
     "updated": "2025-06-13",
     "badge": "",
     "difficulty": "intermediate",
     "audience": "first network graphs",
-    "search": "imdb-movie-network-analysis plotting a network of recommended movies from imdb.com. readme-pages intermediate level 2 first network graphs"
+    "search": "imdb-movie-network-analysis plotting a network of recommended movies from imdb.com. pages-on intermediate level 2 first network graphs"
   },
   {
     "name": "ISLR",
@@ -723,13 +723,13 @@
     "description": "Code and data files for the article \"Painlessly Merge Data into Actuarial Loss Development Triangles with R\"",
     "language": "",
     "html_url": "https://github.com/sdcastillo/Loss-Development-Triangles",
-    "live_url": "",
-    "group": "libraries",
+    "live_url": "https://sdcastillo.github.io/Loss-Development-Triangles/",
+    "group": "live",
     "updated": "2025-10-06",
     "badge": "",
     "difficulty": "advanced",
     "audience": "reserving analysts",
-    "search": "loss-development-triangles code and data files for the article \"painlessly merge data into actuarial loss development triangles with r\" readme-pages advanced level 3 reserving analysts"
+    "search": "loss-development-triangles code and data files for the article \"painlessly merge data into actuarial loss development triangles with r\" pages-on advanced level 3 reserving analysts"
   },
   {
     "name": "ModernDive_book",
