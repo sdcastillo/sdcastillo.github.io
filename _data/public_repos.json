@@ -449,13 +449,13 @@
     "description": "—",
     "language": "TeX",
     "html_url": "https://github.com/sdcastillo/Riemann",
-    "live_url": "",
-    "group": "tutorials",
+    "live_url": "https://sdcastillo.github.io/Riemann/",
+    "group": "live",
     "updated": "2026-06-05",
     "badge": "",
     "difficulty": "painfully-challenging",
     "audience": "analytic number theory",
-    "search": "riemann tex — docs-generate painfully-challenging painfully challenging level 4 analytic number theory"
+    "search": "riemann tex — pages-on painfully-challenging painfully challenging level 4 analytic number theory zeta"
   },
   {
     "name": "SOA-PA-Exam",
@@ -515,13 +515,13 @@
     "description": "for security data and AI alarm access control systems",
     "language": "",
     "html_url": "https://github.com/sdcastillo/autonomous-access-control",
-    "live_url": "",
-    "group": "libraries",
+    "live_url": "https://sdcastillo.github.io/autonomous-access-control/",
+    "group": "live",
     "updated": "2026-06-05",
     "badge": "",
     "difficulty": "beginner",
     "audience": "security data sketches",
-    "search": "autonomous-access-control for security data and ai alarm access control systems readme-pages beginner level 1 security data sketches"
+    "search": "autonomous-access-control for security data and ai alarm access control systems pages-on beginner level 1 security data sketches"
   },
   {
     "name": "bookdown",
@@ -579,13 +579,13 @@
     "description": "Ideas about helping people get treatment for less money",
     "language": "",
     "html_url": "https://github.com/sdcastillo/Consumer-Health-Cost-Ideas",
-    "live_url": "",
-    "group": "libraries",
+    "live_url": "https://sdcastillo.github.io/Consumer-Health-Cost-Ideas/",
+    "group": "live",
     "updated": "2019-10-19",
     "badge": "",
     "difficulty": "beginner",
     "audience": "health-cost idea sketches",
-    "search": "consumer-health-cost-ideas ideas about helping people get treatment for less money readme-pages beginner level 1 health-cost idea sketches"
+    "search": "consumer-health-cost-ideas ideas about helping people get treatment for less money pages-on beginner level 1 health-cost idea sketches"
   },
   {
     "name": "dev_guide",
@@ -631,13 +631,13 @@
     "description": "Grok Bot + Dolphin-Mistral hybrid (IMDb multi-level FastAPI prompts)",
     "language": "Python",
     "html_url": "https://github.com/sdcastillo/grok-dolphin-hybrid",
-    "live_url": "",
-    "group": "libraries",
+    "live_url": "https://sdcastillo.github.io/grok-dolphin-hybrid/",
+    "group": "live",
     "updated": "2026-09-18",
     "badge": "",
     "difficulty": "advanced",
     "audience": "local LLM builders",
-    "search": "grok-dolphin-hybrid python grok bot + dolphin-mistral hybrid (imdb multi-level fastapi prompts) readme-pages advanced level 3 local llm builders"
+    "search": "grok-dolphin-hybrid python grok bot + dolphin-mistral hybrid (imdb multi-level fastapi prompts) pages-on advanced level 3 local llm builders"
   },
   {
     "name": "IMDB-Movie-Network-Analysis",
@@ -709,13 +709,13 @@
     "description": "Local Text To Speech Model",
     "language": "",
     "html_url": "https://github.com/sdcastillo/LocalTextToSpeech",
-    "live_url": "",
-    "group": "libraries",
+    "live_url": "https://sdcastillo.github.io/LocalTextToSpeech/",
+    "group": "live",
     "updated": "2026-06-05",
     "badge": "",
     "difficulty": "intermediate",
     "audience": "first local TTS scripts",
-    "search": "localtexttospeech local text to speech model readme-pages intermediate level 2 first local tts scripts"
+    "search": "localtexttospeech local text to speech model pages-on intermediate level 2 first local tts scripts"
   },
   {
     "name": "Loss-Development-Triangles",
@@ -785,13 +785,13 @@
     "description": "—",
     "language": "",
     "html_url": "https://github.com/sdcastillo/Predictive-Modeling-App",
-    "live_url": "",
-    "group": "libraries",
+    "live_url": "https://sdcastillo.github.io/Predictive-Modeling-App/",
+    "group": "live",
     "updated": "2025-11-26",
     "badge": "",
     "difficulty": "advanced",
     "audience": "exam-data modelers",
-    "search": "predictive-modeling-app — readme-pages advanced level 3 exam-data modelers"
+    "search": "predictive-modeling-app — pages-on advanced level 3 exam-data modelers"
   },
   {
     "name": "provider-data-tools",
@@ -839,12 +839,12 @@
     "description": "—",
     "language": "",
     "html_url": "https://github.com/sdcastillo/Texas_car_crashes",
-    "live_url": "",
-    "group": "libraries",
+    "live_url": "https://sdcastillo.github.io/Texas_car_crashes/",
+    "group": "live",
     "updated": "2025-12-03",
     "badge": "",
     "difficulty": "intermediate",
     "audience": "crash-data explorers",
-    "search": "texas_car_crashes — readme-pages intermediate level 2 crash-data explorers"
+    "search": "texas_car_crashes — pages-on intermediate level 2 crash-data explorers"
   }
 ]
