@@ -23,7 +23,7 @@
     </p>
   {% endif %}
   <div class="sw-card-top">
-    <h3 class="sw-name"><a href="{{ repo.html_url }}">{{ repo.name }}</a></h3>
+    <h3 class="sw-name"><a href="{{ repo.html_url }}">{{ repo.title | default: repo.name }}</a></h3>
     {% if repo.language != "" %}
       <span class="sw-lang">{{ repo.language }}</span>
     {% endif %}
