@@ -1,6 +1,7 @@
 [
   {
     "name": "Architecture",
+    "title": "Building Systems Notes: Fire Safety, CAT6, Cameras",
     "fork": false,
     "description": "prompting perplexity to assist with architecture and construction runoffs",
     "language": "HTML",
@@ -15,6 +16,7 @@
   },
   {
     "name": "Identifying-Actionable-Treatment-Variation-in-Episodes-of-Low-Back-Pain",
+    "title": "Actionable Treatment Variation in Low Back Pain",
     "fork": false,
     "description": "Source code from a project from with BCBSMA this summer",
     "language": "HTML",
@@ -57,6 +59,7 @@
   },
   {
     "name": "PA-R-Study-Manual",
+    "title": "Exam PA Study Guide",
     "fork": false,
     "description": "An online study guide for the SOA's predictive analytics exam.",
     "language": "HTML",
@@ -71,6 +74,7 @@
   },
   {
     "name": "Prior-Weights-with-XGboost",
+    "title": "Prior Weights with XGBoost",
     "fork": false,
     "description": "A method of adding prior weights to xgboost",
     "language": "HTML",
@@ -125,6 +129,7 @@
   },
   {
     "name": "Time-Series-Stock-Anomaly-Detection",
+    "title": "Stock Price Anomaly Detection with ARIMA",
     "fork": false,
     "description": "A Shiny App for detecting abnormal stock price fluctuations",
     "language": "R",
@@ -139,6 +144,7 @@
   },
   {
     "name": "Umass2017-S525-IE-Project",
+    "title": "Insurance Availability by ZIP: Regression in SAS",
     "fork": false,
     "description": "University of Massachusetts Amherst 2017, Stats 525",
     "language": "HTML",
@@ -153,6 +159,7 @@
   },
   {
     "name": "Actuarial-R-Tutorials",
+    "title": "Actuarial R Tutorials",
     "fork": false,
     "description": "Useful R tutorials for Actuaries",
     "language": "HTML",
@@ -167,6 +174,7 @@
   },
   {
     "name": "Bitcoin-Anomaly-Detection",
+    "title": "Bitcoin Anomaly Detection",
     "fork": false,
     "description": "Bitcoin price anomaly detection using R and Shiny",
     "language": "HTML",
@@ -181,6 +189,7 @@
   },
   {
     "name": "Clustering",
+    "title": "Clustering Methods: k-means, k-medoids, and k-means++",
     "fork": false,
     "description": "Explanation, discussion, simulations, and comparisons of clustering methods",
     "language": "HTML",
@@ -207,6 +216,7 @@
   },
   {
     "name": "Data-Visualization",
+    "title": "Every Picture Tells a Story: Data Visualization Talk",
     "fork": false,
     "description": "Slides for my presentation at the 2019 SOA Predictive Analytics and Futurism Symposium",
     "language": "HTML",
@@ -221,6 +231,7 @@
   },
   {
     "name": "dolphin_grok_hybrid",
+    "title": "Dolphin–Grok Chat Server (FastAPI + Ollama)",
     "fork": false,
     "description": "Dolphin Mistral FastAPI hybrid app with Grok integration, Supabase, and more.",
     "language": "HTML",
@@ -235,6 +246,7 @@
   },
   {
     "name": "Jupyter-Contest",
+    "title": "Predicting Uncertainty with Quantile Gradient Boosting",
     "fork": false,
     "description": "—",
     "language": "HTML",
@@ -249,6 +261,7 @@
   },
   {
     "name": "Kaggle-Advanced-Regression",
+    "title": "Advanced Regression for Housing Prices",
     "fork": false,
     "description": "A submission to a kaggle competition",
     "language": "HTML",
@@ -263,6 +276,7 @@
   },
   {
     "name": "Kaggle-Zillow-Competition",
+    "title": "Zillow Prize: Predicting Zestimate Error",
     "fork": false,
     "description": "Competition to predict home prices",
     "language": "HTML",
@@ -277,6 +291,7 @@
   },
   {
     "name": "MAS-I",
+    "title": "MAS-I Exam Notes: Extended Linear Models in R",
     "fork": false,
     "description": "Study Notes and Code from Modern Actuarial Statistics I",
     "language": "HTML",
@@ -327,6 +342,7 @@
   },
   {
     "name": "website",
+    "title": "PredictiveAnalyst: Exam PA Study Site",
     "fork": false,
     "description": "PredictiveAnalyst site",
     "language": "HTML",
@@ -341,6 +357,7 @@
   },
   {
     "name": "Building-a-Vector-Space-Model-for-Movies-by-IMDB-Plot-Keywords",
+    "title": "Movie Keyword Vector Space",
     "fork": false,
     "description": "Movie and actor comparison by cosine similarity and euclidean distance measures",
     "language": "R",
@@ -355,6 +372,7 @@
   },
   {
     "name": "Central_Limit_Theorem",
+    "title": "Central Limit Theorem",
     "fork": false,
     "description": "A Shiny App of the CLT",
     "language": "R",
@@ -393,6 +411,7 @@
   },
   {
     "name": "mathematics_p_vs_np",
+    "title": "P versus NP: Definitions, Completeness, and Barriers",
     "fork": false,
     "description": "—",
     "language": "TeX",
@@ -431,6 +450,7 @@
   },
   {
     "name": "QuantumData",
+    "title": "QuantumData: Practice Datasets for Exam PA",
     "fork": false,
     "description": "A container for data sets to help actuaries who are practicing predictive analytics",
     "language": "R",
@@ -445,6 +465,7 @@
   },
   {
     "name": "Riemann",
+    "title": "Riemann Zeta Notes: Zeros and the Critical Line",
     "fork": false,
     "description": "—",
     "language": "TeX",
@@ -459,6 +480,7 @@
   },
   {
     "name": "SOA-PA-Exam",
+    "title": "SOA Exam PA Notes",
     "fork": false,
     "description": "An open-source set of study notes using Kaggle",
     "language": "",
@@ -497,6 +519,7 @@
   },
   {
     "name": "AI-from-Linear-Algebra",
+    "title": "AI from Linear Algebra",
     "fork": false,
     "description": "Scilab linear algebra example of R code",
     "language": "",
@@ -511,6 +534,7 @@
   },
   {
     "name": "autonomous-access-control",
+    "title": "Autonomous Access Control",
     "fork": false,
     "description": "for security data and AI alarm access control systems",
     "language": "",
@@ -549,6 +573,7 @@
   },
   {
     "name": "calcconnect",
+    "title": "CalcConnect: AI-Assisted Proofs on the Riemann Zeta",
     "fork": false,
     "description": "Website for math, using AI to prove math theorems",
     "language": "",
@@ -575,6 +600,7 @@
   },
   {
     "name": "Consumer-Health-Cost-Ideas",
+    "title": "Consumer Health Cost Ideas",
     "fork": false,
     "description": "Ideas about helping people get treatment for less money",
     "language": "",
@@ -601,6 +627,7 @@
   },
   {
     "name": "ethical-self-hosted-llm",
+    "title": "Ethical Self-Hosted LLM",
     "fork": false,
     "description": "Field notes from a Hetzner + Tailscale + Nginx + Ollama build: how to run a local LLM ethically and safely for nonprofit workforce training.",
     "language": "",
@@ -627,6 +654,7 @@
   },
   {
     "name": "grok-dolphin-hybrid",
+    "title": "Grok–Dolphin Modelfile and Rating-Ladder Prompts",
     "fork": false,
     "description": "Grok Bot + Dolphin-Mistral hybrid (IMDb multi-level FastAPI prompts)",
     "language": "Python",
@@ -641,6 +669,7 @@
   },
   {
     "name": "IMDB-Movie-Network-Analysis",
+    "title": "IMDb Movie Network Analysis",
     "fork": false,
     "description": "Plotting a network of recommended movies from imdb.com.",
     "language": "",
@@ -705,6 +734,7 @@
   },
   {
     "name": "LocalTextToSpeech",
+    "title": "Local Text to Speech",
     "fork": false,
     "description": "Local Text To Speech Model",
     "language": "",
@@ -719,6 +749,7 @@
   },
   {
     "name": "Loss-Development-Triangles",
+    "title": "Loss Development Triangles",
     "fork": false,
     "description": "Code and data files for the article \"Painlessly Merge Data into Actuarial Loss Development Triangles with R\"",
     "language": "",
@@ -781,6 +812,7 @@
   },
   {
     "name": "Predictive-Modeling-App",
+    "title": "Predictive Modeling App",
     "fork": false,
     "description": "—",
     "language": "",
@@ -835,6 +867,7 @@
   },
   {
     "name": "Texas_car_crashes",
+    "title": "Texas Car Crashes: PCA on 2021 TxDOT Data",
     "fork": false,
     "description": "—",
     "language": "",
