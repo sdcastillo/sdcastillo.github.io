@@ -693,6 +693,14 @@ body.samwiki .sw-manifesto-sign {
   color: #123055;
 }
 
+body.samwiki .sw-manifesto-actions {
+  margin: 1rem 0 0.35rem;
+}
+
+body.samwiki .sw-manifesto-actions .sw-hire {
+  margin-right: 0.5rem;
+}
+
 body.samwiki .sw-trust {
   margin: 0 0 1.5rem;
 }
@@ -1008,6 +1016,34 @@ body.samwiki .sw-actions .sw-btn-pr:hover {
   background: #0c1330;
   color: #d9fff4;
   text-decoration: none;
+}
+
+
+body.samwiki .sw-close-hire {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem 1.5rem;
+  margin: 1.75rem 0 0.5rem;
+  padding: 1.15rem 1.25rem;
+  background: #fff;
+  border: 1px solid var(--sw-line);
+  border-radius: 18px;
+  box-shadow: var(--sw-shadow);
+}
+
+body.samwiki .sw-close-hire-copy h2 {
+  margin: 0 0 0.35rem;
+  letter-spacing: -0.03em;
+}
+
+body.samwiki .sw-close-hire-copy p {
+  margin: 0;
+  max-width: 52rem;
+  color: #243447;
+  font-size: 1.05rem;
+  line-height: 1.5;
 }
 
 @media (max-width: 64em) {
