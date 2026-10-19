@@ -12,6 +12,14 @@ Twice-daily reading of public polls, ratings, and prediction markets for the Nov
 
 This is a model forecast assembled from public sources. It is not a vote count, not a projection of any official canvass, and not advice on how to vote.
 
+## Where Does Your Ballot Actually Go?
+
+<div style="position:relative;aspect-ratio:16/9;background:#000;border-radius:10px;overflow:hidden;margin:1rem 0;">
+<iframe src="https://rumble.com/embed/v7eumc4/?pub=4nnnxw" title="Where Does Your Ballot Actually Go? How Votes Get Counted, Step by Step (AI-Narrated)" loading="lazy" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border:0;"></iframe>
+</div>
+
+[Where Does Your Ballot Actually Go? How Votes Get Counted, Step by Step (AI-Narrated)](https://rumble.com/v7h0z9m-where-does-your-ballot-actually-go-how-votes-get-counted-step-by-step-ai-na.html?mref=4nnnxw&mc=155b2)
+
 <!-- ELECTION_FORECAST_START -->
 
 **Updated:** 2026-10-19 08:07 EDT
