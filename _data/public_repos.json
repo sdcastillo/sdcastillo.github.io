@@ -1,5 +1,20 @@
 [
   {
+    "name": "landingpage",
+    "title": "ELECTION PREDICTIONS",
+    "fork": false,
+    "description": "Twice-daily seat forecast for the November 3, 2026 United States midterm elections.",
+    "language": "Markdown",
+    "html_url": "https://github.com/sdcastillo/sdcastillo.github.io",
+    "live_url": "https://sdcastillo.github.io/landingpage/",
+    "group": "live",
+    "updated": "2026-10-19",
+    "badge": "",
+    "difficulty": "beginner",
+    "audience": "readers following the 2026 midterms",
+    "search": "election predictions 2026 midterms house senate polls forecast landingpage beginner level 1"
+  },
+  {
     "name": "Architecture",
     "title": "Building Systems Notes: Fire Safety, CAT6, Cameras",
     "fork": false,
