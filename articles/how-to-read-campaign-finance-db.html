@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>How to Read the Campaign Finance DB—and What’s Missing — Sam News Reporter Teleprompts</title>
+  <meta name="description" content="A reporter’s map to the Follow the Money SQLite kit: which tables answer which questions, why ActBlue/WinRed splits are blank until itcont loads, and how to avo" />
+  <meta name="author" content="Sam Castillo" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/site.css" />
+</head>
+<body class="page-article">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <p class="eyebrow">Saturday, October 24, 2026</p>
+      <a class="brand-mark" href="../index.html">Sam News Reporter Teleprompts</a>
+      <p class="byline-line">Briefings by Sam Castillo</p>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="../index.html">Home</a>
+        <a href="../index.html#headlines">Headlines</a>
+        <a href="../index.html#follow-the-money">Follow the Money</a>
+        <a href="../index.html#sections">Sections</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="article-main">
+    <article class="article">
+      <header class="article-header">
+        <p class="section-kicker">Follow the Money</p>
+        <h1>How to Read the Campaign Finance DB—and What’s Missing</h1>
+        <p class="article-meta"><time datetime="2026-10-24">Saturday, October 24, 2026</time> · Sam Castillo</p>
+      </header>
+      <div class="article-body">
+<p class="dek">A reporter’s map to the Follow the Money SQLite kit: which tables answer which questions, why ActBlue/WinRed splits are blank until itcont loads, and how to avoid overclaiming from public records.</p>
+<p>
+The Follow the Money kit (`/home/ubuntu/midterms2026/campaign-finance/`) follows the helyn.com appendix method: pick officials, download <strong>public</strong> FEC / OpenFEC / OCPF / VoteView data, load SQLite (`ftm.db`), run SQL. This briefing is a field guide—not a dump of every row.
+</p>
+<h2>What you can answer today (from shipped outs)</h2>
+<p>
+Even when `raw/`, `api/`, and `ftm.db` are not on disk, the first-run outs still support:
+</p>
+<ul>
+<li><strong>Federal totals &amp; PAC mix</strong> — `out/book_queries.out` §A–C (weball + pas2 24K).</li>
+<li><strong>Small vs large / in-state</strong> — §D–E; OpenFEC size/state JSON under the ma-money packs.</li>
+<li><strong>State OCPF</strong> — §G–H + `logs/ocpf.log`.</li>
+<li><strong>Party unity</strong> — §I + `out/votes.out`.</li>
+<li><strong>Donor lists</strong> — `out/q2.out` (top committees, employers, occupations).</li>
+</ul>
+<h2>Core tables (when `ftm.db` is built)</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Table</th>
+<th>Use it for</th>
+</tr></thead><tbody>
+<tr>
+<td>`officials`</td>
+<td>Keys, offices, FEC/OCPF IDs</td>
+</tr>
+<tr>
+<td>`fec_candidate_summary`</td>
+<td>Cycle receipts (weball)</td>
+</tr>
+<tr>
+<td>`fec_committee_to_candidate`</td>
+<td>PAC/IE lines (watch `TRANSACTION_TP`, memo `X`)</td>
+</tr>
+<tr>
+<td>`fec_by_size` / `fec_by_state`</td>
+<td>Small-dollar and geography</td>
+</tr>
+<tr>
+<td>`fec_by_employer` / `fec_by_occupation`</td>
+<td>Top labels from OpenFEC</td>
+</tr>
+<tr>
+<td>`ocpf_receipts`</td>
+<td>MA state receipts</td>
+</tr>
+<tr>
+<td>`member_votes` / `vote_party_position`</td>
+<td>Party-split unity</td>
+</tr>
+</tbody></table></div>
+<p>
+Run: `python3 scripts/runq.py sql/book_queries.sql`.
+</p>
+<h2>What’s missing (do not invent)</h2>
+<ul>
+<li><strong>FEC itemized individuals (`itcont`) are not loaded.</strong> Files are multi-GB. Until `load_itcont.py` runs on `indiv24` / `indiv26`, <strong>query J (ActBlue / WinRed vs direct)</strong> cannot be answered from this kit. Say so on air.</li>
+<li><strong>No MA Legislature member roll calls</strong> via the API used here (endpoints 404); only sponsored bills.</li>
+<li><strong>No Healey signing/veto table.</strong></li>
+<li><strong>No industry coding</strong> beyond FEC `ORG_TP` / `CONNECTED_ORG_NM`.</li>
+<li>Kit copies may ship <strong>without</strong> `raw/`, `api/`, or `ftm.db`—rely on `out/*.out` until restored.</li>
+</ul>
+<h2>Framing rules for Sam News</h2>
+<p>
+1. Name offices correctly: <strong>McGovern = MA-02 (Northampton)</strong>; <strong>Neal = MA-01</strong>.
+<br />2. Quote only printed figures from outs/logs/packs.
+<br />3. <strong>Correlation ≠ corruption.</strong> Money and votes can be reported together as public facts; motives need separate evidence.
+<br />4. When ActBlue/WinRed is asked: “Not in the loaded database yet—individual FEC files still to load.”
+</p>
+<hr />
+<p class="article-footer"><em>Teleprompt edition for Saturday, October 24, 2026. Reporting brand: Sam Castillo / Sam News Reporter Teleprompts. Figures from public FEC, OpenFEC, MA OCPF, and VoteView kit outs only.</em></p>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-brand">Sam News Reporter Teleprompts</p>
+      <p>Teleprompt editions for Sam Castillo. Sources linked in each briefing.</p>
+      <p><a href="../index.html">← Back to homepage</a></p>
+    </div>
+  </footer>
+  <script src="../js/nav.js" defer></script>
+</body>
+</html>
