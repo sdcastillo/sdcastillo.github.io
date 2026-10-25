@@ -79,6 +79,44 @@ a:hover {
   top: 1rem;
 }
 
+.skip-link-audio {
+  left: 10.5rem;
+}
+
+.a11y-audio-section {
+  padding: 2.5rem 0 1.5rem;
+  border-bottom: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.a11y-audio-section .a11y-kicker {
+  margin: 0 0 0.35rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-family: var(--font-brand);
+}
+
+.a11y-audio-section h2 {
+  margin: 0 0 0.5rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 2.5vw, 1.85rem);
+  color: var(--ink);
+}
+
+.a11y-audio-section audio {
+  display: block;
+  width: 100%;
+  max-width: 36rem;
+  margin: 0.75rem 0;
+}
+
+.a11y-download {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
 /* —— Hero (homepage, one full-viewport composition) —— */
 .hero {
   position: relative;

@@ -26,14 +26,14 @@ sam-news-reporter-teleprompts/
 ├── README.md           # This file
 ├── css/site.css        # Shared styles
 ├── js/nav.js           # Optional nav helper
-├── md/                 # Markdown source per article (22 files)
-├── articles/           # HTML article pages (22 files)
+├── md/                 # Markdown source per article (23 files)
+├── articles/           # HTML article pages (23 files)
 └── scripts/build.py    # Regenerate site from topic-pack JSON
 ```
 
 ## Article count
 
-**22** articles.
+**23** articles.
 
 ## Rebuild
 
@@ -44,6 +44,17 @@ python3 scripts/build.py
 ```
 
 Rebuild writes `md/`, `articles/`, `index.html`, `css/site.css`, and `js/nav.js` from the JSON seeds. Article copy stays faithful to source hit titles and snippets — no invented news facts.
+
+## Publish gate
+
+**No deploy unless tests pass.** This `build.py` runs midterms functional tests first.
+
+```bash
+python3 /home/sandcastle/midterms2026/scripts/functional_build_tests.py
+bash /home/sandcastle/midterms2026/scripts/build_and_publish.sh --build
+```
+
+See Project store `docs/functional-build-tests.md`.
 
 ## Sample headlines
 

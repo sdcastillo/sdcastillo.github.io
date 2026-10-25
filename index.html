@@ -13,6 +13,7 @@
 </head>
 <body class="page-home">
   <a class="skip-link" href="#main">Skip to content</a>
+  <a class="skip-link skip-link-audio" href="#audio-overview">Skip to audio overview</a>
 
   <header class="hero">
     <div class="hero-atmosphere" aria-hidden="true">
@@ -31,6 +32,7 @@
       <div class="hero-cta">
         <a class="btn-primary" href="#headlines">Read today's briefings</a>
         <a class="btn-ghost" href="#follow-the-money">Follow the Money</a>
+        <a class="btn-ghost" href="#audio-overview">Listen to overview</a>
         <a class="btn-ghost" href="#sections">Browse by section</a>
       </div>
       <p class="hero-credit">Reporting brand · Sam Castillo</p>
@@ -38,10 +40,35 @@
   </header>
 
   <main id="main">
+    <section id="audio-overview" class="a11y-audio-section" aria-labelledby="audio-overview-title">
+      <div class="section-inner">
+        <p class="a11y-kicker">Accessibility</p>
+        <h2 id="audio-overview-title">Audio overview for people with disabilities</h2>
+        <p id="audio-overview-desc" class="section-lede">
+          Spoken summary of this Sam News homepage — about two minutes. Does not autoplay.
+          Use the player or download the file. The written briefings below are the text equivalent.
+        </p>
+        <audio
+          controls
+          preload="metadata"
+          aria-labelledby="audio-overview-title"
+          aria-describedby="audio-overview-desc"
+        >
+          <source src="media/access/disability_page_access_audio_overview.m4a" type="audio/mp4" />
+          <a href="media/access/disability_page_access_audio_overview.m4a">Download the audio overview (M4A)</a>
+        </audio>
+        <p class="a11y-download">
+          <a href="media/access/disability_page_access_audio_overview.m4a" download>
+            Download audio overview (M4A, ~3.6&nbsp;MB)
+          </a>
+        </p>
+      </div>
+    </section>
+
     <section id="headlines" class="headline-grid-section" aria-labelledby="headlines-title">
       <div class="section-inner">
         <h2 id="headlines-title">Today's teleprompts</h2>
-        <p class="section-lede">22 briefings — research wire plus Follow the Money.</p>
+        <p class="section-lede">23 briefings — research wire plus Follow the Money.</p>
         <ol class="headline-grid">
           <li>
             <a href="articles/election-misinformation-and-media.html">
@@ -203,7 +230,14 @@
             <a href="articles/how-to-read-campaign-finance-db.html">
               <p class="hl-kicker">Follow the Money</p>
               <h3 class="hl-title">How to Read the Campaign Finance DB—and What’s Missing</h3>
-              <p class="hl-dek">A reporter’s map to the Follow the Money SQLite kit: which tables answer which questions, why ActBlue/WinRed splits are blank until itcont loads, and how to avoid overclaiming from public records.</p>
+              <p class="hl-dek">A reporter’s map to the Follow the Money SQLite kit: which tables answer which questions, how ActBlue/WinRed splits now load from itcont, and how to avoid overclaiming from public records.</p>
+            </a>
+          </li>
+          <li>
+            <a href="articles/actblue-winred-vs-direct.html">
+              <p class="hl-kicker">Follow the Money</p>
+              <h3 class="hl-title">ActBlue vs Direct: How Itemized Money Reaches Four MA Democrats</h3>
+              <p class="hl-dek">FEC bulk itcont for McGovern, Neal, Warren, and Markey shows majority ActBlue routing on itemized individuals, zero WinRed, and House members closer to a 60/40 ActBlue–direct split—public conduit patterns, not findings of misconduct.</p>
             </a>
           </li>
         </ol>
@@ -221,6 +255,7 @@
             <li><a href="articles/ma-ocpf-sabadosa-comerford-healey.html">MA OCPF Snapshot: Sabadosa, Comerford, and Healey</a></li>
             <li><a href="articles/congress-rollcalls-markey-warren-pac.html">Markey–Warren Lockstep, Party Unity, and the 2026 PAC File</a></li>
             <li><a href="articles/how-to-read-campaign-finance-db.html">How to Read the Campaign Finance DB—and What’s Missing</a></li>
+            <li><a href="articles/actblue-winred-vs-direct.html">ActBlue vs Direct: How Itemized Money Reaches Four MA Democrats</a></li>
           </ul>
         </div>
         <div class="section-block">
@@ -288,7 +323,7 @@
     <div class="footer-inner">
       <p class="footer-brand">Sam News Reporter Teleprompts</p>
       <p>Static teleprompt site · Wednesday, October 21, 2026 · Sam Castillo</p>
-      <p>22 articles · open <code>index.html</code> locally</p>
+      <p>23 articles · open <code>index.html</code> locally</p>
     </div>
   </footer>
   <script src="js/nav.js" defer></script>

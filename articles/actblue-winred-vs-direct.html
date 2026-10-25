@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ActBlue vs Direct: How Itemized Money Reaches Four MA Democrats — Sam News Reporter Teleprompts</title>
+  <meta name="description" content="FEC bulk itcont for McGovern, Neal, Warren, and Markey shows majority ActBlue routing on itemized individuals, zero WinRed, and House members closer to a 60/40 " />
+  <meta name="author" content="Sam Castillo" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/site.css" />
+</head>
+<body class="page-article">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <p class="eyebrow">Saturday, October 24, 2026</p>
+      <a class="brand-mark" href="../index.html">Sam News Reporter Teleprompts</a>
+      <p class="byline-line">Briefings by Sam Castillo</p>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="../index.html">Home</a>
+        <a href="../index.html#headlines">Headlines</a>
+        <a href="../index.html#follow-the-money">Follow the Money</a>
+        <a href="../index.html#sections">Sections</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="article-main">
+    <article class="article">
+      <header class="article-header">
+        <p class="section-kicker">Follow the Money</p>
+        <h1>ActBlue vs Direct: How Itemized Money Reaches Four MA Democrats</h1>
+        <p class="article-meta"><time datetime="2026-10-24">Saturday, October 24, 2026</time> · Sam Castillo</p>
+      </header>
+      <div class="article-body">
+<p class="dek">FEC bulk itcont for McGovern, Neal, Warren, and Markey shows majority ActBlue routing on itemized individuals, zero WinRed, and House members closer to a 60/40 ActBlue–direct split—public conduit patterns, not findings of misconduct.</p>
+<p>
+After loading FEC bulk individual files (`indiv24` / `indiv26`) into the Follow the Money kit, query <strong>J</strong> compares ActBlue, WinRed, and direct itemized receipts for the four federal committees. <strong>Patterns describe fundraising utilities, not wrongdoing.</strong> WinRed is a Republican-leaning conduit; <strong>$0 WinRed</strong> for these Democrats is expected.
+</p>
+<h2>District note</h2>
+<ul>
+<li><strong>Jim McGovern</strong> = <strong>U.S. House MA-02</strong> (includes <strong>Northampton</strong>).</li>
+<li><strong>Richard Neal</strong> = <strong>U.S. House MA-01</strong> (comparison only; not Northampton).</li>
+</ul>
+<h2>How the split is measured</h2>
+<p>
+Earmarks for these committees use `TRANSACTION_TP=15E` and `MEMO_TEXT` like “EARMARKED CONTRIBUTION: SEE BELOW,” with the platform in <strong>`OTHER_ID`</strong> (<strong>ActBlue = C00401224</strong>, <strong>WinRed = C00694323</strong>)—not the older “EARMARKED THROUGH ACTBLUE” memo string. Book SQL that only greps MEMO_TEXT for ACTBLUE will wrongly report 100% Direct.
+</p>
+<p>
+Loaded rows in `fec_indiv`: <strong>127,380</strong> (2024) + <strong>53,173</strong> (2026) = <strong>180,553</strong>.
+</p>
+<h2>ActBlue share of itemized individual dollars</h2>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Official</th>
+<th>Cycle</th>
+<th>ActBlue % of $</th>
+<th>ActBlue $</th>
+<th>Direct* %</th>
+</tr></thead><tbody>
+<tr>
+<td>McGovern (MA-02)</td>
+<td>2024</td>
+<td>58.1%</td>
+<td>$334,679</td>
+<td>41.9%</td>
+</tr>
+<tr>
+<td>McGovern (MA-02)</td>
+<td>2026</td>
+<td>63.9%</td>
+<td>$290,913</td>
+<td>36.1%</td>
+</tr>
+<tr>
+<td>Neal (MA-01)</td>
+<td>2024</td>
+<td>59.9%</td>
+<td>$449,200</td>
+<td>40.1%</td>
+</tr>
+<tr>
+<td>Neal (MA-01)</td>
+<td>2026</td>
+<td>62.6%</td>
+<td>$364,450</td>
+<td>37.4%</td>
+</tr>
+<tr>
+<td>Warren</td>
+<td>2024</td>
+<td>80.1%</td>
+<td>$3,279,676</td>
+<td>19.9%</td>
+</tr>
+<tr>
+<td>Warren</td>
+<td>2026</td>
+<td>95.1%</td>
+<td>$1,321,550</td>
+<td>4.9%</td>
+</tr>
+<tr>
+<td>Markey</td>
+<td>2024</td>
+<td>72.6%</td>
+<td>$558,029</td>
+<td>27.4%</td>
+</tr>
+<tr>
+<td>Markey</td>
+<td>2026</td>
+<td>61.0%</td>
+<td>$1,002,476</td>
+<td>39.0%</td>
+</tr>
+</tbody></table></div>
+<p>
+Direct* includes small non-ActBlue conduits. <strong>WinRed = $0</strong> in every cell.
+</p>
+<h2>Predicted ActBlue share (2027–2032)</h2>
+<p>
+<strong>Label:</strong> model extrapolation from 2024–2026 itemized conduit shares. <strong>Not certainty and not causal</strong> — a transparent linear extension of observed ActBlue % of itemized dollars from cycle 2024 → 2026 (`share_t = share_2026 + ((share_2026 − share_2024) / 2) × (t − 2026)`), clamped to <strong>[0%, 100%]</strong>. Horizon: <strong>2027 through 2032</strong> (same year span the 50-state money kit should use when that kit runs).
+</p>
+<div class="table-wrap"><table>
+<thead><tr>
+<th>Official</th>
+<th>2024</th>
+<th>2026</th>
+<th>’27</th>
+<th>’28</th>
+<th>’29</th>
+<th>’30</th>
+<th>’31</th>
+<th>’32</th>
+<th>Slope/yr</th>
+</tr></thead><tbody>
+<tr>
+<td>McGovern (MA-02)</td>
+<td>58.1%</td>
+<td>63.9%</td>
+<td>66.8%</td>
+<td>69.7%</td>
+<td>72.6%</td>
+<td>75.5%</td>
+<td>78.4%</td>
+<td>81.3%</td>
+<td>+2.90 pp</td>
+</tr>
+<tr>
+<td>Neal (MA-01)</td>
+<td>59.9%</td>
+<td>62.6%</td>
+<td>64.0%</td>
+<td>65.3%</td>
+<td>66.7%</td>
+<td>68.0%</td>
+<td>69.4%</td>
+<td>70.7%</td>
+<td>+1.35 pp</td>
+</tr>
+<tr>
+<td>Warren</td>
+<td>80.1%</td>
+<td>95.1%</td>
+<td>100%*</td>
+<td>100%*</td>
+<td>100%*</td>
+<td>100%*</td>
+<td>100%*</td>
+<td>100%*</td>
+<td>+7.50 pp</td>
+</tr>
+<tr>
+<td>Markey</td>
+<td>72.6%</td>
+<td>61.0%</td>
+<td>55.2%</td>
+<td>49.4%</td>
+<td>43.6%</td>
+<td>37.8%</td>
+<td>32.0%</td>
+<td>26.2%</td>
+<td>−5.80 pp</td>
+</tr>
+</tbody></table></div>
+<p>
+*Warren’s raw linear path would exceed 100%; clamped. Chart: `media/ftm/query_j_actblue_share_forecast.png`.
+</p>
+<h2>Teleprompt angles</h2>
+<ul>
+<li>Lead with <strong>McGovern ~60% ActBlue</strong> for the Northampton House race; Neal is similar on ActBlue share despite a PAC-heavier overall war chest (weball).</li>
+<li><strong>Warren</strong> is the most ActBlue-routed on itemized dollars (<strong>80% → 95%</strong>); the simple model hits the <strong>100% clamp</strong> for every forecast year through 2032.</li>
+<li><strong>Markey’s ActBlue dollar volume rose</strong> into 2026 while the <strong>ActBlue share of dollars fell</strong>—say both numbers; continued linear trend points toward roughly <strong>a quarter</strong> of itemized $ by 2032 (dollars can still rise).</li>
+<li>Close: “Public FEC files show <strong>how</strong> itemized gifts were routed. They do not, by themselves, prove improper influence. Forecast columns are <strong>model extrapolation</strong>, not a prediction of certainty.”</li>
+</ul>
+<p>
+Source paths: kit `out/query_j_3way.txt`, `out/query_j_actblue_winred.csv`, `out/query_j_actblue_share_with_forecast.csv`, docs `actblue-winred-split.md`.
+</p>
+<hr />
+<p class="article-footer"><em>Teleprompt edition for Saturday, October 24, 2026. Reporting brand: Sam Castillo / Sam News Reporter Teleprompts. Figures from public FEC, OpenFEC, MA OCPF, and VoteView kit outs only.</em></p>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-brand">Sam News Reporter Teleprompts</p>
+      <p>Teleprompt editions for Sam Castillo. Sources linked in each briefing.</p>
+      <p><a href="../index.html">← Back to homepage</a></p>
+    </div>
+  </footer>
+  <script src="../js/nav.js" defer></script>
+</body>
+</html>
