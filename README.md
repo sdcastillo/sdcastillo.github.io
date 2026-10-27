@@ -26,14 +26,14 @@ sam-news-reporter-teleprompts/
 ├── README.md           # This file
 ├── css/site.css        # Shared styles
 ├── js/nav.js           # Optional nav helper
-├── md/                 # Markdown source per article (23 files)
-├── articles/           # HTML article pages (23 files)
+├── md/                 # Markdown source per article (24 files)
+├── articles/           # HTML article pages (24 files)
 └── scripts/build.py    # Regenerate site from topic-pack JSON
 ```
 
 ## Article count
 
-**23** articles.
+**24** articles.
 
 ## Rebuild
 
