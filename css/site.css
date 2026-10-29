@@ -658,6 +658,75 @@ code {
   }
 }
 
+
+/* —— Topics / hashtag chips —— */
+.topics-row {
+  width: min(var(--max), calc(100% - 2.5rem));
+  margin: 0 auto;
+  padding: 1.25rem 0 0.25rem;
+}
+
+.page-home .topics-row {
+  padding: 1.5rem 0 0.5rem;
+  border-bottom: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.28);
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem 1rem;
+  padding-left: max(1.25rem, calc((100% - var(--max)) / 2));
+  padding-right: max(1.25rem, calc((100% - var(--max)) / 2));
+}
+
+.page-article .topics-row {
+  padding: 0 0 2rem;
+}
+
+.topics-label {
+  margin: 0;
+  font-family: var(--font-brand);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  flex: 0 0 auto;
+}
+
+.topics-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.5rem;
+  align-items: center;
+}
+
+.topic-chip {
+  display: inline-block;
+  font-family: var(--font-brand);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  color: var(--accent-deep);
+  border-bottom: 1px solid rgba(8, 79, 76, 0.28);
+  padding: 0.1rem 0;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.topic-chip:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+@media (max-width: 560px) {
+  .page-home .topics-row {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .hero-sky,

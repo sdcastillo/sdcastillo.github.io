@@ -4,7 +4,7 @@ Static news teleprompt site branded for **Sam Castillo**.
 
 ## Edition
 
-Wednesday, October 21, 2026
+Thursday, October 29, 2026
 
 ## How to open
 
@@ -26,14 +26,14 @@ sam-news-reporter-teleprompts/
 ├── README.md           # This file
 ├── css/site.css        # Shared styles
 ├── js/nav.js           # Optional nav helper
-├── md/                 # Markdown source per article (24 files)
-├── articles/           # HTML article pages (24 files)
+├── md/                 # Markdown source per article (32 files)
+├── articles/           # HTML article pages (32 files)
 └── scripts/build.py    # Regenerate site from topic-pack JSON
 ```
 
 ## Article count
 
-**24** articles.
+**32** articles (8 from DolphinOcean `news_trends`).
 
 ## Rebuild
 
@@ -58,6 +58,9 @@ See Project store `docs/functional-build-tests.md`.
 
 ## Sample headlines
 
+- Israel's Deadlocked Vote: Record Turnout, Rival Claims to Lead
+- DOJ Inquiring About Nvidia's Purchase of Hugging Face, Sources Say
+- U.S. Measles Cases More Than Double as Outbreak Spreads
 - The mystery is missing
 - Perceived class positions and opinion-based polarisation: experimental evidence from the UK
 - How Parents Can Help Their Kids Build a Faith That Lasts
