@@ -2,10 +2,10 @@
 markdown:         kramdown
 highlighter:      rouge
 # Setup
-title:            Adventure
-tagline:          'Code the world, debug the journey'
+title:            SamWiki
+tagline:          'Public index of math, machine learning, and actuarial work'
 theme: jekyll-theme-cayman
-description:      'Building experiences, writing code, chasing horizons'
+description:      'Sam Castillo’s public index of math, machine learning, and actuarial projects. Challenge ladder of demos, source code, and notes.'
 url:              https://sdcastillo.github.io
 baseurl:          /blog # the optional subpath of your site, e.g. "/blog"
                   # NB: This applies to all pages in your Jekyll site.
@@ -16,8 +16,8 @@ baseurl:          /blog # the optional subpath of your site, e.g. "/blog"
 google_analytics: UA-113404765-1
 
 author:
-  name:           'SAM'
-  url:            
+  name:           'Samuel Castillo'
+  url:            https://sdcastillo.github.io
 
 paginate:         7
 # paginate_path:    '/page:num'
