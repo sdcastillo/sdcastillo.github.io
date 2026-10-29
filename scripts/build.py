@@ -600,6 +600,18 @@ ARTICLE_TEMPLATE = """<!DOCTYPE html>
     </div>
   </nav>
 
+  <aside class="tip-strip tip-strip--article" aria-label="Tip the reporter">
+    <div class="tip-inner tip-inner--compact">
+      <p class="tip-compact-label">Tip · <span class="tip-preferred">X Money preferred</span></p>
+      <div class="tip-actions tip-actions--compact">
+        <a class="tip-btn tip-btn--x tip-btn--sm" href="https://x.com/SamCast65215624" rel="noopener noreferrer" target="_blank">X Money</a>
+        <a class="tip-btn tip-btn--cash tip-btn--sm" href="https://cash.app/$samiamcastillo" rel="noopener noreferrer" target="_blank">Cash App</a>
+        <a class="tip-btn tip-btn--paypal tip-btn--sm" href="mailto:castillo.sam.d@gmail.com" title="PayPal · castillo.sam.d@gmail.com">PayPal</a>
+      </div>
+      <p class="tip-email-note">PayPal: <a href="mailto:castillo.sam.d@gmail.com">castillo.sam.d@gmail.com</a></p>
+    </div>
+  </aside>
+
   <footer class="site-footer">
     <div class="footer-inner">
       <p class="footer-brand">{brand}</p>
@@ -699,6 +711,28 @@ INDEX_TEMPLATE = """<!DOCTYPE html>
       </div>
     </section>
   </main>
+
+  <section id="support" class="tip-strip tip-strip--home" aria-labelledby="support-title">
+    <div class="tip-inner">
+      <p class="tip-kicker">Support</p>
+      <h2 id="support-title">Tip the reporter</h2>
+      <p class="tip-lede">If these briefings help, tip via X Money (preferred), Cash App, or PayPal.</p>
+      <div class="tip-actions">
+        <a class="tip-btn tip-btn--x" href="https://x.com/SamCast65215624" rel="noopener noreferrer" target="_blank">
+          <span class="tip-btn-label">X Money</span>
+          <span class="tip-btn-hint">Preferred · tip via X</span>
+        </a>
+        <a class="tip-btn tip-btn--cash" href="https://cash.app/$samiamcastillo" rel="noopener noreferrer" target="_blank">
+          <span class="tip-btn-label">Cash App</span>
+          <span class="tip-btn-hint">$samiamcastillo</span>
+        </a>
+        <a class="tip-btn tip-btn--paypal" href="mailto:castillo.sam.d@gmail.com">
+          <span class="tip-btn-label">PayPal</span>
+          <span class="tip-btn-hint">castillo.sam.d@gmail.com</span>
+        </a>
+      </div>
+    </div>
+  </section>
 
   <footer class="site-footer">
     <div class="footer-inner">
@@ -1332,6 +1366,211 @@ code {
 @media (max-width: 560px) {
   .article-body table {
     font-size: 0.85rem;
+  }
+}
+
+/* —— Tip / support strip —— */
+.tip-strip {
+  border-top: 1px solid var(--line);
+  background:
+    linear-gradient(180deg, rgba(11, 110, 106, 0.07) 0%, rgba(255, 255, 255, 0.4) 55%, transparent 100%);
+}
+
+.tip-strip--home {
+  border-bottom: 1px solid var(--line);
+}
+
+.tip-inner {
+  width: min(var(--max), calc(100% - 2.5rem));
+  margin: 0 auto;
+  padding: 2.75rem 0 3rem;
+}
+
+.tip-inner--compact {
+  padding: 1.35rem 0 1.75rem;
+}
+
+.tip-kicker {
+  margin: 0 0 0.35rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-family: var(--font-brand);
+}
+
+.tip-strip h2 {
+  margin: 0 0 0.45rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.45rem, 2.6vw, 1.9rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.tip-lede {
+  margin: 0 0 1.35rem;
+  max-width: 40ch;
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+
+.tip-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem 0.85rem;
+  align-items: stretch;
+}
+
+.tip-btn {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0.15rem;
+  padding: 0.85rem 1.2rem;
+  font-family: var(--font-brand);
+  text-decoration: none;
+  border-radius: 0.2rem;
+  border: 1px solid rgba(21, 32, 40, 0.22);
+  background: rgba(255, 255, 255, 0.55);
+  color: var(--ink);
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  min-width: 9.5rem;
+}
+
+.tip-btn:hover {
+  transform: translateY(-1px);
+  color: var(--ink);
+}
+
+.tip-btn-label {
+  font-weight: 800;
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
+  line-height: 1.15;
+}
+
+.tip-btn-hint {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 0.82rem;
+  color: var(--muted);
+  line-height: 1.2;
+}
+
+.tip-btn--x {
+  background: var(--ink);
+  color: var(--paper-2);
+  border-color: var(--ink);
+  box-shadow: 0 10px 28px rgba(21, 32, 40, 0.14);
+  order: -1;
+  min-width: 11.5rem;
+}
+
+.tip-btn--x .tip-btn-hint {
+  color: rgba(244, 247, 249, 0.78);
+}
+
+.tip-btn--x:hover {
+  background: var(--accent-deep);
+  border-color: var(--accent-deep);
+  color: #fff;
+}
+
+.tip-btn--x:hover .tip-btn-hint {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.tip-btn--cash:hover,
+.tip-btn--paypal:hover {
+  border-color: var(--accent-deep);
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--accent-deep);
+}
+
+.tip-btn--sm {
+  flex-direction: row;
+  align-items: center;
+  padding: 0.55rem 0.9rem;
+  min-width: 0;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.tip-btn--x.tip-btn--sm {
+  min-width: 0;
+}
+
+.tip-compact-label {
+  margin: 0 0 0.65rem;
+  font-family: var(--font-brand);
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.tip-preferred {
+  color: var(--accent-deep);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+.tip-email-note {
+  margin: 0.65rem 0 0;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
+.tip-email-note a {
+  color: var(--accent-deep);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(8, 79, 76, 0.28);
+}
+
+.tip-email-note a:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+.page-article .tip-strip--article {
+  width: min(var(--max), calc(100% - 2.5rem));
+  margin: 0 auto;
+  background: transparent;
+  border-top: 1px dashed var(--line);
+}
+
+@media (max-width: 560px) {
+  .tip-inner {
+    width: calc(100% - 1.75rem);
+    padding: 2.25rem 0 2.5rem;
+  }
+
+  .tip-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .tip-btn {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .tip-actions--compact {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .tip-actions--compact .tip-btn {
+    width: auto;
+    flex: 1 1 auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tip-btn {
+    transition: none;
   }
 }
 
