@@ -1,7 +1,7 @@
 ---
-layout: page
+layout: post
 title: True Love in Space
-permalink: /true-love-in-space/
+slug: sam-indie-films
 ---
 
 # True Love in Space
