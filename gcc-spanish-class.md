@@ -6,8 +6,6 @@ permalink: /gcc-spanish-class/
 samwiki: true
 ---
 
-# GCC Spanish Class
-
 Sam en la clase de español en GCC. La clase muy feliz. Mucha gente, mujeres y hombres, a los que les gustan las ciencias.
 
 Sam escucha del telescopio, de la clase de astronomía con el profesor Ted Johnson — una ciencia inteligente, y todos los estudiantes metidos.

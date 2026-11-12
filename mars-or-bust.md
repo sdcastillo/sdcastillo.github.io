@@ -6,12 +6,7 @@ permalink: /mars-or-bust/
 samwiki: true
 ---
 
-# Mars or Bust
-
-<div class="rumble">
-<!-- Rumble embed for Mars or Bust will go here once uploaded -->
-<p><em>Rumble embed placeholder — upload the short and drop the iframe here.</em></p>
-</div>
+<p><em>The video will appear here once the short is on Rumble.</em></p>
 
 ## The scene
 
