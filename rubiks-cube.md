@@ -24,6 +24,7 @@ samwiki: true
           allowfullscreen></iframe>
 </div>
 <p class="meta"><a href="https://rumble.com/v7i9qx0-a-rubiks-cube-may-be-solved-systematically-layered-by-layer.html?mref=4nnnxw">Watch on Rumble</a></p>
+<p class="meta"><strong>Did this help you solve it?</strong> Tip the tutorial on <a href="https://cash.app/$samiamcastillo">Cash App: $samiamcastillo</a>.</p>
 
 
   <h2 id="slides">Algorithm slides</h2>
