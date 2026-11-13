@@ -87,7 +87,7 @@ samwiki: true
     <p class="cube-hint">Tip: filter to one step and shuffle it until the algorithm is automatic.</p>
   </div>
 
-  <p class="cube-tags">#rubikscube #speedcubing #rubikscubesolve #satisfying #puzzle #cubing #fyp #viral #brainteaser #math</p>
+  <p class="cube-tags">#rubikscube #speedcubing #rubikscubesolve #satisfying #puzzle #cubing #fyp #viral #brainteaser #math #rubikscubetutorial #howtosolvearubikscube #cubetutorial #3x3 #3x3rubikscube #beginnercubing #learntocube #layerbylayer #layeredmethod #beginnermethod #cubealgorithms #whitecross #yellowcross #sune #twistypuzzle #oddlysatisfying #puzzlesolving #tutorial #educational #STEM #rubixcube #rubixcubetutorial</p>
 </div>
 <script>
 window.CUBE_PAGE = {
