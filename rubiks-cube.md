@@ -16,10 +16,14 @@ samwiki: true
 
   <h2 id="tutorial">Tutorial</h2>
   
-<div class="cube-frame cube-pending">
-  <img class="poster" src="/assets/rubiks-cube/poster.jpg" alt="Sam teaching a 3×3 Rubik’s Cube beside the algorithm slides">
-  <p class="note">The 4:28 dual-screen tutorial is cut and ready. It will play here once it is uploaded to Rumble — the file is too large for GitHub Pages.</p>
+<div class="cube-frame cube-player" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+          src="https://rumble.com/embed/v7g3dzi/?pub=4nnnxw"
+          title="A Rubik’s Cube may be solved systematically layered by layer"
+          frameborder="0"
+          allowfullscreen></iframe>
 </div>
+<p class="meta"><a href="https://rumble.com/v7i9qx0-a-rubiks-cube-may-be-solved-systematically-layered-by-layer.html?mref=4nnnxw">Watch on Rumble</a></p>
 
 
   <h2 id="slides">Algorithm slides</h2>
