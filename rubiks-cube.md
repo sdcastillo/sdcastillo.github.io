@@ -25,14 +25,14 @@ samwiki: true
   <h2 id="slides">Algorithm slides</h2>
   <div class="cube-slides">
     <div class="cube-frame">
-      <img class="slide cube-slide-img" src="/assets/rubiks-cube/slides/slide_012.jpg" alt="How to Solve a Rubik’s Cube — seven steps, seven algorithms">
+      <img class="slide cube-slide-img" id="cube-slide-img" src="/assets/rubiks-cube/slides/slide_012.jpg" alt="How to Solve a Rubik’s Cube — seven steps, seven algorithms">
     </div>
     <div class="cube-slide-nav">
       <button type="button" id="cube-prev-slide">Previous</button>
       <p class="cube-caption" id="cube-caption">1 / 9 — How to Solve a Rubik’s Cube — seven steps, seven algorithms</p>
       <button type="button" id="cube-next-slide">Next</button>
     </div>
-    <div class="cube-dots" role="tablist" aria-label="Slides"></div>
+    <div class="cube-dots" id="cube-dots" role="tablist" aria-label="Slides"></div>
   </div>
 
   <h2 id="method">The seven steps</h2>
@@ -64,11 +64,11 @@ samwiki: true
         <span class="cube-flip-inner">
           <span class="cube-face cube-front">
             <span class="cube-kicker cube-kicker-q">Question</span>
-            <span class="cube-q"></span>
+            <span class="cube-q" id="cube-q"></span>
           </span>
           <span class="cube-face cube-back">
             <span class="cube-kicker cube-kicker-a">Answer</span>
-            <span class="cube-a"></span>
+            <span class="cube-a" id="cube-a"></span>
           </span>
         </span>
       </button>

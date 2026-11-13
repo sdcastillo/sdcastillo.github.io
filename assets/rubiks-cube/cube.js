@@ -1,4 +1,3 @@
-
 (function () {
   var root = document.getElementById("cube-lab");
   if (!root) return;
@@ -10,17 +9,29 @@
   var filter = "all";
   var deck = cards.slice();
 
-  function $(sel) { return root.querySelector(sel); }
-  function $all(sel) { return Array.prototype.slice.call(root.querySelectorAll(sel)); }
+  function $(sel) {
+    if (!sel) return null;
+    if (sel.charAt(0) === "#") return document.getElementById(sel.slice(1));
+    return (root || document).querySelector(sel);
+  }
+  function $all(sel) {
+    return Array.prototype.slice.call((root || document).querySelectorAll(sel));
+  }
+  function on(sel, ev, fn) {
+    var el = $(sel);
+    if (el) el.addEventListener(ev, fn);
+  }
 
   function showSlide(i) {
     if (!slides.length) return;
     slideIndex = (i + slides.length) % slides.length;
-    var img = $(".cube-slide-img");
-    var cap = $(".cube-caption");
-    img.src = slides[slideIndex].src;
-    img.alt = slides[slideIndex].caption;
-    cap.textContent = (slideIndex + 1) + " / " + slides.length + " — " + slides[slideIndex].caption;
+    var img = $("#cube-slide-img") || document.querySelector(".cube-slide-img");
+    var cap = $("#cube-caption");
+    if (img) {
+      img.src = slides[slideIndex].src;
+      img.alt = slides[slideIndex].caption;
+    }
+    if (cap) cap.textContent = (slideIndex + 1) + " / " + slides.length + " — " + slides[slideIndex].caption;
     $all(".cube-dots button").forEach(function (b, n) {
       b.setAttribute("aria-current", n === slideIndex ? "true" : "false");
     });
@@ -42,38 +53,44 @@
     if (!list.length) return;
     if (cardIndex >= list.length) cardIndex = 0;
     var c = list[cardIndex];
-    var btn = $(".cube-flip");
-    btn.classList.remove("is-flipped");
-    btn.setAttribute("aria-pressed", "false");
-    $(".cube-q").textContent = c.q;
-    $(".cube-a").textContent = c.a;
+    var btn = $("#cube-flip");
+    if (btn) {
+      btn.classList.remove("is-flipped");
+      btn.setAttribute("aria-pressed", "false");
+    }
+    var qEl = $("#cube-q") || document.querySelector(".cube-q");
+    var aEl = $("#cube-a") || document.querySelector(".cube-a");
+    if (qEl) qEl.textContent = c.q;
+    if (aEl) aEl.textContent = c.a;
     $all(".cube-kicker-q, .cube-kicker-a").forEach(function (el) {
       el.textContent = stepLabel(c.step);
     });
-    $(".cube-progress").textContent = (cardIndex + 1) + " of " + list.length;
+    var prog = $("#cube-progress");
+    if (prog) prog.textContent = (cardIndex + 1) + " of " + list.length;
   }
 
   function flip() {
-    var btn = $(".cube-flip");
-    var on = !btn.classList.contains("is-flipped");
-    btn.classList.toggle("is-flipped", on);
-    btn.setAttribute("aria-pressed", on ? "true" : "false");
+    var btn = $("#cube-flip");
+    if (!btn) return;
+    var flipped = !btn.classList.contains("is-flipped");
+    btn.classList.toggle("is-flipped", flipped);
+    btn.setAttribute("aria-pressed", flipped ? "true" : "false");
   }
 
-  // slides
-  var dots = $(".cube-dots");
-  slides.forEach(function (_, n) {
-    var b = document.createElement("button");
-    b.type = "button";
-    b.setAttribute("aria-label", "Slide " + (n + 1));
-    b.addEventListener("click", function () { showSlide(n); });
-    dots.appendChild(b);
-  });
-  $(".cube-prev-slide").addEventListener("click", function () { showSlide(slideIndex - 1); });
-  $(".cube-next-slide").addEventListener("click", function () { showSlide(slideIndex + 1); });
+  var dots = $("#cube-dots") || document.querySelector(".cube-dots");
+  if (dots) {
+    slides.forEach(function (_, n) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.setAttribute("aria-label", "Slide " + (n + 1));
+      b.addEventListener("click", function () { showSlide(n); });
+      dots.appendChild(b);
+    });
+  }
+  on("#cube-prev-slide", "click", function () { showSlide(slideIndex - 1); });
+  on("#cube-next-slide", "click", function () { showSlide(slideIndex + 1); });
   showSlide(0);
 
-  // cards
   $all(".cube-filters button").forEach(function (b) {
     b.addEventListener("click", function () {
       filter = b.getAttribute("data-filter");
@@ -84,18 +101,18 @@
       renderCard();
     });
   });
-  $(".cube-flip").addEventListener("click", flip);
-  $(".cube-prev-card").addEventListener("click", function () {
+  on("#cube-flip", "click", flip);
+  on("#cube-prev-card", "click", function () {
     var list = filtered();
     cardIndex = (cardIndex - 1 + list.length) % list.length;
     renderCard();
   });
-  $(".cube-next-card").addEventListener("click", function () {
+  on("#cube-next-card", "click", function () {
     var list = filtered();
     cardIndex = (cardIndex + 1) % list.length;
     renderCard();
   });
-  $(".cube-shuffle").addEventListener("click", function () {
+  on("#cube-shuffle", "click", function () {
     for (var i = deck.length - 1; i > 0; i--) {
       var j = Math.floor(Math.random() * (i + 1));
       var t = deck[i]; deck[i] = deck[j]; deck[j] = t;
@@ -111,10 +128,12 @@
       flip();
     } else if (e.key === "ArrowRight") {
       e.preventDefault();
-      $(".cube-next-card").click();
+      var next = $("#cube-next-card");
+      if (next) next.click();
     } else if (e.key === "ArrowLeft") {
       e.preventDefault();
-      $(".cube-prev-card").click();
+      var prev = $("#cube-prev-card");
+      if (prev) prev.click();
     }
   });
   renderCard();
