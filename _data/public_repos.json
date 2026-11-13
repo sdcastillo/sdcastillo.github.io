@@ -3,7 +3,7 @@
     "name": "landingpage",
     "title": "ELECTION PREDICTIONS",
     "fork": false,
-    "description": "Twice-daily seat forecast for the November 3, 2026 United States midterm elections.",
+    "description": "Seat forecast for the November 3, 2026 United States midterm elections.",
     "language": "Markdown",
     "html_url": "https://github.com/sdcastillo/sdcastillo.github.io",
     "live_url": "https://www.predictiveinsightsai.com/washington-dc#election-predictions",
@@ -74,9 +74,9 @@
   },
   {
     "name": "PA-R-Study-Manual",
-    "title": "Exam PA Study Guide",
+    "title": "Predictive AI Study Guide",
     "fork": false,
-    "description": "An online study guide for the SOA's predictive analytics exam.",
+    "description": "An online study guide for Predictive AI, written for the SOA predictive analytics exam.",
     "language": "HTML",
     "html_url": "https://github.com/sdcastillo/PA-R-Study-Manual",
     "live_url": "https://sdcastillo.github.io/PA-R-Study-Manual/",
@@ -84,8 +84,8 @@
     "updated": "2026-01-31",
     "badge": "",
     "difficulty": "advanced",
-    "audience": "actuarial exam prep",
-    "search": "pa-r-study-manual html an online study guide for the soa's predictive analytics exam. pages-on advanced level 3 actuarial exam prep"
+    "audience": "Predictive AI study",
+    "search": "pa-r-study-manual html predictive ai study guide an online study guide for predictive ai, written for the soa predictive analytics exam. pages-on advanced level 3 predictive ai study"
   },
   {
     "name": "Prior-Weights-with-XGboost",
@@ -357,9 +357,9 @@
   },
   {
     "name": "website",
-    "title": "PredictiveAnalyst: Exam PA Study Site",
+    "title": "PredictiveAnalyst: Predictive AI Study Site",
     "fork": false,
-    "description": "PredictiveAnalyst site",
+    "description": "Predictive AI study site",
     "language": "HTML",
     "html_url": "https://github.com/sdcastillo/website",
     "live_url": "https://sdcastillo.github.io/website/",
@@ -368,7 +368,7 @@
     "badge": "",
     "difficulty": "beginner",
     "audience": "browsing an older site",
-    "search": "website html predictiveanalyst site pages-on beginner level 1 browsing an older site"
+    "search": "website html predictiveanalyst predictive ai study site pages-on beginner level 1 browsing an older site"
   },
   {
     "name": "Building-a-Vector-Space-Model-for-Movies-by-IMDB-Plot-Keywords",
@@ -465,9 +465,9 @@
   },
   {
     "name": "QuantumData",
-    "title": "QuantumData: Practice Datasets for Exam PA",
+    "title": "QuantumData: Practice Datasets for Predictive AI",
     "fork": false,
-    "description": "A container for data sets to help actuaries who are practicing predictive analytics",
+    "description": "A container of practice datasets for Predictive AI.",
     "language": "R",
     "html_url": "https://github.com/sdcastillo/QuantumData",
     "live_url": "https://sdcastillo.github.io/QuantumData/",
@@ -475,8 +475,8 @@
     "updated": "2026-04-10",
     "badge": "",
     "difficulty": "intermediate",
-    "audience": "actuarial exam prep",
-    "search": "quantumdata r a container for data sets to help actuaries who are practicing predictive analytics pages-on intermediate level 2 actuarial exam prep"
+    "audience": "Predictive AI practice",
+    "search": "quantumdata r practice datasets for predictive ai a container of practice datasets for predictive ai. pages-on intermediate level 2 predictive ai practice"
   },
   {
     "name": "Riemann",
@@ -495,9 +495,9 @@
   },
   {
     "name": "SOA-PA-Exam",
-    "title": "SOA Exam PA Notes",
+    "title": "SOA Predictive AI Notes",
     "fork": false,
-    "description": "An open-source set of study notes using Kaggle",
+    "description": "An open-source set of Predictive AI study notes using Kaggle",
     "language": "",
     "html_url": "https://github.com/sdcastillo/SOA-PA-Exam",
     "live_url": "https://sdcastillo.github.io/SOA-PA-Exam/",
@@ -505,8 +505,8 @@
     "updated": "2025-12-03",
     "badge": "",
     "difficulty": "intermediate",
-    "audience": "actuarial exam prep",
-    "search": "soa-pa-exam an open-source set of study notes using kaggle pages-on intermediate level 2 actuarial exam prep"
+    "audience": "Predictive AI study",
+    "search": "soa-pa-exam predictive ai notes an open-source set of predictive ai study notes using kaggle pages-on intermediate level 2 predictive ai study"
   },
   {
     "name": "SOA-Predictive-Modeling-Innovation-and-Industry-Contest-2019-First-Place",
